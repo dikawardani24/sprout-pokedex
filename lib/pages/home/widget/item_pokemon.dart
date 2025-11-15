@@ -1,12 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:sprout_pokedex/pages/loading_page.dart';
+import 'package:sprout_pokedex/res/color_res.dart';
+import 'package:sprout_pokedex/res/dimen_res.dart';
 import 'package:sprout_pokedex/res/image_res.dart';
 import 'package:sprout_pokedex/util/string_ext.dart';
 import 'package:sprout_pokedex/widgets/app_card.dart';
 import 'package:sprout_pokedex/widgets/app_chip_list.dart';
-
-import '../../../res/color_res.dart';
-import '../../../res/dimen_res.dart';
 
 class ItemPokemon extends StatelessWidget {
   final String id;
@@ -55,7 +55,8 @@ class ItemPokemon extends StatelessWidget {
               chipDataList: types,
               textStyle: const TextStyle(
                   color: ColorRes.white,
-                  fontSize: DimenRes.size_10
+                  fontSize: DimenRes.size_10,
+                overflow: TextOverflow.ellipsis,
               ),
             )
           ],
@@ -90,9 +91,7 @@ class ItemPokemon extends StatelessWidget {
                 child: SizedBox(
                   width: DimenRes.size_80,
                   height: DimenRes.size_80,
-                  child: CircularProgressIndicator(
-                    color: ColorRes.red,
-                  ),
+                  child: LoadingPage(size: DimenRes.size_200,),
                 ),
               ),
               errorWidget: (context, error, trace) => Icon(

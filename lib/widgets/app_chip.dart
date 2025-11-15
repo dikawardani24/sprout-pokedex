@@ -26,6 +26,7 @@ class AppChip extends StatelessWidget{
         child: Text(
           label,
           style: textStyle,
+          maxLines: 1,
         ),
       ),
     );

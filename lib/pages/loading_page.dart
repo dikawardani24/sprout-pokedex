@@ -4,16 +4,19 @@ import 'package:sprout_pokedex/res/dimen_res.dart';
 import 'package:sprout_pokedex/res/image_res.dart';
 
 class LoadingPage extends StatelessWidget {
+  final double size;
+
   const LoadingPage({
-    super.key
+    super.key,
+    this.size = DimenRes.size_100,
   });
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: SizedBox(
-        width: DimenRes.size_100,
-        height: DimenRes.size_100,
+        width: size,
+        height: size,
         child: Image.asset(
           ImageRes.pokeBallColored,
         ),

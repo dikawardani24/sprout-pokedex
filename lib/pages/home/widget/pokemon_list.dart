@@ -7,6 +7,7 @@ import 'package:sprout_pokedex/pages/home/bloc/home_state.dart';
 import 'package:sprout_pokedex/pages/loading_page.dart';
 import 'package:sprout_pokedex/res/color_res.dart';
 import 'package:sprout_pokedex/res/dimen_res.dart';
+import 'package:sprout_pokedex/res/image_res.dart';
 import 'package:sprout_pokedex/res/string_res.dart';
 import 'package:sprout_pokedex/util/pokemon_ext.dart';
 import 'package:sprout_pokedex/pages/home/widget/item_pokemon.dart';
@@ -45,14 +46,7 @@ class _PokemonListState extends State<PokemonList> {
     }
   }
 
-  @override
-  void initState() {
-    super.initState();
-    _scrollController.addListener(_onScrollListener);
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget _content() {
     final textTheme = Theme.of(context).textTheme;
     final state = context.watch<HomeBloc>().state;
 
@@ -114,4 +108,25 @@ class _PokemonListState extends State<PokemonList> {
       ],
     );
   }
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_onScrollListener);
+  }
+
+  @override
+  Widget build(BuildContext context) => Stack(
+    children: [
+      Align(
+        alignment: AlignmentGeometry.topRight,
+        child: Image.asset(ImageRes.pokeBall,
+          color: ColorRes.grey.withAlpha(60),
+          width: DimenRes.size_200,
+          height: DimenRes.size_200,
+        ),
+      ),
+      _content()
+    ],
+  );
 }
