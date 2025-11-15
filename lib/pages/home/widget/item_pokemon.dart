@@ -90,7 +90,9 @@ class ItemPokemon extends StatelessWidget {
                 child: SizedBox(
                   width: DimenRes.size_80,
                   height: DimenRes.size_80,
-                  child: CircularProgressIndicator(),
+                  child: CircularProgressIndicator(
+                    color: ColorRes.red,
+                  ),
                 ),
               ),
               errorWidget: (context, error, trace) => Icon(

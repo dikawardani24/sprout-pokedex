@@ -15,6 +15,10 @@ class DetailPage extends StatefulWidget {
 class _DetailPageState extends State<DetailPage> {
   @override
   Widget build(BuildContext context) {
-    return const Text("Detail");
+    return const Scaffold(
+      body: SafeArea(
+        child:  Text("Detail"),
+      ),
+    );
   }
 }

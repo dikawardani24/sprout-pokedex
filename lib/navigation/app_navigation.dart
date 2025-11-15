@@ -1,7 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:sprout_pokedex/navigation/routes.dart';
-import 'package:sprout_pokedex/pages/detail_page.dart';
+import 'package:sprout_pokedex/pages/detail/detail_page.dart';
 import 'package:sprout_pokedex/pages/home/home_page.dart';
 import 'package:sprout_pokedex/util/navigation_extension.dart';
 
