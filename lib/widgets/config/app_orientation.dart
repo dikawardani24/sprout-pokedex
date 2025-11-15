@@ -1,0 +1,4 @@
+enum AppOrientation {
+  horizontal,
+  vertical
+}
