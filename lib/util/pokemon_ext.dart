@@ -1,6 +1,9 @@
 
+import 'package:collection/collection.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:pokedex/pokedex.dart';
+import 'package:sprout_pokedex/util/string_ext.dart';
 
 enum PokedexTypeColor {
   bug(Color(0xFF8CB230), Color(0XFF8BD674)),
@@ -48,4 +51,63 @@ extension PokemonExt on Pokemon {
   );
 
   List<String> get typeNames => types.map((type) => type.type.name).toList();
+}
+
+extension ListTypeExtensions on List<Type> {
+  Map<String, double> get damageFrom {
+    final damage = <String, double>{};
+
+    forEach((type) {
+      for (var it in type.damageRelations.noDamageFrom) {
+        if (damage.containsKey(it.name)) {
+          damage[it.name] = damage[it.name]! * 0.0;
+        } else {
+          damage[it.name] = 0.0;
+        }
+      }
+
+      for (var it in type.damageRelations.halfDamageFrom) {
+        if (damage.containsKey(it.name)) {
+          damage[it.name] = damage[it.name]! * 0.5;
+        } else {
+          damage[it.name] = 0.5;
+        }
+      }
+
+      for (var it in type.damageRelations.doubleDamageFrom) {
+        if (damage.containsKey(it.name)) {
+          damage[it.name] = damage[it.name]! * 2.0;
+        } else {
+          damage[it.name] = 2.0;
+        }
+      }
+    });
+
+    return damage;
+  }
+}
+
+extension PokeSpeciesExt on PokemonSpecies? {
+  String? get flavor => this?.flavorTextEntries
+      .firstWhereOrNull((element) => element.language.name == 'en')
+      ?.flavorText
+      .replaceScapeChars();
+
+  String? get genre => this?.genera
+      .firstWhereOrNull((element) => element.language.name == 'en')
+      ?.genus;
+}
+
+extension DesignStringExtensions on String {
+  PokedexTypeColor get pokemonColor => PokedexTypeColor.values.firstWhere(
+        (element) => toLowerCase() == element.name,
+    orElse: () => PokedexTypeColor.unknown,
+  );
+
+  String asset() {
+    if (kIsWeb && !kDebugMode) {
+      return 'assets/$this';
+    }
+    return '${!kIsWeb ? 'assets/' : ''}$this';
+  }
 }

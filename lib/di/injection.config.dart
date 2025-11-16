@@ -17,6 +17,7 @@ import '../pages/detail/bloc/detail_cubit.dart' as _i630;
 import '../pages/home/bloc/home_bloc.dart' as _i752;
 import '../repository/pokemon_repository.dart' as _i1049;
 import '../usecase/get_detail_pokemon_use_case.dart' as _i353;
+import '../usecase/get_info_about_use_case.dart' as _i190;
 import '../usecase/get_pokemon_use_ase.dart' as _i898;
 import 'network_module.dart' as _i567;
 
@@ -39,10 +40,14 @@ _i174.GetIt $initGetIt(
       () => _i898.GetPokemonUseCaseImpl(gh<_i1049.PokemonRepository>()));
   gh.factory<_i752.HomeBloc>(
       () => _i752.HomeBloc(gh<_i898.GetPokemonUseCase>()));
+  gh.factory<_i190.GetInfoAboutUseCase>(
+      () => _i190.GetInfoAboutUseCaseImpl(gh<_i1049.PokemonRepository>()));
   gh.factory<_i353.GetDetailPokemonUseCase>(
       () => _i353.GetDetailPokemonUseCaseImpl(gh<_i1049.PokemonRepository>()));
-  gh.factory<_i630.DetailCubit>(
-      () => _i630.DetailCubit(gh<_i353.GetDetailPokemonUseCase>()));
+  gh.factory<_i630.DetailCubit>(() => _i630.DetailCubit(
+        gh<_i353.GetDetailPokemonUseCase>(),
+        gh<_i190.GetInfoAboutUseCase>(),
+      ));
   return getIt;
 }
 

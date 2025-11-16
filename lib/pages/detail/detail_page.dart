@@ -6,6 +6,8 @@ import 'package:sprout_pokedex/pages/detail/bloc/detail_state.dart';
 import 'package:sprout_pokedex/pages/detail/widgets/detail_content.dart';
 import 'package:sprout_pokedex/pages/loading_page.dart';
 
+import 'bloc/main_state.dart';
+
 class DetailPage extends StatefulWidget {
   final int id;
 

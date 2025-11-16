@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       title: StringRes.appName,
       themeMode: ThemeRes.themeMode,
       darkTheme: ThemeRes.getTheme(true),
-      theme: ThemeRes.getTheme(true),
+      theme: ThemeRes.getTheme(false),
       onGenerateRoute: context.getRouteGenerator(),
       initialRoute: Routes.home,
     );

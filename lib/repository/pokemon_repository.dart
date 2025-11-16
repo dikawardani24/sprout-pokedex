@@ -5,6 +5,8 @@ import 'package:pokedex/pokedex.dart';
 abstract class PokemonRepository {
   Future<List<Pokemon>> getPokemonList(int limit, int offset);
   Future<Pokemon> getPokemon(int id);
+  Future<PokemonSpecies> getSpecies(int id);
+  Future<Type> getTypeByUrl(String url);
 }
 
 @Injectable(as: PokemonRepository)
@@ -26,4 +28,10 @@ class PokemonRepositoryImpl implements PokemonRepository {
 
   @override
   Future<Pokemon> getPokemon(int id) => _pokedex.pokemon.get(id: id);
+
+  @override
+  Future<PokemonSpecies> getSpecies(int id) => _pokedex.pokemonSpecies.get(id: id);
+
+  @override
+  Future<Type> getTypeByUrl(String url) => _pokedex.types.getByUrl(url);
 }
