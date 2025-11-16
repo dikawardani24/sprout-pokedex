@@ -18,4 +18,12 @@ class StringRes {
   static const gender = "Gender";
   static const eggGroups = "Egg Groups";
   static const eggCycles = "Egg Cycles";
+  static const baseStats = "Base Stats";
+  static const hp = "HP";
+  static const attack = "Attack";
+  static const defense = "Defense";
+  static const specialAttack = "Special Attack";
+  static const specialDefense = "Special Defense";
+  static const speed = "Speed";
+  static const total = "Total";
 }

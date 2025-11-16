@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex/pokedex.dart';
 import 'package:sprout_pokedex/pages/detail/tabs/tab_about_content.dart';
+import 'package:sprout_pokedex/pages/detail/tabs/tab_stats_content.dart';
 import 'package:sprout_pokedex/pages/detail/widgets/detail_imag.dart';
 import 'package:sprout_pokedex/pages/detail/widgets/detail_title.dart';
 import 'package:sprout_pokedex/res/color_res.dart';
@@ -24,7 +25,6 @@ class _DetailLandscapeState extends State<DetailLandscape>
   final List<String> _tabTitles = [
     StringRes.about,
     StringRes.stats,
-    StringRes.evolution,
   ];
 
   @override
@@ -52,8 +52,7 @@ class _DetailLandscapeState extends State<DetailLandscape>
         controller: _tabController,
         children: [
           TabAboutContent(pokemon: widget.pokemon),
-          Center(child: Text(StringRes.stats)),
-          Center(child: Text(StringRes.evolution)),
+          TabStatsContent(pokemon: widget.pokemon),
         ],
       ),
     );

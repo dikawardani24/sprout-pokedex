@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:pokedex/pokedex.dart';
 import 'package:sprout_pokedex/pages/detail/tabs/tab_about_content.dart';
+import 'package:sprout_pokedex/pages/detail/tabs/tab_stats_content.dart';
 import 'package:sprout_pokedex/pages/detail/widgets/detail_imag.dart';
 import 'package:sprout_pokedex/pages/detail/widgets/detail_title.dart';
 import 'package:sprout_pokedex/res/color_res.dart';
@@ -25,7 +26,6 @@ class _DetailPortraitState extends State<DetailPortrait>
   final List<String> _tabTitles = [
     StringRes.about,
     StringRes.stats,
-    StringRes.evolution,
   ];
 
   @override
@@ -43,7 +43,6 @@ class _DetailPortraitState extends State<DetailPortrait>
       unselectedLabelColor: ColorRes.grey,
       indicatorColor: color,
       dividerColor: Colors.transparent,
-      isScrollable: true,
       tabs: _tabTitles.map((title) => Tab(text: title)).toList(),
     );
   }
@@ -54,8 +53,7 @@ class _DetailPortraitState extends State<DetailPortrait>
         controller: _tabController,
         children: [
           TabAboutContent(pokemon: widget.pokemon),
-          const Center(child: Text(StringRes.stats)),
-          const Center(child: Text(StringRes.evolution)),
+          TabStatsContent(pokemon: widget.pokemon),
         ],
       ),
     );

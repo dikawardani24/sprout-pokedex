@@ -38,8 +38,8 @@ class TabAboutContent extends StatelessWidget {
           title: StringRes.species,
           desc:  genre
       ),
-      ItemAbout(title: StringRes.height, desc: "${info.pokemon.height}m"),
-      ItemAbout(title: StringRes.weight, desc: "${info.pokemon.weight}kg"),
+      ItemAbout(title: StringRes.height, desc: "${info.pokemon.height.toMetersFormatted} / ${info.pokemon.height.toInchesFormatted}"),
+      ItemAbout(title: StringRes.weight, desc: "${info.pokemon.weight.toKilogramsFormatted} / ${info.pokemon.weight.toPoundsFormatted}"),
       ItemAbilities(color: pokemon.pokedexTypeColor.secondary, abilities: pokemon.abilities),
       ItemWeaknesses(weaknesses: info.weaknesses),
 

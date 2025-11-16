@@ -111,3 +111,71 @@ extension DesignStringExtensions on String {
     return '${!kIsWeb ? 'assets/' : ''}$this';
   }
 }
+
+extension PokemonHeightExt on int {
+  // Convert PokeAPI height units to inches
+  double get toInches {
+    // PokeAPI: 1 unit = 0.1 meters
+    // 1 meter = 39.3701 inches
+    return (this / 10.0) * 39.3701;
+  }
+
+  // Get feet and inches format
+  String get toFeetInches {
+    final totalInches = toInches;
+    final feet = totalInches ~/ 12;
+    final inches = (totalInches % 12).toStringAsFixed(1);
+    return "$feet' ${inches}\"";
+  }
+
+  // Get inches only (formatted)
+  String get toInchesFormatted {
+    return '${toInches.toStringAsFixed(1)}"';
+  }
+
+  // Get meters (for reference)
+  double get toMeters {
+    return this / 10.0;
+  }
+
+  String get toMetersFormatted {
+    return '${toMeters.toStringAsFixed(1)} m';
+  }
+
+  // Convert PokeAPI weight units to pounds
+  double get toPounds {
+    // PokeAPI: 1 unit = 0.1 kg
+    // 1 kg = 2.20462 pounds
+    return (this / 10.0) * 2.20462;
+  }
+
+  // Get pounds formatted
+  String get toPoundsFormatted {
+    return '${toPounds.toStringAsFixed(1)} lbs';
+  }
+
+  // Get kilograms (for reference)
+  double get toKilograms {
+    return this / 10.0;
+  }
+
+  String get toKilogramsFormatted {
+    return '${toKilograms.toStringAsFixed(1)} kg';
+  }
+
+  // Get both units
+  String get toBothUnits {
+    return '${toKilogramsFormatted} (${toPoundsFormatted})';
+  }
+
+  // Weight category
+  String get weightCategory {
+    final lbs = toPounds;
+    if (lbs < 10) return 'Very Light';
+    if (lbs < 25) return 'Light';
+    if (lbs < 100) return 'Medium';
+    if (lbs < 500) return 'Heavy';
+    if (lbs < 1000) return 'Very Heavy';
+    return 'Extremely Heavy';
+  }
+}
