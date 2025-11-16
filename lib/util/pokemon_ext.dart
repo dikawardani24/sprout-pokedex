@@ -46,4 +46,6 @@ extension PokemonExt on Pokemon {
         (element) => types.first.type.name.toLowerCase() == element.name,
     orElse: () => PokedexTypeColor.unknown,
   );
+
+  List<String> get typeNames => types.map((type) => type.type.name).toList();
 }

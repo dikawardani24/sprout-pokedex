@@ -89,7 +89,7 @@ class _PokemonListState extends State<PokemonList> {
                   child: ItemPokemon(
                     id: e.pokenumber,
                     name: e.name,
-                    types: e.types.map((type) => type.type.name).toList(),
+                    types: e.typeNames,
                     color: e.pokedexTypeColor.secondary,
                     imageUrl: e.imageUrl,
                   ),

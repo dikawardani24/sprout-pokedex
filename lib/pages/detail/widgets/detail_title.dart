@@ -1,0 +1,113 @@
+import 'package:flutter/material.dart';
+import 'package:pokedex/pokedex.dart';
+import 'package:sprout_pokedex/res/color_res.dart' show ColorRes;
+import 'package:sprout_pokedex/res/dimen_res.dart';
+import 'package:sprout_pokedex/util/pokemon_ext.dart';
+import 'package:sprout_pokedex/util/string_ext.dart' show StringExt;
+import 'package:sprout_pokedex/widgets/app_chip_list.dart';
+import 'package:sprout_pokedex/widgets/min_width.dart';
+
+class DetailTitle extends StatelessWidget{
+  final Pokemon pokemon;
+
+  const DetailTitle({super.key, required this.pokemon});
+
+  Widget _titleSmall() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          pokemon.pokenumber,
+          maxLines: 1,
+          textAlign: TextAlign.end,
+          style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: DimenRes.size_20,
+              color: ColorRes.black.withAlpha(60),
+              overflow: TextOverflow.ellipsis
+          ),
+        ),
+        Text(pokemon.name.firstLetterUpperCase,
+          maxLines: 1,
+          style: const TextStyle(
+              fontSize: DimenRes.size_20,
+              fontWeight: FontWeight.bold,
+              color: ColorRes.white,
+              overflow: TextOverflow.ellipsis
+          ),
+        ),
+        const SizedBox(height: DimenRes.size_8,),
+        AppChipList(
+          appOrientation: Axis.vertical,
+          spacing: DimenRes.size_4,
+          bgColor: ColorRes.white.withAlpha(30),
+          chipDataList: pokemon.typeNames,
+          textStyle: const TextStyle(
+            color: ColorRes.white,
+            fontSize: DimenRes.size_10,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _titleNormal() {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Flexible(
+          flex: 2,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(pokemon.name.firstLetterUpperCase,
+                maxLines: 1,
+                style: const TextStyle(
+                    fontSize: DimenRes.size_20,
+                    fontWeight: FontWeight.bold,
+                    color: ColorRes.white,
+                    overflow: TextOverflow.ellipsis
+                ),
+              ),
+              const SizedBox(height: DimenRes.size_8,),
+              AppChipList(
+                appOrientation: Axis.horizontal,
+                spacing: DimenRes.size_4,
+                bgColor: ColorRes.white.withAlpha(30),
+                chipDataList: pokemon.typeNames,
+                textStyle: const TextStyle(
+                  color: ColorRes.white,
+                  fontSize: DimenRes.size_10,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              )
+            ],
+          ),
+        ),
+        Text(
+          pokemon.pokenumber,
+          maxLines: 1,
+          textAlign: TextAlign.end,
+          style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: DimenRes.size_20,
+              color: ColorRes.black.withAlpha(60),
+              overflow: TextOverflow.ellipsis
+
+          ),
+        )
+      ],
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MinimumWidth(
+        minWidth: DimenRes.size_200,
+        onSmall: _titleSmall(),
+        child: _titleNormal()
+    );
+  }
+
+}

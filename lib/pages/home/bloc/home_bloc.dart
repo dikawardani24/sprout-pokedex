@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sprout_pokedex/pages/home/bloc/home_event.dart';
 import 'package:sprout_pokedex/pages/home/bloc/home_state.dart';
-import 'package:sprout_pokedex/usecase/GetPokemonUseCase.dart';
+import 'package:sprout_pokedex/usecase/get_pokemon_use_ase.dart';
 import 'package:sprout_pokedex/util/event.dart';
 
 @injectable

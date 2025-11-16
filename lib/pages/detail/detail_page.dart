@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
+import 'package:sprout_pokedex/pages/detail/bloc/detail_cubit.dart';
+import 'package:sprout_pokedex/pages/detail/bloc/detail_state.dart';
+import 'package:sprout_pokedex/pages/detail/widgets/detail_content.dart';
+import 'package:sprout_pokedex/pages/loading_page.dart';
 
 class DetailPage extends StatefulWidget {
   final int id;
@@ -15,9 +21,15 @@ class DetailPage extends StatefulWidget {
 class _DetailPageState extends State<DetailPage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: SafeArea(
-        child:  Text("Detail"),
+    return BlocProvider(
+      create: (c) => GetIt.I.get<DetailCubit>()..getDetail(widget.id),
+      child: BlocBuilder<DetailCubit, DetailState>(
+        builder: (c, state) {
+          if (state is Loading) return const LoadingPage();
+          if (state is Error) return Text(state.trace.toString());
+          if (state is ShowData) return DetailContent(pokemon: state.pokemon,);
+          return Container();
+        },
       ),
     );
   }
