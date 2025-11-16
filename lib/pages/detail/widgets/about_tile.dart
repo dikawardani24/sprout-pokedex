@@ -22,11 +22,14 @@ class ItemAbout extends StatelessWidget {
         Expanded(
           flex: 2,
           child: Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              Text(desc,
-                  style: textTheme.bodyLarge?.copyWith(color: ColorRes.black)
-              )
+              Expanded(child: Text(desc,
+                  maxLines: 1,
+                  style: textTheme.bodyLarge?.copyWith(
+                      overflow: TextOverflow.ellipsis,
+                      color: ColorRes.black
+                  )
+              ))
             ],
           ),
         )

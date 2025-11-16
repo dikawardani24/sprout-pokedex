@@ -7,6 +7,7 @@ class DimenRes {
   static const size_12 = 12.0;
   static const size_16 = 16.0;
   static const size_20 = 20.0;
+  static const size_24 = 24.0;
   static const size_30 = 30.0;
   static const size_40 = 30.0;
   static const size_60 = 60.0;

@@ -43,6 +43,7 @@ class _DetailPortraitState extends State<DetailPortrait>
       unselectedLabelColor: ColorRes.grey,
       indicatorColor: color,
       dividerColor: Colors.transparent,
+      isScrollable: true,
       tabs: _tabTitles.map((title) => Tab(text: title)).toList(),
     );
   }

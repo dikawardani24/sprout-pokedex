@@ -27,11 +27,14 @@ class AppChipList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Flex(
-      direction: appOrientation,
-      spacing: spacing,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: chipDataList.map((e) => _createChip(e)).toList(),
+    return SingleChildScrollView(
+      scrollDirection: appOrientation,
+      child: Flex(
+        direction: appOrientation,
+        spacing: spacing,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: chipDataList.map((e) => _createChip(e)).toList(),
+      ),
     );
   }
 
