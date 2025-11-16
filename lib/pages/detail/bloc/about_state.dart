@@ -15,7 +15,7 @@ class ShowAboutState extends AboutState {
 }
 
 class ErrorAboutState extends AboutState {
-  final StackTrace trace;
+  final StackTrace? trace;
 
   ErrorAboutState(this.trace);
 }

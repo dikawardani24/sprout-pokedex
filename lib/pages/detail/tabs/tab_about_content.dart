@@ -9,6 +9,7 @@ import 'package:sprout_pokedex/pages/detail/bloc/detail_state.dart';
 import 'package:sprout_pokedex/pages/detail/widgets/about_tile.dart';
 import 'package:sprout_pokedex/pages/detail/widgets/item_weaknesses.dart';
 import 'package:sprout_pokedex/pages/detail/widgets/iteme_abilities.dart';
+import 'package:sprout_pokedex/pages/error_page.dart';
 import 'package:sprout_pokedex/pages/loading_page.dart';
 import 'package:sprout_pokedex/res/dimen_res.dart';
 import 'package:sprout_pokedex/res/string_res.dart';
@@ -73,7 +74,9 @@ class TabAboutContent extends StatelessWidget {
             return const LoadingPage();
           }
           if (state is ErrorAboutState) {
-            return Text(state.trace.toString());
+            return ErrorPage(
+              onRetry: () => context.read<DetailCubit>().getAboutInfo(pokemon),
+            );
           }
           if (state is ShowAboutState) {
             return _data(c, state.aboutInfo);
@@ -83,5 +86,4 @@ class TabAboutContent extends StatelessWidget {
       ),
     );
   }
-
 }

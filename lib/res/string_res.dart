@@ -26,4 +26,6 @@ class StringRes {
   static const specialDefense = "Special Defense";
   static const speed = "Speed";
   static const total = "Total";
+  static const error = "Uppssss...!!!!";
+  static const retry = "Try again";
 }

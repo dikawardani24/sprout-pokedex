@@ -38,6 +38,5 @@ class DetailCubit extends Cubit<DetailState> {
     } catch (_, trace) {
       emit(ErrorAboutState(trace));
     }
-
   }
 }

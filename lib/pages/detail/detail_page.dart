@@ -5,6 +5,7 @@ import 'package:sprout_pokedex/pages/detail/bloc/detail_cubit.dart';
 import 'package:sprout_pokedex/pages/detail/bloc/detail_state.dart';
 import 'package:sprout_pokedex/pages/detail/bloc/main_state.dart';
 import 'package:sprout_pokedex/pages/detail/widgets/detail_content.dart';
+import 'package:sprout_pokedex/pages/error_page.dart';
 import 'package:sprout_pokedex/pages/loading_page.dart';
 import 'package:sprout_pokedex/res/color_res.dart';
 import 'package:sprout_pokedex/res/image_res.dart';
@@ -42,7 +43,7 @@ class _DetailPageState extends State<DetailPage> {
                 child: BlocBuilder<DetailCubit, DetailState>(
                   builder: (c, state) {
                     if (state is Loading) return const LoadingPage();
-                    if (state is Error) return Text(state.trace.toString());
+                    if (state is Error) return const ErrorPage();
                     if (state is ShowData) return DetailContent(pokemon: state.pokemon,);
                     return Container();
                   },

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:sprout_pokedex/navigation/app_navigation.dart';
+import 'package:sprout_pokedex/pages/error_page.dart';
 import 'package:sprout_pokedex/pages/home/bloc/home_bloc.dart';
 import 'package:sprout_pokedex/pages/home/bloc/home_event.dart';
 import 'package:sprout_pokedex/pages/home/bloc/home_state.dart';
@@ -25,7 +26,7 @@ class HomePage extends StatelessWidget {
                 return const LoadingPage();
               }
               if (Status.error == status) {
-                return const Text("No data");
+                return const ErrorPage();
               }
 
               return PokemonList(

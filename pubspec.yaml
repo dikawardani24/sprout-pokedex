@@ -76,6 +76,7 @@ flutter:
     - assets/imgs/pokeball.png
     - assets/imgs/mask_pokeball.png
     - assets/imgs/pokeball_colored.png
+    - assets/imgs/snorlax.svg
     - assets/icons/
 
   # An image asset can refer to one or more resolution-specific "variants", see
