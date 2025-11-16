@@ -6,7 +6,6 @@ import 'package:sprout_pokedex/pages/detail/widgets/detail_imag.dart';
 import 'package:sprout_pokedex/pages/detail/widgets/detail_title.dart';
 import 'package:sprout_pokedex/res/color_res.dart';
 import 'package:sprout_pokedex/res/dimen_res.dart';
-import 'package:sprout_pokedex/res/image_res.dart';
 import 'package:sprout_pokedex/res/string_res.dart';
 import 'package:sprout_pokedex/util/pokemon_ext.dart';
 
@@ -92,44 +91,26 @@ class _DetailPortraitState extends State<DetailPortrait> with TickerProviderStat
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Scaffold(
-          appBar: AppBar(
-            iconTheme: const IconThemeData(color: Colors.white),
-            backgroundColor: widget.pokemon.pokedexTypeColor.secondary,
+    return Container(
+      color: widget.pokemon.pokedexTypeColor.secondary,
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(DimenRes.size_16),
+            child: DetailTitle(pokemon: widget.pokemon),
           ),
-          body: SafeArea(
-            child: Container(
-              color: widget.pokemon.pokedexTypeColor.secondary,
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(DimenRes.size_16),
-                    child: DetailTitle(pokemon: widget.pokemon),
-                  ),
-                  Expanded(
-                    child: _tab().animate().moveY(begin: 0, end: 1000, duration: Duration.zero)
-                        .animate()
-                        .moveY(
-                      delay: const Duration(milliseconds: 200),
-                      begin: 0,
-                      end: -1000,
-                      duration: const Duration(milliseconds: 500),
-                    ),
-                  ),
-                ],
-              ),
+          Expanded(
+            child: _tab().animate().moveY(begin: 0, end: 1000, duration: Duration.zero)
+                .animate()
+                .moveY(
+              delay: const Duration(milliseconds: 200),
+              begin: 0,
+              end: -1000,
+              duration: const Duration(milliseconds: 500),
             ),
           ),
-        ),
-        Align(
-          alignment: Alignment.topRight,
-          child: Image.asset(ImageRes.pokeBall,
-            color: ColorRes.white.withAlpha(20),
-          ),
-        )
-      ],
+        ],
+      ),
     );
   }
 }
