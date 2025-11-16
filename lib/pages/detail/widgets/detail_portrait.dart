@@ -18,12 +18,14 @@ class DetailPortrait extends StatefulWidget {
   State<DetailPortrait> createState() => _DetailPortraitState();
 }
 
-class _DetailPortraitState extends State<DetailPortrait> with TickerProviderStateMixin {
-  late TabController _tabController;
+class _DetailPortraitState extends State<DetailPortrait>
+    with TickerProviderStateMixin {
+  late final TabController _tabController;
+
   final List<String> _tabTitles = [
     StringRes.about,
     StringRes.stats,
-    StringRes.evolution
+    StringRes.evolution,
   ];
 
   @override
@@ -32,45 +34,51 @@ class _DetailPortraitState extends State<DetailPortrait> with TickerProviderStat
     _tabController = TabController(length: _tabTitles.length, vsync: this);
   }
 
-  Widget _tab() {
+  Widget _buildTabBar() {
+    final color = widget.pokemon.pokedexTypeColor.secondary;
+
+    return TabBar(
+      controller: _tabController,
+      labelColor: color,
+      unselectedLabelColor: ColorRes.grey,
+      indicatorColor: color,
+      dividerColor: Colors.transparent,
+      tabs: _tabTitles.map((title) => Tab(text: title)).toList(),
+    );
+  }
+
+  Widget _buildTabView() {
+    return Expanded(
+      child: TabBarView(
+        controller: _tabController,
+        children: [
+          TabAboutContent(pokemon: widget.pokemon),
+          const Center(child: Text(StringRes.stats)),
+          const Center(child: Text(StringRes.evolution)),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildTabContainer() {
     return Stack(
       children: [
-        Positioned(
+        Positioned.fill(
           top: DimenRes.size_120,
-          left: 0,
-          right: 0,
-          bottom: 0,
           child: Container(
             decoration: const BoxDecoration(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(DimenRes.size_16),
-                topRight: Radius.circular(DimenRes.size_16),
-              ),
               color: Colors.white,
+              borderRadius: BorderRadius.vertical(
+                top: Radius.circular(DimenRes.size_16),
+              ),
             ),
             child: Padding(
               padding: const EdgeInsets.all(DimenRes.size_16),
               child: Column(
                 children: [
                   const SizedBox(height: DimenRes.size_40),
-                  TabBar(
-                    controller: _tabController,
-                    labelColor: widget.pokemon.pokedexTypeColor.secondary,
-                    unselectedLabelColor: ColorRes.grey,
-                    dividerColor: ColorRes.transparent,
-                    indicatorColor: widget.pokemon.pokedexTypeColor.secondary,
-                    tabs: _tabTitles.map((e) => Tab(text: e)).toList(),
-                  ),
-                  Expanded(
-                    child: TabBarView(
-                      controller: _tabController,
-                      children: [
-                        TabAboutContent(pokemon: widget.pokemon),
-                        Center(child: Text(StringRes.stats)),
-                        Center(child: Text(StringRes.evolution)),
-                      ],
-                    ),
-                  ),
+                  _buildTabBar(),
+                  _buildTabView(),
                 ],
               ),
             ),
@@ -99,14 +107,16 @@ class _DetailPortraitState extends State<DetailPortrait> with TickerProviderStat
             padding: const EdgeInsets.all(DimenRes.size_16),
             child: DetailTitle(pokemon: widget.pokemon),
           ),
+
+          /// Tab Container + Animation
           Expanded(
-            child: _tab().animate().moveY(begin: 0, end: 1000, duration: Duration.zero)
+            child: _buildTabContainer()
                 .animate()
                 .moveY(
-              delay: const Duration(milliseconds: 200),
-              begin: 0,
-              end: -1000,
-              duration: const Duration(milliseconds: 500),
+              begin: 1000,
+              end: 0,
+              duration: 500.ms,
+              curve: Curves.easeOut,
             ),
           ),
         ],
