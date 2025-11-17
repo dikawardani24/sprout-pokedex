@@ -1,16 +1,45 @@
 # sprout_pokedex
 
-A new Flutter project.
+Pokémon Gallery - Immersive Flutter application showcasing endless Pokémon collection with seamless scrolling, high-quality  sprites, and detailed information sourced directly from PokeAPI (https://pokeapi.co/)
 
-## Getting Started
+## Project setup
 
-This project is a starting point for a Flutter application.
+1. Download dependencies by running command
 
-A few resources to get you started if this is your first Flutter project:
+   ```bash
+   $ flutter pub get
+   ```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+2. Select device that you want to test, to know available device you can execute command
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+   ```bash
+   $ flutter devices
+   ```
+
+   The command result should be like this 
+
+   ```bash
+   $ flutter devices
+   Found 2 connected devices:
+    sdk gphone64 x86 64 (mobile) • emulator-5554 • android-x64    • Android 14 (API 34) (emulator)
+    Linux (desktop)              • linux         • linux-x64      • Manjaro Linux 6.12.48-1-MANJARO
+    Chrome (web)                 • chrome        • web-javascript • Google Chrome 142.0.7444.59
+   ```
+
+3. Select device by execute command 
+    ```bash
+   $ flutter run -d <device_name>
+   ```
+   As sample from the out list device above then the command should be like this 
+    ```bash
+   $ flutter run -d linux
+    ```
+   
+
+## Project show case
+
+| Platforms         |                                                              |
+| ----------------- | ------------------------------------------------------------ |
+| **Android**       | <img src="showcase/android.gif" alt="android" width="400" height="600" /> |
+| **Web**           | <img src="showcase/web.gif" alt="web" width="600" height="600" /> |
+| **Linux Desktop** | <img src="showcase/linux-desktop.gif" alt="web" width="700" height="500" /> |
