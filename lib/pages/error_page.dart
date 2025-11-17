@@ -16,7 +16,7 @@ class ErrorPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisAlignment: MainAxisAlignment.center,
       spacing: DimenRes.size_4,
       children: [
@@ -24,7 +24,7 @@ class ErrorPage extends StatelessWidget {
           width: DimenRes.size_100,
           height: DimenRes.size_100,
         ),
-        const Text(StringRes.error),
+        const Text(StringRes.error, textAlign: TextAlign.center,),
         if (onRetry != null) InkWell(
           onTap: onRetry,
           child: const Text(StringRes.retry, style: TextStyle(color: ColorRes.red),),
