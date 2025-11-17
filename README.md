@@ -43,3 +43,6 @@ Pokémon Gallery - Immersive Flutter application showcasing endless Pokémon col
 | **Android**       | <img src="showcase/android.gif" alt="android" width="400" height="600" /> |
 | **Web**           | <img src="showcase/web.gif" alt="web" width="600" height="600" /> |
 | **Linux Desktop** | <img src="showcase/linux-desktop.gif" alt="web" width="700" height="500" /> |
+| **Ios Portrait**  | <img src="showcase/ios_portrait.gif" alt="web" width="250" height="500" /> |
+| **Ios Landscape** | <img src="showcase/ios_landscape.gif" alt="web" width="400" height="200" /> |
+| **Mac OS**        | <img src="showcase/macos.gif" alt="web" width="400" height="200" /> |
