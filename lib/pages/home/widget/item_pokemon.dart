@@ -1,12 +1,11 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:sprout_pokedex/pages/loading_page.dart';
 import 'package:sprout_pokedex/res/color_res.dart';
 import 'package:sprout_pokedex/res/dimen_res.dart';
 import 'package:sprout_pokedex/res/image_res.dart';
 import 'package:sprout_pokedex/util/string_ext.dart';
 import 'package:sprout_pokedex/widgets/app_card.dart';
 import 'package:sprout_pokedex/widgets/app_chip_list.dart';
+import 'package:sprout_pokedex/widgets/app_network_image.dart';
 
 class ItemPokemon extends StatelessWidget {
   final String id;
@@ -84,21 +83,10 @@ class ItemPokemon extends StatelessWidget {
           FractionallySizedBox(
             widthFactor: scale,
             heightFactor: scale,
-            child: CachedNetworkImage(
+            child: AppNetworkImage(
               imageUrl: imageUrl,
-              fit: BoxFit.fill,
-              placeholder: (context, child)  => const Center(
-                child: SizedBox(
-                  width: DimenRes.size_80,
-                  height: DimenRes.size_80,
-                  child: LoadingPage(size: DimenRes.size_200,),
-                ),
-              ),
-              errorWidget: (context, error, trace) => Icon(
-                  Icons.error,
-                  color: ColorRes.black.withAlpha(20),
-                  size: DimenRes.size_60
-              ),
+              imageErrSize: DimenRes.size_60,
+              imageSize: DimenRes.size_80
             ),
           )
         ],

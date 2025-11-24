@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex/pokedex.dart';
+import 'package:sprout_pokedex/models/about_info.dart';
 import 'package:sprout_pokedex/pages/detail/tabs/tab_about_content.dart';
 import 'package:sprout_pokedex/pages/detail/tabs/tab_stats_content.dart';
-import 'package:sprout_pokedex/pages/detail/widgets/detail_imag.dart';
+import 'package:sprout_pokedex/pages/detail/widgets/detail_image.dart';
 import 'package:sprout_pokedex/pages/detail/widgets/detail_title.dart';
 import 'package:sprout_pokedex/res/color_res.dart';
 import 'package:sprout_pokedex/res/dimen_res.dart';
@@ -10,9 +11,9 @@ import 'package:sprout_pokedex/res/string_res.dart';
 import 'package:sprout_pokedex/util/pokemon_ext.dart';
 
 class DetailLandscape extends StatefulWidget {
-  final Pokemon pokemon;
+  final AboutInfo info;
 
-  const DetailLandscape({super.key, required this.pokemon});
+  const DetailLandscape({super.key, required this.info});
 
   @override
   State<DetailLandscape> createState() => _DetailLandscapeState();
@@ -34,7 +35,7 @@ class _DetailLandscapeState extends State<DetailLandscape>
   }
 
   Widget _buildTabBar() {
-    final color = widget.pokemon.pokedexTypeColor.secondary;
+    final color = widget.info.pokemon.pokedexTypeColor.secondary;
     return TabBar(
       controller: _tabController,
       labelColor: color,
@@ -51,8 +52,8 @@ class _DetailLandscapeState extends State<DetailLandscape>
       child: TabBarView(
         controller: _tabController,
         children: [
-          TabAboutContent(pokemon: widget.pokemon),
-          TabStatsContent(pokemon: widget.pokemon),
+          TabAboutContent(info: widget.info),
+          TabStatsContent(pokemon: widget.info.pokemon),
         ],
       ),
     );
@@ -60,8 +61,10 @@ class _DetailLandscapeState extends State<DetailLandscape>
 
   @override
   Widget build(BuildContext context) {
+    final Pokemon pokemon = widget.info.pokemon;
+
     return Container(
-      color: widget.pokemon.pokedexTypeColor.secondary,
+      color: widget.info.pokemon.pokedexTypeColor.secondary,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -72,13 +75,13 @@ class _DetailLandscapeState extends State<DetailLandscape>
               padding: const EdgeInsets.all(DimenRes.size_16),
               child: Column(
                 children: [
-                  DetailTitle(pokemon: widget.pokemon),
+                  DetailTitle(pokemon: pokemon),
                   const SizedBox(height: DimenRes.size_24),
 
                   Flexible(
                     child: FittedBox(
                       fit: BoxFit.contain,
-                      child: DetailImag(pokemon: widget.pokemon),
+                      child: DetailImag(pokemon: pokemon),
                     ),
                   ),
                 ],

@@ -3,10 +3,10 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:sprout_pokedex/res/dimen_res.dart';
 import 'package:sprout_pokedex/res/image_res.dart';
 
-class LoadingPage extends StatelessWidget {
+class Loading extends StatelessWidget {
   final double size;
 
-  const LoadingPage({
+  const Loading({
     super.key,
     this.size = DimenRes.size_100,
   });
@@ -18,7 +18,7 @@ class LoadingPage extends StatelessWidget {
         width: size,
         height: size,
         child: Image.asset(
-          ImageRes.pokeBallColored,
+          ImageRes.pokeBallColoredSamll,
         ),
       ),
     )

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex/pokedex.dart';
+import 'package:sprout_pokedex/models/about_info.dart';
 import 'package:sprout_pokedex/pages/detail/widgets/detail_landscape_widget.dart';
 import 'package:sprout_pokedex/pages/detail/widgets/detail_portrait.dart';
 
 class DetailContent extends StatelessWidget {
-  final Pokemon pokemon;
+  final AboutInfo info;
 
-  const DetailContent({super.key, required this.pokemon});
+  const DetailContent({super.key, required this.info});
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +15,9 @@ class DetailContent extends StatelessWidget {
         final width = constraints.maxWidth;
 
         if (width > 600) {
-          return DetailLandscape(pokemon: pokemon);
+          return DetailLandscape(info: info);
         } else {
-          return DetailPortrait(pokemon: pokemon);
+          return DetailPortrait(info: info);
         }
       },
     );

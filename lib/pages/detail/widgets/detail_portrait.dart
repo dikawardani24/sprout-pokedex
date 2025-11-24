@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:pokedex/pokedex.dart';
+import 'package:sprout_pokedex/models/about_info.dart';
 import 'package:sprout_pokedex/pages/detail/tabs/tab_about_content.dart';
 import 'package:sprout_pokedex/pages/detail/tabs/tab_stats_content.dart';
-import 'package:sprout_pokedex/pages/detail/widgets/detail_imag.dart';
+import 'package:sprout_pokedex/pages/detail/widgets/detail_image.dart';
 import 'package:sprout_pokedex/pages/detail/widgets/detail_title.dart';
 import 'package:sprout_pokedex/res/color_res.dart';
 import 'package:sprout_pokedex/res/dimen_res.dart';
@@ -11,9 +12,9 @@ import 'package:sprout_pokedex/res/string_res.dart';
 import 'package:sprout_pokedex/util/pokemon_ext.dart';
 
 class DetailPortrait extends StatefulWidget {
-  final Pokemon pokemon;
+  final AboutInfo info;
 
-  const DetailPortrait({super.key, required this.pokemon});
+  const DetailPortrait({super.key, required this.info});
 
   @override
   State<DetailPortrait> createState() => _DetailPortraitState();
@@ -35,7 +36,8 @@ class _DetailPortraitState extends State<DetailPortrait>
   }
 
   Widget _buildTabBar() {
-    final color = widget.pokemon.pokedexTypeColor.secondary;
+    final Pokemon pokemon = widget.info.pokemon;
+    final color = pokemon.pokedexTypeColor.secondary;
 
     return TabBar(
       controller: _tabController,
@@ -52,8 +54,8 @@ class _DetailPortraitState extends State<DetailPortrait>
       child: TabBarView(
         controller: _tabController,
         children: [
-          TabAboutContent(pokemon: widget.pokemon),
-          TabStatsContent(pokemon: widget.pokemon),
+          TabAboutContent(info: widget.info),
+          TabStatsContent(pokemon: widget.info.pokemon),
         ],
       ),
     );
@@ -89,7 +91,7 @@ class _DetailPortraitState extends State<DetailPortrait>
           right: 0,
           height: 160,
           child: Center(
-            child: DetailImag(pokemon: widget.pokemon),
+            child: DetailImag(pokemon: widget.info.pokemon),
           ),
         ),
       ],
@@ -99,12 +101,12 @@ class _DetailPortraitState extends State<DetailPortrait>
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: widget.pokemon.pokedexTypeColor.secondary,
+      color: widget.info.pokemon.pokedexTypeColor.secondary,
       child: Column(
         children: [
           Padding(
             padding: const EdgeInsets.all(DimenRes.size_16),
-            child: DetailTitle(pokemon: widget.pokemon),
+            child: DetailTitle(pokemon: widget.info.pokemon),
           ),
 
           /// Tab Container + Animation

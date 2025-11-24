@@ -1,11 +1,9 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:pokedex/pokedex.dart';
-import 'package:sprout_pokedex/pages/loading_page.dart' show LoadingPage;
-import 'package:sprout_pokedex/res/color_res.dart' show ColorRes;
 import 'package:sprout_pokedex/res/dimen_res.dart';
 import 'package:sprout_pokedex/res/image_res.dart';
 import 'package:sprout_pokedex/util/pokemon_ext.dart';
+import 'package:sprout_pokedex/widgets/app_network_image.dart';
 import 'package:sprout_pokedex/widgets/circular_matrix.dart';
 
 class DetailImag extends StatelessWidget {
@@ -28,21 +26,10 @@ class DetailImag extends StatelessWidget {
           rows: 7,
           columns: 5,
         ),
-        CachedNetworkImage(
-          imageUrl: pokemon.imageUrl,
-          fit: BoxFit.fill,
-          placeholder: (context, child)  => const Center(
-            child: SizedBox(
-              width: DimenRes.size_80,
-              height: DimenRes.size_80,
-              child: LoadingPage(size: DimenRes.size_200,),
-            ),
-          ),
-          errorWidget: (context, error, trace) => Icon(
-              Icons.error,
-              color: ColorRes.black.withAlpha(20),
-              size: DimenRes.size_60
-          ),
+        AppNetworkImage(
+            imageUrl: pokemon.imageUrl,
+            imageSize: DimenRes.size_80,
+            imageErrSize: DimenRes.size_60
         )
       ],
     );
