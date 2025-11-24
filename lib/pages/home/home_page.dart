@@ -7,8 +7,8 @@ import 'package:sprout_pokedex/pages/home/bloc/home_bloc.dart';
 import 'package:sprout_pokedex/pages/home/bloc/home_event.dart';
 import 'package:sprout_pokedex/pages/home/bloc/home_state.dart';
 import 'package:sprout_pokedex/pages/home/widget/pokemon_list.dart';
-import 'package:sprout_pokedex/pages/loading_page.dart';
 import 'package:sprout_pokedex/widgets/error_widget.dart';
+import 'package:sprout_pokedex/widgets/loading.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -52,8 +52,8 @@ class HomePage extends StatelessWidget {
           child: BlocBuilder<HomeBloc, HomeState>(
             builder: (context, state) {
               return state.when(
-                initial: () => const LoadingPage(),
-                loading: () => const LoadingPage(),
+                initial: () => const Loading(),
+                loading: () => const Loading(),
                 loadingMore: (pokemons) => _buildPokemonList(
                   context: context,
                   pokemons: pokemons,
