@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:sprout_pokedex/res/dimen_res.dart';
-import 'package:sprout_pokedex/res/image_res.dart';
+import 'package:sprout_pokedex/widgets/loading.dart';
 
 class LoadingPage extends StatelessWidget {
   final double size;
@@ -13,23 +12,10 @@ class LoadingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: SizedBox(
-        width: size,
-        height: size,
-        child: Image.asset(
-          ImageRes.pokeBallColored,
-        ),
+    return const Scaffold(
+      body: Loading(
+        size: DimenRes.size_200,
       ),
-    )
-        .animate()
-        .fade()
-        .scale()
-        .then()
-        .animate(
-      onPlay: (controller) => controller.repeat(),
-    )
-        .rotate(duration: const Duration(seconds: 1))
-        .then();
+    );
   }
 }

@@ -1,38 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_it/get_it.dart';
 import 'package:pokedex/pokedex.dart';
 import 'package:sprout_pokedex/models/about_info.dart';
-import 'package:sprout_pokedex/pages/detail/bloc/about_state.dart';
-import 'package:sprout_pokedex/pages/detail/bloc/detail_cubit.dart';
-import 'package:sprout_pokedex/pages/detail/bloc/detail_state.dart';
 import 'package:sprout_pokedex/pages/detail/widgets/about_tile.dart';
 import 'package:sprout_pokedex/pages/detail/widgets/item_weaknesses.dart';
 import 'package:sprout_pokedex/pages/detail/widgets/iteme_abilities.dart';
-import 'package:sprout_pokedex/pages/error_page.dart';
-import 'package:sprout_pokedex/pages/loading_page.dart';
 import 'package:sprout_pokedex/res/dimen_res.dart';
 import 'package:sprout_pokedex/res/string_res.dart';
 import 'package:sprout_pokedex/util/pokemon_ext.dart';
 import 'package:sprout_pokedex/util/string_ext.dart';
 
 class TabAboutContent extends StatelessWidget {
-  final Pokemon pokemon;
+  final AboutInfo info;
 
-  const TabAboutContent({super.key, required this.pokemon});
+  const TabAboutContent({super.key, required this.info});
 
-  Widget _data(BuildContext context, AboutInfo info) {
+  List<Widget> _data(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     PokemonSpecies? species = info.species;
     final pokemonDescription = species.flavor;
     final genre = species.genre;
+    final pokemon = info.pokemon;
 
     final sectionTheme = textTheme.titleMedium?.copyWith(
       color: pokemon.pokedexTypeColor.secondary,
       fontWeight: FontWeight.bold,
     );
 
-    final items = <Widget>[
+    return [
       if (pokemonDescription != null) Text(pokemonDescription),
       Text(StringRes.pokedexData, style: sectionTheme),
       if (genre != null) ItemAbout(
@@ -53,6 +47,11 @@ class TabAboutContent extends StatelessWidget {
       ItemAbout(title: StringRes.eggGroups, desc: "${species?.eggGroups.map((e) => e.name.firstLetterUpperCase).join(", ")}"),
       ItemAbout(title: StringRes.eggCycles, desc: "${species?.hatchCounter}")
     ];
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final items = _data(context);
 
     return Padding(
       padding: const EdgeInsetsGeometry.only(top: DimenRes.size_16, bottom: DimenRes.size_16),
@@ -60,29 +59,6 @@ class TabAboutContent extends StatelessWidget {
         itemBuilder: (_, index) => items [index],
         separatorBuilder: (_, index) => const SizedBox(height: DimenRes.size_16),
         itemCount: items.length,
-      ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (c) => GetIt.I.get<DetailCubit>()..getAboutInfo(pokemon),
-      child: BlocBuilder<DetailCubit, DetailState>(
-        builder: (c, state) {
-          if (state is LoadingAboutState) {
-            return const LoadingPage();
-          }
-          if (state is ErrorAboutState) {
-            return ErrorPage(
-              onRetry: () => context.read<DetailCubit>().getAboutInfo(pokemon),
-            );
-          }
-          if (state is ShowAboutState) {
-            return _data(c, state.aboutInfo);
-          }
-          return Container();
-        },
       ),
     );
   }

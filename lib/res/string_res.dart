@@ -28,4 +28,8 @@ class StringRes {
   static const total = "Total";
   static const error = "Uppssss...!!!!";
   static const retry = "Try again";
+  static const failedLoadMore = "Failed to load more Pokémon";
+  static const allPokemonLoaded = "All Pokémon loaded!";
+  static const emptyPokemon = "No Pokémon found";
+  static const pullRefresh = "Pull to refresh or check your connection";
 }

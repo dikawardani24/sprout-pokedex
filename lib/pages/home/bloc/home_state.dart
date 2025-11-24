@@ -1,36 +1,15 @@
 
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:pokedex/pokedex.dart';
 
-enum Status {
-  init,
-  loading,
-  loadingMore,
-  success,
-  error,
-  finished
-}
+part 'home_state.freezed.dart';
 
-class HomeState extends Equatable {
-  final Status status;
-  final List<Pokemon> pokemons;
-
-  const HomeState({
-    this.status = Status.init,
-    this.pokemons = const <Pokemon>[]
-  });
-
-  @override
-  List<Object?> get props => [status, pokemons];
-
-  HomeState copyWith({
-    Status? status,
-    List<Pokemon>? result,
-  }) {
-    return HomeState(
-      status: status ?? this.status,
-      pokemons: pokemons + (result ?? []),
-    );
-  }
-
+@freezed
+class HomeState with _$HomeState {
+  const factory HomeState.initial() = _Initial;
+  const factory HomeState.loading() = _Loading;
+  const factory HomeState.loadingMore(List<Pokemon> pokemons) = _LoadingMore;
+  const factory HomeState.loaded(List<Pokemon> pokemons, bool hasReachedMax) = _Loaded;
+  const factory HomeState.error(String message) = _Error;
+  const factory HomeState.loadMoreError(List<Pokemon> pokemons, String message) = _LoadMoreError;
 }

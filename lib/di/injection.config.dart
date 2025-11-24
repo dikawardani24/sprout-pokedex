@@ -1,5 +1,5 @@
-// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format width=80
+// GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
 // InjectableConfigGenerator
@@ -13,7 +13,7 @@ import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:pokedex/pokedex.dart' as _i706;
 
-import '../pages/detail/bloc/detail_cubit.dart' as _i630;
+import '../pages/detail/bloc/detail_bloc.dart' as _i688;
 import '../pages/home/bloc/home_bloc.dart' as _i752;
 import '../repository/pokemon_repository.dart' as _i1049;
 import '../usecase/get_detail_pokemon_use_case.dart' as _i353;
@@ -44,9 +44,9 @@ _i174.GetIt $initGetIt(
       () => _i190.GetInfoAboutUseCaseImpl(gh<_i1049.PokemonRepository>()));
   gh.factory<_i353.GetDetailPokemonUseCase>(
       () => _i353.GetDetailPokemonUseCaseImpl(gh<_i1049.PokemonRepository>()));
-  gh.factory<_i630.DetailCubit>(() => _i630.DetailCubit(
-        gh<_i353.GetDetailPokemonUseCase>(),
+  gh.factory<_i688.DetailBloc>(() => _i688.DetailBloc(
         gh<_i190.GetInfoAboutUseCase>(),
+        gh<_i353.GetDetailPokemonUseCase>(),
       ));
   return getIt;
 }

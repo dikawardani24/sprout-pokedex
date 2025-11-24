@@ -31,7 +31,7 @@ class ItemWeaknesses extends StatelessWidget {
             child: Row(
               spacing: DimenRes.size_4,
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: weaknesses.map((e) => SvgPicture.asset('icons/$e.svg'.asset(),
+              children: weaknesses.map((e) => SvgPicture.asset("icons/$e.svg".asset(),
                 width: DimenRes.size_30,
                 height: DimenRes.size_30,
                 color: e.pokemonColor.secondary,

@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:sprout_pokedex/pages/detail/bloc/detail_cubit.dart';
+import 'package:sprout_pokedex/pages/detail/bloc/detail_bloc.dart';
+import 'package:sprout_pokedex/pages/detail/bloc/detail_event.dart';
 import 'package:sprout_pokedex/pages/detail/bloc/detail_state.dart';
-import 'package:sprout_pokedex/pages/detail/bloc/main_state.dart';
 import 'package:sprout_pokedex/pages/detail/widgets/detail_content.dart';
-import 'package:sprout_pokedex/pages/error_page.dart';
-import 'package:sprout_pokedex/pages/loading_page.dart';
 import 'package:sprout_pokedex/res/color_res.dart';
 import 'package:sprout_pokedex/res/image_res.dart';
 import 'package:sprout_pokedex/util/pokemon_ext.dart';
+import 'package:sprout_pokedex/widgets/loading.dart';
 
 class DetailPage extends StatefulWidget {
   final int id;
@@ -30,7 +29,7 @@ class _DetailPageState extends State<DetailPage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (c) => GetIt.I.get<DetailCubit>()..getDetail(widget.id),
+      create: (c) => GetIt.I.get<DetailBloc>()..add(GetDetailEvent(widget.id)),
       child: Stack(
         children: [
           Scaffold(
@@ -39,23 +38,24 @@ class _DetailPageState extends State<DetailPage> {
               backgroundColor: _appBg,
             ),
             body: SafeArea(
-              child: BlocListener<DetailCubit, DetailState>(
-                child: BlocBuilder<DetailCubit, DetailState>(
+              child: BlocConsumer<DetailBloc, DetailState>(
                   builder: (c, state) {
-                    if (state is Loading) return const LoadingPage();
-                    if (state is Error) return const ErrorPage();
-                    if (state is ShowData) return DetailContent(pokemon: state.pokemon,);
-                    return Container();
+                    return state.when(
+                        initial: () => const Loading(),
+                        loading: () => const Loading(),
+                        loaded: (info) => DetailContent(info: info),
+                        error: (message) => ErrorWidget(message)
+                    );
                   },
-                ),
-                listener: (c, state) {
-                  if (state is ShowData) {
-                    setState(() {
-                      _appBg = state.pokemon.pokedexTypeColor.secondary;
-                      _iconNavBackColor = ColorRes.white;
-                    });
+                  listener: (c, state) {
+                    state.whenOrNull(
+                      loaded: (info) => setState(() {
+                        final pokemon = info.pokemon;
+                        _appBg = pokemon.pokedexTypeColor.secondary;
+                        _iconNavBackColor = ColorRes.white;
+                      })
+                    );
                   }
-                }
               ),
             ),
           ),
