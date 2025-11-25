@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:pokedex/pokedex.dart';
 import 'package:sprout_pokedex/pages/home/widget/item_pokemon.dart';
@@ -38,6 +40,7 @@ class PokemonList extends StatefulWidget {
 class _PokemonListState extends State<PokemonList> {
   final _scrollController = ScrollController();
   bool _isLoadingMoreLocal = false;
+  Timer? _debounce;
 
   bool get _shouldLoadMore {
     if (!_scrollController.hasClients) return false;
@@ -45,22 +48,26 @@ class _PokemonListState extends State<PokemonList> {
       return false;
     }
 
-    final maxScroll = _scrollController.position.maxScrollExtent;
-    final currentScroll = _scrollController.offset;
-    return currentScroll >= (maxScroll * 0.9);
+    return _scrollController.position.extentAfter < 300;
   }
 
   void _onScroll() {
-    if (_shouldLoadMore) {
-      _loadMore();
-    }
+    if (_debounce?.isActive ?? false) return;
+    _debounce = Timer(const Duration(milliseconds: 200), () {
+      if (_shouldLoadMore) {
+        _loadMore();
+      }
+    });
   }
 
   void _loadMore() {
-    if (!_isLoadingMoreLocal) {
-      setState(() => _isLoadingMoreLocal = true);
+    if (_isLoadingMoreLocal) return;
+
+    _isLoadingMoreLocal = true;
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       widget.onLoadMore(widget.pokemons.length);
-    }
+    });
   }
 
   @override
