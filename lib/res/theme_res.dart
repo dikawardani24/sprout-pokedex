@@ -5,7 +5,7 @@ import 'dimen_res.dart';
 import 'font_res.dart';
 
 class ThemeRes {
-  static const themeMode = ThemeMode.light;
+  static const themeMode = ThemeMode.system;
   static const _appBarTheme = AppBarTheme(
       backgroundColor: ColorRes.white,
       titleTextStyle: TextStyle(color: ColorRes.white, fontWeight: FontWeight.bold, fontSize: DimenRes.size_20, fontFamily: FontRes.poppins),
