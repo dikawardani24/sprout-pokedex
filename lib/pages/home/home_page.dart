@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -22,7 +20,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final ScrollController _controller = ScrollController();
   late final HomeBloc _homeBloc;
-  Timer? _timer;
 
   void _onTapPokemon(BuildContext context, Pokemon selected) {
     context.startDetailPage(selected.id);
@@ -64,12 +61,8 @@ class _HomePageState extends State<HomePage> {
     _homeBloc.add(GetPokemonsEvent());
 
     _controller.addListener(() {
-      if (_timer?.isActive??false) return;
-      
       if (_controller.position.extentAfter < 300) {
-        _timer = Timer(const Duration(milliseconds: 200), () {
-          _homeBloc.add(GetMorePokemonEvent());
-        });
+        _homeBloc.add(GetMorePokemonEvent());
       }
     });
   }
@@ -77,7 +70,6 @@ class _HomePageState extends State<HomePage> {
   @override
   void dispose() {
     _controller.dispose();
-    _timer?.cancel();
     _homeBloc..clearState()..close();
     super.dispose();
   }

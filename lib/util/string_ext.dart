@@ -2,14 +2,11 @@ class PokemonNameFormatter {
   static String format(String name) {
     if (name.isEmpty) return name;
 
-    // Remove dashes and replace with spaces
     final withoutDashes = name.replaceAll('-', ' ');
 
-    // Capitalize first letter of each word
     return withoutDashes.split(' ').map((word) {
       if (word.isEmpty) return word;
 
-      // Handle special cases
       if (word == 'mr') return 'Mr';
       if (word == 'mime') return 'Mime';
       if (word == 'jr') return 'Jr';
@@ -18,7 +15,6 @@ class PokemonNameFormatter {
     }).join(' ');
   }
 
-  // Alternative: Only capitalize first letter of entire string
   static String formatSimple(String name) {
     if (name.isEmpty) return name;
 

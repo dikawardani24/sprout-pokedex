@@ -165,7 +165,7 @@ extension PokemonHeightExt on int {
 
   // Get both units
   String get toBothUnits {
-    return '${toKilogramsFormatted} (${toPoundsFormatted})';
+    return '$toKilogramsFormatted ($toPoundsFormatted)';
   }
 
   // Weight category

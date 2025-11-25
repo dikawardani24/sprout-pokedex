@@ -32,4 +32,7 @@ class StringRes {
   static const allPokemonLoaded = "All Pokémon loaded!";
   static const emptyPokemon = "No Pokémon found";
   static const pullRefresh = "Pull to refresh or check your connection";
+  static const errNoInternet = 'No internet connection. Please check your network.';
+  static const errServer = 'Server error. Please try again later.';
+  static const errUnknown = 'An unexpected error occurred. Please try again.';
 }

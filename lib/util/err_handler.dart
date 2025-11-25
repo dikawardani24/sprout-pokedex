@@ -1,14 +1,16 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:sprout_pokedex/res/string_res.dart';
+
 String getErrorMessage(dynamic error) {
   if (error is SocketException || error is TimeoutException) {
-    return 'No internet connection. Please check your network.';
+    return StringRes.errNoInternet;
   } else if (error is HttpException) {
-    return 'Server error. Please try again later.';
+    return StringRes.errServer;
   } else if (error is String) {
     return error;
   } else {
-    return 'An unexpected error occurred. Please try again.';
+    return StringRes.errUnknown;
   }
 }
