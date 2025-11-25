@@ -2,7 +2,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:sprout_pokedex/res/color_res.dart';
-import 'package:sprout_pokedex/res/dimen_res.dart';
 import 'package:sprout_pokedex/widgets/loading.dart';
 
 class AppNetworkImage extends StatelessWidget {
