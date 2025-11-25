@@ -10,19 +10,31 @@ import 'package:sprout_pokedex/pages/home/widget/pokemon_list.dart';
 import 'package:sprout_pokedex/widgets/error_widget.dart';
 import 'package:sprout_pokedex/widgets/loading.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  final ScrollController _controller = ScrollController();
+  late final HomeBloc _homeBloc;
 
   void _onTapPokemon(BuildContext context, Pokemon selected) {
     context.startDetailPage(selected.id);
   }
 
   void _onLoadMore(BuildContext context) {
-    context.read<HomeBloc>().add(GetMorePokemonEvent());
+    _homeBloc.add(GetMorePokemonEvent());
   }
 
   void _onRetry(BuildContext context) {
-    context.read<HomeBloc>().add(GetMorePokemonEvent());
+    _homeBloc.add(GetMorePokemonEvent());
+  }
+
+  void _initPokemon(BuildContext context) {
+    _homeBloc.add(GetPokemonsEvent());
   }
 
   Widget _buildPokemonList({
@@ -40,43 +52,60 @@ class HomePage extends StatelessWidget {
       onTap: (selected) => _onTapPokemon(context, selected),
       onLoadMore: (_) => _onLoadMore(context),
       onRetry: () => _onRetry(context),
+      scrollController: _controller,
     );
   }
 
   @override
+  void initState() {
+    super.initState();
+    _homeBloc = GetIt.I.get<HomeBloc>();
+    _homeBloc.add(GetPokemonsEvent());
+
+    _controller.addListener(() {
+      if (_controller.position.extentAfter < 300) {
+        _homeBloc.add(GetMorePokemonEvent());
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => GetIt.I.get<HomeBloc>()..add(GetPokemonsEvent()),
-      child: Scaffold(
-        body: SafeArea(
-          child: BlocBuilder<HomeBloc, HomeState>(
-            builder: (context, state) {
-              return state.when(
-                initial: () => const Loading(),
-                loading: () => const Loading(),
-                loadingMore: (pokemons) => _buildPokemonList(
-                  context: context,
-                  pokemons: pokemons,
-                  isLoadingMore: true,
-                ),
-                loaded: (pokemons, hasReachedMax) => _buildPokemonList(
-                  context: context,
-                  pokemons: pokemons,
-                  hasReachedMax: hasReachedMax,
-                ),
-                error: (message) => Center(
-                  child: AppErrorWidget(
-                    message: message,
-                    onRetry: () => context.read<HomeBloc>().add(GetPokemonsEvent()),
-                  ),
-                ),
-                loadMoreError: (pokemons, message) => AppErrorWidget(
-                  message: message,
-                  onRetry: () => context.read<HomeBloc>().add(GetPokemonsEvent()),
-                ),
-              );
-            },
-          ),
+    return Scaffold(
+      body: SafeArea(
+        child: BlocBuilder<HomeBloc, HomeState>(
+          bloc: _homeBloc,
+          builder: (context, state) {
+            print(state.toString());
+            return state.when(
+              initial: () => Container(),
+              loading: () => const Loading(),
+              loadingMore: (pokemons) => _buildPokemonList(
+                context: context,
+                pokemons: pokemons,
+                isLoadingMore: true,
+              ),
+              loaded: (pokemons, hasReachedMax) => _buildPokemonList(
+                context: context,
+                pokemons: pokemons,
+                hasReachedMax: hasReachedMax,
+              ),
+              error: (msg) => AppErrorWidget(
+                message: msg,
+                onRetry: () => _initPokemon(context),
+              ),
+              loadMoreError: (pokemons, msg) => AppErrorWidget(
+                message: msg,
+                onRetry: () => _initPokemon(context),
+              ),
+            );
+          },
         ),
       ),
     );

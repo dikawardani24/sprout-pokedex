@@ -36,29 +36,31 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       Emitter<HomeState> emit,
       bool isLoadMore,
       ) async {
-    // Don't load more if we've reached the end
     if (isLoadMore && _hasReachedMax) return;
 
-    // Emit loading state
     if (isLoadMore) {
       emit(HomeState.loadingMore(_pokemons));
     } else {
+      if (state.isLoading) {
+        return;
+      }
       emit(const HomeState.loading());
     }
 
     try {
-      final pokemons = await _getPokemonUseCase.execute(_limit, _pokemons.length);
+      final totalOld = _pokemons.length;
 
-      // Check if we've reached the end (received fewer pokemons than requested)
-      if (pokemons.length < _limit) {
-        _hasReachedMax = true;
-      }
+      final pokemons = await _getPokemonUseCase.execute(_limit, _pokemons.length);
 
       if (isLoadMore) {
         _pokemons.addAll(pokemons);
       } else {
         _pokemons = pokemons;
-        _hasReachedMax = false; // Reset when doing fresh load
+        _hasReachedMax = false;
+      }
+
+      if (totalOld == _pokemons.length) {
+        _hasReachedMax = true;
       }
 
       emit(HomeState.loaded(

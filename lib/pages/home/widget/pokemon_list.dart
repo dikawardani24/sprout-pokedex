@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:pokedex/pokedex.dart';
 import 'package:sprout_pokedex/pages/home/widget/item_pokemon.dart';
@@ -13,7 +11,7 @@ import 'package:sprout_pokedex/widgets/loading.dart';
 typedef GestureTapPokemon = void Function(Pokemon selected);
 typedef GestureLoadMore = void Function(int totalCurrent);
 
-class PokemonList extends StatefulWidget {
+class PokemonList extends StatelessWidget {
   final List<Pokemon> pokemons;
   final GestureTapPokemon? onTap;
   final bool isLoadingMore;
@@ -21,6 +19,7 @@ class PokemonList extends StatefulWidget {
   final String? errorMessage;
   final VoidCallback? onRetry;
   final GestureLoadMore onLoadMore;
+  final ScrollController scrollController;
 
   const PokemonList({
     super.key,
@@ -31,55 +30,60 @@ class PokemonList extends StatefulWidget {
     this.errorMessage,
     this.onRetry,
     required this.onLoadMore,
+    required this.scrollController,
   });
 
-  @override
-  State<PokemonList> createState() => _PokemonListState();
-}
+  bool _shouldLoadMore(ScrollNotification scroll) {
+    if (hasReachedMax || errorMessage != null) return false;
+    if (scroll.metrics.pixels <= 0) return false;
 
-class _PokemonListState extends State<PokemonList> {
-  final _scrollController = ScrollController();
-  bool _isLoadingMoreLocal = false;
-  Timer? _debounce;
-
-  bool get _shouldLoadMore {
-    if (!_scrollController.hasClients) return false;
-    if (_isLoadingMoreLocal || widget.hasReachedMax || widget.errorMessage != null) {
-      return false;
-    }
-
-    return _scrollController.position.extentAfter < 300;
-  }
-
-  void _onScroll() {
-    if (_debounce?.isActive ?? false) return;
-    _debounce = Timer(const Duration(milliseconds: 200), () {
-      if (_shouldLoadMore) {
-        _loadMore();
-      }
-    });
-  }
-
-  void _loadMore() {
-    if (_isLoadingMoreLocal) return;
-
-    _isLoadingMoreLocal = true;
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      widget.onLoadMore(widget.pokemons.length);
-    });
+    // Trigger load more when remaining scroll area < 300 px
+    return scroll.metrics.extentAfter < 300;
   }
 
   @override
-  void didUpdateWidget(covariant PokemonList oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    // Reset local loading state when external loading completes
-    if (oldWidget.isLoadingMore && !widget.isLoadingMore) {
-      _isLoadingMoreLocal = false;
-    }
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Positioned(
+          top: -50,
+          right: -50,
+          child: Image.asset(
+            ImageRes.pokeBall,
+            color: ColorRes.grey.withAlpha(60),
+            width: DimenRes.size_200,
+            height: DimenRes.size_200,
+          ),
+        ),
+
+        CustomScrollView(
+          controller: scrollController,
+          physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+          slivers: [
+            _buildAppBar(context),
+
+            if (pokemons.isNotEmpty) _buildPokemonGrid(),
+
+            if (pokemons.isEmpty) _buildEmptyState(context),
+
+            if (isLoadingMore) _buildLoadingIndicator(),
+
+            if (errorMessage != null)
+              _buildErrorWidget(context),
+
+            if (hasReachedMax && pokemons.isNotEmpty)
+              _buildEndOfList(context),
+          ],
+        ),
+      ],
+    );
   }
 
-  Widget _buildAppBar() {
+  // ----------------------------
+  // UI BUILDERS (same as before)
+  // ----------------------------
+
+  Widget _buildAppBar(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
 
     return SliverAppBar(
@@ -116,9 +120,9 @@ class _PokemonListState extends State<PokemonList> {
         ),
         delegate: SliverChildBuilderDelegate(
               (context, index) {
-            final pokemon = widget.pokemons[index];
+            final pokemon = pokemons[index];
             return InkWell(
-              onTap: () => widget.onTap?.call(pokemon),
+              onTap: () => onTap?.call(pokemon),
               borderRadius: BorderRadius.circular(12),
               child: ItemPokemon(
                 key: ValueKey(pokemon.id),
@@ -130,14 +134,14 @@ class _PokemonListState extends State<PokemonList> {
               ),
             );
           },
-          childCount: widget.pokemons.length,
+          childCount: pokemons.length,
         ),
       ),
     );
   }
 
   Widget _buildLoadingIndicator() {
-    if (!widget.isLoadingMore) return const SliverToBoxAdapter();
+    if (!isLoadingMore) return const SliverToBoxAdapter();
 
     return const SliverPadding(
       padding: EdgeInsets.all(20),
@@ -147,30 +151,30 @@ class _PokemonListState extends State<PokemonList> {
     );
   }
 
-  Widget _buildErrorWidget() {
-    if (widget.errorMessage == null) return const SliverToBoxAdapter();
+  Widget _buildErrorWidget(BuildContext context) {
+    if (errorMessage == null) return const SliverToBoxAdapter();
 
     return SliverPadding(
       padding: const EdgeInsets.all(16),
       sliver: SliverToBoxAdapter(
         child: Column(
-          mainAxisSize: MainAxisSize.min,
           children: [
             Text(
               StringRes.failedLoadMore,
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: Colors.red,
-              ),
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium
+                  ?.copyWith(color: Colors.red),
             ),
             const SizedBox(height: 8),
             Text(
-              widget.errorMessage!,
+              errorMessage!,
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.bodySmall,
             ),
             const SizedBox(height: 12),
             ElevatedButton(
-              onPressed: widget.onRetry,
+              onPressed: onRetry,
               child: const Text(StringRes.retry),
             ),
           ],
@@ -179,8 +183,8 @@ class _PokemonListState extends State<PokemonList> {
     );
   }
 
-  Widget _buildEndOfList() {
-    if (widget.pokemons.isEmpty || !widget.hasReachedMax) {
+  Widget _buildEndOfList(BuildContext context) {
+    if (pokemons.isEmpty || !hasReachedMax) {
       return const SliverToBoxAdapter();
     }
 
@@ -200,8 +204,8 @@ class _PokemonListState extends State<PokemonList> {
     );
   }
 
-  Widget _buildEmptyState() {
-    if (widget.pokemons.isNotEmpty) return const SliverToBoxAdapter();
+  Widget _buildEmptyState(BuildContext context) {
+    if (pokemons.isNotEmpty) return const SliverToBoxAdapter();
 
     return SliverFillRemaining(
       child: Center(
@@ -229,56 +233,6 @@ class _PokemonListState extends State<PokemonList> {
           ],
         ),
       ),
-    );
-  }
-
-  Widget _buildContent() {
-    return CustomScrollView(
-      controller: _scrollController,
-      physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-      slivers: [
-        _buildAppBar(),
-        if (widget.pokemons.isNotEmpty) _buildPokemonGrid(),
-        _buildEmptyState(),
-        _buildLoadingIndicator(),
-        _buildErrorWidget(),
-        _buildEndOfList(),
-      ],
-    );
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _scrollController.addListener(_onScroll);
-  }
-
-  @override
-  void dispose() {
-    _scrollController
-      ..removeListener(_onScroll)
-      ..dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        // Background decoration
-        Positioned(
-          top: -50,
-          right: -50,
-          child: Image.asset(
-            ImageRes.pokeBall,
-            color: ColorRes.grey.withAlpha(60),
-            width: DimenRes.size_200,
-            height: DimenRes.size_200,
-          ),
-        ),
-        // Content
-        _buildContent(),
-      ],
     );
   }
 }
