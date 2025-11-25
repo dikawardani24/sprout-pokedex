@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -20,20 +22,19 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final ScrollController _controller = ScrollController();
   late final HomeBloc _homeBloc;
+  Timer? _timer;
 
   void _onTapPokemon(BuildContext context, Pokemon selected) {
     context.startDetailPage(selected.id);
   }
 
   void _onLoadMore(BuildContext context) {
-    _homeBloc.add(GetMorePokemonEvent());
-  }
-
-  void _onRetry(BuildContext context) {
+    if (_homeBloc.state.isLoadMore) return;
     _homeBloc.add(GetMorePokemonEvent());
   }
 
   void _initPokemon(BuildContext context) {
+    if (_homeBloc.state.isLoading) return;
     _homeBloc.add(GetPokemonsEvent());
   }
 
@@ -51,7 +52,7 @@ class _HomePageState extends State<HomePage> {
       errorMessage: errorMessage,
       onTap: (selected) => _onTapPokemon(context, selected),
       onLoadMore: (_) => _onLoadMore(context),
-      onRetry: () => _onRetry(context),
+      onRetry: () => _initPokemon(context),
       scrollController: _controller,
     );
   }
@@ -63,8 +64,12 @@ class _HomePageState extends State<HomePage> {
     _homeBloc.add(GetPokemonsEvent());
 
     _controller.addListener(() {
+      if (_timer?.isActive??false) return;
+      
       if (_controller.position.extentAfter < 300) {
-        _homeBloc.add(GetMorePokemonEvent());
+        _timer = Timer(const Duration(milliseconds: 200), () {
+          _homeBloc.add(GetMorePokemonEvent());
+        });
       }
     });
   }
@@ -72,6 +77,8 @@ class _HomePageState extends State<HomePage> {
   @override
   void dispose() {
     _controller.dispose();
+    _timer?.cancel();
+    _homeBloc..clearState()..close();
     super.dispose();
   }
 
@@ -82,7 +89,6 @@ class _HomePageState extends State<HomePage> {
         child: BlocBuilder<HomeBloc, HomeState>(
           bloc: _homeBloc,
           builder: (context, state) {
-            print(state.toString());
             return state.when(
               initial: () => Container(),
               loading: () => const Loading(),

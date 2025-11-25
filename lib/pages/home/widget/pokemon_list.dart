@@ -33,14 +33,6 @@ class PokemonList extends StatelessWidget {
     required this.scrollController,
   });
 
-  bool _shouldLoadMore(ScrollNotification scroll) {
-    if (hasReachedMax || errorMessage != null) return false;
-    if (scroll.metrics.pixels <= 0) return false;
-
-    // Trigger load more when remaining scroll area < 300 px
-    return scroll.metrics.extentAfter < 300;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -78,10 +70,6 @@ class PokemonList extends StatelessWidget {
       ],
     );
   }
-
-  // ----------------------------
-  // UI BUILDERS (same as before)
-  // ----------------------------
 
   Widget _buildAppBar(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;

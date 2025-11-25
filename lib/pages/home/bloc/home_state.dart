@@ -1,7 +1,6 @@
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:pokedex/pokedex.dart';
-import 'package:sprout_pokedex/widgets/loading.dart';
 
 part 'home_state.freezed.dart';
 
@@ -18,4 +17,5 @@ class HomeState with _$HomeState {
 
 extension HomeStateExt on HomeState {
   bool get isLoading => this is _Loading;
+  bool get isLoadMore => this is _LoadingMore;
 }
