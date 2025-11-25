@@ -69,27 +69,29 @@ class ItemPokemon extends StatelessWidget {
 
     return Align(
       alignment: Alignment.bottomRight,
-      child: Stack(
-        children: [
-          FractionallySizedBox(
-            widthFactor: scale,
-            heightFactor: scale,
-            child: Image.asset(
-              ImageRes.pokeBall,
-              fit: BoxFit.fill,
-              color: ColorRes.white.withAlpha(80),
+      child: RepaintBoundary(
+        child: Stack(
+          children: [
+            FractionallySizedBox(
+              widthFactor: scale,
+              heightFactor: scale,
+              child: Image.asset(
+                ImageRes.pokeBall,
+                fit: BoxFit.fill,
+                color: ColorRes.white.withAlpha(80),
+              ),
             ),
-          ),
-          FractionallySizedBox(
-            widthFactor: scale,
-            heightFactor: scale,
-            child: AppNetworkImage(
-              imageUrl: imageUrl,
-              imageErrSize: DimenRes.size_60,
-              imageSize: DimenRes.size_80
-            ),
-          )
-        ],
+            FractionallySizedBox(
+              widthFactor: scale,
+              heightFactor: scale,
+              child: AppNetworkImage(
+                  imageUrl: imageUrl,
+                  imageErrSize: DimenRes.size_60,
+                  imageSize: DimenRes.size_80
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

@@ -16,6 +16,7 @@ import 'package:pokedex/pokedex.dart' as _i706;
 import '../pages/detail/bloc/detail_bloc.dart' as _i688;
 import '../pages/home/bloc/home_bloc.dart' as _i752;
 import '../repository/pokemon_repository.dart' as _i1049;
+import '../usecase/cache_image_url_use_case.dart' as _i1054;
 import '../usecase/get_detail_pokemon_use_case.dart' as _i353;
 import '../usecase/get_info_about_use_case.dart' as _i190;
 import '../usecase/get_pokemon_use_ase.dart' as _i898;
@@ -38,8 +39,8 @@ _i174.GetIt $initGetIt(
       () => _i1049.PokemonRepositoryImpl(gh<_i706.Pokedex>()));
   gh.factory<_i898.GetPokemonUseCase>(
       () => _i898.GetPokemonUseCaseImpl(gh<_i1049.PokemonRepository>()));
-  gh.factory<_i752.HomeBloc>(
-      () => _i752.HomeBloc(gh<_i898.GetPokemonUseCase>()));
+  gh.factory<_i1054.CacheImageUrlUseCase>(
+      () => _i1054.CacheImageUrlUseCaseImpl());
   gh.factory<_i190.GetInfoAboutUseCase>(
       () => _i190.GetInfoAboutUseCaseImpl(gh<_i1049.PokemonRepository>()));
   gh.factory<_i353.GetDetailPokemonUseCase>(
@@ -47,6 +48,10 @@ _i174.GetIt $initGetIt(
   gh.factory<_i688.DetailBloc>(() => _i688.DetailBloc(
         gh<_i190.GetInfoAboutUseCase>(),
         gh<_i353.GetDetailPokemonUseCase>(),
+      ));
+  gh.factory<_i752.HomeBloc>(() => _i752.HomeBloc(
+        gh<_i898.GetPokemonUseCase>(),
+        gh<_i1054.CacheImageUrlUseCase>(),
       ));
   return getIt;
 }

@@ -12,4 +12,10 @@ class HomeState with _$HomeState {
   const factory HomeState.loaded(List<Pokemon> pokemons, bool hasReachedMax) = _Loaded;
   const factory HomeState.error(String message) = _Error;
   const factory HomeState.loadMoreError(List<Pokemon> pokemons, String message) = _LoadMoreError;
+
+}
+
+extension HomeStateExt on HomeState {
+  bool get isLoading => this is _Loading;
+  bool get isLoadMore => this is _LoadingMore;
 }
