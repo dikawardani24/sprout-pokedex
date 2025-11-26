@@ -60,15 +60,24 @@ class _HomePageState extends State<HomePage> {
     _homeBloc = GetIt.I.get<HomeBloc>();
     _homeBloc.add(GetPokemonsEvent());
 
-    _controller.addListener(() {
-      if (_controller.position.extentAfter < 300) {
-        _homeBloc.add(GetMorePokemonEvent());
-      }
-    });
+    _controller.addListener(_onScroll);
+  }
+
+  void _onScroll() {
+    if (!_controller.hasClients) return;
+    
+    final maxScroll = _controller.position.maxScrollExtent;
+    final currentScroll = _controller.offset;
+    final threshold = maxScroll * 0.9; // Load more at 90% scroll
+    
+    if (currentScroll >= threshold) {
+      _homeBloc.add(GetMorePokemonEvent());
+    }
   }
 
   @override
   void dispose() {
+    _controller.removeListener(_onScroll);
     _controller.dispose();
     _homeBloc..clearState()..close();
     super.dispose();

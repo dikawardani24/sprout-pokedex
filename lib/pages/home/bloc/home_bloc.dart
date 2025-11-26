@@ -16,7 +16,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final GetPokemonUseCase _getPokemonUseCase;
   final CacheImageUrlUseCase _cacheImageUrlUseCase;
 
-  final int _limit = 50;
+  final int _limit = 20; // Reduced from 50 to improve loading performance
   bool _hasReachedMax = false;
   List<Pokemon> _pokemons = [];
 
@@ -32,7 +32,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
     on<GetMorePokemonEvent>(
       _onGetMorePokemon,
-      transformer: throttleDroppable(const Duration(milliseconds: 100)),
+      transformer: throttleDroppable(const Duration(milliseconds: 300)),
     );
   }
 
@@ -58,12 +58,16 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   
   void _updateListPoke(List<Pokemon> newList, bool isLoadMore) {
     _hasReachedMax = newList.length < _limit;
-    _cacheImageUrlUseCase.execute(newList.map((p) => p.imageUrl).toList());
+    
+    // Fire-and-forget image caching - don't block the UI
+    Future.microtask(() {
+      _cacheImageUrlUseCase.execute(newList.map((p) => p.imageUrl).toList());
+    });
 
     if (isLoadMore) {
-      _pokemons.addAll(newList);
+      _pokemons = List.from(_pokemons)..addAll(newList); // Create new list for immutability
     } else {
-      _pokemons = newList;
+      _pokemons = List.from(newList);
       _hasReachedMax = false;
     }
   }

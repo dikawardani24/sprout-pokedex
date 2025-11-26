@@ -107,22 +107,26 @@ class PokemonList extends StatelessWidget {
           mainAxisSpacing: DimenRes.size_12,
         ),
         delegate: SliverChildBuilderDelegate(
-              (context, index) {
+          (context, index) {
             final pokemon = pokemons[index];
-            return InkWell(
-              onTap: () => onTap?.call(pokemon),
-              borderRadius: BorderRadius.circular(12),
-              child: ItemPokemon(
-                key: ValueKey(pokemon.id),
-                id: pokemon.pokenumber,
-                name: pokemon.name,
-                types: pokemon.typeNames,
-                color: pokemon.pokedexTypeColor.secondary,
-                imageUrl: pokemon.imageUrl,
+            return RepaintBoundary(
+              child: InkWell(
+                onTap: () => onTap?.call(pokemon),
+                borderRadius: BorderRadius.circular(12),
+                child: ItemPokemon(
+                  key: ValueKey(pokemon.id),
+                  id: pokemon.pokenumber,
+                  name: pokemon.name,
+                  types: pokemon.typeNames,
+                  color: pokemon.pokedexTypeColor.secondary,
+                  imageUrl: pokemon.imageUrl,
+                ),
               ),
             );
           },
           childCount: pokemons.length,
+          addAutomaticKeepAlives: true,
+          addRepaintBoundaries: true,
         ),
       ),
     );
