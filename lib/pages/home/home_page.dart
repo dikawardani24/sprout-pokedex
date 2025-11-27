@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -21,7 +22,7 @@ class _HomePageState extends State<HomePage> {
   final ScrollController _controller = ScrollController();
   late final HomeBloc _homeBloc;
 
-  void _onTapPokemon(BuildContext context, Pokemon selected) {
+  void _onTapPokemon(BuildContext context, AppPokemon selected) {
     context.startDetailPage(selected.id);
   }
 
@@ -37,7 +38,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildPokemonList({
     required BuildContext context,
-    required List<Pokemon> pokemons,
+    required List<AppPokemon> pokemons,
     bool isLoadingMore = false,
     bool hasReachedMax = false,
     String? errorMessage,

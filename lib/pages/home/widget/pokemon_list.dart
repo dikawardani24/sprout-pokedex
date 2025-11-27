@@ -1,5 +1,5 @@
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:pokedex/pokedex.dart';
 import 'package:sprout_pokedex/pages/home/widget/item_pokemon.dart';
 import 'package:sprout_pokedex/res/color_res.dart';
 import 'package:sprout_pokedex/res/dimen_res.dart';
@@ -8,11 +8,11 @@ import 'package:sprout_pokedex/res/string_res.dart';
 import 'package:sprout_pokedex/util/pokemon_ext.dart';
 import 'package:sprout_pokedex/widgets/loading.dart';
 
-typedef GestureTapPokemon = void Function(Pokemon selected);
+typedef GestureTapPokemon = void Function(AppPokemon selected);
 typedef GestureLoadMore = void Function(int totalCurrent);
 
 class PokemonList extends StatelessWidget {
-  final List<Pokemon> pokemons;
+  final List<AppPokemon> pokemons;
   final GestureTapPokemon? onTap;
   final bool isLoadingMore;
   final bool hasReachedMax;
@@ -117,7 +117,7 @@ class PokemonList extends StatelessWidget {
                   key: ValueKey(pokemon.id),
                   id: pokemon.pokenumber,
                   name: pokemon.name,
-                  types: pokemon.typeNames,
+                  types: pokemon.types,
                   color: pokemon.pokedexTypeColor.secondary,
                   imageUrl: pokemon.imageUrl,
                 ),

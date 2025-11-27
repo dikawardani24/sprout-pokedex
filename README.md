@@ -46,3 +46,36 @@ Pokémon Gallery - Immersive Flutter application showcasing endless Pokémon col
 | **Ios Portrait**  | <img src="showcase/ios_portrait.gif" alt="web" width="250" height="500" /> |
 | **Ios Landscape** | <img src="showcase/ios_landscape.gif" alt="web" width="400" height="200" /> |
 | **Mac OS**        | <img src="showcase/macos.gif" alt="web" width="400" height="200" /> |
+
+
+## Melos Configuration
+---------
+### 1. Install Melos globally
+```bash
+$ dart pub global activate melos
+```
+### 2. Bootstrap the project (creates dependency overrides)
+```bash
+$ melos bootstrap
+```
+
+### 3. Verify packages are detected
+```bash
+$ melos list
+```
+
+Should output:
+- core (packages/core)
+- sprout_pokedex (.)
+
+
+### 4. Run initial code generation
+```bash
+$ melos run generate
+```
+
+### 5. Verify everything works
+```bash
+$ melos run analyze
+$ melos run test
+```
