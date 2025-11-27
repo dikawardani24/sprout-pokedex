@@ -1,9 +1,9 @@
 
 import 'package:core_ui/core_ui.dart';
+import 'package:feature_home/feauture_home.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:sprout_pokedex/navigation/routes.dart';
 import 'package:sprout_pokedex/pages/detail/detail_page.dart';
-import 'package:sprout_pokedex/pages/home/home_page.dart';
 
 extension AppNavigation on BuildContext {
   Future<dynamic> _goToPage(
@@ -16,7 +16,9 @@ extension AppNavigation on BuildContext {
 
   Widget? _getPage(String? routeName, Object? args) {
     switch(routeName) {
-      case Routes.home : return const HomePage();
+      case Routes.home : return HomePage(
+        onTap: (c, selected) => c.startDetailPage(selected.id),
+      );
       case Routes.detail:
         if (args is int) {
           return DetailPage(id: args);

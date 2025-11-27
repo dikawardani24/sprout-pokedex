@@ -1,0 +1,36 @@
+name: feature_home
+description: "A new Flutter module project."
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.5.3
+
+dependencies:
+  flutter:
+    sdk: flutter
+  core:
+    path: ./core
+  core_ui:
+    path: ./core_ui
+
+  cupertino_icons:
+  flutter_bloc:
+  get_it:
+  injectable:
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints:
+  injectable_generator:
+  build_runner:
+  equatable:
+
+flutter:
+  uses-material-design: true
+
+  module:
+    androidX: true
+    androidPackage: com.example.feature_home
+    iosBundleIdentifier: com.example.featureHome

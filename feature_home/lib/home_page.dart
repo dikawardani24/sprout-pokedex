@@ -1,16 +1,22 @@
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
+import 'package:feature_home/bloc/home_bloc.dart';
+import 'package:feature_home/bloc/home_event.dart';
+import 'package:feature_home/bloc/home_state.dart';
+import 'package:feature_home/widget/pokemon_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:sprout_pokedex/navigation/app_navigation.dart';
-import 'package:sprout_pokedex/pages/home/bloc/home_bloc.dart';
-import 'package:sprout_pokedex/pages/home/bloc/home_event.dart';
-import 'package:sprout_pokedex/pages/home/bloc/home_state.dart';
-import 'package:sprout_pokedex/pages/home/widget/pokemon_list.dart';
+
+typedef OnStartDetail = void Function(BuildContext context, AppPokemon selected);
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  final OnStartDetail? onTap;
+
+  const HomePage({
+    super.key,
+    this.onTap
+  });
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -19,10 +25,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final ScrollController _controller = ScrollController();
   late final HomeBloc _homeBloc;
-
-  void _onTapPokemon(BuildContext context, AppPokemon selected) {
-    context.startDetailPage(selected.id);
-  }
 
   void _onLoadMore(BuildContext context) {
     if (_homeBloc.state.isLoadMore) return;
@@ -46,7 +48,9 @@ class _HomePageState extends State<HomePage> {
       isLoadingMore: isLoadingMore,
       hasReachedMax: hasReachedMax,
       errorMessage: errorMessage,
-      onTap: (selected) => _onTapPokemon(context, selected),
+      onTap: (selected) {
+        widget.onTap?.call(this.context, selected);
+      },
       onLoadMore: (_) => _onLoadMore(context),
       onRetry: () => _initPokemon(context),
       scrollController: _controller,

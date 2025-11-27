@@ -2,11 +2,10 @@ import 'dart:async';
 
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
+import 'package:feature_home/bloc/home_event.dart';
+import 'package:feature_home/bloc/home_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:sprout_pokedex/pages/home/bloc/home_event.dart';
-import 'package:sprout_pokedex/pages/home/bloc/home_state.dart';
-
 
 @injectable
 class HomeBloc extends Bloc<HomeEvent, HomeState> {

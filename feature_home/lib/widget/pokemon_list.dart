@@ -1,7 +1,7 @@
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
+import 'package:feature_home/widget/item_pokemon.dart';
 import 'package:flutter/material.dart';
-import 'package:sprout_pokedex/pages/home/widget/item_pokemon.dart';
 
 typedef GestureTapPokemon = void Function(AppPokemon selected);
 typedef GestureLoadMore = void Function(int totalCurrent);

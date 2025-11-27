@@ -1,4 +1,5 @@
 import 'package:core/di/injection.dart';
+import 'package:feature_home/di/injection.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 
@@ -13,5 +14,6 @@ final getIt = GetIt.instance;
 )
 void configureDependencies() {
   configureCoreDependencies();
+  configureFeatHomeDependencies();
   $initApp(getIt);
 }
