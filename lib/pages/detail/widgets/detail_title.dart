@@ -1,11 +1,6 @@
 import 'package:core/core.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
-import 'package:sprout_pokedex/res/color_res.dart' show ColorRes;
-import 'package:sprout_pokedex/res/dimen_res.dart';
-import 'package:sprout_pokedex/util/pokemon_ext.dart';
-import 'package:sprout_pokedex/util/string_ext.dart' show StringExt;
-import 'package:sprout_pokedex/widgets/app_chip_list.dart';
-import 'package:sprout_pokedex/widgets/min_width.dart';
 
 class DetailTitle extends StatelessWidget{
   final AppPokemonDetail pokemon;

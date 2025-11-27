@@ -1,9 +1,6 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:sprout_pokedex/res/color_res.dart';
-import 'package:sprout_pokedex/res/dimen_res.dart';
-import 'package:sprout_pokedex/res/string_res.dart';
-import 'package:sprout_pokedex/util/pokemon_ext.dart';
 
 class ItemWeaknesses extends StatelessWidget {
   final List<String> weaknesses;

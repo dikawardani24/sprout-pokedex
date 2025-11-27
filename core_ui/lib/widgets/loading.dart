@@ -1,7 +1,6 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:sprout_pokedex/res/dimen_res.dart';
-import 'package:sprout_pokedex/res/image_res.dart';
 
 class Loading extends StatelessWidget {
   final double size;

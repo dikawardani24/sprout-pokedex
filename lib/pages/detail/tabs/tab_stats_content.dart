@@ -1,10 +1,7 @@
 import 'package:core/core.dart';
-import 'package:core/util/poke_ext.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:sprout_pokedex/pages/detail/widgets/item_stats.dart';
-import 'package:sprout_pokedex/res/dimen_res.dart';
-import 'package:sprout_pokedex/res/string_res.dart';
-import 'package:sprout_pokedex/util/pokemon_ext.dart';
 
 class TabStatsContent extends StatelessWidget {
   final AppPokemonDetail pokemon;

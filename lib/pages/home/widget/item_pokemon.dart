@@ -1,11 +1,5 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
-import 'package:sprout_pokedex/res/color_res.dart';
-import 'package:sprout_pokedex/res/dimen_res.dart';
-import 'package:sprout_pokedex/res/image_res.dart';
-import 'package:sprout_pokedex/util/string_ext.dart';
-import 'package:sprout_pokedex/widgets/app_card.dart';
-import 'package:sprout_pokedex/widgets/app_chip_list.dart';
-import 'package:sprout_pokedex/widgets/app_network_image.dart';
 
 class ItemPokemon extends StatelessWidget {
   final String id;

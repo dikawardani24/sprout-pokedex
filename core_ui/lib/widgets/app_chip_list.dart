@@ -1,7 +1,6 @@
+import 'package:core_ui/core_ui.dart';
+import 'package:core_ui/widgets/app_chip.dart';
 import 'package:flutter/material.dart';
-import 'package:sprout_pokedex/res/dimen_res.dart';
-import 'package:sprout_pokedex/util/string_ext.dart';
-import 'package:sprout_pokedex/widgets/app_chip.dart';
 
 class AppChipList extends StatelessWidget {
   final List<String> chipDataList;

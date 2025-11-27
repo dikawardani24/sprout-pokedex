@@ -11,6 +11,8 @@ dependencies:
     sdk: flutter
   core:
     path: ./core
+  core_ui:
+    path: ./core_ui
   cupertino_icons: ^1.0.8
   pokedex: ^0.3.0
   flutter_svg: ^2.0.9
@@ -42,16 +44,3 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-  assets:
-    - assets/imgs/pokeball.png
-    - assets/imgs/mask_pokeball.png
-    - assets/imgs/pokeball_colored.png
-    - assets/imgs/pokeball_colored_small.webp
-    - assets/imgs/snorlax.svg
-    - assets/icons/
-  fonts:
-    - family: Poppins
-      fonts:
-       - asset: assets/fonts/poppins_regular.ttf
-       - asset: assets/fonts/poppins_italic.ttf
-       - asset: assets/fonts/poppins_bold.ttf

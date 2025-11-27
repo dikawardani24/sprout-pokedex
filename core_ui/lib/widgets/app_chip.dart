@@ -1,6 +1,6 @@
+import 'package:core_ui/core_ui.dart';
+import 'package:core_ui/widgets/app_card.dart';
 import 'package:flutter/material.dart';
-import 'package:sprout_pokedex/res/dimen_res.dart';
-import 'package:sprout_pokedex/widgets/app_card.dart';
 
 class AppChip extends StatelessWidget{
   final Color color;

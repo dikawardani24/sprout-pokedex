@@ -1,9 +1,6 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:sprout_pokedex/res/color_res.dart';
-import 'package:sprout_pokedex/res/dimen_res.dart';
-import 'package:sprout_pokedex/res/image_res.dart';
-import 'package:sprout_pokedex/res/string_res.dart';
 
 class AppErrorWidget extends StatelessWidget {
   final GestureTapCallback? onRetry;

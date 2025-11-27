@@ -1,8 +1,5 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
-import 'package:sprout_pokedex/res/dimen_res.dart';
-import 'package:sprout_pokedex/res/image_res.dart';
-import 'package:sprout_pokedex/widgets/app_network_image.dart';
-import 'package:sprout_pokedex/widgets/circular_matrix.dart';
 
 class DetailImag extends StatelessWidget {
   final String imageUrl;
