@@ -30,17 +30,5 @@ flutter:
     androidPackage: com.example.core_ui
     iosBundleIdentifier: com.example.coreUi
 
-  assets:
-    - assets/imgs/pokeball.png
-    - assets/imgs/mask_pokeball.png
-    - assets/imgs/pokeball_colored.png
-    - assets/imgs/pokeball_colored_small.webp
-    - assets/imgs/snorlax.svg
-    - assets/icons/
-  fonts:
-    - family: Poppins
-      fonts:
-        - asset: assets/fonts/poppins_regular.ttf
-        - asset: assets/fonts/poppins_italic.ttf
-        - asset: assets/fonts/poppins_bold.ttf
+
 
