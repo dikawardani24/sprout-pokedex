@@ -1,0 +1,36 @@
+name: feature_detail
+description: "A new Flutter module project."
+
+version: 1.0.0
+
+environment:
+  sdk: ^3.5.3
+
+dependencies:
+  flutter:
+    sdk: flutter
+  core:
+  core_ui:
+  cupertino_icons:
+  flutter_bloc:
+  get_it:
+  injectable:
+  flutter_animate:
+  flutter_svg:
+  freezed_annotation:
+  equatable:
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints:
+  injectable_generator:
+  build_runner:
+  freezed:
+
+flutter:
+  uses-material-design: true
+  module:
+    androidX: true
+    androidPackage: com.example.feature_detail
+    iosBundleIdentifier: com.example.featureDetail

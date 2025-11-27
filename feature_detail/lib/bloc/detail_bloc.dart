@@ -1,10 +1,11 @@
 
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
+import 'package:feature_detail/bloc/detail_event.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:sprout_pokedex/pages/detail/bloc/detail_event.dart';
-import 'package:sprout_pokedex/pages/detail/bloc/detail_state.dart';
+
+import 'detail_state.dart';
 
 @injectable
 class DetailBloc extends Bloc<DetailEvent, DetailState>{
