@@ -1,7 +1,6 @@
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:pokedex/pokedex.dart';
-import 'package:sprout_pokedex/models/about_info.dart';
 import 'package:sprout_pokedex/pages/detail/tabs/tab_about_content.dart';
 import 'package:sprout_pokedex/pages/detail/tabs/tab_stats_content.dart';
 import 'package:sprout_pokedex/pages/detail/widgets/detail_image.dart';
@@ -12,9 +11,9 @@ import 'package:sprout_pokedex/res/string_res.dart';
 import 'package:sprout_pokedex/util/pokemon_ext.dart';
 
 class DetailPortrait extends StatefulWidget {
-  final AboutInfo info;
+  final AppPokemonDetail detail;
 
-  const DetailPortrait({super.key, required this.info});
+  const DetailPortrait({super.key, required this.detail});
 
   @override
   State<DetailPortrait> createState() => _DetailPortraitState();
@@ -36,7 +35,7 @@ class _DetailPortraitState extends State<DetailPortrait>
   }
 
   Widget _buildTabBar() {
-    final Pokemon pokemon = widget.info.pokemon;
+    final AppPokemonDetail pokemon = widget.detail;
     final color = pokemon.pokedexTypeColor.secondary;
 
     return TabBar(
@@ -54,8 +53,8 @@ class _DetailPortraitState extends State<DetailPortrait>
       child: TabBarView(
         controller: _tabController,
         children: [
-          TabAboutContent(info: widget.info),
-          TabStatsContent(pokemon: widget.info.pokemon),
+          TabAboutContent(info: widget.detail),
+          TabStatsContent(pokemon: widget.detail),
         ],
       ),
     );
@@ -91,7 +90,7 @@ class _DetailPortraitState extends State<DetailPortrait>
           right: 0,
           height: 160,
           child: Center(
-            child: DetailImag(pokemon: widget.info.pokemon),
+            child: DetailImag(imageUrl: widget.detail.imageUrl),
           ),
         ),
       ],
@@ -101,12 +100,12 @@ class _DetailPortraitState extends State<DetailPortrait>
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: widget.info.pokemon.pokedexTypeColor.secondary,
+      color: widget.detail.pokedexTypeColor.secondary,
       child: Column(
         children: [
           Padding(
             padding: const EdgeInsets.all(DimenRes.size_16),
-            child: DetailTitle(pokemon: widget.info.pokemon),
+            child: DetailTitle(pokemon: widget.detail),
           ),
 
           /// Tab Container + Animation

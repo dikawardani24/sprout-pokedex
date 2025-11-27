@@ -1,5 +1,5 @@
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:pokedex/pokedex.dart';
 import 'package:sprout_pokedex/res/color_res.dart';
 import 'package:sprout_pokedex/res/dimen_res.dart';
 import 'package:sprout_pokedex/res/string_res.dart';
@@ -8,7 +8,7 @@ import 'package:sprout_pokedex/widgets/app_chip.dart';
 
 class ItemAbilities extends StatelessWidget {
   final Color color;
-  final List<PokemonAbility> abilities;
+  final List<AppAbility> abilities;
 
   const ItemAbilities({super.key, required this.abilities, required this.color});
 
@@ -31,7 +31,7 @@ class ItemAbilities extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             spacing: DimenRes.size_8,
             children: abilities.map((e) {
-              final label = e.ability.name.firstLetterUpperCase;
+              final label = e.name.firstLetterUpperCase;
               if (!e.isHidden) return AppChip(label: label, color: color, textStyle: const TextStyle(color: ColorRes.white),);
               return AppChip(
                 color: color.withAlpha(98),

@@ -1,6 +1,5 @@
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:pokedex/pokedex.dart';
-import 'package:sprout_pokedex/models/about_info.dart';
 import 'package:sprout_pokedex/pages/detail/widgets/about_tile.dart';
 import 'package:sprout_pokedex/pages/detail/widgets/item_weaknesses.dart';
 import 'package:sprout_pokedex/pages/detail/widgets/iteme_abilities.dart';
@@ -10,42 +9,36 @@ import 'package:sprout_pokedex/util/pokemon_ext.dart';
 import 'package:sprout_pokedex/util/string_ext.dart';
 
 class TabAboutContent extends StatelessWidget {
-  final AboutInfo info;
+  final AppPokemonDetail info;
 
   const TabAboutContent({super.key, required this.info});
 
   List<Widget> _data(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    PokemonSpecies? species = info.species;
-    final pokemonDescription = species.flavor;
-    final genre = species.genre;
-    final pokemon = info.pokemon;
+    Species species = info.species;
 
     final sectionTheme = textTheme.titleMedium?.copyWith(
-      color: pokemon.pokedexTypeColor.secondary,
+      color: info.pokedexTypeColor.secondary,
       fontWeight: FontWeight.bold,
     );
 
     return [
-      if (pokemonDescription != null) Text(pokemonDescription),
+      Text(species.desc),
       Text(StringRes.pokedexData, style: sectionTheme),
-      if (genre != null) ItemAbout(
-          title: StringRes.species,
-          desc:  genre
-      ),
-      ItemAbout(title: StringRes.height, desc: "${info.pokemon.height.toMetersFormatted} / ${info.pokemon.height.toInchesFormatted}"),
-      ItemAbout(title: StringRes.weight, desc: "${info.pokemon.weight.toKilogramsFormatted} / ${info.pokemon.weight.toPoundsFormatted}"),
-      ItemAbilities(color: pokemon.pokedexTypeColor.secondary, abilities: pokemon.abilities),
-      ItemWeaknesses(weaknesses: info.weaknesses),
+      ItemAbout(title: StringRes.species, desc:  species.name),
+      ItemAbout(title: StringRes.height, desc: '${info.height.inMeter} m  / ${info.height.inInch}"'),
+      ItemAbout(title: StringRes.weight, desc: "${info.weight.inKg} kg / ${info.weight.inPounds} lbs"),
+      ItemAbilities(color: info.pokedexTypeColor.secondary, abilities: info.skill.abilities),
+      ItemWeaknesses(weaknesses: info.skill.weaknesses),
 
       Text(StringRes.training, style: sectionTheme),
-      ItemAbout(title: StringRes.catchRate, desc: "${species?.captureRate}"),
-      ItemAbout(title: StringRes.baseExp, desc: "${pokemon.baseExperience}"),
-      ItemAbout(title: StringRes.growthRate, desc: "${species?.growthRate.name.replaceAll("-", " ").firstLetterUpperCase}"),
+      ItemAbout(title: StringRes.catchRate, desc: "${info.training.catchRate}"),
+      ItemAbout(title: StringRes.baseExp, desc: "${info..baseExp}"),
+      ItemAbout(title: StringRes.growthRate, desc: info.training.growRate.replaceAll("-", " ").firstLetterUpperCase),
 
       Text(StringRes.breeding, style: sectionTheme),
-      ItemAbout(title: StringRes.eggGroups, desc: "${species?.eggGroups.map((e) => e.name.firstLetterUpperCase).join(", ")}"),
-      ItemAbout(title: StringRes.eggCycles, desc: "${species?.hatchCounter}")
+      ItemAbout(title: StringRes.eggGroups, desc: info.training.eggGroups.map((e) => e.firstLetterUpperCase).join(", ")),
+      ItemAbout(title: StringRes.eggCycles, desc: "${info.training.eggCycles}")
     ];
   }
 

@@ -35,7 +35,7 @@ class PokemonRepositoryImpl implements PokemonRepository {
     for (final type in types) {
       weaknesses.addAll(type.toWeakness());
     }
-    return toPokeDetail(poke, species, types);
+    return toPokeDetail(poke, species, types, weaknesses.toList());
   }
 
   @override
