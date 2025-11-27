@@ -47,7 +47,11 @@ class Height extends Equatable{
 
   Height(this.value);
   double get inMeter => value / 10.0;
-  double get inInch => inMeter * 39.3701;
+
+  int inInch() {
+    final inch  = inMeter * 39.3701;
+    return inch ~/ 12;
+  }
 
   @override
   List<Object?> get props => [value];

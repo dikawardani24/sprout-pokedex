@@ -1,5 +1,7 @@
 library core;
 
+export './config/app_config.dart';
+
 export './models/app_pokemon.dart';
 export './models/app_pokemon_detail.dart';
 

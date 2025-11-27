@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:core/util/poke_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:sprout_pokedex/pages/detail/widgets/item_stats.dart';
 import 'package:sprout_pokedex/res/dimen_res.dart';
@@ -28,7 +29,7 @@ class TabStatsContent extends StatelessWidget {
       max += stat.type.max;
 
       items.add(ItemStats(
-        statType: stat.type.name,
+        statType: stat.type.name.firstLetterUpperCase,
         current: stat.current,
         max: stat.type.max,
         progress: stat.progress,

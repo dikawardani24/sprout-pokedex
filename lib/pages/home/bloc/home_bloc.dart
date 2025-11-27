@@ -8,12 +8,14 @@ import 'package:sprout_pokedex/pages/home/bloc/home_state.dart';
 import 'package:sprout_pokedex/util/err_handler.dart';
 import 'package:sprout_pokedex/util/event.dart';
 
+
 @injectable
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final GetPokemonUseCase _getPokemonUseCase;
   final CacheImageUrlUseCase _cacheImageUrlUseCase;
 
-  final int _limit = 20; // Reduced from 50 to improve loading performance
+  final int _limit = AppConfig.pageLimit();
+
   bool _hasReachedMax = false;
   List<AppPokemon> _pokemons = [];
 

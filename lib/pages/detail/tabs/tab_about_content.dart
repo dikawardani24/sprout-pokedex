@@ -26,14 +26,14 @@ class TabAboutContent extends StatelessWidget {
       Text(species.desc),
       Text(StringRes.pokedexData, style: sectionTheme),
       ItemAbout(title: StringRes.species, desc:  species.name),
-      ItemAbout(title: StringRes.height, desc: '${info.height.inMeter} m  / ${info.height.inInch}"'),
-      ItemAbout(title: StringRes.weight, desc: "${info.weight.inKg} kg / ${info.weight.inPounds} lbs"),
+      ItemAbout(title: StringRes.height, desc: '${info.height.inMeter} m  / ${info.height.inInch().toStringAsFixed(1)}"'),
+      ItemAbout(title: StringRes.weight, desc: "${info.weight.inKg} kg / ${info.weight.inPounds.toStringAsFixed(1)} lbs"),
       ItemAbilities(color: info.pokedexTypeColor.secondary, abilities: info.skill.abilities),
       ItemWeaknesses(weaknesses: info.skill.weaknesses),
 
       Text(StringRes.training, style: sectionTheme),
       ItemAbout(title: StringRes.catchRate, desc: "${info.training.catchRate}"),
-      ItemAbout(title: StringRes.baseExp, desc: "${info..baseExp}"),
+      ItemAbout(title: StringRes.baseExp, desc: "${info.baseExp}"),
       ItemAbout(title: StringRes.growthRate, desc: info.training.growRate.replaceAll("-", " ").firstLetterUpperCase),
 
       Text(StringRes.breeding, style: sectionTheme),
