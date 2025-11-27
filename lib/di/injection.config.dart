@@ -17,7 +17,7 @@ import '../pages/detail/bloc/detail_bloc.dart' as _i688;
 import '../pages/home/bloc/home_bloc.dart' as _i752;
 
 // initializes the registration of main-scope dependencies inside of GetIt
-_i174.GetIt $initGetIt(
+_i174.GetIt $initApp(
   _i174.GetIt getIt, {
   String? environment,
   _i526.EnvironmentFilter? environmentFilter,

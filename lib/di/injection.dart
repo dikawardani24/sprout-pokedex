@@ -7,11 +7,11 @@ import 'injection.config.dart';
 final getIt = GetIt.instance;
 
 @InjectableInit(
-  initializerName: r'$initGetIt',
+  initializerName: r'$initApp',
   preferRelativeImports: true,
   asExtension: false,
 )
 void configureDependencies() {
   configureCoreDependencies();
-  $initGetIt(getIt);
+  $initApp(getIt);
 }
