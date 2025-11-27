@@ -2,10 +2,11 @@ import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:sprout_pokedex/pages/detail/tabs/tab_about_content.dart';
-import 'package:sprout_pokedex/pages/detail/tabs/tab_stats_content.dart';
-import 'package:sprout_pokedex/pages/detail/widgets/detail_image.dart';
-import 'package:sprout_pokedex/pages/detail/widgets/detail_title.dart';
+
+import '../tabs/tab_about_content.dart';
+import '../tabs/tab_stats_content.dart';
+import 'detail_image.dart';
+import 'detail_title.dart';
 
 class DetailPortrait extends StatefulWidget {
   final AppPokemonDetail detail;

@@ -13,10 +13,10 @@ import 'package:core/core.dart' as _i494;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
-import '../pages/detail/bloc/detail_bloc.dart' as _i688;
+import '../bloc/detail_bloc.dart' as _i895;
 
 // initializes the registration of main-scope dependencies inside of GetIt
-_i174.GetIt $initApp(
+_i174.GetIt $initFeatureDetail(
   _i174.GetIt getIt, {
   String? environment,
   _i526.EnvironmentFilter? environmentFilter,
@@ -26,7 +26,7 @@ _i174.GetIt $initApp(
     environment,
     environmentFilter,
   );
-  gh.factory<_i688.DetailBloc>(
-      () => _i688.DetailBloc(gh<_i494.GetDetailPokeUseCase>()));
+  gh.factory<_i895.DetailBloc>(
+      () => _i895.DetailBloc(gh<_i494.GetDetailPokeUseCase>()));
   return getIt;
 }

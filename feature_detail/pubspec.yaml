@@ -1,4 +1,4 @@
-name: feature_home
+name: feature_detail
 description: "A new Flutter module project."
 
 version: 1.0.0
@@ -15,6 +15,10 @@ dependencies:
   flutter_bloc:
   get_it:
   injectable:
+  flutter_animate:
+  flutter_svg:
+  freezed_annotation:
+  equatable:
 
 dev_dependencies:
   flutter_test:
@@ -22,11 +26,11 @@ dev_dependencies:
   flutter_lints:
   injectable_generator:
   build_runner:
-  equatable:
+  freezed:
 
 flutter:
   uses-material-design: true
   module:
     androidX: true
-    androidPackage: com.example.feature_home
-    iosBundleIdentifier: com.example.featureHome
+    androidPackage: com.example.feature_detail
+    iosBundleIdentifier: com.example.featureDetail

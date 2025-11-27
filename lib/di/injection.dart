@@ -1,19 +1,9 @@
 import 'package:core/di/injection.dart';
+import 'package:feature_detail/di/injection.dart';
 import 'package:feature_home/di/injection.dart';
-import 'package:get_it/get_it.dart';
-import 'package:injectable/injectable.dart';
 
-import 'injection.config.dart';
-
-final getIt = GetIt.instance;
-
-@InjectableInit(
-  initializerName: r'$initApp',
-  preferRelativeImports: true,
-  asExtension: false,
-)
 void configureDependencies() {
   configureCoreDependencies();
   configureFeatHomeDependencies();
-  $initApp(getIt);
+  configureFeatDetailDependencies();
 }
