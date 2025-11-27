@@ -1,5 +1,5 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
-import 'package:sprout_pokedex/res/dimen_res.dart';
 
 class AppCard extends StatelessWidget {
   final Widget child;

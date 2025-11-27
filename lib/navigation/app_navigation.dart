@@ -1,9 +1,9 @@
 
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:sprout_pokedex/navigation/routes.dart';
 import 'package:sprout_pokedex/pages/detail/detail_page.dart';
 import 'package:sprout_pokedex/pages/home/home_page.dart';
-import 'package:sprout_pokedex/util/navigation_extension.dart';
 
 extension AppNavigation on BuildContext {
   Future<dynamic> _goToPage(

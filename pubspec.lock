@@ -272,6 +272,13 @@ packages:
       relative: true
     source: path
     version: "0.0.0"
+  core_ui:
+    dependency: "direct main"
+    description:
+      path: core_ui
+      relative: true
+    source: path
+    version: "1.0.0+1"
   coverage:
     dependency: transitive
     description:
@@ -1229,5 +1236,5 @@ packages:
     source: hosted
     version: "2.2.2"
 sdks:
-  dart: ">=3.9.0 <4.0.0"
+  dart: ">=3.10.1 <4.0.0"
   flutter: ">=3.35.0"

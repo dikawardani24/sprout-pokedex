@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:sprout_pokedex/res/string_res.dart';
+import 'package:core_ui/res/string_res.dart';
 
 String getErrorMessage(dynamic error) {
   if (error is SocketException || error is TimeoutException) {

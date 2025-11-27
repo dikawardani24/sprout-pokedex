@@ -21,7 +21,7 @@ import '../usecase/get_pokemon_use_ase.dart' as _i898;
 import 'network_module.dart' as _i567;
 
 // initializes the registration of main-scope dependencies inside of GetIt
-_i174.GetIt $initGetIt(
+_i174.GetIt $initCore(
   _i174.GetIt getIt, {
   String? environment,
   _i526.EnvironmentFilter? environmentFilter,

@@ -1,13 +1,10 @@
 import 'package:core/core.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:sprout_pokedex/pages/detail/tabs/tab_about_content.dart';
 import 'package:sprout_pokedex/pages/detail/tabs/tab_stats_content.dart';
 import 'package:sprout_pokedex/pages/detail/widgets/detail_image.dart';
 import 'package:sprout_pokedex/pages/detail/widgets/detail_title.dart';
-import 'package:sprout_pokedex/res/color_res.dart';
-import 'package:sprout_pokedex/res/dimen_res.dart';
-import 'package:sprout_pokedex/res/string_res.dart';
-import 'package:sprout_pokedex/util/pokemon_ext.dart';
 
 class DetailLandscape extends StatefulWidget {
   final AppPokemonDetail detail;

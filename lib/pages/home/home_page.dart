@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -7,8 +8,6 @@ import 'package:sprout_pokedex/pages/home/bloc/home_bloc.dart';
 import 'package:sprout_pokedex/pages/home/bloc/home_event.dart';
 import 'package:sprout_pokedex/pages/home/bloc/home_state.dart';
 import 'package:sprout_pokedex/pages/home/widget/pokemon_list.dart';
-import 'package:sprout_pokedex/widgets/error_widget.dart';
-import 'package:sprout_pokedex/widgets/loading.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

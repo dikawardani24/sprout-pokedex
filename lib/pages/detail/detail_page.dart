@@ -1,3 +1,4 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -6,11 +7,6 @@ import 'package:sprout_pokedex/pages/detail/bloc/detail_event.dart';
 import 'package:sprout_pokedex/pages/detail/bloc/detail_state.dart';
 import 'package:sprout_pokedex/pages/detail/widgets/detail_landscape_widget.dart';
 import 'package:sprout_pokedex/pages/detail/widgets/detail_portrait.dart';
-import 'package:sprout_pokedex/res/color_res.dart';
-import 'package:sprout_pokedex/res/image_res.dart';
-import 'package:sprout_pokedex/util/context_ext.dart';
-import 'package:sprout_pokedex/util/pokemon_ext.dart';
-import 'package:sprout_pokedex/widgets/loading.dart';
 
 class DetailPage extends StatefulWidget {
   final int id;

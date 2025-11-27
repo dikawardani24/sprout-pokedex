@@ -1,12 +1,9 @@
 import 'package:core/core.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:sprout_pokedex/pages/detail/widgets/about_tile.dart';
 import 'package:sprout_pokedex/pages/detail/widgets/item_weaknesses.dart';
 import 'package:sprout_pokedex/pages/detail/widgets/iteme_abilities.dart';
-import 'package:sprout_pokedex/res/dimen_res.dart';
-import 'package:sprout_pokedex/res/string_res.dart';
-import 'package:sprout_pokedex/util/pokemon_ext.dart';
-import 'package:sprout_pokedex/util/string_ext.dart';
 
 class TabAboutContent extends StatelessWidget {
   final AppPokemonDetail info;

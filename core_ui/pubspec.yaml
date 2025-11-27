@@ -1,0 +1,46 @@
+name: core_ui
+description: "A new Flutter module project."
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.10.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+  core:
+    path: ../core
+  cupertino_icons:
+  flutter_bloc:
+  flutter_svg:
+  flutter_animate:
+  cached_network_image:
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints:
+
+flutter:
+  uses-material-design: true
+
+  module:
+    androidX: true
+    androidPackage: com.example.core_ui
+    iosBundleIdentifier: com.example.coreUi
+
+  assets:
+    - assets/imgs/pokeball.png
+    - assets/imgs/mask_pokeball.png
+    - assets/imgs/pokeball_colored.png
+    - assets/imgs/pokeball_colored_small.webp
+    - assets/imgs/snorlax.svg
+    - assets/icons/
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/poppins_regular.ttf
+        - asset: assets/fonts/poppins_italic.ttf
+        - asset: assets/fonts/poppins_bold.ttf
+

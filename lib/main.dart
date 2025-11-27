@@ -1,15 +1,12 @@
-import 'package:core/di/injection.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:sprout_pokedex/di/injection.dart';
 import 'package:sprout_pokedex/navigation/app_navigation.dart';
 import 'package:sprout_pokedex/navigation/routes.dart';
-import 'package:sprout_pokedex/res/string_res.dart';
-import 'package:sprout_pokedex/res/theme_res.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   configureDependencies();
-  configureCoreDependencies();
   runApp(const MyApp());
 }
 
