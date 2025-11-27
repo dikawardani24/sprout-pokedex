@@ -271,14 +271,14 @@ packages:
       path: core
       relative: true
     source: path
-    version: "0.0.0"
+    version: "1.0.0"
   core_ui:
     dependency: "direct main"
     description:
       path: core_ui
       relative: true
     source: path
-    version: "1.0.0+1"
+    version: "1.0.0"
   coverage:
     dependency: transitive
     description:
