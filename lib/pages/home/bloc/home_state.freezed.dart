@@ -20,11 +20,11 @@ mixin _$HomeState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Pokemon> pokemons) loadingMore,
-    required TResult Function(List<Pokemon> pokemons, bool hasReachedMax)
+    required TResult Function(List<AppPokemon> pokemons) loadingMore,
+    required TResult Function(List<AppPokemon> pokemons, bool hasReachedMax)
         loaded,
     required TResult Function(String message) error,
-    required TResult Function(List<Pokemon> pokemons, String message)
+    required TResult Function(List<AppPokemon> pokemons, String message)
         loadMoreError,
   }) =>
       throw _privateConstructorUsedError;
@@ -32,20 +32,20 @@ mixin _$HomeState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<Pokemon> pokemons)? loadingMore,
-    TResult? Function(List<Pokemon> pokemons, bool hasReachedMax)? loaded,
+    TResult? Function(List<AppPokemon> pokemons)? loadingMore,
+    TResult? Function(List<AppPokemon> pokemons, bool hasReachedMax)? loaded,
     TResult? Function(String message)? error,
-    TResult? Function(List<Pokemon> pokemons, String message)? loadMoreError,
+    TResult? Function(List<AppPokemon> pokemons, String message)? loadMoreError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Pokemon> pokemons)? loadingMore,
-    TResult Function(List<Pokemon> pokemons, bool hasReachedMax)? loaded,
+    TResult Function(List<AppPokemon> pokemons)? loadingMore,
+    TResult Function(List<AppPokemon> pokemons, bool hasReachedMax)? loaded,
     TResult Function(String message)? error,
-    TResult Function(List<Pokemon> pokemons, String message)? loadMoreError,
+    TResult Function(List<AppPokemon> pokemons, String message)? loadMoreError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -145,11 +145,11 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Pokemon> pokemons) loadingMore,
-    required TResult Function(List<Pokemon> pokemons, bool hasReachedMax)
+    required TResult Function(List<AppPokemon> pokemons) loadingMore,
+    required TResult Function(List<AppPokemon> pokemons, bool hasReachedMax)
         loaded,
     required TResult Function(String message) error,
-    required TResult Function(List<Pokemon> pokemons, String message)
+    required TResult Function(List<AppPokemon> pokemons, String message)
         loadMoreError,
   }) {
     return initial();
@@ -160,10 +160,10 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<Pokemon> pokemons)? loadingMore,
-    TResult? Function(List<Pokemon> pokemons, bool hasReachedMax)? loaded,
+    TResult? Function(List<AppPokemon> pokemons)? loadingMore,
+    TResult? Function(List<AppPokemon> pokemons, bool hasReachedMax)? loaded,
     TResult? Function(String message)? error,
-    TResult? Function(List<Pokemon> pokemons, String message)? loadMoreError,
+    TResult? Function(List<AppPokemon> pokemons, String message)? loadMoreError,
   }) {
     return initial?.call();
   }
@@ -173,10 +173,10 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Pokemon> pokemons)? loadingMore,
-    TResult Function(List<Pokemon> pokemons, bool hasReachedMax)? loaded,
+    TResult Function(List<AppPokemon> pokemons)? loadingMore,
+    TResult Function(List<AppPokemon> pokemons, bool hasReachedMax)? loaded,
     TResult Function(String message)? error,
-    TResult Function(List<Pokemon> pokemons, String message)? loadMoreError,
+    TResult Function(List<AppPokemon> pokemons, String message)? loadMoreError,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -276,11 +276,11 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Pokemon> pokemons) loadingMore,
-    required TResult Function(List<Pokemon> pokemons, bool hasReachedMax)
+    required TResult Function(List<AppPokemon> pokemons) loadingMore,
+    required TResult Function(List<AppPokemon> pokemons, bool hasReachedMax)
         loaded,
     required TResult Function(String message) error,
-    required TResult Function(List<Pokemon> pokemons, String message)
+    required TResult Function(List<AppPokemon> pokemons, String message)
         loadMoreError,
   }) {
     return loading();
@@ -291,10 +291,10 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<Pokemon> pokemons)? loadingMore,
-    TResult? Function(List<Pokemon> pokemons, bool hasReachedMax)? loaded,
+    TResult? Function(List<AppPokemon> pokemons)? loadingMore,
+    TResult? Function(List<AppPokemon> pokemons, bool hasReachedMax)? loaded,
     TResult? Function(String message)? error,
-    TResult? Function(List<Pokemon> pokemons, String message)? loadMoreError,
+    TResult? Function(List<AppPokemon> pokemons, String message)? loadMoreError,
   }) {
     return loading?.call();
   }
@@ -304,10 +304,10 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Pokemon> pokemons)? loadingMore,
-    TResult Function(List<Pokemon> pokemons, bool hasReachedMax)? loaded,
+    TResult Function(List<AppPokemon> pokemons)? loadingMore,
+    TResult Function(List<AppPokemon> pokemons, bool hasReachedMax)? loaded,
     TResult Function(String message)? error,
-    TResult Function(List<Pokemon> pokemons, String message)? loadMoreError,
+    TResult Function(List<AppPokemon> pokemons, String message)? loadMoreError,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -370,7 +370,7 @@ abstract class _$$LoadingMoreImplCopyWith<$Res> {
           _$LoadingMoreImpl value, $Res Function(_$LoadingMoreImpl) then) =
       __$$LoadingMoreImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Pokemon> pokemons});
+  $Res call({List<AppPokemon> pokemons});
 }
 
 /// @nodoc
@@ -392,7 +392,7 @@ class __$$LoadingMoreImplCopyWithImpl<$Res>
       null == pokemons
           ? _value._pokemons
           : pokemons // ignore: cast_nullable_to_non_nullable
-              as List<Pokemon>,
+              as List<AppPokemon>,
     ));
   }
 }
@@ -400,11 +400,12 @@ class __$$LoadingMoreImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$LoadingMoreImpl implements _LoadingMore {
-  const _$LoadingMoreImpl(final List<Pokemon> pokemons) : _pokemons = pokemons;
+  const _$LoadingMoreImpl(final List<AppPokemon> pokemons)
+      : _pokemons = pokemons;
 
-  final List<Pokemon> _pokemons;
+  final List<AppPokemon> _pokemons;
   @override
-  List<Pokemon> get pokemons {
+  List<AppPokemon> get pokemons {
     if (_pokemons is EqualUnmodifiableListView) return _pokemons;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_pokemons);
@@ -440,11 +441,11 @@ class _$LoadingMoreImpl implements _LoadingMore {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Pokemon> pokemons) loadingMore,
-    required TResult Function(List<Pokemon> pokemons, bool hasReachedMax)
+    required TResult Function(List<AppPokemon> pokemons) loadingMore,
+    required TResult Function(List<AppPokemon> pokemons, bool hasReachedMax)
         loaded,
     required TResult Function(String message) error,
-    required TResult Function(List<Pokemon> pokemons, String message)
+    required TResult Function(List<AppPokemon> pokemons, String message)
         loadMoreError,
   }) {
     return loadingMore(pokemons);
@@ -455,10 +456,10 @@ class _$LoadingMoreImpl implements _LoadingMore {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<Pokemon> pokemons)? loadingMore,
-    TResult? Function(List<Pokemon> pokemons, bool hasReachedMax)? loaded,
+    TResult? Function(List<AppPokemon> pokemons)? loadingMore,
+    TResult? Function(List<AppPokemon> pokemons, bool hasReachedMax)? loaded,
     TResult? Function(String message)? error,
-    TResult? Function(List<Pokemon> pokemons, String message)? loadMoreError,
+    TResult? Function(List<AppPokemon> pokemons, String message)? loadMoreError,
   }) {
     return loadingMore?.call(pokemons);
   }
@@ -468,10 +469,10 @@ class _$LoadingMoreImpl implements _LoadingMore {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Pokemon> pokemons)? loadingMore,
-    TResult Function(List<Pokemon> pokemons, bool hasReachedMax)? loaded,
+    TResult Function(List<AppPokemon> pokemons)? loadingMore,
+    TResult Function(List<AppPokemon> pokemons, bool hasReachedMax)? loaded,
     TResult Function(String message)? error,
-    TResult Function(List<Pokemon> pokemons, String message)? loadMoreError,
+    TResult Function(List<AppPokemon> pokemons, String message)? loadMoreError,
     required TResult orElse(),
   }) {
     if (loadingMore != null) {
@@ -525,9 +526,10 @@ class _$LoadingMoreImpl implements _LoadingMore {
 }
 
 abstract class _LoadingMore implements HomeState {
-  const factory _LoadingMore(final List<Pokemon> pokemons) = _$LoadingMoreImpl;
+  const factory _LoadingMore(final List<AppPokemon> pokemons) =
+      _$LoadingMoreImpl;
 
-  List<Pokemon> get pokemons;
+  List<AppPokemon> get pokemons;
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.
@@ -542,7 +544,7 @@ abstract class _$$LoadedImplCopyWith<$Res> {
           _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
       __$$LoadedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Pokemon> pokemons, bool hasReachedMax});
+  $Res call({List<AppPokemon> pokemons, bool hasReachedMax});
 }
 
 /// @nodoc
@@ -565,7 +567,7 @@ class __$$LoadedImplCopyWithImpl<$Res>
       null == pokemons
           ? _value._pokemons
           : pokemons // ignore: cast_nullable_to_non_nullable
-              as List<Pokemon>,
+              as List<AppPokemon>,
       null == hasReachedMax
           ? _value.hasReachedMax
           : hasReachedMax // ignore: cast_nullable_to_non_nullable
@@ -577,12 +579,12 @@ class __$$LoadedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$LoadedImpl implements _Loaded {
-  const _$LoadedImpl(final List<Pokemon> pokemons, this.hasReachedMax)
+  const _$LoadedImpl(final List<AppPokemon> pokemons, this.hasReachedMax)
       : _pokemons = pokemons;
 
-  final List<Pokemon> _pokemons;
+  final List<AppPokemon> _pokemons;
   @override
-  List<Pokemon> get pokemons {
+  List<AppPokemon> get pokemons {
     if (_pokemons is EqualUnmodifiableListView) return _pokemons;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_pokemons);
@@ -623,11 +625,11 @@ class _$LoadedImpl implements _Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Pokemon> pokemons) loadingMore,
-    required TResult Function(List<Pokemon> pokemons, bool hasReachedMax)
+    required TResult Function(List<AppPokemon> pokemons) loadingMore,
+    required TResult Function(List<AppPokemon> pokemons, bool hasReachedMax)
         loaded,
     required TResult Function(String message) error,
-    required TResult Function(List<Pokemon> pokemons, String message)
+    required TResult Function(List<AppPokemon> pokemons, String message)
         loadMoreError,
   }) {
     return loaded(pokemons, hasReachedMax);
@@ -638,10 +640,10 @@ class _$LoadedImpl implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<Pokemon> pokemons)? loadingMore,
-    TResult? Function(List<Pokemon> pokemons, bool hasReachedMax)? loaded,
+    TResult? Function(List<AppPokemon> pokemons)? loadingMore,
+    TResult? Function(List<AppPokemon> pokemons, bool hasReachedMax)? loaded,
     TResult? Function(String message)? error,
-    TResult? Function(List<Pokemon> pokemons, String message)? loadMoreError,
+    TResult? Function(List<AppPokemon> pokemons, String message)? loadMoreError,
   }) {
     return loaded?.call(pokemons, hasReachedMax);
   }
@@ -651,10 +653,10 @@ class _$LoadedImpl implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Pokemon> pokemons)? loadingMore,
-    TResult Function(List<Pokemon> pokemons, bool hasReachedMax)? loaded,
+    TResult Function(List<AppPokemon> pokemons)? loadingMore,
+    TResult Function(List<AppPokemon> pokemons, bool hasReachedMax)? loaded,
     TResult Function(String message)? error,
-    TResult Function(List<Pokemon> pokemons, String message)? loadMoreError,
+    TResult Function(List<AppPokemon> pokemons, String message)? loadMoreError,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -709,9 +711,9 @@ class _$LoadedImpl implements _Loaded {
 
 abstract class _Loaded implements HomeState {
   const factory _Loaded(
-      final List<Pokemon> pokemons, final bool hasReachedMax) = _$LoadedImpl;
+      final List<AppPokemon> pokemons, final bool hasReachedMax) = _$LoadedImpl;
 
-  List<Pokemon> get pokemons;
+  List<AppPokemon> get pokemons;
   bool get hasReachedMax;
 
   /// Create a copy of HomeState
@@ -791,11 +793,11 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Pokemon> pokemons) loadingMore,
-    required TResult Function(List<Pokemon> pokemons, bool hasReachedMax)
+    required TResult Function(List<AppPokemon> pokemons) loadingMore,
+    required TResult Function(List<AppPokemon> pokemons, bool hasReachedMax)
         loaded,
     required TResult Function(String message) error,
-    required TResult Function(List<Pokemon> pokemons, String message)
+    required TResult Function(List<AppPokemon> pokemons, String message)
         loadMoreError,
   }) {
     return error(message);
@@ -806,10 +808,10 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<Pokemon> pokemons)? loadingMore,
-    TResult? Function(List<Pokemon> pokemons, bool hasReachedMax)? loaded,
+    TResult? Function(List<AppPokemon> pokemons)? loadingMore,
+    TResult? Function(List<AppPokemon> pokemons, bool hasReachedMax)? loaded,
     TResult? Function(String message)? error,
-    TResult? Function(List<Pokemon> pokemons, String message)? loadMoreError,
+    TResult? Function(List<AppPokemon> pokemons, String message)? loadMoreError,
   }) {
     return error?.call(message);
   }
@@ -819,10 +821,10 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Pokemon> pokemons)? loadingMore,
-    TResult Function(List<Pokemon> pokemons, bool hasReachedMax)? loaded,
+    TResult Function(List<AppPokemon> pokemons)? loadingMore,
+    TResult Function(List<AppPokemon> pokemons, bool hasReachedMax)? loaded,
     TResult Function(String message)? error,
-    TResult Function(List<Pokemon> pokemons, String message)? loadMoreError,
+    TResult Function(List<AppPokemon> pokemons, String message)? loadMoreError,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -893,7 +895,7 @@ abstract class _$$LoadMoreErrorImplCopyWith<$Res> {
           _$LoadMoreErrorImpl value, $Res Function(_$LoadMoreErrorImpl) then) =
       __$$LoadMoreErrorImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Pokemon> pokemons, String message});
+  $Res call({List<AppPokemon> pokemons, String message});
 }
 
 /// @nodoc
@@ -916,7 +918,7 @@ class __$$LoadMoreErrorImplCopyWithImpl<$Res>
       null == pokemons
           ? _value._pokemons
           : pokemons // ignore: cast_nullable_to_non_nullable
-              as List<Pokemon>,
+              as List<AppPokemon>,
       null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -928,12 +930,12 @@ class __$$LoadMoreErrorImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$LoadMoreErrorImpl implements _LoadMoreError {
-  const _$LoadMoreErrorImpl(final List<Pokemon> pokemons, this.message)
+  const _$LoadMoreErrorImpl(final List<AppPokemon> pokemons, this.message)
       : _pokemons = pokemons;
 
-  final List<Pokemon> _pokemons;
+  final List<AppPokemon> _pokemons;
   @override
-  List<Pokemon> get pokemons {
+  List<AppPokemon> get pokemons {
     if (_pokemons is EqualUnmodifiableListView) return _pokemons;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_pokemons);
@@ -973,11 +975,11 @@ class _$LoadMoreErrorImpl implements _LoadMoreError {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Pokemon> pokemons) loadingMore,
-    required TResult Function(List<Pokemon> pokemons, bool hasReachedMax)
+    required TResult Function(List<AppPokemon> pokemons) loadingMore,
+    required TResult Function(List<AppPokemon> pokemons, bool hasReachedMax)
         loaded,
     required TResult Function(String message) error,
-    required TResult Function(List<Pokemon> pokemons, String message)
+    required TResult Function(List<AppPokemon> pokemons, String message)
         loadMoreError,
   }) {
     return loadMoreError(pokemons, message);
@@ -988,10 +990,10 @@ class _$LoadMoreErrorImpl implements _LoadMoreError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<Pokemon> pokemons)? loadingMore,
-    TResult? Function(List<Pokemon> pokemons, bool hasReachedMax)? loaded,
+    TResult? Function(List<AppPokemon> pokemons)? loadingMore,
+    TResult? Function(List<AppPokemon> pokemons, bool hasReachedMax)? loaded,
     TResult? Function(String message)? error,
-    TResult? Function(List<Pokemon> pokemons, String message)? loadMoreError,
+    TResult? Function(List<AppPokemon> pokemons, String message)? loadMoreError,
   }) {
     return loadMoreError?.call(pokemons, message);
   }
@@ -1001,10 +1003,10 @@ class _$LoadMoreErrorImpl implements _LoadMoreError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Pokemon> pokemons)? loadingMore,
-    TResult Function(List<Pokemon> pokemons, bool hasReachedMax)? loaded,
+    TResult Function(List<AppPokemon> pokemons)? loadingMore,
+    TResult Function(List<AppPokemon> pokemons, bool hasReachedMax)? loaded,
     TResult Function(String message)? error,
-    TResult Function(List<Pokemon> pokemons, String message)? loadMoreError,
+    TResult Function(List<AppPokemon> pokemons, String message)? loadMoreError,
     required TResult orElse(),
   }) {
     if (loadMoreError != null) {
@@ -1059,9 +1061,10 @@ class _$LoadMoreErrorImpl implements _LoadMoreError {
 
 abstract class _LoadMoreError implements HomeState {
   const factory _LoadMoreError(
-      final List<Pokemon> pokemons, final String message) = _$LoadMoreErrorImpl;
+          final List<AppPokemon> pokemons, final String message) =
+      _$LoadMoreErrorImpl;
 
-  List<Pokemon> get pokemons;
+  List<AppPokemon> get pokemons;
   String get message;
 
   /// Create a copy of HomeState

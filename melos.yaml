@@ -1,0 +1,120 @@
+name: sprout_pokedex
+
+packages:
+  - "core"
+  - "."  # Main app
+
+commands:
+  bootstrap:
+    usePubspecOverrides: true
+    # Optional: exclude generating overrides for these
+    # ignore:
+    #   - flutter_launcher_icons
+    #   - flutter_native_splash
+
+scripts:
+  # Setup commands
+  setup:
+    description: "Complete project setup"
+    run: |
+      melos bootstrap
+      echo "✅ Dependencies bootstrapped"
+      melos run build:runner
+      echo "✅ Build runner completed"
+      melos run icons
+      echo "✅ App icons generated"
+      echo "🚀 Setup complete!"
+
+  # Build commands
+  build:runner:
+    description: "Run build_runner for all packages"
+    run: |
+      melos exec "dart run build_runner build --delete-conflicting-outputs"
+
+  watch:runner:
+    description: "Watch for changes with build_runner"
+    run: |
+      melos exec "dart run build_runner watch --delete-conflicting-outputs"
+
+  clean:runner:
+    description: "Clean build_runner outputs"
+    run: |
+      melos exec "dart run build_runner clean"
+
+  # Code generation
+  generate:
+    description: "Run all code generation"
+    run: |
+      melos run build:runner
+      melos run icons
+      melos run splash
+
+  icons:
+    description: "Generate app icons"
+    run: |
+      cd .  # Main app directory
+      flutter pub run flutter_launcher_icons
+
+  splash:
+    description: "Generate native splash screen"
+    run: |
+      cd .  # Main app directory
+      flutter pub run flutter_native_splash:create
+
+  # Testing commands
+  test:
+    description: "Run all tests"
+    run: |
+      melos exec "flutter test"
+
+  test:core:
+    description: "Run core package tests only"
+    run: |
+      cd core
+      flutter test
+
+  test:main:
+    description: "Run main app tests only"
+    run: |
+      flutter test
+
+  # Code quality
+  analyze:
+    description: "Analyze all packages"
+    run: |
+      melos exec "flutter analyze"
+
+  format:check:
+    description: "Check code formatting"
+    run: |
+      melos exec "dart format --output=none --set-exit-if-changed ."
+
+  format:fix:
+    description: "Fix code formatting"
+    run: |
+      melos exec "dart format ."
+
+  # Clean commands
+  clean:
+    description: "Clean everything"
+    run: |
+      melos exec "flutter clean"
+      melos exec "rm -rf .dart_tool"
+      rm -rf .melos_tool
+      echo "✅ Project cleaned"
+
+  # Dependency management
+  deps:check:
+    description: "Check dependency versions across packages"
+    run: |
+      echo "=== Main App Dependencies ==="
+      grep -A 20 "dependencies:" pubspec.yaml | grep -E "^\s [a-z]"
+      echo ""
+      echo "=== Core Package Dependencies ==="
+      grep -A 20 "dependencies:" core/pubspec.yaml | grep -E "^\s [a-z]"
+
+  deps:upgrade:
+    description: "Upgrade dependencies in main app"
+    run: |
+      flutter pub upgrade
+      melos bootstrap

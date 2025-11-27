@@ -1,15 +1,12 @@
 import 'dart:async';
 
+import 'package:core/core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:pokedex/pokedex.dart';
 import 'package:sprout_pokedex/pages/home/bloc/home_event.dart';
 import 'package:sprout_pokedex/pages/home/bloc/home_state.dart';
-import 'package:sprout_pokedex/usecase/cache_image_url_use_case.dart';
-import 'package:sprout_pokedex/usecase/get_pokemon_use_ase.dart';
 import 'package:sprout_pokedex/util/err_handler.dart';
 import 'package:sprout_pokedex/util/event.dart';
-import 'package:sprout_pokedex/util/pokemon_ext.dart';
 
 @injectable
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
@@ -18,7 +15,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   final int _limit = 20; // Reduced from 50 to improve loading performance
   bool _hasReachedMax = false;
-  List<Pokemon> _pokemons = [];
+  List<AppPokemon> _pokemons = [];
 
   HomeBloc(this._getPokemonUseCase, this._cacheImageUrlUseCase) : super(const HomeState.initial()) {
     _listenEvent();
@@ -56,7 +53,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     }
   }
   
-  void _updateListPoke(List<Pokemon> newList, bool isLoadMore) {
+  void _updateListPoke(List<AppPokemon> newList, bool isLoadMore) {
     _hasReachedMax = newList.length < _limit;
     
     // Fire-and-forget image caching - don't block the UI

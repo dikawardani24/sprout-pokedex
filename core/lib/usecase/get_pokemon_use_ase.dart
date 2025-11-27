@@ -1,9 +1,9 @@
+import 'package:core/models/app_pokemon.dart';
+import 'package:core/repository/pokemon_repository.dart';
 import 'package:injectable/injectable.dart';
-import 'package:pokedex/pokedex.dart';
-import 'package:sprout_pokedex/repository/pokemon_repository.dart';
 
 abstract class GetPokemonUseCase {
-  Future<List<Pokemon>> execute(int limit, int offset);
+  Future<List<AppPokemon>> execute(int limit, int offset);
 }
 
 @Injectable(as: GetPokemonUseCase)
@@ -13,7 +13,7 @@ class GetPokemonUseCaseImpl implements GetPokemonUseCase {
   GetPokemonUseCaseImpl(this._pokemonRepository);
 
   @override
-  Future<List<Pokemon>> execute(int limit, int offset) async {
+  Future<List<AppPokemon>> execute(int limit, int offset) async {
     return await _pokemonRepository.getPokemonList(limit, offset);
   }
 }

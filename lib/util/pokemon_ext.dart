@@ -1,5 +1,6 @@
 
 import 'package:collection/collection.dart';
+import 'package:core/core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:pokedex/pokedex.dart';
@@ -32,6 +33,15 @@ enum PokedexTypeColor {
 
   final Color primary;
   final Color secondary;
+}
+
+extension AppPokemonExt on AppPokemon {
+  String get pokenumber => '#${id.toString().padLeft(4, '0')}';
+
+  PokedexTypeColor get pokedexTypeColor => PokedexTypeColor.values.firstWhere(
+        (element) => types.first.toLowerCase() == element.name,
+    orElse: () => PokedexTypeColor.unknown,
+  );
 }
 
 extension PokemonExt on Pokemon {
