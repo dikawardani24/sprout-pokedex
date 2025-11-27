@@ -20,7 +20,7 @@ mixin _$DetailState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(AboutInfo info) loaded,
+    required TResult Function(AppPokemonDetail info) loaded,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +28,7 @@ mixin _$DetailState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(AboutInfo info)? loaded,
+    TResult? Function(AppPokemonDetail info)? loaded,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ mixin _$DetailState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(AboutInfo info)? loaded,
+    TResult Function(AppPokemonDetail info)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -132,7 +132,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(AboutInfo info) loaded,
+    required TResult Function(AppPokemonDetail info) loaded,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -143,7 +143,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(AboutInfo info)? loaded,
+    TResult? Function(AppPokemonDetail info)? loaded,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -154,7 +154,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(AboutInfo info)? loaded,
+    TResult Function(AppPokemonDetail info)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -249,7 +249,7 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(AboutInfo info) loaded,
+    required TResult Function(AppPokemonDetail info) loaded,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -260,7 +260,7 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(AboutInfo info)? loaded,
+    TResult? Function(AppPokemonDetail info)? loaded,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -271,7 +271,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(AboutInfo info)? loaded,
+    TResult Function(AppPokemonDetail info)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -329,7 +329,7 @@ abstract class _$$LoadedImplCopyWith<$Res> {
           _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
       __$$LoadedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({AboutInfo info});
+  $Res call({AppPokemonDetail info});
 }
 
 /// @nodoc
@@ -351,7 +351,7 @@ class __$$LoadedImplCopyWithImpl<$Res>
       null == info
           ? _value.info
           : info // ignore: cast_nullable_to_non_nullable
-              as AboutInfo,
+              as AppPokemonDetail,
     ));
   }
 }
@@ -362,7 +362,7 @@ class _$LoadedImpl implements _Loaded {
   const _$LoadedImpl(this.info);
 
   @override
-  final AboutInfo info;
+  final AppPokemonDetail info;
 
   @override
   String toString() {
@@ -393,7 +393,7 @@ class _$LoadedImpl implements _Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(AboutInfo info) loaded,
+    required TResult Function(AppPokemonDetail info) loaded,
     required TResult Function(String message) error,
   }) {
     return loaded(info);
@@ -404,7 +404,7 @@ class _$LoadedImpl implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(AboutInfo info)? loaded,
+    TResult? Function(AppPokemonDetail info)? loaded,
     TResult? Function(String message)? error,
   }) {
     return loaded?.call(info);
@@ -415,7 +415,7 @@ class _$LoadedImpl implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(AboutInfo info)? loaded,
+    TResult Function(AppPokemonDetail info)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -464,9 +464,9 @@ class _$LoadedImpl implements _Loaded {
 }
 
 abstract class _Loaded implements DetailState {
-  const factory _Loaded(final AboutInfo info) = _$LoadedImpl;
+  const factory _Loaded(final AppPokemonDetail info) = _$LoadedImpl;
 
-  AboutInfo get info;
+  AppPokemonDetail get info;
 
   /// Create a copy of DetailState
   /// with the given fields replaced by the non-null parameter values.
@@ -545,7 +545,7 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(AboutInfo info) loaded,
+    required TResult Function(AppPokemonDetail info) loaded,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -556,7 +556,7 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(AboutInfo info)? loaded,
+    TResult? Function(AppPokemonDetail info)? loaded,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -567,7 +567,7 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(AboutInfo info)? loaded,
+    TResult Function(AppPokemonDetail info)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {

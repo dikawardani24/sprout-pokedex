@@ -1,5 +1,5 @@
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:pokedex/pokedex.dart';
 import 'package:sprout_pokedex/res/color_res.dart' show ColorRes;
 import 'package:sprout_pokedex/res/dimen_res.dart';
 import 'package:sprout_pokedex/util/pokemon_ext.dart';
@@ -8,7 +8,7 @@ import 'package:sprout_pokedex/widgets/app_chip_list.dart';
 import 'package:sprout_pokedex/widgets/min_width.dart';
 
 class DetailTitle extends StatelessWidget{
-  final Pokemon pokemon;
+  final AppPokemonDetail pokemon;
 
   const DetailTitle({super.key, required this.pokemon});
 
@@ -41,7 +41,7 @@ class DetailTitle extends StatelessWidget{
           appOrientation: Axis.vertical,
           spacing: DimenRes.size_4,
           bgColor: ColorRes.white.withAlpha(30),
-          chipDataList: pokemon.typeNames,
+          chipDataList: pokemon.types,
           textStyle: const TextStyle(
             color: ColorRes.white,
             fontSize: DimenRes.size_10,
@@ -75,7 +75,7 @@ class DetailTitle extends StatelessWidget{
                 appOrientation: Axis.horizontal,
                 spacing: DimenRes.size_4,
                 bgColor: ColorRes.white.withAlpha(30),
-                chipDataList: pokemon.typeNames,
+                chipDataList: pokemon.types,
                 textStyle: const TextStyle(
                   color: ColorRes.white,
                   fontSize: DimenRes.size_10,

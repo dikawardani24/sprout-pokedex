@@ -9,7 +9,7 @@ void main() {
         name: 'bulbasaur',
         types: const ['grass', 'poison'],
         imageUrl: 'http://image.url',
-        species: 'Seed Pokemon',
+        species: Species(name: "Seed Pokemon", desc: "Seed Pokemon"),
         weight: Weight(69),
         height: Height(7),
         training: Training(
@@ -19,6 +19,7 @@ void main() {
           eggGroups: const ['Monster', 'Grass'],
           eggCycles: 20,
         ),
+        skill: Skill(stats: [], abilities: [], weaknesses: []), baseExp: 100,
       );
 
       final detail2 = AppPokemonDetail(
@@ -26,7 +27,7 @@ void main() {
         name: 'bulbasaur',
         types: const ['grass', 'poison'],
         imageUrl: 'http://image.url',
-        species: 'Seed Pokemon',
+        species: Species(name: "Seed Pokemon", desc: "Seed Pokemon"),
         weight: Weight(69),
         height: Height(7),
         training: Training(
@@ -36,6 +37,7 @@ void main() {
           eggGroups: const ['Monster', 'Grass'],
           eggCycles: 20,
         ),
+        skill: Skill(stats: [], abilities: [], weaknesses: []), baseExp: 100,
       );
 
       expect(detail1, detail2);
@@ -76,8 +78,8 @@ void main() {
 
   group('Stat', () {
     test('supports value comparisons', () {
-      final stat1 = Stat(type: StatType.hp, current: 45);
-      final stat2 = Stat(type: StatType.hp, current: 45);
+      final stat1 = AppStat(type: StatType.hp, current: 45, progress: 19);
+      final stat2 = AppStat(type: StatType.hp, current: 45, progress: 19);
       expect(stat1, stat2);
     });
   });

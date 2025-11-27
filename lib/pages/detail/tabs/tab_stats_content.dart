@@ -1,13 +1,12 @@
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:pokedex/pokedex.dart';
-import 'package:sprout_pokedex/models/stats_info.dart';
 import 'package:sprout_pokedex/pages/detail/widgets/item_stats.dart';
 import 'package:sprout_pokedex/res/dimen_res.dart';
 import 'package:sprout_pokedex/res/string_res.dart';
 import 'package:sprout_pokedex/util/pokemon_ext.dart';
 
 class TabStatsContent extends StatelessWidget {
-  final Pokemon pokemon;
+  final AppPokemonDetail pokemon;
 
   const TabStatsContent({super.key, required this.pokemon});
 
@@ -18,23 +17,23 @@ class TabStatsContent extends StatelessWidget {
       color: pokemon.pokedexTypeColor.secondary,
       fontWeight: FontWeight.bold,
     );
-    final statMap = pokemon.toMapStat;
+    final statMap = pokemon.skill.stats;
     final items = <Widget>[];
     var total = 0;
     var max = 0;
 
     items.add(Text(StringRes.baseStats, style: sectionTheme));
-    statMap.forEach((key, value) {
-      total += value;
-      max += key.max;
+    for (final stat in statMap) {
+      total += stat.current;
+      max += stat.type.max;
 
       items.add(ItemStats(
-        statType: key.title,
-        current: value,
-        max: key.max,
-        progress: value / key.max,
+        statType: stat.type.name,
+        current: stat.current,
+        max: stat.type.max,
+        progress: stat.progress,
       ));
-    });
+    }
 
     items.add(ItemStats(
       statType: StringRes.total,

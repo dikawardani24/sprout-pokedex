@@ -43,15 +43,14 @@ class _DetailPageState extends State<DetailPage> {
                     return state.when(
                         initial: () => const Loading(),
                         loading: () => const Loading(),
-                        loaded: (info) => DetailContent(info: info),
+                        loaded: (info) => DetailContent(detail: info),
                         error: (message) => ErrorWidget(message)
                     );
                   },
                   listener: (c, state) {
                     state.whenOrNull(
                       loaded: (info) => setState(() {
-                        final pokemon = info.pokemon;
-                        _appBg = pokemon.pokedexTypeColor.secondary;
+                        _appBg = info.pokedexTypeColor.secondary;
                         _iconNavBackColor = ColorRes.white;
                       })
                     );

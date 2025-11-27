@@ -1,6 +1,5 @@
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:pokedex/pokedex.dart';
-import 'package:sprout_pokedex/models/about_info.dart';
 import 'package:sprout_pokedex/pages/detail/tabs/tab_about_content.dart';
 import 'package:sprout_pokedex/pages/detail/tabs/tab_stats_content.dart';
 import 'package:sprout_pokedex/pages/detail/widgets/detail_image.dart';
@@ -11,9 +10,9 @@ import 'package:sprout_pokedex/res/string_res.dart';
 import 'package:sprout_pokedex/util/pokemon_ext.dart';
 
 class DetailLandscape extends StatefulWidget {
-  final AboutInfo info;
+  final AppPokemonDetail detail;
 
-  const DetailLandscape({super.key, required this.info});
+  const DetailLandscape({super.key, required this.detail});
 
   @override
   State<DetailLandscape> createState() => _DetailLandscapeState();
@@ -35,7 +34,7 @@ class _DetailLandscapeState extends State<DetailLandscape>
   }
 
   Widget _buildTabBar() {
-    final color = widget.info.pokemon.pokedexTypeColor.secondary;
+    final color = widget.detail.pokedexTypeColor.secondary;
     return TabBar(
       controller: _tabController,
       labelColor: color,
@@ -52,8 +51,8 @@ class _DetailLandscapeState extends State<DetailLandscape>
       child: TabBarView(
         controller: _tabController,
         children: [
-          TabAboutContent(info: widget.info),
-          TabStatsContent(pokemon: widget.info.pokemon),
+          TabAboutContent(info: widget.detail),
+          TabStatsContent(pokemon: widget.detail),
         ],
       ),
     );
@@ -61,10 +60,10 @@ class _DetailLandscapeState extends State<DetailLandscape>
 
   @override
   Widget build(BuildContext context) {
-    final Pokemon pokemon = widget.info.pokemon;
+    final AppPokemonDetail pokemon = widget.detail;
 
     return Container(
-      color: widget.info.pokemon.pokedexTypeColor.secondary,
+      color: widget.detail.pokedexTypeColor.secondary,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -81,7 +80,7 @@ class _DetailLandscapeState extends State<DetailLandscape>
                   Flexible(
                     child: FittedBox(
                       fit: BoxFit.contain,
-                      child: DetailImag(pokemon: pokemon),
+                      child: DetailImag(imageUrl: pokemon.imageUrl),
                     ),
                   ),
                 ],

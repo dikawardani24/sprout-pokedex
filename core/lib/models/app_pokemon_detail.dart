@@ -15,14 +15,19 @@ enum StatType {
   const StatType(this.map, this.max);
 }
 
-class Stat extends Equatable {
+class AppStat extends Equatable {
   final StatType type;
   final int current;
+  final double progress;
 
-  Stat({required this.type, required this.current});
+  AppStat({
+    required this.type,
+    required this.current,
+    required this.progress
+  });
 
   @override
-  List<Object?> get props => [type, current];
+  List<Object?> get props => [type, current, progress];
 }
 
 class Weight extends Equatable {
@@ -48,9 +53,22 @@ class Height extends Equatable{
   List<Object?> get props => [value];
 }
 
+class AppAbility extends Equatable {
+  final String name;
+  final bool isHidden;
+
+  AppAbility({
+    required this.name,
+    required this.isHidden
+  });
+
+  @override
+  List<Object?> get props => [ name, isHidden ];
+}
+
 class Skill extends Equatable{
-  final List<Stat> stats;
-  final List<String> abilities;
+  final List<AppStat> stats;
+  final List<AppAbility> abilities;
   final List<String> weaknesses;
 
   Skill({required this.stats, required this.abilities, required this.weaknesses});
@@ -78,11 +96,26 @@ class Training extends Equatable {
   List<Object?> get props => [catchRate, baseExp, growRate, eggGroups, eggCycles];
 }
 
+class Species extends Equatable {
+  final String name;
+  final String desc;
+
+  Species({
+    required this.name,
+    required this.desc
+  });
+
+  @override
+  List<Object?> get props => [name, desc];
+}
+
 class AppPokemonDetail extends AppPokemon {
-  final String species;
+  final Species species;
   final Height height;
   final Weight weight;
   final Training training;
+  final Skill skill;
+  final int baseExp;
 
   AppPokemonDetail({
     required super.id,
@@ -92,14 +125,16 @@ class AppPokemonDetail extends AppPokemon {
     required this.species,
     required this.weight,
     required this.height,
-    required this.training
+    required this.training,
+    required this.skill,
+    required this.baseExp
   });
 
   @override
   List<Object?> get props {
     final parentProps = super.props;
     parentProps.addAll([
-      species, height, weight, training
+      species, height, weight, training, skill
     ]);
     return parentProps;
   }
