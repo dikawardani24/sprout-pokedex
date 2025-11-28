@@ -15,7 +15,7 @@ class TabAboutContent extends StatelessWidget {
     Species species = info.species;
 
     final sectionTheme = textTheme.titleMedium?.copyWith(
-      color: info.pokedexTypeColor.secondary,
+      color: info.color.secondary,
       fontWeight: FontWeight.bold,
     );
 
@@ -25,16 +25,16 @@ class TabAboutContent extends StatelessWidget {
       ItemAbout(title: StringRes.species, desc:  species.name),
       ItemAbout(title: StringRes.height, desc: '${info.height.inMeter} m  / ${info.height.inInch().toStringAsFixed(1)}"'),
       ItemAbout(title: StringRes.weight, desc: "${info.weight.inKg} kg / ${info.weight.inPounds.toStringAsFixed(1)} lbs"),
-      ItemAbilities(color: info.pokedexTypeColor.secondary, abilities: info.skill.abilities),
+      ItemAbilities(color: info.color.secondary, abilities: info.skill.abilities),
       ItemWeaknesses(weaknesses: info.skill.weaknesses),
 
       Text(StringRes.training, style: sectionTheme),
       ItemAbout(title: StringRes.catchRate, desc: "${info.training.catchRate}"),
       ItemAbout(title: StringRes.baseExp, desc: "${info.baseExp}"),
-      ItemAbout(title: StringRes.growthRate, desc: info.training.growRate.replaceAll("-", " ").firstLetterUpperCase),
+      ItemAbout(title: StringRes.growthRate, desc: info.training.growRate.replaceAll("-", " ")),
 
       Text(StringRes.breeding, style: sectionTheme),
-      ItemAbout(title: StringRes.eggGroups, desc: info.training.eggGroups.map((e) => e.firstLetterUpperCase).join(", ")),
+      ItemAbout(title: StringRes.eggGroups, desc: info.training.eggGroups.map((e) => e).join(", ")),
       ItemAbout(title: StringRes.eggCycles, desc: "${info.training.eggCycles}")
     ];
   }

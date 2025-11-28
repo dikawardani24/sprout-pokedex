@@ -32,7 +32,7 @@ class _DetailLandscapeState extends State<DetailLandscape>
   }
 
   Widget _buildTabBar() {
-    final color = widget.detail.pokedexTypeColor.secondary;
+    final color = widget.detail.color.secondary;
     return TabBar(
       controller: _tabController,
       labelColor: color,
@@ -61,7 +61,7 @@ class _DetailLandscapeState extends State<DetailLandscape>
     final AppPokemonDetail pokemon = widget.detail;
 
     return Container(
-      color: widget.detail.pokedexTypeColor.secondary,
+      color: widget.detail.color.secondary,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,

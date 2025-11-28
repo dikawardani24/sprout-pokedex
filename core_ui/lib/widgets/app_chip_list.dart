@@ -1,5 +1,5 @@
+import 'package:core/util/string_ext.dart';
 import 'package:core_ui/core_ui.dart';
-import 'package:core_ui/widgets/app_chip.dart';
 import 'package:flutter/material.dart';
 
 class AppChipList extends StatelessWidget {

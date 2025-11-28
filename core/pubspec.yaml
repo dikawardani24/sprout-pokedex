@@ -29,3 +29,4 @@ dev_dependencies:
   injectable_generator:
   mockito:
   mocktail:
+  flutter_lints:

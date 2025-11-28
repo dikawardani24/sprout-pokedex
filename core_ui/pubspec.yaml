@@ -16,6 +16,8 @@ dependencies:
   flutter_svg:
   flutter_animate:
   cached_network_image:
+  stream_transform:
+  bloc_concurrency: 
 
 dev_dependencies:
   flutter_test:
