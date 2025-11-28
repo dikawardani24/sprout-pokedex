@@ -4,7 +4,6 @@ import 'package:feature_home/widget/item_pokemon.dart';
 import 'package:flutter/material.dart';
 
 typedef GestureTapPokemon = void Function(AppPokemon selected);
-typedef GestureLoadMore = void Function(int totalCurrent);
 
 class PokemonList extends StatelessWidget {
   final List<AppPokemon> pokemons;
@@ -13,7 +12,6 @@ class PokemonList extends StatelessWidget {
   final bool hasReachedMax;
   final String? errorMessage;
   final VoidCallback? onRetry;
-  final GestureLoadMore onLoadMore;
   final ScrollController scrollController;
 
   const PokemonList({
@@ -24,7 +22,6 @@ class PokemonList extends StatelessWidget {
     this.hasReachedMax = false,
     this.errorMessage,
     this.onRetry,
-    required this.onLoadMore,
     required this.scrollController,
   });
 

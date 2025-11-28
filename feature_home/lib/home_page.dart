@@ -26,11 +26,6 @@ class _HomePageState extends State<HomePage> {
   final ScrollController _controller = ScrollController();
   late final HomeBloc _homeBloc;
 
-  void _onLoadMore(BuildContext context) {
-    if (_homeBloc.state.isLoadMore) return;
-    _homeBloc.add(GetMorePokemonEvent());
-  }
-
   void _initPokemon(BuildContext context) {
     if (_homeBloc.state.isLoading) return;
     _homeBloc.add(GetPokemonsEvent());
@@ -51,7 +46,6 @@ class _HomePageState extends State<HomePage> {
       onTap: (selected) {
         widget.onTap?.call(this.context, selected);
       },
-      onLoadMore: (_) => _onLoadMore(context),
       onRetry: () => _initPokemon(context),
       scrollController: _controller,
     );
