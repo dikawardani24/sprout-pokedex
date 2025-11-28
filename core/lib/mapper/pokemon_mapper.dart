@@ -2,13 +2,16 @@ import 'package:collection/collection.dart';
 import 'package:core/models/app_pokemon.dart';
 import 'package:core/models/app_pokemon_detail.dart';
 import 'package:core/util/poke_ext.dart';
+import 'package:core/util/string_ext.dart';
 import 'package:pokedex/pokedex.dart';
 
 AppPokemon toAppPokemon(Pokemon p) => AppPokemon(
     id: p.id,
-    name: p.name,
-    types: p.types.map((p) => p.type.name).toList(),
-    imageUrl: p.imageUrl
+    displayId: p.pokenumber,
+    name: p.name.firstLetterUpperCase,
+    types: p.types.map((p) => p.type.name.firstLetterUpperCase).toList(),
+    imageUrl: p.imageUrl,
+    color: p.pokedexTypeColor
 );
 
 Height toHeight(Pokemon p) => Height(p.height);
@@ -37,12 +40,19 @@ List<AppAbility> _collectAbilityFrom(List<PokemonAbility> pokeStats) {
 
   for (final stat in pokeStats) {
     stats.add(AppAbility(
-        name: stat.ability.name, 
+        name: stat.ability.name.firstLetterUpperCase,
         isHidden: stat.isHidden
     ));
   }
 
   return stats;
+}
+
+List<WeakNess> _collectWWeaknesses(List<String> weaknesses) {
+  return weaknesses.map((e) => WeakNess(
+    name: e.firstLetterUpperCase,
+    color: e.pokemonColor
+  )).toList();
 }
 
 AppPokemonDetail toPokeDetail(
@@ -53,25 +63,27 @@ AppPokemonDetail toPokeDetail(
 ) {
   return AppPokemonDetail(
       id: poke.id,
-      name: poke.name,
+      displayId: poke.pokenumber,
+      name: poke.name.firstLetterUpperCase,
+      color: poke.pokedexTypeColor,
       baseExp: poke.baseExperience ?? 0,
-      types: poke.types.map((p) => p.type.name).toList(),
+      types: poke.types.map((p) => p.type.name.firstLetterUpperCase).toList(),
       imageUrl: poke.imageUrl,
       species: Species(
-        name: species.genre ?? "",
-        desc: species.flavor ?? ""
+        name: (species.genre ?? "").firstLetterUpperCase,
+        desc: (species.flavor ?? "")
       ),
       weight: Weight(poke.weight),
       height: Height(poke.height),
       skill: Skill(
           stats: _collectStatFrom(poke.stats),
           abilities: _collectAbilityFrom(poke.abilities),
-          weaknesses: weaknesses
+          weaknesses: _collectWWeaknesses(weaknesses)
       ),
       training: Training(
           catchRate: species.captureRate,
           baseExp: poke.baseExperience ?? 0,
-          growRate: "${species.growthRate.name.replaceAll("-", " ").firstLetterUpperCase}",
+          growRate: species.growthRate.name.replaceAll("-", " ").firstLetterUpperCase,
           eggGroups: species.eggGroups.map((e) => e.name.firstLetterUpperCase).toList(),
           eggCycles: species.hatchCounter ?? 0
       )

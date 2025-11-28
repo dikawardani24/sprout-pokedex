@@ -22,11 +22,3 @@ class PokemonNameFormatter {
     return withoutDashes[0].toUpperCase() + withoutDashes.substring(1).toLowerCase();
   }
 }
-
-extension StringExt on String {
-  String get firstLetterUpperCase => PokemonNameFormatter.format(this);
-
-  String replaceScapeChars([String newChar = ' ']) =>
-      replaceAll(RegExp(r'[\n\t\f]'), newChar).trim();
-
-}

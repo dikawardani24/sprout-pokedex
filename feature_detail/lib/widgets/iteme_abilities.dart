@@ -27,7 +27,7 @@ class ItemAbilities extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             spacing: DimenRes.size_8,
             children: abilities.map((e) {
-              final label = e.name.firstLetterUpperCase;
+              final label = e.name;
               if (!e.isHidden) return AppChip(label: label, color: color, textStyle: const TextStyle(color: ColorRes.white),);
               return AppChip(
                 color: color.withAlpha(98),

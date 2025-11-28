@@ -1,4 +1,5 @@
 import 'package:core/models/app_pokemon.dart';
+import 'package:core/models/pokedex_type_color.dart';
 import 'package:equatable/equatable.dart';
 
 enum StatType {
@@ -20,7 +21,7 @@ class AppStat extends Equatable {
   final int current;
   final double progress;
 
-  AppStat({
+  const AppStat({
     required this.type,
     required this.current,
     required this.progress
@@ -33,7 +34,7 @@ class AppStat extends Equatable {
 class Weight extends Equatable {
   final int value;
 
-  Weight(this.value);
+  const Weight(this.value);
 
   double get inKg => value / 10.0;
   double get inPounds => inKg * 2.20462;
@@ -45,7 +46,7 @@ class Weight extends Equatable {
 class Height extends Equatable{
   final int value;
 
-  Height(this.value);
+  const Height(this.value);
   double get inMeter => value / 10.0;
 
   int inInch() {
@@ -61,7 +62,7 @@ class AppAbility extends Equatable {
   final String name;
   final bool isHidden;
 
-  AppAbility({
+  const AppAbility({
     required this.name,
     required this.isHidden
   });
@@ -70,12 +71,22 @@ class AppAbility extends Equatable {
   List<Object?> get props => [ name, isHidden ];
 }
 
+class WeakNess extends Equatable {
+  final String name;
+  final PokedexTypeColor color;
+
+  const WeakNess({required this.name, required this.color});
+
+  @override
+  List<Object?> get props => [name, color];
+}
+
 class Skill extends Equatable{
   final List<AppStat> stats;
   final List<AppAbility> abilities;
-  final List<String> weaknesses;
+  final List<WeakNess> weaknesses;
 
-  Skill({required this.stats, required this.abilities, required this.weaknesses});
+  const Skill({required this.stats, required this.abilities, required this.weaknesses});
 
   @override
   List<Object?> get props => [stats, abilities, weaknesses];
@@ -88,7 +99,7 @@ class Training extends Equatable {
   final List<String> eggGroups;
   final int eggCycles;
 
-  Training({
+  const Training({
     required this.catchRate,
     required this.baseExp,
     required this.growRate,
@@ -104,7 +115,7 @@ class Species extends Equatable {
   final String name;
   final String desc;
 
-  Species({
+  const Species({
     required this.name,
     required this.desc
   });
@@ -121,11 +132,13 @@ class AppPokemonDetail extends AppPokemon {
   final Skill skill;
   final int baseExp;
 
-  AppPokemonDetail({
+  const AppPokemonDetail({
     required super.id,
+    required super.displayId,
     required super.name,
     required super.types,
     required super.imageUrl,
+    required super.color,
     required this.species,
     required this.weight,
     required this.height,

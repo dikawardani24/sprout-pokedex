@@ -1,9 +1,10 @@
+import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class ItemWeaknesses extends StatelessWidget {
-  final List<String> weaknesses;
+  final List<WeakNess> weaknesses;
 
   const ItemWeaknesses({super.key, required this.weaknesses});
 
@@ -28,10 +29,10 @@ class ItemWeaknesses extends StatelessWidget {
             child: Row(
               spacing: DimenRes.size_4,
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: weaknesses.map((e) => SvgPicture.asset("icons/$e.svg".asset(),
+              children: weaknesses.map((e) => SvgPicture.asset("icons/${e.name.toLowerCase()}.svg".asset(),
                 width: DimenRes.size_30,
                 height: DimenRes.size_30,
-                color: e.pokemonColor.secondary,
+                color: e.color.secondary,
               )).toList(),
             ),
           ),

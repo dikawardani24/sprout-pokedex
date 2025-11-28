@@ -12,7 +12,7 @@ class TabStatsContent extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     final sectionTheme = textTheme.titleMedium?.copyWith(
-      color: pokemon.pokedexTypeColor.secondary,
+      color: pokemon.color.secondary,
       fontWeight: FontWeight.bold,
     );
     final statMap = pokemon.skill.stats;
@@ -26,7 +26,7 @@ class TabStatsContent extends StatelessWidget {
       max += stat.type.max;
 
       items.add(ItemStats(
-        statType: stat.type.name.firstLetterUpperCase,
+        statType: stat.type.name,
         current: stat.current,
         max: stat.type.max,
         progress: stat.progress,

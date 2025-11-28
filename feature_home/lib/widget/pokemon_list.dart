@@ -110,10 +110,10 @@ class PokemonList extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
                 child: ItemPokemon(
                   key: ValueKey(pokemon.id),
-                  id: pokemon.pokenumber,
+                  id: pokemon.displayId,
                   name: pokemon.name,
                   types: pokemon.types,
-                  color: pokemon.pokedexTypeColor.secondary,
+                  color: pokemon.color.secondary,
                   imageUrl: pokemon.imageUrl,
                 ),
               ),

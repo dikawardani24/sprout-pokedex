@@ -58,7 +58,7 @@ class _DetailPageState extends State<DetailPage> {
                   listener: (c, state) {
                     state.whenOrNull(
                       loaded: (info) => setState(() {
-                        _appBg = info.pokedexTypeColor.secondary;
+                        _appBg = info.color.secondary;
                         _iconNavBackColor = ColorRes.white;
                       })
                     );

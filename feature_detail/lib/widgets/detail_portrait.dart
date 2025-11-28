@@ -34,7 +34,7 @@ class _DetailPortraitState extends State<DetailPortrait>
 
   Widget _buildTabBar() {
     final AppPokemonDetail pokemon = widget.detail;
-    final color = pokemon.pokedexTypeColor.secondary;
+    final color = pokemon.color.secondary;
 
     return TabBar(
       controller: _tabController,
@@ -98,7 +98,7 @@ class _DetailPortraitState extends State<DetailPortrait>
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: widget.detail.pokedexTypeColor.secondary,
+      color: widget.detail.color.secondary,
       child: Column(
         children: [
           Padding(

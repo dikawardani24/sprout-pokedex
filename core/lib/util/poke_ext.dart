@@ -1,9 +1,14 @@
 import 'dart:collection';
 
 import 'package:collection/collection.dart';
+import 'package:core/util/string_ext.dart';
 import 'package:pokedex/pokedex.dart';
 
+import '../models/pokedex_type_color.dart';
+
 extension PokemonMapper on Pokemon {
+  String get pokenumber => '#${id.toString().padLeft(4, '0')}';
+
   String get imageUrl {
     final stringNumber = id.toString();
     if (id < 905) {
@@ -11,6 +16,11 @@ extension PokemonMapper on Pokemon {
     }
     return 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/$stringNumber.png';
   }
+
+  PokedexTypeColor get pokedexTypeColor => PokedexTypeColor.values.firstWhere(
+        (element) => types.first.type.name.toLowerCase() == element.name,
+    orElse: () => PokedexTypeColor.unknown,
+  );
 }
 
 extension PokeTypeMapper on Type {
@@ -45,35 +55,10 @@ extension PokeSpeciesExt on PokemonSpecies? {
       ?.genus;
 }
 
-class PokemonNameFormatter {
-  static String format(String name) {
-    if (name.isEmpty) return name;
+extension PokeWeakExt on String {
 
-    final withoutDashes = name.replaceAll('-', ' ');
-
-    return withoutDashes.split(' ').map((word) {
-      if (word.isEmpty) return word;
-
-      if (word == 'mr') return 'Mr';
-      if (word == 'mime') return 'Mime';
-      if (word == 'jr') return 'Jr';
-
-      return word[0].toUpperCase() + word.substring(1).toLowerCase();
-    }).join(' ');
-  }
-
-  static String formatSimple(String name) {
-    if (name.isEmpty) return name;
-
-    final withoutDashes = name.replaceAll('-', ' ');
-    return withoutDashes[0].toUpperCase() + withoutDashes.substring(1).toLowerCase();
-  }
-}
-
-extension StringExt on String {
-  String get firstLetterUpperCase => PokemonNameFormatter.format(this);
-
-  String replaceScapeChars([String newChar = ' ']) =>
-      replaceAll(RegExp(r'[\n\t\f]'), newChar).trim();
-
+  PokedexTypeColor get pokemonColor => PokedexTypeColor.values.firstWhere(
+        (element) => toLowerCase() == element.name,
+    orElse: () => PokedexTypeColor.unknown,
+  );
 }

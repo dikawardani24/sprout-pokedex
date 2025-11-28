@@ -12,7 +12,7 @@ class DetailTitle extends StatelessWidget{
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          pokemon.pokenumber,
+          pokemon.displayId,
           maxLines: 1,
           textAlign: TextAlign.end,
           style: TextStyle(
@@ -22,7 +22,7 @@ class DetailTitle extends StatelessWidget{
               overflow: TextOverflow.ellipsis
           ),
         ),
-        Text(pokemon.name.firstLetterUpperCase,
+        Text(pokemon.name,
           maxLines: 1,
           style: const TextStyle(
               fontSize: DimenRes.size_20,
@@ -56,7 +56,7 @@ class DetailTitle extends StatelessWidget{
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(pokemon.name.firstLetterUpperCase,
+              Text(pokemon.name,
                 maxLines: 1,
                 style: const TextStyle(
                     fontSize: DimenRes.size_20,
@@ -81,7 +81,7 @@ class DetailTitle extends StatelessWidget{
           ),
         ),
         Text(
-          pokemon.pokenumber,
+          pokemon.displayId,
           maxLines: 1,
           textAlign: TextAlign.end,
           style: TextStyle(

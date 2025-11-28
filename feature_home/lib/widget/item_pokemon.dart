@@ -31,7 +31,7 @@ class ItemPokemon extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-                name.firstLetterUpperCase,
+                name,
                 maxLines: 1,
                 style: TextStyle(
                   color: ColorRes.white,

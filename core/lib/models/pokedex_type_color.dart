@@ -1,6 +1,3 @@
-
-import 'package:core/core.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 enum PokedexTypeColor {
@@ -30,27 +27,4 @@ enum PokedexTypeColor {
 
   final Color primary;
   final Color secondary;
-}
-
-extension AppPokemonExt on AppPokemon {
-  String get pokenumber => '#${id.toString().padLeft(4, '0')}';
-
-  PokedexTypeColor get pokedexTypeColor => PokedexTypeColor.values.firstWhere(
-        (element) => types.first.toLowerCase() == element.name,
-    orElse: () => PokedexTypeColor.unknown,
-  );
-}
-
-extension DesignStringExtensions on String {
-  PokedexTypeColor get pokemonColor => PokedexTypeColor.values.firstWhere(
-        (element) => toLowerCase() == element.name,
-    orElse: () => PokedexTypeColor.unknown,
-  );
-
-  String asset() {
-    if (kIsWeb && !kDebugMode) {
-      return 'assets/$this';
-    }
-    return '${!kIsWeb ? 'assets/' : ''}$this';
-  }
 }

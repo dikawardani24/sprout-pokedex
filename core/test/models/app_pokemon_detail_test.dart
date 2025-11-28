@@ -1,4 +1,5 @@
 import 'package:core/models/app_pokemon_detail.dart';
+import 'package:core/models/pokedex_type_color.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -6,8 +7,10 @@ void main() {
     test('supports value comparisons', () {
       final detail1 = AppPokemonDetail(
         id: 1,
+        displayId: "01",
         name: 'bulbasaur',
         types: const ['grass', 'poison'],
+        color: PokedexTypeColor.normal,
         imageUrl: 'http://image.url',
         species: Species(name: "Seed Pokemon", desc: "Seed Pokemon"),
         weight: Weight(69),
@@ -24,7 +27,9 @@ void main() {
 
       final detail2 = AppPokemonDetail(
         id: 1,
+        displayId: "01",
         name: 'bulbasaur',
+        color: PokedexTypeColor.normal,
         types: const ['grass', 'poison'],
         imageUrl: 'http://image.url',
         species: Species(name: "Seed Pokemon", desc: "Seed Pokemon"),
