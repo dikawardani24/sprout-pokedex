@@ -1,5 +1,6 @@
 
 import 'package:core/core.dart';
+import 'package:core/usecase/request/get_detail_req.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:feature_detail/bloc/detail_event.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,11 +21,10 @@ class DetailBloc extends Bloc<DetailEvent, DetailState>{
 
   Future<void> _getDetailPokemon(GetDetailEvent event, Emitter<DetailState> emit) async {
     emit(const DetailState.loading());
-    try {
-      final pokemon = await _getDetailPokeUseCase.execute(event.id);
-      emit(DetailState.loaded(pokemon));
-    } catch (err) {
-      emit(DetailState.error(getErrorMessage(err)));
-    }
+    final result = await _getDetailPokeUseCase.execute(GetDetailReq(id: event.id));
+    result.when(
+        success: (data) =>  emit(DetailState.loaded(data)),
+        error: (err) => emit(DetailState.error(getErrorMessage(err)))
+    );
   }
 }

@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:core/core.dart';
+import 'package:core/usecase/request/cache_img_req.dart';
+import 'package:core/usecase/request/get_pokemon_req.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:feature_home/bloc/home_event.dart';
 import 'package:feature_home/bloc/home_state.dart';
@@ -58,7 +60,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     
     // Fire-and-forget image caching - don't block the UI
     Future.microtask(() {
-      _cacheImageUrlUseCase.execute(newList.map((p) => p.imageUrl).toList());
+      final urlList = newList.map((p) => p.imageUrl).toList();
+      _cacheImageUrlUseCase.execute(CacheImgReq(imageUrlList: urlList));
     });
 
     if (isLoadMore) {
@@ -74,21 +77,18 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       bool isLoadMore
   ) async {
     if (isLoadMore && _hasReachedMax) return;
-
     _emitLoadingGetPoke(emit, isLoadMore);
-
-    try {
-      final newPokemonList = await _getPokemonUseCase.execute(_limit, _pokemons.length);
-
-      _updateListPoke(newPokemonList, isLoadMore);
-
-      emit(HomeState.loaded(
-        List.unmodifiable(_pokemons),
-        _hasReachedMax,
-      ));
-    } catch (err) {
-      _emitErrorGetPoke(emit, isLoadMore, err);
-    }
+    final result = await _getPokemonUseCase.execute(GetPokemonReq(limit: _limit, offset: _pokemons.length));
+    result.when(
+        success: (data) {
+          _updateListPoke(data, isLoadMore);
+          emit(HomeState.loaded(
+            List.unmodifiable(_pokemons),
+            _hasReachedMax,
+          ));
+        },
+        error: (err) => _emitErrorGetPoke(emit, isLoadMore, err)
+    );
   }
 
   Future<void> _onGetPokemons(
