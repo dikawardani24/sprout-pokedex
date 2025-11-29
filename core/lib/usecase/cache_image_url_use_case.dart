@@ -1,39 +1,47 @@
 import 'dart:async';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:core/usecase/request/cache_img_req.dart';
+import 'package:core/usecase/use_case.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 
-abstract class CacheImageUrlUseCase {
-  Future<void> execute(List<String> imageUrlList);
-}
+abstract class CacheImageUrlUseCase extends UseCase<CacheImgReq, void> {}
 
 @Injectable(as: CacheImageUrlUseCase)
 class CacheImageUrlUseCaseImpl implements CacheImageUrlUseCase {
+
   @override
-  Future<void> execute(List<String> imageUrlList) async {
-    await Future.wait(
-      imageUrlList.map((p) async {
-        final provider = CachedNetworkImageProvider(p);
+  Future<Result<void>> execute(CacheImgReq req) async {
+    try {
+      await Future.wait(
+        req.imageUrlList.map((url) => _precacheImage(url)),
+      );
+      return const Result.success(null);
+    } catch (e) {
+      return Result.error('Failed to cache images: $e');
+    }
+  }
 
-        final imageStream = provider.resolve(const ImageConfiguration());
-        final completer = Completer<void>();
+  Future<void> _precacheImage(String imageUrl) async {
+    final provider = CachedNetworkImageProvider(imageUrl);
+    final imageStream = provider.resolve(const ImageConfiguration());
 
-        late final ImageStreamListener listener;
-        listener = ImageStreamListener(
-              (info, _) {
-            completer.complete();
-            imageStream.removeListener(listener);
-          },
-          onError: (err, stack) {
-            completer.complete();
-            imageStream.removeListener(listener);
-          },
-        );
+    final completer = Completer<void>();
 
-        imageStream.addListener(listener);
-        return completer.future;
-      }),
+    late final ImageStreamListener listener;
+    listener = ImageStreamListener(
+          (imageInfo, synchronousCall) {
+        completer.complete();
+        imageStream.removeListener(listener);
+      },
+      onError: (exception, stackTrace) {
+        completer.completeError(exception, stackTrace);
+        imageStream.removeListener(listener);
+      },
     );
+
+    imageStream.addListener(listener);
+    return completer.future;
   }
 }

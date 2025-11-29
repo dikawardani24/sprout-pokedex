@@ -29,18 +29,13 @@ class ItemPokemon extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
+          spacing: DimenRes.size_8,
           children: [
-            Text(
-                name,
-                maxLines: 1,
-                style: TextStyle(
-                  color: ColorRes.white,
-                  fontSize: _titleSize,
-                  fontWeight: FontWeight.bold,
-                  overflow: TextOverflow.ellipsis,
-                )
+            AppText.header(
+              text: name,
+              color: ColorRes.white,
+              fontSize: _titleSize,
             ),
-            const SizedBox(height: DimenRes.size_8),
             AppChipList(
               appOrientation: Axis.vertical,
               spacing: DimenRes.size_4,
@@ -94,14 +89,7 @@ class ItemPokemon extends StatelessWidget {
     alignment: Alignment.topRight,
     child: Padding(
       padding: const EdgeInsetsGeometry.only(top: DimenRes.size_16, right: DimenRes.size_16, bottom: DimenRes.size_10),
-      child: Text(
-        id,
-        style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: DimenRes.size_12,
-            color: ColorRes.black.withAlpha(60)
-        ),
-      ),
+      child: PokemonId(pokeId: id,)
     ),
   );
 
