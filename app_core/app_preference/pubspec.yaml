@@ -1,19 +1,17 @@
-name: database
+name: app_preference
 description: "A new Flutter module project."
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.5.3
+  sdk: ^3.10.1
 
 dependencies:
   flutter:
     sdk: flutter
   cupertino_icons:
+  shared_preferences:
   get_it:
   injectable:
-  sqflite:
-  path:
-  sqflite_common_ffi:
 
 dev_dependencies:
   flutter_test:
@@ -21,13 +19,10 @@ dev_dependencies:
   flutter_lints:
   build_runner:
   injectable_generator:
-  mocktail:
-  mockito:
 
 flutter:
   uses-material-design: true
-
   module:
     androidX: true
-    androidPackage: com.example.database
-    iosBundleIdentifier: com.example.database
+    androidPackage: com.example.app_preference
+    iosBundleIdentifier: com.example.appPreference

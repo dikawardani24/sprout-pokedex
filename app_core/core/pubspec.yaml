@@ -9,7 +9,12 @@ dependencies:
   flutter:
     sdk: flutter
 
-  # These get their versions from main app via Melos
+  api:
+    path: ../api
+  database:
+    path: ../database
+  app_preference:
+    path: ../app_preference
   equatable:
   flutter_bloc:
   bloc_concurrency:
@@ -24,10 +29,8 @@ dependencies:
   path:
   json_annotation:
   intl:
-  api:
-    path: ../api
-  database:
-    path: ../database
+  connectivity_plus:
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

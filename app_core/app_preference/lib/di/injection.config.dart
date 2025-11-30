@@ -12,25 +12,21 @@
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
-import '../datasource/impl/pokemon_datasource_impl.dart' as _i352;
-import '../datasource/pokemon_datasource.dart' as _i176;
-import '../db_init.dart' as _i170;
-import '../db_open_helper.dart' as _i826;
+import '../preference/data_validity_pref.dart' as _i763;
+import '../preference/impl/data_validity_pref_impl.dart' as _i509;
+import '../wrapper/app_shared_pref.dart' as _i333;
+import '../wrapper/impl/app_shared_pref_impl.dart' as _i994;
 
 // initializes the registration of main-scope dependencies inside of GetIt
-_i174.GetIt $initDatabase(
+_i174.GetIt $initAppPref(
   _i174.GetIt getIt, {
   String? environment,
   _i526.EnvironmentFilter? environmentFilter,
 }) {
-  final gh = _i526.GetItHelper(
-    getIt,
-    environment,
-    environmentFilter,
+  final gh = _i526.GetItHelper(getIt, environment, environmentFilter);
+  gh.factory<_i333.AppSharedPref>(() => _i994.AppSharedPrefImpl());
+  gh.factory<_i763.DataValidityPref>(
+    () => _i509.DataValidityPrefImpl(gh<_i333.AppSharedPref>()),
   );
-  gh.factory<_i170.DbInit>(() => _i170.DbInit());
-  gh.factory<_i826.DbOpenHelper>(() => _i826.DbOpenHelper(gh<_i170.DbInit>()));
-  gh.factory<_i176.PokemonDatasource>(
-      () => _i352.PokemonLocalDatasourceImpl(gh<_i826.DbOpenHelper>()));
   return getIt;
 }

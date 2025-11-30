@@ -2,12 +2,10 @@ import 'package:injectable/injectable.dart';
 import 'package:sqflite/sqflite.dart';
 
 import '../../db_open_helper.dart';
-import '../../entity/last_seen_entity.dart';
 import '../../entity/pokemon_detail_entity.dart';
 import '../../entity/pokemon_entity.dart';
 import '../../entity/pokemon_view_entity.dart';
 import '../../tables/pokemon_view.dart';
-import '../../tables/table_last_seen.dart';
 import '../../tables/table_pokemon.dart';
 import '../../tables/table_pokemon_detail.dart';
 import '../pokemon_datasource.dart';
@@ -74,28 +72,6 @@ class PokemonLocalDatasourceImpl implements PokemonDatasource {
     final db = await _openHelper.db;
     await db.insert(
       TablePokemonDetail.name,
-      entity.toMap(),
-      conflictAlgorithm: ConflictAlgorithm.replace,
-    );
-  }
-
-  @override
-  Future<List<LastSeenEntity>> getLastSeen(int limit, int offset) async {
-    final db = await _openHelper.db;
-    final result = await db.query(
-      TableLastSeen.name,
-      limit: limit,
-      offset: offset,
-      orderBy: '${TableLastSeen.colLastSeen} DESC',
-    );
-    return result.map((e) => LastSeenEntity.fromMap(e)).toList();
-  }
-
-  @override
-  Future<void> saveLastSeen(LastSeenEntity entity) async {
-    final db = await _openHelper.db;
-    await db.insert(
-      TableLastSeen.name,
       entity.toMap(),
       conflictAlgorithm: ConflictAlgorithm.replace,
     );

@@ -14,7 +14,7 @@ import 'package:injectable/injectable.dart' as _i526;
 import 'package:pokedex/pokedex.dart' as _i706;
 
 import '../datasource/pokemon_datasource.dart' as _i176;
-import 'network_module.dart' as _i567;
+import 'api_module.dart' as _i804;
 
 // initializes the registration of main-scope dependencies inside of GetIt
 _i174.GetIt $initApi(
@@ -27,11 +27,11 @@ _i174.GetIt $initApi(
     environment,
     environmentFilter,
   );
-  final networkModule = _$NetworkModule();
-  gh.singleton<_i706.Pokedex>(() => networkModule.pokedex);
+  final apiModule = _$ApiModule();
+  gh.singleton<_i706.Pokedex>(() => apiModule.pokedex);
   gh.factory<_i176.PokemonDatasource>(
       () => _i176.PokemonDatasourceImpl(gh<_i706.Pokedex>()));
   return getIt;
 }
 
-class _$NetworkModule extends _i567.NetworkModule {}
+class _$ApiModule extends _i804.ApiModule {}

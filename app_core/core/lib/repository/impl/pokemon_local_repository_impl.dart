@@ -3,7 +3,6 @@ import 'package:injectable/injectable.dart';
 
 import '../../models/app_pokemon.dart';
 import '../../models/app_pokemon_detail.dart';
-import '../../models/last_seen.dart';
 import '../pokemon_local_repository.dart';
 
 @Injectable(as: PokemonLocalRepository)
@@ -13,26 +12,20 @@ class PokemonLocalRepositoryImpl implements PokemonLocalRepository {
   PokemonLocalRepositoryImpl(this._localDatasource);
 
   @override
-  Future<AppPokemon> getDetail(int id) {
-    // TODO: implement getDetail
-    throw UnimplementedError();
+  Future<void> saveList(List<AppPokemon> list) async {
+    final entities = list.map((domain) => domain.toEntity()).toList();
+    await _localDatasource.saveBulk(entities);
   }
 
   @override
-  Future<List<AppPokemonDetail>> getPokemonList(int limit, int offset) {
-    // TODO: implement getPokemonList
-    throw UnimplementedError();
+  Future<AppPokemonDetail> getDetail(int id) async {
+    final entity = await _localDatasource.getViewById(id);
+    return AppPokemonDetail.fromEntity(entity);
   }
 
   @override
-  Future<List<LastSeen>> getLastSeen(int limit, int offset) {
-    // TODO: implement getLastSeen
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<void> saveLastSeen(LastSeen lastSeen) {
-    // TODO: implement saveLastSeen
-    throw UnimplementedError();
+  Future<List<AppPokemon>> getPokemonList(int limit, int offset) async {
+    final listEntity = await _localDatasource.getPokemonList(limit, offset);
+    return listEntity.map((entity) => AppPokemon.fromEntity(entity)).toList();
   }
 }

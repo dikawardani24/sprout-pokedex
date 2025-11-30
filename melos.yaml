@@ -1,6 +1,7 @@
 name: sprout_pokedex
 
 packages:
+  - "./app_core/app_preference"
   - "./app_core/api"
   - "./app_core/database"
   - "./app_core/core"

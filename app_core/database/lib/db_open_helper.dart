@@ -1,27 +1,32 @@
+import 'package:database/db_init.dart';
 import 'package:injectable/injectable.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 import 'tables/pokemon_view.dart';
-import 'tables/table_last_seen.dart';
 import 'tables/table_pokemon.dart';
 import 'tables/table_pokemon_detail.dart';
 
 @injectable
 class DbOpenHelper {
+  final DbInit _dbInit;
   final _dbName = "pokedex.db";
   final _version = 1;
 
-  Future<Database> get db async => await openDatabase(
-    join(await getDatabasesPath(), _dbName),
-    version: _version,
-    onCreate: _onCreate,
-  );
+  DbOpenHelper(this._dbInit);
+
+  Future<Database> get db async {
+    await _dbInit.initialize();
+    return await openDatabase(
+      join(await getDatabasesPath(), _dbName),
+      version: _version,
+      onCreate: _onCreate,
+    );
+  }
 
   OnDatabaseCreateFn get _onCreate => (db, _) {
     _createTablePokemon(db);
     _createTablePokemonDetail(db);
-    _createTableLastSeen(db);
     _createPokemonView(db);
   };
 
@@ -54,16 +59,6 @@ class DbOpenHelper {
     ${TablePokemonDetail.colStats} TEXT,
     ${TablePokemonDetail.colAbilities} TEXT,
     ${TablePokemonDetail.colWeaknesses} TEXT
-    )
-    """;
-    db.execute(sql);
-  }
-
-  void _createTableLastSeen(Database db) {
-    final sql = """
-    CREATE TABLE ${TableLastSeen.name} (
-    ${TableLastSeen.colPokemonId} INTEGER PRIMARY KEY
-    ${TableLastSeen.colLastSeen} TEXT
     )
     """;
     db.execute(sql);
