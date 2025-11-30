@@ -1,0 +1,34 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// dart format width=80
+
+// **************************************************************************
+// InjectableConfigGenerator
+// **************************************************************************
+
+// ignore_for_file: type=lint
+// coverage:ignore-file
+
+// ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:get_it/get_it.dart' as _i174;
+import 'package:injectable/injectable.dart' as _i526;
+
+import '../datasource/impl/pokemon_datasource_impl.dart' as _i352;
+import '../datasource/pokemon_datasource.dart' as _i176;
+import '../db_open_helper.dart' as _i826;
+
+// initializes the registration of main-scope dependencies inside of GetIt
+_i174.GetIt $initDatabase(
+  _i174.GetIt getIt, {
+  String? environment,
+  _i526.EnvironmentFilter? environmentFilter,
+}) {
+  final gh = _i526.GetItHelper(
+    getIt,
+    environment,
+    environmentFilter,
+  );
+  gh.factory<_i826.DbOpenHelper>(() => _i826.DbOpenHelper());
+  gh.factory<_i176.PokemonDatasource>(
+      () => _i352.PokemonLocalDatasourceImpl(gh<_i826.DbOpenHelper>()));
+  return getIt;
+}

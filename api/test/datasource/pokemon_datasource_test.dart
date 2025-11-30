@@ -1,5 +1,5 @@
-import 'package:core/datasource/pokemon_datasource.dart';
-import 'package:core/di/injection.dart';
+import 'package:api/api.dart';
+import 'package:api/di/injection.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:pokedex/pokedex.dart';
 
@@ -7,7 +7,7 @@ void main() {
   late PokemonDatasource datasource;
 
   setUpAll(() {
-    configureCoreDependencies();
+    configureApiDependencies();
   });
 
   setUp(() {

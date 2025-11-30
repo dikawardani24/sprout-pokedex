@@ -1,5 +1,10 @@
 import 'package:core/models/app_pokemon_detail.dart';
+import 'package:core/models/app_stat.dart';
+import 'package:core/models/height.dart';
 import 'package:core/models/pokedex_type_color.dart';
+import 'package:core/models/species.dart';
+import 'package:core/models/stat_type.dart';
+import 'package:core/models/weight.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -12,37 +17,29 @@ void main() {
         types: const ['grass', 'poison'],
         color: PokedexTypeColor.normal,
         imageUrl: 'http://image.url',
-        species: Species(name: "Seed Pokemon", desc: "Seed Pokemon"),
-        weight: Weight(69),
-        height: Height(7),
-        training: Training(
-          catchRate: 45,
-          baseExp: 64,
+        species: Species(name: "Seed Pokemon", desc: "Seed Pokemon", catchRate: 45,
           growRate: 'Medium Slow',
           eggGroups: const ['Monster', 'Grass'],
-          eggCycles: 20,
-        ),
-        skill: Skill(stats: [], abilities: [], weaknesses: []), baseExp: 100,
+          eggCycles: 20,),
+        weight: Weight(69),
+        height: Height(7),
+        baseExp: 100, stats: [], abilities: [], weaknesses: [],
       );
 
       final detail2 = AppPokemonDetail(
         id: 1,
         displayId: "01",
         name: 'bulbasaur',
-        color: PokedexTypeColor.normal,
         types: const ['grass', 'poison'],
+        color: PokedexTypeColor.normal,
         imageUrl: 'http://image.url',
-        species: Species(name: "Seed Pokemon", desc: "Seed Pokemon"),
-        weight: Weight(69),
-        height: Height(7),
-        training: Training(
-          catchRate: 45,
-          baseExp: 64,
+        species: Species(name: "Seed Pokemon", desc: "Seed Pokemon", catchRate: 45,
           growRate: 'Medium Slow',
           eggGroups: const ['Monster', 'Grass'],
-          eggCycles: 20,
-        ),
-        skill: Skill(stats: [], abilities: [], weaknesses: []), baseExp: 100,
+          eggCycles: 20,),
+        weight: Weight(69),
+        height: Height(7),
+        baseExp: 100, stats: [], abilities: [], weaknesses: [],
       );
 
       expect(detail1, detail2);
@@ -86,26 +83,6 @@ void main() {
       final stat1 = AppStat(type: StatType.hp, current: 45, progress: 19);
       final stat2 = AppStat(type: StatType.hp, current: 45, progress: 19);
       expect(stat1, stat2);
-    });
-  });
-
-  group('Training', () {
-    test('supports value comparisons', () {
-      final training1 = Training(
-        catchRate: 45,
-        baseExp: 64,
-        growRate: 'Medium Slow',
-        eggGroups: const ['Monster', 'Grass'],
-        eggCycles: 20,
-      );
-      final training2 = Training(
-        catchRate: 45,
-        baseExp: 64,
-        growRate: 'Medium Slow',
-        eggGroups: const ['Monster', 'Grass'],
-        eggCycles: 20,
-      );
-      expect(training1, training2);
     });
   });
 }

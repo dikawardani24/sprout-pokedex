@@ -25,17 +25,17 @@ class TabAboutContent extends StatelessWidget {
       ItemAbout(title: StringRes.species, desc:  species.name),
       ItemAbout(title: StringRes.height, desc: '${info.height.inMeter} m  / ${info.height.inInch().toStringAsFixed(1)}"'),
       ItemAbout(title: StringRes.weight, desc: "${info.weight.inKg} kg / ${info.weight.inPounds.toStringAsFixed(1)} lbs"),
-      ItemAbilities(color: info.color.secondary, abilities: info.skill.abilities),
-      ItemWeaknesses(weaknesses: info.skill.weaknesses),
+      ItemAbilities(color: info.color.secondary, abilities: info.abilities),
+      ItemWeaknesses(weaknesses: info.weaknesses),
 
       Text(StringRes.training, style: sectionTheme),
-      ItemAbout(title: StringRes.catchRate, desc: "${info.training.catchRate}"),
+      ItemAbout(title: StringRes.catchRate, desc: "${info.species.catchRate}"),
       ItemAbout(title: StringRes.baseExp, desc: "${info.baseExp}"),
-      ItemAbout(title: StringRes.growthRate, desc: info.training.growRate.replaceAll("-", " ")),
+      ItemAbout(title: StringRes.growthRate, desc: info.species.growRate.replaceAll("-", " ")),
 
       Text(StringRes.breeding, style: sectionTheme),
-      ItemAbout(title: StringRes.eggGroups, desc: info.training.eggGroups.map((e) => e).join(", ")),
-      ItemAbout(title: StringRes.eggCycles, desc: "${info.training.eggCycles}")
+      ItemAbout(title: StringRes.eggGroups, desc: info.species.eggGroups.map((e) => e).join(", ")),
+      ItemAbout(title: StringRes.eggCycles, desc: "${info.species.eggCycles}")
     ];
   }
 

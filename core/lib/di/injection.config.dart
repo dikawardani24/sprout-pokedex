@@ -9,16 +9,20 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:api/datasource/pokemon_datasource.dart' as _i946;
+import 'package:database/database.dart' as _i252;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
-import 'package:pokedex/pokedex.dart' as _i706;
 
-import '../datasource/pokemon_datasource.dart' as _i176;
-import '../repository/pokemon_repository.dart' as _i1049;
+import '../repository/impl/pokemon_local_repository_impl.dart' as _i914;
+import '../repository/impl/pokemon_remote_repository_impl.dart' as _i792;
+import '../repository/pokemon_local_repository.dart' as _i499;
+import '../repository/pokemon_remote_repository.dart' as _i930;
+import '../setvice/impl/pokemon_service_impl.dart' as _i656;
+import '../setvice/pokemon_service.dart' as _i297;
 import '../usecase/cache_image_url_use_case.dart' as _i1054;
 import '../usecase/get_detail_poke_use_case.dart' as _i964;
 import '../usecase/get_pokemon_use_ase.dart' as _i898;
-import 'network_module.dart' as _i567;
 
 // initializes the registration of main-scope dependencies inside of GetIt
 _i174.GetIt $initCore(
@@ -31,19 +35,17 @@ _i174.GetIt $initCore(
     environment,
     environmentFilter,
   );
-  final networkModule = _$NetworkModule();
-  gh.singleton<_i706.Pokedex>(() => networkModule.pokedex);
   gh.factory<_i1054.CacheImageUrlUseCase>(
       () => _i1054.CacheImageUrlUseCaseImpl());
-  gh.factory<_i176.PokemonDatasource>(
-      () => _i176.PokemonDatasourceImpl(gh<_i706.Pokedex>()));
-  gh.factory<_i1049.PokemonRepository>(
-      () => _i1049.PokemonRepositoryImpl(gh<_i176.PokemonDatasource>()));
-  gh.factory<_i964.GetDetailPokeUseCase>(
-      () => _i964.GetDetailPokeUseCaseImpl(gh<_i1049.PokemonRepository>()));
+  gh.factory<_i499.PokemonLocalRepository>(
+      () => _i914.PokemonLocalRepositoryImpl(gh<_i252.PokemonDatasource>()));
+  gh.factory<_i930.PokemonRemoteRepository>(
+      () => _i792.PokemonRemoteRepositoryImpl(gh<_i946.PokemonDatasource>()));
+  gh.factory<_i297.PokemonService>(
+      () => _i656.PokemonServiceImpl(gh<_i930.PokemonRemoteRepository>()));
   gh.factory<_i898.GetPokemonUseCase>(
-      () => _i898.GetPokemonUseCaseImpl(gh<_i1049.PokemonRepository>()));
+      () => _i898.GetPokemonUseCaseImpl(gh<_i297.PokemonService>()));
+  gh.factory<_i964.GetDetailPokeUseCase>(
+      () => _i964.GetDetailPokeUseCaseImpl(gh<_i297.PokemonService>()));
   return getIt;
 }
-
-class _$NetworkModule extends _i567.NetworkModule {}

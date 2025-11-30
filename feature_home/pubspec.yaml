@@ -10,7 +10,9 @@ dependencies:
   flutter:
     sdk: flutter
   core:
+    path: ../core
   core_ui:
+    path: ../core_ui
   cupertino_icons:
   flutter_bloc:
   get_it:

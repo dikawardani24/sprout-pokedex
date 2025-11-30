@@ -2,8 +2,17 @@ library core;
 
 export './config/app_config.dart';
 
+export './models/app_ablility.dart';
 export './models/app_pokemon.dart';
 export './models/app_pokemon_detail.dart';
+export './models/app_stat.dart';
+export './models/height.dart';
+export './models/pokedex_type_color.dart';
+export './models/skill.dart';
+export './models/species.dart';
+export './models/stat_type.dart';
+export './models/weakness.dart';
+export './models/weight.dart';
 
 export './usecase/cache_image_url_use_case.dart';
 export './usecase/get_detail_poke_use_case.dart';

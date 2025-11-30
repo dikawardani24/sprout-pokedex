@@ -20,7 +20,14 @@ dependencies:
   injectable:
   cached_network_image:
   get_it:
-
+  sqflite:
+  path:
+  json_annotation:
+  intl:
+  api:
+    path: ../api
+  database:
+    path: ../database
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -30,3 +37,4 @@ dev_dependencies:
   mockito:
   mocktail:
   flutter_lints:
+  json_serializable:

@@ -1,4 +1,6 @@
 
+import 'package:api/api.dart';
+import 'package:database/database.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 
@@ -11,4 +13,8 @@ final GetIt getIt = GetIt.instance;
   preferRelativeImports: true,
   asExtension: false,
 )
-void configureCoreDependencies() => $initCore(getIt);
+void configureCoreDependencies() {
+  configureApiDependencies();
+  configureDatabaseDependencies();
+  $initCore(getIt);
+}

@@ -15,7 +15,7 @@ class TabStatsContent extends StatelessWidget {
       color: pokemon.color.secondary,
       fontWeight: FontWeight.bold,
     );
-    final statMap = pokemon.skill.stats;
+    final statMap = pokemon.stats;
     final items = <Widget>[];
     var total = 0;
     var max = 0;

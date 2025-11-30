@@ -1,7 +1,7 @@
+import 'package:api/api.dart';
 import 'package:core/core.dart';
-import 'package:core/datasource/pokemon_datasource.dart';
-import 'package:core/mapper/pokemon_mapper.dart';
-import 'package:core/repository/pokemon_repository.dart';
+import 'package:core/repository/impl/pokemon_remote_repository_impl.dart';
+import 'package:core/repository/pokemon_remote_repository.dart';
 import 'package:core/util/poke_ext.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -11,12 +11,12 @@ import 'package:pokedex/pokedex.dart';
 class MockPokemonDatasource extends Mock implements PokemonDatasource {}
 
 void main() {
-  late PokemonRepository repository;
+  late PokemonRemoteRepository repository;
   late MockPokemonDatasource mockDatasource;
 
   setUp(() {
     mockDatasource = MockPokemonDatasource();
-    repository = PokemonRepositoryImpl(mockDatasource);
+    repository = PokemonRemoteRepositoryImpl(mockDatasource);
   });
 
   group('getPokemonList', () {
@@ -42,7 +42,7 @@ void main() {
       final result = await repository.getPokemonList(limit, offset);
 
       // Assert
-      expect(result, equals(mockPokemonList.map((p) => toAppPokemon(p)).toList()));
+      expect(result, equals(mockPokemonList.map((p) => AppPokemon.from(p)).toList()));
       expect(result.length, 3);
       expect(result[0], isA<AppPokemon>());
       expect(result[0].name, 'bulbasaur');
