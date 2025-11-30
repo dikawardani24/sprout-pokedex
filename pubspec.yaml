@@ -10,17 +10,17 @@ dependencies:
   flutter:
     sdk: flutter
   api:
-    path: ./api
+    path: ./app_core/api
   database:
-    path: ./database
+    path: ./app_core/database
   core:
-    path: ./core
+    path: ./app_core/core
   core_ui:
-    path: ./core_ui
+    path: ./app_core/core_ui
   feature_home:
-    path: ./feature_home
+    path: ./features/feature_home
   feature_detail:
-    path: ./feature_detail
+    path: ./features/feature_detail
   cupertino_icons: ^1.0.8
   pokedex: ^0.3.0
   flutter_svg: ^2.0.9
