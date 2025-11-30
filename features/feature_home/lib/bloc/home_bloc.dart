@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:core/core.dart';
+import 'package:core/models/app_page.dart';
 import 'package:core/usecase/request/cache_img_req.dart';
 import 'package:core/usecase/request/get_pokemon_req.dart';
 import 'package:core_ui/core_ui.dart';
@@ -13,9 +14,7 @@ import 'package:injectable/injectable.dart';
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final GetPokemonUseCase _getPokemonUseCase;
   final CacheImageUrlUseCase _cacheImageUrlUseCase;
-
-  final int _limit = AppConfig.pageLimit();
-
+  
   bool _hasReachedMax = false;
   List<AppPokemon> _pokemons = [];
 
@@ -55,19 +54,19 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     }
   }
   
-  void _updateListPoke(List<AppPokemon> newList, bool isLoadMore) {
-    _hasReachedMax = newList.length < _limit;
+  void _updateListPoke(AppPage<AppPokemon> page, bool isLoadMore) {
+    _hasReachedMax = page.isReachMaxLimit;
     
     // Fire-and-forget image caching - don't block the UI
     Future.microtask(() {
-      final urlList = newList.map((p) => p.imageUrl).toList();
+      final urlList = page.data.map((p) => p.imageUrl).toList();
       _cacheImageUrlUseCase.execute(CacheImgReq(imageUrlList: urlList));
     });
 
     if (isLoadMore) {
-      _pokemons = List.from(_pokemons)..addAll(newList); // Create new list for immutability
+      _pokemons = List.from(_pokemons)..addAll(page.data); // Create new list for immutability
     } else {
-      _pokemons = List.from(newList);
+      _pokemons = List.from(page.data);
       _hasReachedMax = false;
     }
   }
@@ -78,7 +77,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   ) async {
     if (isLoadMore && _hasReachedMax) return;
     _emitLoadingGetPoke(emit, isLoadMore);
-    final result = await _getPokemonUseCase.execute(GetPokemonReq(limit: _limit, offset: _pokemons.length));
+    final result = await _getPokemonUseCase.execute(GetPokemonReq(offset: _pokemons.length));
     result.when(
         success: (data) {
           _updateListPoke(data, isLoadMore);
