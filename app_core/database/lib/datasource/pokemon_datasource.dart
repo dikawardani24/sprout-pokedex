@@ -8,5 +8,5 @@ abstract class PokemonDatasource {
   Future<void> saveDetail(PokemonDetailEntity entity);
   Future<List<PokemonEntity>> getPokemonList(int limit, int offset);
   Future<PokemonDetailEntity?> getPokemon(int id);
-  Future<PokemonViewEntity> getViewById(int id);
+  Future<PokemonViewEntity?> getViewById(int id);
 }

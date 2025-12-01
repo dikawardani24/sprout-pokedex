@@ -78,7 +78,7 @@ class PokemonLocalDatasourceImpl implements PokemonDatasource {
   }
 
   @override
-  Future<PokemonViewEntity> getViewById(int id) async {
+  Future<PokemonViewEntity?> getViewById(int id) async {
     final db = await _openHelper.db;
     final result = await db.query(
       PokemonView.name,
@@ -86,7 +86,7 @@ class PokemonLocalDatasourceImpl implements PokemonDatasource {
       whereArgs: [id],
     );
 
-    if (result.isEmpty) throw Exception("No pokemon view for id $id");
+    if (result.isEmpty) return null;
     return PokemonViewEntity.fromMap(result.first);
   }
 }

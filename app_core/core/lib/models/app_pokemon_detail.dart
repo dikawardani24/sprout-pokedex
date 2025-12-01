@@ -57,5 +57,5 @@ class AppPokemonDetail extends Equatable {
 
   PokemonDetailEntity toEntity() => AppPokemonDetailMapper.toEntity(this);
   
-  factory AppPokemonDetail.fromEntity(PokemonViewEntity entity ) => AppPokemonDetailMapper.fromEntity(entity);
+  static AppPokemonDetail? fromEntity(PokemonViewEntity entity) => AppPokemonDetailMapper.fromEntity(entity);
 }

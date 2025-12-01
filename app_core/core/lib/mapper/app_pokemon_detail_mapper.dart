@@ -53,7 +53,10 @@ class AppPokemonDetailMapper {
       weaknesses: p.weaknesses.map((e) => e.name).toList().join(",")
   );
 
-  static AppPokemonDetail fromEntity(PokemonViewEntity entity) {
+  static AppPokemonDetail? fromEntity(PokemonViewEntity entity) {
+    final weight = Weight(entity.weight);
+    if (weight.value <= 0 || entity.name.isEmpty) return null;
+
     return AppPokemonDetail(
       id: entity.id,
       displayId: entity.id.pokenumber,

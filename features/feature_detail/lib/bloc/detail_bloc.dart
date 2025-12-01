@@ -17,14 +17,25 @@ class DetailBloc extends Bloc<DetailEvent, DetailState>{
       _getDetailPokemon,
       transformer: throttleDroppable(const Duration(milliseconds: 100)),
     );
+
+    on<RefreshDetailEvent>(
+      _refreshDetailPokemon,
+      transformer: throttleDroppable(const Duration(milliseconds: 100)),
+    );
   }
 
-  Future<void> _getDetailPokemon(GetDetailEvent event, Emitter<DetailState> emit) async {
+  Future<void> _getDetailPokemonExec(int id, bool isRefresh,Emitter<DetailState> emit) async {
     emit(const DetailState.loading());
-    final result = await _getDetailPokeUseCase.execute(GetDetailReq(id: event.id));
+    final result = await _getDetailPokeUseCase.execute(GetDetailReq(id: id, forceFromRemote: isRefresh));
     result.when(
         success: (data) =>  emit(DetailState.loaded(data)),
         error: (err) => emit(DetailState.error(getErrorMessage(err)))
     );
   }
+
+  Future<void> _refreshDetailPokemon(RefreshDetailEvent event, Emitter<DetailState> emit) async =>
+    await _getDetailPokemonExec(event.id, true, emit);
+
+  Future<void> _getDetailPokemon(GetDetailEvent event, Emitter<DetailState> emit) async =>
+      await _getDetailPokemonExec(event.id, false, emit);
 }

@@ -25,6 +25,7 @@ import '../service/network_service.dart' as _i724;
 import '../usecase/cache_image_url_use_case.dart' as _i1054;
 import '../usecase/get_detail_poke_use_case.dart' as _i964;
 import '../usecase/get_pokemon_use_ase.dart' as _i898;
+import '../usecase/validate_connection_use_case.dart' as _i290;
 import 'core_module.dart' as _i154;
 
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -48,14 +49,19 @@ _i174.GetIt $initCore(
       () => _i914.PokemonLocalRepositoryImpl(gh<_i252.PokemonDatasource>()));
   gh.factory<_i930.PokemonRemoteRepository>(
       () => _i792.PokemonRemoteRepositoryImpl(gh<_i946.PokemonDatasource>()));
+  gh.factory<_i290.ValidateConnectionUseCase>(
+      () => _i290.ValidateConnectionUseCaseImpl(gh<_i724.NetworkService>()));
+  gh.factory<_i964.GetDetailPokeUseCase>(() => _i964.GetDetailPokeUseCaseImpl(
+        gh<_i930.PokemonRemoteRepository>(),
+        gh<_i499.PokemonLocalRepository>(),
+        gh<_i290.ValidateConnectionUseCase>(),
+      ));
   gh.factory<_i898.GetPokemonUseCase>(() => _i898.GetPokemonUseCaseImpl(
         gh<_i930.PokemonRemoteRepository>(),
         gh<_i499.PokemonLocalRepository>(),
-        gh<_i724.NetworkService>(),
         gh<_i669.DataValidityPref>(),
+        gh<_i290.ValidateConnectionUseCase>(),
       ));
-  gh.factory<_i964.GetDetailPokeUseCase>(() =>
-      _i964.GetDetailPokeUseCaseImpl(gh<_i930.PokemonRemoteRepository>()));
   return getIt;
 }
 

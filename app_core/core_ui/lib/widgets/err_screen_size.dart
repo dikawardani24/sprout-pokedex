@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../res/color_res.dart';
 import '../res/dimen_res.dart';
+import '../res/image_res.dart';
 import '../res/string_res.dart';
 
 class AppErrorScreenSize extends StatelessWidget{
@@ -15,8 +17,22 @@ class AppErrorScreenSize extends StatelessWidget{
   Widget build(BuildContext context) {
     return Center(
         child: Padding(
-          padding: EdgeInsetsGeometry.all(DimenRes.size_16), 
-          child: Text(message)
+            padding: EdgeInsetsGeometry.all(DimenRes.size_16),
+            child: Stack(
+              children: [
+                Align(
+                  alignment: Alignment.center,
+                  child: Image.asset(
+                    ImageRes.pokeBall,
+                    color: ColorRes.white.withAlpha(20),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.center,
+                  child: Text(message, textAlign: TextAlign.center,),
+                )
+              ],
+            )
         )
     );
   }

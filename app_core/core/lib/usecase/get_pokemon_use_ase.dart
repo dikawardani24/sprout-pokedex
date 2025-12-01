@@ -1,4 +1,5 @@
 import 'package:app_preference/app_preference.dart';
+import 'package:core/usecase/validate_connection_use_case.dart';
 import 'package:database/database.dart';
 import 'package:injectable/injectable.dart';
 
@@ -7,7 +8,6 @@ import '../models/app_page.dart';
 import '../models/app_pokemon.dart';
 import '../repository/pokemon_local_repository.dart';
 import '../repository/pokemon_remote_repository.dart';
-import '../service/network_service.dart';
 import 'request/get_pokemon_req.dart';
 import 'use_case.dart';
 
@@ -17,17 +17,11 @@ abstract class GetPokemonUseCase extends UseCase<GetPokemonReq, AppPage<AppPokem
 class GetPokemonUseCaseImpl implements GetPokemonUseCase  {
   final PokemonRemoteRepository _remoteRepository;
   final PokemonLocalRepository _localRepository;
-  final NetworkService _networkService;
   final DataValidityPref _dataValidityPref;
+  final ValidateConnectionUseCase _validateConnectionUseCase;
   final _limit = AppConfig.pageLimit();
 
-  GetPokemonUseCaseImpl(this._remoteRepository, this._localRepository, this._networkService, this._dataValidityPref);
-
-  Future<void> _validateConnection() async {
-    if (AppConfig.isWeb || AppConfig.isDesktop) return;
-    final isConnected = await _networkService.isConnected();
-    if (!isConnected) throw Exception("No internet connection");
-  }
+  GetPokemonUseCaseImpl(this._remoteRepository, this._localRepository, this._dataValidityPref, this._validateConnectionUseCase);
 
   Future<List<AppPokemon>> _fetchRemote(int offset) async =>
       await _remoteRepository.getPokemonList(_limit, offset);
@@ -39,7 +33,7 @@ class GetPokemonUseCaseImpl implements GetPokemonUseCase  {
   );
 
   Future<AppPage<AppPokemon>> _fetchRemoteAndUpdateLocal(int offset) async {
-    await _validateConnection();
+    await _validateConnectionUseCase.execute();
     final data = await _fetchRemote(offset);
     if (!AppConfig.isWeb) {
       await _localRepository.saveList(data);

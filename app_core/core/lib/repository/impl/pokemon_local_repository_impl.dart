@@ -18,14 +18,21 @@ class PokemonLocalRepositoryImpl implements PokemonLocalRepository {
   }
 
   @override
-  Future<AppPokemonDetail> getDetail(int id) async {
+  Future<AppPokemonDetail?> getDetail(int id) async {
     final entity = await _localDatasource.getViewById(id);
-    return AppPokemonDetail.fromEntity(entity);
+    if (entity != null) return AppPokemonDetail.fromEntity(entity);
+    return null;
   }
 
   @override
   Future<List<AppPokemon>> getPokemonList(int limit, int offset) async {
     final listEntity = await _localDatasource.getPokemonList(limit, offset);
     return listEntity.map((entity) => AppPokemon.fromEntity(entity)).toList();
+  }
+
+  @override
+  Future<void> saveDetail(AppPokemonDetail detail) async {
+    final entity = detail.toEntity();
+    await _localDatasource.saveDetail(entity);
   }
 }

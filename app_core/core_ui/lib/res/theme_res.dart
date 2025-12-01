@@ -20,6 +20,7 @@ class ThemeRes {
       brightness: _brightness(darkMode),
       fontFamily: FontRes.poppins,
       appBarTheme: _appBarTheme,
+      highlightColor: ColorRes.red.withAlpha(80),
       colorScheme: ColorScheme.fromSwatch(
           backgroundColor: _bgColor(darkMode),
           brightness: _brightness(darkMode)

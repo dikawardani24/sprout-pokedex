@@ -10,3 +10,12 @@ class GetDetailEvent extends DetailEvent {
   @override
   List<Object?> get props => [id];
 }
+
+class RefreshDetailEvent extends DetailEvent {
+  final int id;
+
+  RefreshDetailEvent(this.id);
+
+  @override
+  List<Object?> get props => [id];
+}
