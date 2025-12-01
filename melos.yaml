@@ -1,10 +1,13 @@
 name: sprout_pokedex
 
 packages:
-  - "core"
-  - "core_ui"
-  - "feature_home"
-  - "feature_detail"
+  - "./app_core/app_preference"
+  - "./app_core/api"
+  - "./app_core/database"
+  - "./app_core/core"
+  - "./app_core/core_ui"
+  - "./features/feature_home"
+  - "./features/feature_detail"
   - "."  # Main app
 
 commands:

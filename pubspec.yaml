@@ -9,14 +9,18 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  api:
+    path: ./app_core/api
+  database:
+    path: ./app_core/database
   core:
-    path: ./core
+    path: ./app_core/core
   core_ui:
-    path: ./core_ui
+    path: ./app_core/core_ui
   feature_home:
-    path: ./feature_home
+    path: ./features/feature_home
   feature_detail:
-    path: ./feature_detail
+    path: ./features/feature_detail
   cupertino_icons: ^1.0.8
   pokedex: ^0.3.0
   flutter_svg: ^2.0.9
@@ -32,6 +36,14 @@ dependencies:
   flutter_native_splash: ^2.4.7
   flutter_launcher_icons: ^0.14.4
   freezed_annotation: ^2.4.4
+  sqflite: ^2.4.2
+  path: ^1.9.1
+  json_annotation: ^4.9.0
+  intl: ^0.20.2
+  shared_preferences: ^2.5.3
+  connectivity_plus: ^7.0.0
+  sqflite_common_ffi: ^2.4.0
+  http_interceptor: ^1.0.2
 
 dev_dependencies:
   flutter_test:
@@ -45,6 +57,7 @@ dev_dependencies:
   flutter_lints: ^4.0.0
   freezed: ^2.5.8
   melos: ^3.4.0
+  json_serializable: ^6.9.5
 
 flutter:
   uses-material-design: true

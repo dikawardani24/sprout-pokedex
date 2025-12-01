@@ -1,0 +1,33 @@
+name: database
+description: "A new Flutter module project."
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.5.3
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons:
+  get_it:
+  injectable:
+  sqflite:
+  path:
+  sqflite_common_ffi:
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints:
+  build_runner:
+  injectable_generator:
+  mocktail:
+  mockito:
+
+flutter:
+  uses-material-design: true
+
+  module:
+    androidX: true
+    androidPackage: com.example.database
+    iosBundleIdentifier: com.example.database

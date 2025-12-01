@@ -1,0 +1,43 @@
+name: core
+description: "Core utilities and shared code for Sprout Pokedex"
+version: 1.0.0
+
+environment:
+  sdk: ^3.5.3  # ← KEEP THIS!
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  api:
+    path: ../api
+  database:
+    path: ../database
+  app_preference:
+    path: ../app_preference
+  equatable:
+  flutter_bloc:
+  bloc_concurrency:
+  stream_transform:
+  collection:
+  freezed_annotation:
+  pokedex:
+  injectable:
+  cached_network_image:
+  get_it:
+  sqflite:
+  path:
+  json_annotation:
+  intl:
+  connectivity_plus:
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  build_runner:
+  freezed:
+  injectable_generator:
+  mockito:
+  mocktail:
+  flutter_lints:
+  json_serializable:
