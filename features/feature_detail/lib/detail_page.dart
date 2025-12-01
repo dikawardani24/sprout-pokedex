@@ -48,11 +48,12 @@ class _DetailPageState extends State<DetailPage> {
                         loading: () => const Loading(),
                         loaded: (info) => LayoutBuilder(
                           builder: (context, constraints) {
+                            if (constraints.maxHeight < 400) return AppErrorScreenSize();
                             if (context.isBigScreen())  return DetailLandscape(detail: info);
                             return DetailPortrait(detail: info);
                           },
                         ),
-                        error: (message) => ErrorWidget(message)
+                        error: (message) => AppErrorWidget(message: message)
                     );
                   },
                   listener: (c, state) {

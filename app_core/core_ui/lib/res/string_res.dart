@@ -35,4 +35,5 @@ class StringRes {
   static const errNoInternet = 'No internet connection. Please check your network.';
   static const errServer = 'Server error. Please try again later.';
   static const errUnknown = 'An unexpected error occurred. Please try again.';
+  static const errScreenTooSmall = "You need to change your window size to see the content";
 }

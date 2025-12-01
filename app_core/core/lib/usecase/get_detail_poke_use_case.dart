@@ -22,7 +22,9 @@ class GetDetailPokeUseCaseImpl implements GetDetailPokeUseCase {
     try {
       final detail = await _remoteRepository.getDetail(req.id);
       return Result.success(detail);
-    } on Exception catch(err) {
+    } on Exception catch(err, s) {
+      print(err);
+      print(s);
       return Result.error(err);
     }
   }

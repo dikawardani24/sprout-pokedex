@@ -23,3 +23,4 @@ export './widgets/error_widget.dart';
 export './widgets/loading.dart';
 export './widgets/min_width.dart';
 export './widgets/app_text.dart';
+export './widgets/err_screen_size.dart';

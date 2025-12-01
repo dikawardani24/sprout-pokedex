@@ -43,6 +43,7 @@ dependencies:
   shared_preferences: ^2.5.3
   connectivity_plus: ^7.0.0
   sqflite_common_ffi: ^2.4.0
+  http_interceptor: ^1.0.2
 
 dev_dependencies:
   flutter_test:
