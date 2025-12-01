@@ -25,6 +25,11 @@ class _DetailPageState extends State<DetailPage> {
   var _appBg = ColorRes.transparent;
   var _iconNavBackColor = ColorRes.black;
 
+  bool _isScreenTooSmall(BoxConstraints constraints) {
+    int min = 400;
+    return constraints.maxHeight < min || constraints.maxWidth < min;
+  }
+
   @override
   Widget build(BuildContext context) {
     Alignment alignment = Alignment.topRight;
@@ -48,7 +53,7 @@ class _DetailPageState extends State<DetailPage> {
                         loading: () => const Loading(),
                         loaded: (info) => LayoutBuilder(
                           builder: (context, constraints) {
-                            if (constraints.maxHeight < 400) return AppErrorScreenSize();
+                            if (_isScreenTooSmall(constraints)) return AppErrorScreenSize();
                             if (context.isBigScreen())  return DetailLandscape(detail: info);
                             return DetailPortrait(detail: info);
                           },
