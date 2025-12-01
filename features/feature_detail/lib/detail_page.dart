@@ -27,7 +27,7 @@ class _DetailPageState extends State<DetailPage> with SingleTickerProviderStateM
   var _showRefresh = false;
 
   bool _isScreenTooSmall(BoxConstraints constraints) {
-    int min = 400;
+    int min = 200;
     return constraints.maxHeight < min || constraints.maxWidth < min;
   }
 

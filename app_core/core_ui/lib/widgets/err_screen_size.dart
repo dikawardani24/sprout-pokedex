@@ -24,7 +24,7 @@ class AppErrorScreenSize extends StatelessWidget{
                   alignment: Alignment.center,
                   child: Image.asset(
                     ImageRes.pokeBall,
-                    color: ColorRes.white.withAlpha(20),
+                    color: Theme.of(context).iconTheme.color?.withAlpha(80),
                   ),
                 ),
                 Align(
