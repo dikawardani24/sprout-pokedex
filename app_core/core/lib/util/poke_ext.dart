@@ -73,9 +73,11 @@ extension PokeSpeciesExt on PokemonSpecies? {
 }
 
 extension PokeWeakExt on String {
-
-  PokedexTypeColor get pokemonColor => PokedexTypeColor.values.firstWhere(
-        (element) => toLowerCase() == element.name,
-    orElse: () => PokedexTypeColor.unknown,
-  );
+  PokedexTypeColor get pokemonColor {
+    final toFind = toLowerCase();
+    final found = PokedexTypeColor.values.firstWhere((element) => toFind == element.name,
+      orElse: () => PokedexTypeColor.unknown,
+    );
+    return found;
+  }
 }

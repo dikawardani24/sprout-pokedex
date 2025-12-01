@@ -25,22 +25,6 @@ class _DetailPageState extends State<DetailPage> with SingleTickerProviderStateM
   var _appBg = ColorRes.transparent;
   var _iconNavBackColor = ColorRes.black;
   var _showRefresh = false;
-  late AnimationController _rotationController;
-
-  @override
-  void initState() {
-    super.initState();
-    _rotationController = AnimationController(
-      duration: const Duration(seconds: 25),
-      vsync: this,
-    )..repeat();
-  }
-
-  @override
-  void dispose() {
-    _rotationController.dispose();
-    super.dispose();
-  }
 
   bool _isScreenTooSmall(BoxConstraints constraints) {
     int min = 400;

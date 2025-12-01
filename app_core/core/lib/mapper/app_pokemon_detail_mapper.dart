@@ -57,13 +57,14 @@ class AppPokemonDetailMapper {
     final weight = Weight(entity.weight);
     if (weight.value <= 0 || entity.name.isEmpty) return null;
 
+    final types = entity.types.split(",");
     return AppPokemonDetail(
       id: entity.id,
       displayId: entity.id.pokenumber,
       name: entity.name,
-      types: entity.types.split(","),
+      types: types,
       imageUrl: entity.id.imageUrl,
-      color: entity.types.pokemonColor,
+      color: types.first.pokemonColor,
       baseExp: entity.baseExp,
       weight: Weight(entity.weight),
       height: Height(entity.height),

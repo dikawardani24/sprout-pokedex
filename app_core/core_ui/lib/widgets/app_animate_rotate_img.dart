@@ -32,6 +32,13 @@ class _AppAnimateRotateImgState extends State<AppAnimateRotateImg> with SingleTi
       vsync: this,
     )..repeat();
   }
+
+  @override
+  void dispose() {
+    _rotationController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     if (!widget.isShow) return SizedBox.shrink();
