@@ -46,7 +46,10 @@ _i174.GetIt $initCore(
   gh.factory<_i724.NetworkService>(
       () => _i603.NetworkServiceImpl(connectivity: gh<_i895.Connectivity>()));
   gh.factory<_i499.PokemonLocalRepository>(
-      () => _i914.PokemonLocalRepositoryImpl(gh<_i252.PokemonDatasource>()));
+      () => _i914.PokemonLocalRepositoryImpl(
+            gh<_i252.PokemonDatasource>(),
+            gh<_i252.PokemonDetailDatasource>(),
+          ));
   gh.factory<_i930.PokemonRemoteRepository>(
       () => _i792.PokemonRemoteRepositoryImpl(gh<_i946.PokemonDatasource>()));
   gh.factory<_i290.ValidateConnectionUseCase>(
