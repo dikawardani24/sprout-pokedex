@@ -12,7 +12,7 @@ part 'species.g.dart';
 @JsonSerializable()
 class Species extends Equatable {
   final String name;
-  final String desc;
+  final List<String> desc;
   final int catchRate;
   final String growRate;
   final List<String> eggGroups;
@@ -33,7 +33,7 @@ class Species extends Equatable {
 
   factory Species.from(PokemonSpecies spec) => Species(
     name: (spec.genre ?? "").firstLetterUpperCase,
-    desc: (spec.flavor ?? ""),
+    desc: (spec.flavor ?? []),
     catchRate: spec.captureRate,
     growRate: spec.growthRate.name.replaceAll("-", " ").firstLetterUpperCase,
     eggGroups: spec.eggGroups.map((e) => e.name.firstLetterUpperCase).toList(),

@@ -14,6 +14,7 @@ dependencies:
   sqflite:
   path:
   sqflite_common_ffi:
+  equatable:
 
 dev_dependencies:
   flutter_test:

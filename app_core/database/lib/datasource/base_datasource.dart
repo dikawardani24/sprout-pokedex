@@ -37,7 +37,17 @@ abstract class BaseDatasource<E extends Entity, P> {
 
     await batch.commit(noResult: true);
   }
-  
+
+  Future<void> update(E entity) async {
+    final db = await this.db;
+    db.update(
+      tableName,
+      entity.toMap(),
+      where: "$colId = ?",
+      whereArgs: [entity.primaryKey]
+    );
+  }
+
   Future<E?> findByPrimaryKey(P primaryKey) async {
     final db = await this.db;
     final result = await db.query(

@@ -20,4 +20,10 @@ class PokemonEntity extends Entity {
     name: map[TablePokemon.colName] as String,
     types: map[TablePokemon.colTypes] as String
   );
+
+  @override
+  Object get primaryKey => id;
+
+  @override
+  List<Object?> get props => [id, name, types];
 }

@@ -10,6 +10,13 @@ class TabAboutContent extends StatelessWidget {
 
   const TabAboutContent({super.key, required this.info});
 
+  String _getDesc(Species species) {
+    if (species.desc.length > 3) {
+      return species.desc.take(3).join(" ");
+    }
+    return species.desc.join(" ");
+  }
+
   List<Widget> _data(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     Species species = info.species;
@@ -20,7 +27,7 @@ class TabAboutContent extends StatelessWidget {
     );
 
     return [
-      Text(species.desc, style: TextStyle(color: ColorRes.black),),
+      Text(_getDesc(species), textAlign: TextAlign.justify, style: TextStyle(color: ColorRes.black),),
       Text(StringRes.pokedexData, style: sectionTheme),
       ItemAbout(title: StringRes.species, desc:  species.name),
       ItemAbout(title: StringRes.height, desc: '${info.height.inMeter} m  / ${info.height.inInch().toStringAsFixed(1)}"'),

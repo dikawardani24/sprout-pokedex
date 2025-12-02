@@ -7,6 +7,7 @@ class AppIconButton extends StatelessWidget {
   final IconData icon;
   final GestureTapCallback? onTap;
   final Color iconColor;
+  final Color backgroundColor;
   final double iconSize;
   final EdgeInsetsGeometry? padding;
 
@@ -18,12 +19,13 @@ class AppIconButton extends StatelessWidget {
     this.iconColor = ColorRes.black,
     this.iconSize = DimenRes.size_30,
     this.padding,
+    this.backgroundColor = ColorRes.transparent
   });
 
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: ColorRes.transparent,
+      color: backgroundColor,
       shape: const CircleBorder(),
       clipBehavior: Clip.hardEdge,
       child: InkWell(

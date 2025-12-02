@@ -62,10 +62,16 @@ extension PokeTypeMapper on Type {
 }
 
 extension PokeSpeciesExt on PokemonSpecies? {
-  String? get flavor => this?.flavorTextEntries
-      .firstWhereOrNull((element) => element.language.name == 'en')
-      ?.flavorText
-      .replaceScapeChars();
+  List<String>? get flavor {
+    final entries = (this?.flavorTextEntries ?? [])
+        .where((e) => e.language.name == "en")
+        .map((e) => e.flavorText.replaceScapeChars())
+        .toList();
+
+    if (entries.isEmpty) return null;
+
+    return entries;
+  }
 
   String? get genre => this?.genera
       .firstWhereOrNull((element) => element.language.name == 'en')

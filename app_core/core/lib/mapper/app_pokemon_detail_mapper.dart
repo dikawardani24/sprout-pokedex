@@ -24,7 +24,7 @@ class AppPokemonDetailMapper {
     imageUrl: poke.imageUrl,
     species: Species(
         name: (species.genre ?? "").firstLetterUpperCase,
-        desc: (species.flavor ?? ""),
+        desc: (species.flavor ?? []),
         catchRate: species.captureRate,
         growRate: species.growthRate.name.replaceAll("-", " ").firstLetterUpperCase,
         eggGroups: species.eggGroups.map((e) => e.name.firstLetterUpperCase).toList(),
@@ -40,7 +40,7 @@ class AppPokemonDetailMapper {
   static PokemonDetailEntity toEntity(AppPokemonDetail p) => PokemonDetailEntity(
       id: p.id,
       speciesName: p.species.name,
-      speciesDes: p.species.desc,
+      speciesDes: p.species.desc.join(","),
       height: p.height.value,
       weight: p.weight.value,
       catchRate: p.species.catchRate,
@@ -70,7 +70,7 @@ class AppPokemonDetailMapper {
       height: Height(entity.height),
       species: Species(
           name: entity.speciesName,
-          desc: entity.speciesDes,
+          desc: entity.speciesDes.split(","),
           catchRate: entity.catchRate,
           growRate: entity.growRate,
           eggCycles: entity.eggCycles,

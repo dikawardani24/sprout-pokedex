@@ -64,4 +64,15 @@ class PokemonDetailEntity extends Entity {
     abilities: map[TablePokemonDetail.colAbilities] as String,
     weaknesses: map[TablePokemonDetail.colWeaknesses] as String,
   );
+
+  @override
+  Object get primaryKey => id;
+
+  @override
+  List<Object?> get props => [
+    id, speciesName, speciesDes,
+    height, weight, catchRate,
+    baseExp, growRate, eggGroups,
+    eggCycles, stats, abilities, weaknesses
+  ];
 }

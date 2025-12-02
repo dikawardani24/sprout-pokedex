@@ -38,16 +38,23 @@ class _HomePageState extends State<HomePage> {
     bool hasReachedMax = false,
     String? errorMessage,
   }) {
-    return PokemonList(
-      pokemons: pokemons,
-      isLoadingMore: isLoadingMore,
-      hasReachedMax: hasReachedMax,
-      errorMessage: errorMessage,
-      onTap: (selected) {
-        widget.onTap?.call(this.context, selected);
-      },
-      onRetry: () => _initPokemon(context),
-      scrollController: _controller,
+    return Stack(
+      children: [
+        PokemonList(
+          pokemons: pokemons,
+          isLoadingMore: isLoadingMore,
+          hasReachedMax: hasReachedMax,
+          errorMessage: errorMessage,
+          onTap: (selected) {
+            widget.onTap?.call(this.context, selected);
+          },
+          onRetry: () => _initPokemon(context),
+          scrollController: _controller,
+        ),
+        ScrollTopContainer(
+          scrollController: _controller,
+        )
+      ],
     );
   }
 
