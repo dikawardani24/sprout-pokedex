@@ -23,8 +23,11 @@ class GetPokemonUseCaseImpl implements GetPokemonUseCase  {
 
   GetPokemonUseCaseImpl(this._remoteRepository, this._localRepository, this._dataValidityPref, this._validateConnectionUseCase);
 
-  Future<List<AppPokemon>> _fetchRemote(int offset) async =>
-      await _remoteRepository.getPokemonList(_limit, offset);
+  Future<List<AppPokemon>> _fetchRemote(int offset) async {
+    final data = await _remoteRepository.getPokemonList(_limit, offset);
+    await _dataValidityPref.setLastUpdateTime(DateTime.now());
+    return data;
+  }
 
   AppPage<AppPokemon> from(int offset, List<AppPokemon> list) => AppPage(
       isReachMaxLimit: list.length < _limit,
@@ -50,7 +53,10 @@ class GetPokemonUseCaseImpl implements GetPokemonUseCase  {
 
   Future<AppPage<AppPokemon>> _getListPokemon(int offset) async {
     final isShouldUpdateLocal = await _dataValidityPref.isDataOlderThanOneDay();
-    if (isShouldUpdateLocal) return await _fetchRemoteAndUpdateLocal(offset);
+    if (isShouldUpdateLocal) {
+      await _localRepository.deleteAll();
+      return await _fetchRemoteAndUpdateLocal(offset);
+    };
     return await _getFromLocal(offset);
   }
 

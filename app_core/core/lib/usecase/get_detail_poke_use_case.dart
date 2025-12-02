@@ -1,3 +1,4 @@
+import 'package:app_preference/app_preference.dart';
 import 'package:core/repository/pokemon_local_repository.dart';
 import 'package:core/usecase/validate_connection_use_case.dart';
 import 'package:database/database.dart';
@@ -17,8 +18,9 @@ class GetDetailPokeUseCaseImpl implements GetDetailPokeUseCase {
   final PokemonRemoteRepository _remoteRepository;
   final PokemonLocalRepository _localRepository;
   final ValidateConnectionUseCase _validateConnectionUseCase;
+  final DataValidityPref _dataValidityPref;
 
-  GetDetailPokeUseCaseImpl(this._remoteRepository, this._localRepository, this._validateConnectionUseCase);
+  GetDetailPokeUseCaseImpl(this._remoteRepository, this._localRepository, this._validateConnectionUseCase, this._dataValidityPref);
 
   Future<AppPokemonDetail> _fetchRemote(int id) async {
     await _validateConnectionUseCase.execute();
@@ -38,6 +40,8 @@ class GetDetailPokeUseCaseImpl implements GetDetailPokeUseCase {
     DbInit.dbPlatform = AppConfig.dbPlatform;
 
     try {
+      final shouldDeleteLocal = await _dataValidityPref.isDataOlderThanOneDay();
+      if (shouldDeleteLocal) await _localRepository.deleteAll();
       Future<AppPokemonDetail> service = _fetchLocal(req.id);
       if (req.forceFromRemote) {
         service = _fetchRemote(req.id);

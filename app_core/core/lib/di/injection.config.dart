@@ -58,6 +58,7 @@ _i174.GetIt $initCore(
         gh<_i930.PokemonRemoteRepository>(),
         gh<_i499.PokemonLocalRepository>(),
         gh<_i290.ValidateConnectionUseCase>(),
+        gh<_i669.DataValidityPref>(),
       ));
   gh.factory<_i898.GetPokemonUseCase>(() => _i898.GetPokemonUseCaseImpl(
         gh<_i930.PokemonRemoteRepository>(),

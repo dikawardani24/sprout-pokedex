@@ -8,7 +8,7 @@ part of 'species.dart';
 
 Species _$SpeciesFromJson(Map<String, dynamic> json) => Species(
       name: json['name'] as String,
-      desc: json['desc'] as List<String>,
+      desc: (json['desc'] as List<dynamic>).map((e) => e as String).toList(),
       catchRate: (json['catchRate'] as num).toInt(),
       growRate: json['growRate'] as String,
       eggGroups:
