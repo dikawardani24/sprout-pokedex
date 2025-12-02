@@ -27,3 +27,4 @@ export './widgets/err_screen_size.dart';
 export './widgets/app_icon_button.dart';
 export './widgets/app_animate_rotate_img.dart';
 export './widgets/scroll_top_button.dart';
+export './widgets/app_long_desc.dart';

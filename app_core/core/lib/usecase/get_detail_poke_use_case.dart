@@ -41,7 +41,7 @@ class GetDetailPokeUseCaseImpl implements GetDetailPokeUseCase {
 
     try {
       final shouldDeleteLocal = await _dataValidityPref.isDataOlderThanOneDay();
-      if (shouldDeleteLocal) await _localRepository.deleteAll();
+      if (shouldDeleteLocal) await _localRepository.deletePokemonDetails();
       Future<AppPokemonDetail> service = _fetchLocal(req.id);
       if (req.forceFromRemote) {
         service = _fetchRemote(req.id);

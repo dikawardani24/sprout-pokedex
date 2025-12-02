@@ -38,8 +38,8 @@ class PokemonLocalRepositoryImpl implements PokemonLocalRepository {
   }
 
   @override
-  Future<void> deleteAll() async {
-    await _pokemonDatasource.deleteAll();
-    await _pokemonDetailDatasource.deleteAll();
-  }
+  Future<void> deletePokemon() async => await _pokemonDatasource.deleteAll();
+
+  @override
+  Future<void> deletePokemonDetails() async => await _pokemonDetailDatasource.deleteAll();
 }

@@ -5,5 +5,6 @@ abstract class PokemonLocalRepository {
   Future<AppPokemonDetail?> getDetail(int id);
   Future<void> saveList(List<AppPokemon> list);
   Future<void> saveDetail(AppPokemonDetail detail);
-  Future<void> deleteAll();
+  Future<void> deletePokemon();
+  Future<void> deletePokemonDetails();
 }

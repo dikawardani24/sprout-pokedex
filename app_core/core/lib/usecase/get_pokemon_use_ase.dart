@@ -54,7 +54,7 @@ class GetPokemonUseCaseImpl implements GetPokemonUseCase  {
   Future<AppPage<AppPokemon>> _getListPokemon(int offset) async {
     final isShouldUpdateLocal = await _dataValidityPref.isDataOlderThanOneDay();
     if (isShouldUpdateLocal) {
-      await _localRepository.deleteAll();
+      await _localRepository.deletePokemon();
       return await _fetchRemoteAndUpdateLocal(offset);
     };
     return await _getFromLocal(offset);
