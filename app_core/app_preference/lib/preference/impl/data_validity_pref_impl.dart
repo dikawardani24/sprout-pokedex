@@ -31,7 +31,6 @@ class DataValidityPrefImpl implements DataValidityPref {
 
   @override
   Future<bool> isDataOlderThanOneDay() async {
-    return true;
     final lastUpdate = await getLastUpdateTime();
     if (lastUpdate == null) return true; // No data yet
 
