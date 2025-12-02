@@ -2,19 +2,18 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-import '../res/color_res.dart';
 import '../res/image_res.dart';
 
 class AppAnimateRotateImg extends StatefulWidget {
   final bool isShow;
   final Alignment alignment;
-  final BoxConstraints boxConstraints;
+  final Color color;
 
   const AppAnimateRotateImg({
     super.key,
     required this.isShow,
     required this.alignment,
-    required this.boxConstraints
+    required this.color
   });
 
   @override
@@ -56,7 +55,7 @@ class _AppAnimateRotateImgState extends State<AppAnimateRotateImg> with SingleTi
           },
           child: Image.asset(
             ImageRes.pokeBall,
-            color: ColorRes.white.withAlpha(20),
+            color: widget.color,
           ),
         ),
       ),

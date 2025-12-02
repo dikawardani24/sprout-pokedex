@@ -4,6 +4,9 @@ class StringRes {
   static const stats = "Stats";
   static const evolution = "Evolution";
   static const pokedexData = 'Pokédex Data';
+  static const description = "Description";
+  static const readMore = "Read more";
+  static const hide = "Hide";
   static const species = "Species";
   static const height = "Height";
   static const weight = "Weight";

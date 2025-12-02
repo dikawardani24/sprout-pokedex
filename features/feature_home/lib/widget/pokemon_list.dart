@@ -29,15 +29,10 @@ class PokemonList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Positioned(
-          top: -50,
-          right: -50,
-          child: Image.asset(
-            ImageRes.pokeBall,
-            color: ColorRes.grey.withAlpha(60),
-            width: DimenRes.size_200,
-            height: DimenRes.size_200,
-          ),
+        AppAnimateRotateImg(
+          isShow: true,
+          alignment: Alignment.topRight,
+          color: ColorRes.grey.withAlpha(70),
         ),
 
         CustomScrollView(

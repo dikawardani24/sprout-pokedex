@@ -31,11 +31,6 @@ extension PokemonMapper on Pokemon {
 
   String get imageUrl => id.imageUrl;
 
-  // PokedexTypeColor get pokedexTypeColor => PokedexTypeColor.values.firstWhere(
-  //       (element) => types.first.type.name.toLowerCase() == element.name,
-  //   orElse: () => PokedexTypeColor.unknown,
-  // );
-
   PokedexTypeColor get pokedexTypeColor => types.map((e) => e.type.name).toList()
       .pokedexTypeColor;
 }
@@ -69,8 +64,8 @@ extension PokeSpeciesExt on PokemonSpecies? {
         .toList();
 
     if (entries.isEmpty) return null;
-
-    return entries;
+    final seen = <String>{};
+    return entries.where((item) => seen.add(item.toLowerCase())).toList();
   }
 
   String? get genre => this?.genera

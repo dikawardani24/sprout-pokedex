@@ -1,7 +1,5 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
-
-import '../res/color_res.dart';
-import '../res/dimen_res.dart';
 
 class AppLongDesc extends StatefulWidget{
   final String desc;
@@ -17,8 +15,8 @@ class _AppLongDescState extends State<AppLongDesc> {
   bool _showReadMore = true;
 
   String get _titleButton {
-    if (_showReadMore) return "Read more";
-    return "Hide";
+    if (_showReadMore) return StringRes.readMore;
+    return StringRes.hide;
   }
 
   void _updateState() => setState(() {

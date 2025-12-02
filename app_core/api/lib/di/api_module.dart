@@ -8,7 +8,6 @@ import '../log_interceptor.dart';
 @module
 abstract class ApiModule {
   PokeAPIClient? _client() {
-    return null;
     if (kDebugMode) {
       final httpClient = InterceptedClient.build(
         interceptors: [LoggingInterceptor()],

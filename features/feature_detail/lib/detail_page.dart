@@ -1,4 +1,6 @@
+import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
+import 'package:feature_detail/widgets/detail_landscape_desktop_widget.dart';
 import 'package:feature_detail/widgets/detail_landscape_widget.dart';
 import 'package:feature_detail/widgets/detail_portrait.dart';
 import 'package:flutter/material.dart';
@@ -24,10 +26,15 @@ class DetailPage extends StatefulWidget {
 class _DetailPageState extends State<DetailPage> with SingleTickerProviderStateMixin {
   var _appBg = ColorRes.transparent;
   var _iconNavBackColor = ColorRes.black;
+  var _color = ColorRes.white.withAlpha(20);
   var _showRefresh = false;
+
+  bool get _isResizeable => AppConfig.isDesktop || AppConfig.isWeb;
 
   bool _isScreenTooSmall(BoxConstraints constraints) {
     int min = 200;
+
+    if (_isResizeable) min = 400;
     return constraints.maxHeight < min || constraints.maxWidth < min;
   }
 
@@ -47,6 +54,15 @@ class _DetailPageState extends State<DetailPage> with SingleTickerProviderStateM
     ],
   );
 
+  Widget _buildLoaded(AppPokemonDetail info, BuildContext context, BoxConstraints constraints) {
+    if (_isScreenTooSmall(constraints)) return AppErrorScreenSize();
+    if (context.isBigScreen()) {
+      if (_isResizeable) return DetailLandscapeDesktopWidget(detail: info);
+      return DetailLandscape(detail: info);
+    }
+    return DetailPortrait(detail: info);
+  }
+
   Widget _createBody() => SafeArea(
     child: BlocConsumer<DetailBloc, DetailState>(
         builder: (c, state) {
@@ -54,11 +70,7 @@ class _DetailPageState extends State<DetailPage> with SingleTickerProviderStateM
               initial: () => const Loading(),
               loading: () => const Loading(),
               loaded: (info) => LayoutBuilder(
-                builder: (context, constraints) {
-                  if (_isScreenTooSmall(constraints)) return AppErrorScreenSize();
-                  if (context.isBigScreen()) return DetailLandscape(detail: info);
-                  return DetailPortrait(detail: info);
-                },
+                builder: (context, constraints) => _buildLoaded(info, context, constraints),
               ),
               error: (message) => AppErrorWidget(message: message)
           );
@@ -66,9 +78,12 @@ class _DetailPageState extends State<DetailPage> with SingleTickerProviderStateM
         listener: (c, state) {
           state.whenOrNull(
               loaded: (info) => setState(() {
-                _appBg = info.color.secondary;
+                final colorDex = info.color;
+                _appBg = colorDex.secondary;
+                _color = colorDex.primary.withAlpha(50);
                 _iconNavBackColor = ColorRes.white;
                 _showRefresh = true;
+
               })
           );
         }
@@ -78,11 +93,11 @@ class _DetailPageState extends State<DetailPage> with SingleTickerProviderStateM
   Widget _createImageHeader() => LayoutBuilder(
     builder: (c, a) {
       Alignment alignment = Alignment.topRight;
-      if (c.isBigScreen()) alignment = Alignment.bottomLeft;
+      if (c.isBigScreen()) alignment = Alignment.topLeft;
       return AppAnimateRotateImg(
-        boxConstraints: a,
         isShow: !_isScreenTooSmall(a),
         alignment: alignment,
+        color: _color,
       );
     }
   );

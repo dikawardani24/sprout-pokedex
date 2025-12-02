@@ -7,8 +7,9 @@ import 'package:flutter/material.dart';
 
 class TabAboutContent extends StatelessWidget {
   final AppPokemonDetail info;
+  final bool showDesc;
 
-  const TabAboutContent({super.key, required this.info});
+  const TabAboutContent({super.key, required this.info, this.showDesc = true});
 
   String _getDesc(Species species) {
     if (species.desc.length > 5) {
@@ -27,7 +28,8 @@ class TabAboutContent extends StatelessWidget {
     );
 
     return [
-      AppLongDesc(desc: _getDesc(species), textColor: info.color.secondary,),
+      if(showDesc) Text(StringRes.description, style: sectionTheme),
+      if (showDesc) AppLongDesc(desc: _getDesc(species), textColor: info.color.secondary,),
       Text(StringRes.pokedexData, style: sectionTheme),
       ItemAbout(title: StringRes.species, desc:  species.name),
       ItemAbout(title: StringRes.height, desc: '${info.height.inMeter} m  / ${info.height.inInch().toStringAsFixed(1)}"'),
