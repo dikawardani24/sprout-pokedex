@@ -7,32 +7,39 @@ import '../pokemon_local_repository.dart';
 
 @Injectable(as: PokemonLocalRepository)
 class PokemonLocalRepositoryImpl implements PokemonLocalRepository {
-  final PokemonDatasource _localDatasource;
+  final PokemonDatasource _pokemonDatasource;
+  final PokemonDetailDatasource _pokemonDetailDatasource;
 
-  PokemonLocalRepositoryImpl(this._localDatasource);
+  PokemonLocalRepositoryImpl(this._pokemonDatasource, this._pokemonDetailDatasource);
 
   @override
   Future<void> saveList(List<AppPokemon> list) async {
     final entities = list.map((domain) => domain.toEntity()).toList();
-    await _localDatasource.saveBulk(entities);
+    await _pokemonDatasource.saveBulk(entities);
   }
 
   @override
   Future<AppPokemonDetail?> getDetail(int id) async {
-    final entity = await _localDatasource.getViewById(id);
+    final entity = await _pokemonDetailDatasource.getViewById(id);
     if (entity != null) return AppPokemonDetail.fromEntity(entity);
     return null;
   }
 
   @override
   Future<List<AppPokemon>> getPokemonList(int limit, int offset) async {
-    final listEntity = await _localDatasource.getPokemonList(limit, offset);
+    final listEntity = await _pokemonDatasource.findByLimitAndOffset(limit, offset);
     return listEntity.map((entity) => AppPokemon.fromEntity(entity)).toList();
   }
 
   @override
   Future<void> saveDetail(AppPokemonDetail detail) async {
     final entity = detail.toEntity();
-    await _localDatasource.saveDetail(entity);
+    await _pokemonDetailDatasource.save(entity);
+  }
+
+  @override
+  Future<void> deleteAll() async {
+    await _pokemonDatasource.deleteAll();
+    await _pokemonDetailDatasource.deleteAll();
   }
 }

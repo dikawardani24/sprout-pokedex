@@ -5,6 +5,7 @@ export './entity/pokemon_entity.dart';
 export './entity/pokemon_view_entity.dart';
 
 export './datasource/pokemon_datasource.dart';
+export './datasource/pokemon_detail_datasource.dart';
 
 export './di/injection.dart';
 
