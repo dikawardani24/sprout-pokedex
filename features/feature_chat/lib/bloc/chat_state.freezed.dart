@@ -12,7 +12,8 @@ part of 'chat_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$ChatState {
@@ -20,71 +21,74 @@ mixin _$ChatState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadingGetDetailPokemon,
-    required TResult Function() loadingAskQuestion,
+    required TResult Function(List<ChatMessage> messages) questionAdded,
     required TResult Function(List<ChatMessage> messages) gotAnswered,
+    required TResult Function(List<ChatMessage> messages) notAnswered,
     required TResult Function(AppPokemonDetail detail) gotDetailPokemon,
     required TResult Function(String message) errorGetDetail,
-    required TResult Function(String message) errorGetAnswer,
-  }) =>
-      throw _privateConstructorUsedError;
+    required TResult Function(String message, List<ChatMessage> messages)
+    errorGetAnswer,
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loadingGetDetailPokemon,
-    TResult? Function()? loadingAskQuestion,
+    TResult? Function(List<ChatMessage> messages)? questionAdded,
     TResult? Function(List<ChatMessage> messages)? gotAnswered,
+    TResult? Function(List<ChatMessage> messages)? notAnswered,
     TResult? Function(AppPokemonDetail detail)? gotDetailPokemon,
     TResult? Function(String message)? errorGetDetail,
-    TResult? Function(String message)? errorGetAnswer,
-  }) =>
-      throw _privateConstructorUsedError;
+    TResult? Function(String message, List<ChatMessage> messages)?
+    errorGetAnswer,
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadingGetDetailPokemon,
-    TResult Function()? loadingAskQuestion,
+    TResult Function(List<ChatMessage> messages)? questionAdded,
     TResult Function(List<ChatMessage> messages)? gotAnswered,
+    TResult Function(List<ChatMessage> messages)? notAnswered,
     TResult Function(AppPokemonDetail detail)? gotDetailPokemon,
     TResult Function(String message)? errorGetDetail,
-    TResult Function(String message)? errorGetAnswer,
+    TResult Function(String message, List<ChatMessage> messages)?
+    errorGetAnswer,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_LoadingGetDetailPokemon value)
-        loadingGetDetailPokemon,
-    required TResult Function(LoadingAskQuestion value) loadingAskQuestion,
+    loadingGetDetailPokemon,
+    required TResult Function(_QuestionAdded value) questionAdded,
     required TResult Function(_GotAnswered value) gotAnswered,
+    required TResult Function(_NotAnswered value) notAnswered,
     required TResult Function(_GotDetailPokemon value) gotDetailPokemon,
     required TResult Function(_ErrorGetDetail value) errorGetDetail,
     required TResult Function(_ErrorGetAnswered value) errorGetAnswer,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_LoadingGetDetailPokemon value)? loadingGetDetailPokemon,
-    TResult? Function(LoadingAskQuestion value)? loadingAskQuestion,
+    TResult? Function(_QuestionAdded value)? questionAdded,
     TResult? Function(_GotAnswered value)? gotAnswered,
+    TResult? Function(_NotAnswered value)? notAnswered,
     TResult? Function(_GotDetailPokemon value)? gotDetailPokemon,
     TResult? Function(_ErrorGetDetail value)? errorGetDetail,
     TResult? Function(_ErrorGetAnswered value)? errorGetAnswer,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_LoadingGetDetailPokemon value)? loadingGetDetailPokemon,
-    TResult Function(LoadingAskQuestion value)? loadingAskQuestion,
+    TResult Function(_QuestionAdded value)? questionAdded,
     TResult Function(_GotAnswered value)? gotAnswered,
+    TResult Function(_NotAnswered value)? notAnswered,
     TResult Function(_GotDetailPokemon value)? gotDetailPokemon,
     TResult Function(_ErrorGetDetail value)? errorGetDetail,
     TResult Function(_ErrorGetAnswered value)? errorGetAnswer,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -110,8 +114,9 @@ class _$ChatStateCopyWithImpl<$Res, $Val extends ChatState>
 /// @nodoc
 abstract class _$$InitialImplCopyWith<$Res> {
   factory _$$InitialImplCopyWith(
-          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
-      __$$InitialImplCopyWithImpl<$Res>;
+    _$InitialImpl value,
+    $Res Function(_$InitialImpl) then,
+  ) = __$$InitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
@@ -119,8 +124,9 @@ class __$$InitialImplCopyWithImpl<$Res>
     extends _$ChatStateCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
-      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
-      : super(_value, _then);
+    _$InitialImpl _value,
+    $Res Function(_$InitialImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of ChatState
   /// with the given fields replaced by the non-null parameter values.
@@ -150,11 +156,13 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadingGetDetailPokemon,
-    required TResult Function() loadingAskQuestion,
+    required TResult Function(List<ChatMessage> messages) questionAdded,
     required TResult Function(List<ChatMessage> messages) gotAnswered,
+    required TResult Function(List<ChatMessage> messages) notAnswered,
     required TResult Function(AppPokemonDetail detail) gotDetailPokemon,
     required TResult Function(String message) errorGetDetail,
-    required TResult Function(String message) errorGetAnswer,
+    required TResult Function(String message, List<ChatMessage> messages)
+    errorGetAnswer,
   }) {
     return initial();
   }
@@ -164,11 +172,13 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loadingGetDetailPokemon,
-    TResult? Function()? loadingAskQuestion,
+    TResult? Function(List<ChatMessage> messages)? questionAdded,
     TResult? Function(List<ChatMessage> messages)? gotAnswered,
+    TResult? Function(List<ChatMessage> messages)? notAnswered,
     TResult? Function(AppPokemonDetail detail)? gotDetailPokemon,
     TResult? Function(String message)? errorGetDetail,
-    TResult? Function(String message)? errorGetAnswer,
+    TResult? Function(String message, List<ChatMessage> messages)?
+    errorGetAnswer,
   }) {
     return initial?.call();
   }
@@ -178,11 +188,13 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadingGetDetailPokemon,
-    TResult Function()? loadingAskQuestion,
+    TResult Function(List<ChatMessage> messages)? questionAdded,
     TResult Function(List<ChatMessage> messages)? gotAnswered,
+    TResult Function(List<ChatMessage> messages)? notAnswered,
     TResult Function(AppPokemonDetail detail)? gotDetailPokemon,
     TResult Function(String message)? errorGetDetail,
-    TResult Function(String message)? errorGetAnswer,
+    TResult Function(String message, List<ChatMessage> messages)?
+    errorGetAnswer,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -196,9 +208,10 @@ class _$InitialImpl implements _Initial {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_LoadingGetDetailPokemon value)
-        loadingGetDetailPokemon,
-    required TResult Function(LoadingAskQuestion value) loadingAskQuestion,
+    loadingGetDetailPokemon,
+    required TResult Function(_QuestionAdded value) questionAdded,
     required TResult Function(_GotAnswered value) gotAnswered,
+    required TResult Function(_NotAnswered value) notAnswered,
     required TResult Function(_GotDetailPokemon value) gotDetailPokemon,
     required TResult Function(_ErrorGetDetail value) errorGetDetail,
     required TResult Function(_ErrorGetAnswered value) errorGetAnswer,
@@ -211,8 +224,9 @@ class _$InitialImpl implements _Initial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_LoadingGetDetailPokemon value)? loadingGetDetailPokemon,
-    TResult? Function(LoadingAskQuestion value)? loadingAskQuestion,
+    TResult? Function(_QuestionAdded value)? questionAdded,
     TResult? Function(_GotAnswered value)? gotAnswered,
+    TResult? Function(_NotAnswered value)? notAnswered,
     TResult? Function(_GotDetailPokemon value)? gotDetailPokemon,
     TResult? Function(_ErrorGetDetail value)? errorGetDetail,
     TResult? Function(_ErrorGetAnswered value)? errorGetAnswer,
@@ -225,8 +239,9 @@ class _$InitialImpl implements _Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_LoadingGetDetailPokemon value)? loadingGetDetailPokemon,
-    TResult Function(LoadingAskQuestion value)? loadingAskQuestion,
+    TResult Function(_QuestionAdded value)? questionAdded,
     TResult Function(_GotAnswered value)? gotAnswered,
+    TResult Function(_NotAnswered value)? notAnswered,
     TResult Function(_GotDetailPokemon value)? gotDetailPokemon,
     TResult Function(_ErrorGetDetail value)? errorGetDetail,
     TResult Function(_ErrorGetAnswered value)? errorGetAnswer,
@@ -246,9 +261,9 @@ abstract class _Initial implements ChatState {
 /// @nodoc
 abstract class _$$LoadingGetDetailPokemonImplCopyWith<$Res> {
   factory _$$LoadingGetDetailPokemonImplCopyWith(
-          _$LoadingGetDetailPokemonImpl value,
-          $Res Function(_$LoadingGetDetailPokemonImpl) then) =
-      __$$LoadingGetDetailPokemonImplCopyWithImpl<$Res>;
+    _$LoadingGetDetailPokemonImpl value,
+    $Res Function(_$LoadingGetDetailPokemonImpl) then,
+  ) = __$$LoadingGetDetailPokemonImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
@@ -256,9 +271,9 @@ class __$$LoadingGetDetailPokemonImplCopyWithImpl<$Res>
     extends _$ChatStateCopyWithImpl<$Res, _$LoadingGetDetailPokemonImpl>
     implements _$$LoadingGetDetailPokemonImplCopyWith<$Res> {
   __$$LoadingGetDetailPokemonImplCopyWithImpl(
-      _$LoadingGetDetailPokemonImpl _value,
-      $Res Function(_$LoadingGetDetailPokemonImpl) _then)
-      : super(_value, _then);
+    _$LoadingGetDetailPokemonImpl _value,
+    $Res Function(_$LoadingGetDetailPokemonImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of ChatState
   /// with the given fields replaced by the non-null parameter values.
@@ -289,11 +304,13 @@ class _$LoadingGetDetailPokemonImpl implements _LoadingGetDetailPokemon {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadingGetDetailPokemon,
-    required TResult Function() loadingAskQuestion,
+    required TResult Function(List<ChatMessage> messages) questionAdded,
     required TResult Function(List<ChatMessage> messages) gotAnswered,
+    required TResult Function(List<ChatMessage> messages) notAnswered,
     required TResult Function(AppPokemonDetail detail) gotDetailPokemon,
     required TResult Function(String message) errorGetDetail,
-    required TResult Function(String message) errorGetAnswer,
+    required TResult Function(String message, List<ChatMessage> messages)
+    errorGetAnswer,
   }) {
     return loadingGetDetailPokemon();
   }
@@ -303,11 +320,13 @@ class _$LoadingGetDetailPokemonImpl implements _LoadingGetDetailPokemon {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loadingGetDetailPokemon,
-    TResult? Function()? loadingAskQuestion,
+    TResult? Function(List<ChatMessage> messages)? questionAdded,
     TResult? Function(List<ChatMessage> messages)? gotAnswered,
+    TResult? Function(List<ChatMessage> messages)? notAnswered,
     TResult? Function(AppPokemonDetail detail)? gotDetailPokemon,
     TResult? Function(String message)? errorGetDetail,
-    TResult? Function(String message)? errorGetAnswer,
+    TResult? Function(String message, List<ChatMessage> messages)?
+    errorGetAnswer,
   }) {
     return loadingGetDetailPokemon?.call();
   }
@@ -317,11 +336,13 @@ class _$LoadingGetDetailPokemonImpl implements _LoadingGetDetailPokemon {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadingGetDetailPokemon,
-    TResult Function()? loadingAskQuestion,
+    TResult Function(List<ChatMessage> messages)? questionAdded,
     TResult Function(List<ChatMessage> messages)? gotAnswered,
+    TResult Function(List<ChatMessage> messages)? notAnswered,
     TResult Function(AppPokemonDetail detail)? gotDetailPokemon,
     TResult Function(String message)? errorGetDetail,
-    TResult Function(String message)? errorGetAnswer,
+    TResult Function(String message, List<ChatMessage> messages)?
+    errorGetAnswer,
     required TResult orElse(),
   }) {
     if (loadingGetDetailPokemon != null) {
@@ -335,9 +356,10 @@ class _$LoadingGetDetailPokemonImpl implements _LoadingGetDetailPokemon {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_LoadingGetDetailPokemon value)
-        loadingGetDetailPokemon,
-    required TResult Function(LoadingAskQuestion value) loadingAskQuestion,
+    loadingGetDetailPokemon,
+    required TResult Function(_QuestionAdded value) questionAdded,
     required TResult Function(_GotAnswered value) gotAnswered,
+    required TResult Function(_NotAnswered value) notAnswered,
     required TResult Function(_GotDetailPokemon value) gotDetailPokemon,
     required TResult Function(_ErrorGetDetail value) errorGetDetail,
     required TResult Function(_ErrorGetAnswered value) errorGetAnswer,
@@ -350,8 +372,9 @@ class _$LoadingGetDetailPokemonImpl implements _LoadingGetDetailPokemon {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_LoadingGetDetailPokemon value)? loadingGetDetailPokemon,
-    TResult? Function(LoadingAskQuestion value)? loadingAskQuestion,
+    TResult? Function(_QuestionAdded value)? questionAdded,
     TResult? Function(_GotAnswered value)? gotAnswered,
+    TResult? Function(_NotAnswered value)? notAnswered,
     TResult? Function(_GotDetailPokemon value)? gotDetailPokemon,
     TResult? Function(_ErrorGetDetail value)? errorGetDetail,
     TResult? Function(_ErrorGetAnswered value)? errorGetAnswer,
@@ -364,8 +387,9 @@ class _$LoadingGetDetailPokemonImpl implements _LoadingGetDetailPokemon {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_LoadingGetDetailPokemon value)? loadingGetDetailPokemon,
-    TResult Function(LoadingAskQuestion value)? loadingAskQuestion,
+    TResult Function(_QuestionAdded value)? questionAdded,
     TResult Function(_GotAnswered value)? gotAnswered,
+    TResult Function(_NotAnswered value)? notAnswered,
     TResult Function(_GotDetailPokemon value)? gotDetailPokemon,
     TResult Function(_ErrorGetDetail value)? errorGetDetail,
     TResult Function(_ErrorGetAnswered value)? errorGetAnswer,
@@ -383,55 +407,93 @@ abstract class _LoadingGetDetailPokemon implements ChatState {
 }
 
 /// @nodoc
-abstract class _$$LoadingAskQuestionImplCopyWith<$Res> {
-  factory _$$LoadingAskQuestionImplCopyWith(_$LoadingAskQuestionImpl value,
-          $Res Function(_$LoadingAskQuestionImpl) then) =
-      __$$LoadingAskQuestionImplCopyWithImpl<$Res>;
+abstract class _$$QuestionAddedImplCopyWith<$Res> {
+  factory _$$QuestionAddedImplCopyWith(
+    _$QuestionAddedImpl value,
+    $Res Function(_$QuestionAddedImpl) then,
+  ) = __$$QuestionAddedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<ChatMessage> messages});
 }
 
 /// @nodoc
-class __$$LoadingAskQuestionImplCopyWithImpl<$Res>
-    extends _$ChatStateCopyWithImpl<$Res, _$LoadingAskQuestionImpl>
-    implements _$$LoadingAskQuestionImplCopyWith<$Res> {
-  __$$LoadingAskQuestionImplCopyWithImpl(_$LoadingAskQuestionImpl _value,
-      $Res Function(_$LoadingAskQuestionImpl) _then)
-      : super(_value, _then);
+class __$$QuestionAddedImplCopyWithImpl<$Res>
+    extends _$ChatStateCopyWithImpl<$Res, _$QuestionAddedImpl>
+    implements _$$QuestionAddedImplCopyWith<$Res> {
+  __$$QuestionAddedImplCopyWithImpl(
+    _$QuestionAddedImpl _value,
+    $Res Function(_$QuestionAddedImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of ChatState
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? messages = null}) {
+    return _then(
+      _$QuestionAddedImpl(
+        null == messages
+            ? _value._messages
+            : messages // ignore: cast_nullable_to_non_nullable
+                  as List<ChatMessage>,
+      ),
+    );
+  }
 }
 
 /// @nodoc
 
-class _$LoadingAskQuestionImpl implements LoadingAskQuestion {
-  const _$LoadingAskQuestionImpl();
+class _$QuestionAddedImpl implements _QuestionAdded {
+  const _$QuestionAddedImpl(final List<ChatMessage> messages)
+    : _messages = messages;
+
+  final List<ChatMessage> _messages;
+  @override
+  List<ChatMessage> get messages {
+    if (_messages is EqualUnmodifiableListView) return _messages;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_messages);
+  }
 
   @override
   String toString() {
-    return 'ChatState.loadingAskQuestion()';
+    return 'ChatState.questionAdded(messages: $messages)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadingAskQuestionImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$QuestionAddedImpl &&
+            const DeepCollectionEquality().equals(other._messages, _messages));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_messages));
+
+  /// Create a copy of ChatState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$QuestionAddedImplCopyWith<_$QuestionAddedImpl> get copyWith =>
+      __$$QuestionAddedImplCopyWithImpl<_$QuestionAddedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadingGetDetailPokemon,
-    required TResult Function() loadingAskQuestion,
+    required TResult Function(List<ChatMessage> messages) questionAdded,
     required TResult Function(List<ChatMessage> messages) gotAnswered,
+    required TResult Function(List<ChatMessage> messages) notAnswered,
     required TResult Function(AppPokemonDetail detail) gotDetailPokemon,
     required TResult Function(String message) errorGetDetail,
-    required TResult Function(String message) errorGetAnswer,
+    required TResult Function(String message, List<ChatMessage> messages)
+    errorGetAnswer,
   }) {
-    return loadingAskQuestion();
+    return questionAdded(messages);
   }
 
   @override
@@ -439,13 +501,15 @@ class _$LoadingAskQuestionImpl implements LoadingAskQuestion {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loadingGetDetailPokemon,
-    TResult? Function()? loadingAskQuestion,
+    TResult? Function(List<ChatMessage> messages)? questionAdded,
     TResult? Function(List<ChatMessage> messages)? gotAnswered,
+    TResult? Function(List<ChatMessage> messages)? notAnswered,
     TResult? Function(AppPokemonDetail detail)? gotDetailPokemon,
     TResult? Function(String message)? errorGetDetail,
-    TResult? Function(String message)? errorGetAnswer,
+    TResult? Function(String message, List<ChatMessage> messages)?
+    errorGetAnswer,
   }) {
-    return loadingAskQuestion?.call();
+    return questionAdded?.call(messages);
   }
 
   @override
@@ -453,15 +517,17 @@ class _$LoadingAskQuestionImpl implements LoadingAskQuestion {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadingGetDetailPokemon,
-    TResult Function()? loadingAskQuestion,
+    TResult Function(List<ChatMessage> messages)? questionAdded,
     TResult Function(List<ChatMessage> messages)? gotAnswered,
+    TResult Function(List<ChatMessage> messages)? notAnswered,
     TResult Function(AppPokemonDetail detail)? gotDetailPokemon,
     TResult Function(String message)? errorGetDetail,
-    TResult Function(String message)? errorGetAnswer,
+    TResult Function(String message, List<ChatMessage> messages)?
+    errorGetAnswer,
     required TResult orElse(),
   }) {
-    if (loadingAskQuestion != null) {
-      return loadingAskQuestion();
+    if (questionAdded != null) {
+      return questionAdded(messages);
     }
     return orElse();
   }
@@ -471,14 +537,15 @@ class _$LoadingAskQuestionImpl implements LoadingAskQuestion {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_LoadingGetDetailPokemon value)
-        loadingGetDetailPokemon,
-    required TResult Function(LoadingAskQuestion value) loadingAskQuestion,
+    loadingGetDetailPokemon,
+    required TResult Function(_QuestionAdded value) questionAdded,
     required TResult Function(_GotAnswered value) gotAnswered,
+    required TResult Function(_NotAnswered value) notAnswered,
     required TResult Function(_GotDetailPokemon value) gotDetailPokemon,
     required TResult Function(_ErrorGetDetail value) errorGetDetail,
     required TResult Function(_ErrorGetAnswered value) errorGetAnswer,
   }) {
-    return loadingAskQuestion(this);
+    return questionAdded(this);
   }
 
   @override
@@ -486,13 +553,14 @@ class _$LoadingAskQuestionImpl implements LoadingAskQuestion {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_LoadingGetDetailPokemon value)? loadingGetDetailPokemon,
-    TResult? Function(LoadingAskQuestion value)? loadingAskQuestion,
+    TResult? Function(_QuestionAdded value)? questionAdded,
     TResult? Function(_GotAnswered value)? gotAnswered,
+    TResult? Function(_NotAnswered value)? notAnswered,
     TResult? Function(_GotDetailPokemon value)? gotDetailPokemon,
     TResult? Function(_ErrorGetDetail value)? errorGetDetail,
     TResult? Function(_ErrorGetAnswered value)? errorGetAnswer,
   }) {
-    return loadingAskQuestion?.call(this);
+    return questionAdded?.call(this);
   }
 
   @override
@@ -500,29 +568,40 @@ class _$LoadingAskQuestionImpl implements LoadingAskQuestion {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_LoadingGetDetailPokemon value)? loadingGetDetailPokemon,
-    TResult Function(LoadingAskQuestion value)? loadingAskQuestion,
+    TResult Function(_QuestionAdded value)? questionAdded,
     TResult Function(_GotAnswered value)? gotAnswered,
+    TResult Function(_NotAnswered value)? notAnswered,
     TResult Function(_GotDetailPokemon value)? gotDetailPokemon,
     TResult Function(_ErrorGetDetail value)? errorGetDetail,
     TResult Function(_ErrorGetAnswered value)? errorGetAnswer,
     required TResult orElse(),
   }) {
-    if (loadingAskQuestion != null) {
-      return loadingAskQuestion(this);
+    if (questionAdded != null) {
+      return questionAdded(this);
     }
     return orElse();
   }
 }
 
-abstract class LoadingAskQuestion implements ChatState {
-  const factory LoadingAskQuestion() = _$LoadingAskQuestionImpl;
+abstract class _QuestionAdded implements ChatState {
+  const factory _QuestionAdded(final List<ChatMessage> messages) =
+      _$QuestionAddedImpl;
+
+  List<ChatMessage> get messages;
+
+  /// Create a copy of ChatState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$QuestionAddedImplCopyWith<_$QuestionAddedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class _$$GotAnsweredImplCopyWith<$Res> {
   factory _$$GotAnsweredImplCopyWith(
-          _$GotAnsweredImpl value, $Res Function(_$GotAnsweredImpl) then) =
-      __$$GotAnsweredImplCopyWithImpl<$Res>;
+    _$GotAnsweredImpl value,
+    $Res Function(_$GotAnsweredImpl) then,
+  ) = __$$GotAnsweredImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<ChatMessage> messages});
 }
@@ -532,22 +611,23 @@ class __$$GotAnsweredImplCopyWithImpl<$Res>
     extends _$ChatStateCopyWithImpl<$Res, _$GotAnsweredImpl>
     implements _$$GotAnsweredImplCopyWith<$Res> {
   __$$GotAnsweredImplCopyWithImpl(
-      _$GotAnsweredImpl _value, $Res Function(_$GotAnsweredImpl) _then)
-      : super(_value, _then);
+    _$GotAnsweredImpl _value,
+    $Res Function(_$GotAnsweredImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of ChatState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? messages = null,
-  }) {
-    return _then(_$GotAnsweredImpl(
-      null == messages
-          ? _value._messages
-          : messages // ignore: cast_nullable_to_non_nullable
-              as List<ChatMessage>,
-    ));
+  $Res call({Object? messages = null}) {
+    return _then(
+      _$GotAnsweredImpl(
+        null == messages
+            ? _value._messages
+            : messages // ignore: cast_nullable_to_non_nullable
+                  as List<ChatMessage>,
+      ),
+    );
   }
 }
 
@@ -555,7 +635,7 @@ class __$$GotAnsweredImplCopyWithImpl<$Res>
 
 class _$GotAnsweredImpl implements _GotAnswered {
   const _$GotAnsweredImpl(final List<ChatMessage> messages)
-      : _messages = messages;
+    : _messages = messages;
 
   final List<ChatMessage> _messages;
   @override
@@ -595,11 +675,13 @@ class _$GotAnsweredImpl implements _GotAnswered {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadingGetDetailPokemon,
-    required TResult Function() loadingAskQuestion,
+    required TResult Function(List<ChatMessage> messages) questionAdded,
     required TResult Function(List<ChatMessage> messages) gotAnswered,
+    required TResult Function(List<ChatMessage> messages) notAnswered,
     required TResult Function(AppPokemonDetail detail) gotDetailPokemon,
     required TResult Function(String message) errorGetDetail,
-    required TResult Function(String message) errorGetAnswer,
+    required TResult Function(String message, List<ChatMessage> messages)
+    errorGetAnswer,
   }) {
     return gotAnswered(messages);
   }
@@ -609,11 +691,13 @@ class _$GotAnsweredImpl implements _GotAnswered {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loadingGetDetailPokemon,
-    TResult? Function()? loadingAskQuestion,
+    TResult? Function(List<ChatMessage> messages)? questionAdded,
     TResult? Function(List<ChatMessage> messages)? gotAnswered,
+    TResult? Function(List<ChatMessage> messages)? notAnswered,
     TResult? Function(AppPokemonDetail detail)? gotDetailPokemon,
     TResult? Function(String message)? errorGetDetail,
-    TResult? Function(String message)? errorGetAnswer,
+    TResult? Function(String message, List<ChatMessage> messages)?
+    errorGetAnswer,
   }) {
     return gotAnswered?.call(messages);
   }
@@ -623,11 +707,13 @@ class _$GotAnsweredImpl implements _GotAnswered {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadingGetDetailPokemon,
-    TResult Function()? loadingAskQuestion,
+    TResult Function(List<ChatMessage> messages)? questionAdded,
     TResult Function(List<ChatMessage> messages)? gotAnswered,
+    TResult Function(List<ChatMessage> messages)? notAnswered,
     TResult Function(AppPokemonDetail detail)? gotDetailPokemon,
     TResult Function(String message)? errorGetDetail,
-    TResult Function(String message)? errorGetAnswer,
+    TResult Function(String message, List<ChatMessage> messages)?
+    errorGetAnswer,
     required TResult orElse(),
   }) {
     if (gotAnswered != null) {
@@ -641,9 +727,10 @@ class _$GotAnsweredImpl implements _GotAnswered {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_LoadingGetDetailPokemon value)
-        loadingGetDetailPokemon,
-    required TResult Function(LoadingAskQuestion value) loadingAskQuestion,
+    loadingGetDetailPokemon,
+    required TResult Function(_QuestionAdded value) questionAdded,
     required TResult Function(_GotAnswered value) gotAnswered,
+    required TResult Function(_NotAnswered value) notAnswered,
     required TResult Function(_GotDetailPokemon value) gotDetailPokemon,
     required TResult Function(_ErrorGetDetail value) errorGetDetail,
     required TResult Function(_ErrorGetAnswered value) errorGetAnswer,
@@ -656,8 +743,9 @@ class _$GotAnsweredImpl implements _GotAnswered {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_LoadingGetDetailPokemon value)? loadingGetDetailPokemon,
-    TResult? Function(LoadingAskQuestion value)? loadingAskQuestion,
+    TResult? Function(_QuestionAdded value)? questionAdded,
     TResult? Function(_GotAnswered value)? gotAnswered,
+    TResult? Function(_NotAnswered value)? notAnswered,
     TResult? Function(_GotDetailPokemon value)? gotDetailPokemon,
     TResult? Function(_ErrorGetDetail value)? errorGetDetail,
     TResult? Function(_ErrorGetAnswered value)? errorGetAnswer,
@@ -670,8 +758,9 @@ class _$GotAnsweredImpl implements _GotAnswered {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_LoadingGetDetailPokemon value)? loadingGetDetailPokemon,
-    TResult Function(LoadingAskQuestion value)? loadingAskQuestion,
+    TResult Function(_QuestionAdded value)? questionAdded,
     TResult Function(_GotAnswered value)? gotAnswered,
+    TResult Function(_NotAnswered value)? notAnswered,
     TResult Function(_GotDetailPokemon value)? gotDetailPokemon,
     TResult Function(_ErrorGetDetail value)? errorGetDetail,
     TResult Function(_ErrorGetAnswered value)? errorGetAnswer,
@@ -698,10 +787,201 @@ abstract class _GotAnswered implements ChatState {
 }
 
 /// @nodoc
+abstract class _$$NotAnsweredImplCopyWith<$Res> {
+  factory _$$NotAnsweredImplCopyWith(
+    _$NotAnsweredImpl value,
+    $Res Function(_$NotAnsweredImpl) then,
+  ) = __$$NotAnsweredImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<ChatMessage> messages});
+}
+
+/// @nodoc
+class __$$NotAnsweredImplCopyWithImpl<$Res>
+    extends _$ChatStateCopyWithImpl<$Res, _$NotAnsweredImpl>
+    implements _$$NotAnsweredImplCopyWith<$Res> {
+  __$$NotAnsweredImplCopyWithImpl(
+    _$NotAnsweredImpl _value,
+    $Res Function(_$NotAnsweredImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of ChatState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? messages = null}) {
+    return _then(
+      _$NotAnsweredImpl(
+        null == messages
+            ? _value._messages
+            : messages // ignore: cast_nullable_to_non_nullable
+                  as List<ChatMessage>,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+
+class _$NotAnsweredImpl implements _NotAnswered {
+  const _$NotAnsweredImpl(final List<ChatMessage> messages)
+    : _messages = messages;
+
+  final List<ChatMessage> _messages;
+  @override
+  List<ChatMessage> get messages {
+    if (_messages is EqualUnmodifiableListView) return _messages;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_messages);
+  }
+
+  @override
+  String toString() {
+    return 'ChatState.notAnswered(messages: $messages)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$NotAnsweredImpl &&
+            const DeepCollectionEquality().equals(other._messages, _messages));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_messages));
+
+  /// Create a copy of ChatState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$NotAnsweredImplCopyWith<_$NotAnsweredImpl> get copyWith =>
+      __$$NotAnsweredImplCopyWithImpl<_$NotAnsweredImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loadingGetDetailPokemon,
+    required TResult Function(List<ChatMessage> messages) questionAdded,
+    required TResult Function(List<ChatMessage> messages) gotAnswered,
+    required TResult Function(List<ChatMessage> messages) notAnswered,
+    required TResult Function(AppPokemonDetail detail) gotDetailPokemon,
+    required TResult Function(String message) errorGetDetail,
+    required TResult Function(String message, List<ChatMessage> messages)
+    errorGetAnswer,
+  }) {
+    return notAnswered(messages);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loadingGetDetailPokemon,
+    TResult? Function(List<ChatMessage> messages)? questionAdded,
+    TResult? Function(List<ChatMessage> messages)? gotAnswered,
+    TResult? Function(List<ChatMessage> messages)? notAnswered,
+    TResult? Function(AppPokemonDetail detail)? gotDetailPokemon,
+    TResult? Function(String message)? errorGetDetail,
+    TResult? Function(String message, List<ChatMessage> messages)?
+    errorGetAnswer,
+  }) {
+    return notAnswered?.call(messages);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loadingGetDetailPokemon,
+    TResult Function(List<ChatMessage> messages)? questionAdded,
+    TResult Function(List<ChatMessage> messages)? gotAnswered,
+    TResult Function(List<ChatMessage> messages)? notAnswered,
+    TResult Function(AppPokemonDetail detail)? gotDetailPokemon,
+    TResult Function(String message)? errorGetDetail,
+    TResult Function(String message, List<ChatMessage> messages)?
+    errorGetAnswer,
+    required TResult orElse(),
+  }) {
+    if (notAnswered != null) {
+      return notAnswered(messages);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_LoadingGetDetailPokemon value)
+    loadingGetDetailPokemon,
+    required TResult Function(_QuestionAdded value) questionAdded,
+    required TResult Function(_GotAnswered value) gotAnswered,
+    required TResult Function(_NotAnswered value) notAnswered,
+    required TResult Function(_GotDetailPokemon value) gotDetailPokemon,
+    required TResult Function(_ErrorGetDetail value) errorGetDetail,
+    required TResult Function(_ErrorGetAnswered value) errorGetAnswer,
+  }) {
+    return notAnswered(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_LoadingGetDetailPokemon value)? loadingGetDetailPokemon,
+    TResult? Function(_QuestionAdded value)? questionAdded,
+    TResult? Function(_GotAnswered value)? gotAnswered,
+    TResult? Function(_NotAnswered value)? notAnswered,
+    TResult? Function(_GotDetailPokemon value)? gotDetailPokemon,
+    TResult? Function(_ErrorGetDetail value)? errorGetDetail,
+    TResult? Function(_ErrorGetAnswered value)? errorGetAnswer,
+  }) {
+    return notAnswered?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_LoadingGetDetailPokemon value)? loadingGetDetailPokemon,
+    TResult Function(_QuestionAdded value)? questionAdded,
+    TResult Function(_GotAnswered value)? gotAnswered,
+    TResult Function(_NotAnswered value)? notAnswered,
+    TResult Function(_GotDetailPokemon value)? gotDetailPokemon,
+    TResult Function(_ErrorGetDetail value)? errorGetDetail,
+    TResult Function(_ErrorGetAnswered value)? errorGetAnswer,
+    required TResult orElse(),
+  }) {
+    if (notAnswered != null) {
+      return notAnswered(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _NotAnswered implements ChatState {
+  const factory _NotAnswered(final List<ChatMessage> messages) =
+      _$NotAnsweredImpl;
+
+  List<ChatMessage> get messages;
+
+  /// Create a copy of ChatState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$NotAnsweredImplCopyWith<_$NotAnsweredImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 abstract class _$$GotDetailPokemonImplCopyWith<$Res> {
-  factory _$$GotDetailPokemonImplCopyWith(_$GotDetailPokemonImpl value,
-          $Res Function(_$GotDetailPokemonImpl) then) =
-      __$$GotDetailPokemonImplCopyWithImpl<$Res>;
+  factory _$$GotDetailPokemonImplCopyWith(
+    _$GotDetailPokemonImpl value,
+    $Res Function(_$GotDetailPokemonImpl) then,
+  ) = __$$GotDetailPokemonImplCopyWithImpl<$Res>;
   @useResult
   $Res call({AppPokemonDetail detail});
 }
@@ -710,23 +990,24 @@ abstract class _$$GotDetailPokemonImplCopyWith<$Res> {
 class __$$GotDetailPokemonImplCopyWithImpl<$Res>
     extends _$ChatStateCopyWithImpl<$Res, _$GotDetailPokemonImpl>
     implements _$$GotDetailPokemonImplCopyWith<$Res> {
-  __$$GotDetailPokemonImplCopyWithImpl(_$GotDetailPokemonImpl _value,
-      $Res Function(_$GotDetailPokemonImpl) _then)
-      : super(_value, _then);
+  __$$GotDetailPokemonImplCopyWithImpl(
+    _$GotDetailPokemonImpl _value,
+    $Res Function(_$GotDetailPokemonImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of ChatState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? detail = null,
-  }) {
-    return _then(_$GotDetailPokemonImpl(
-      null == detail
-          ? _value.detail
-          : detail // ignore: cast_nullable_to_non_nullable
-              as AppPokemonDetail,
-    ));
+  $Res call({Object? detail = null}) {
+    return _then(
+      _$GotDetailPokemonImpl(
+        null == detail
+            ? _value.detail
+            : detail // ignore: cast_nullable_to_non_nullable
+                  as AppPokemonDetail,
+      ),
+    );
   }
 }
 
@@ -761,18 +1042,22 @@ class _$GotDetailPokemonImpl implements _GotDetailPokemon {
   @pragma('vm:prefer-inline')
   _$$GotDetailPokemonImplCopyWith<_$GotDetailPokemonImpl> get copyWith =>
       __$$GotDetailPokemonImplCopyWithImpl<_$GotDetailPokemonImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadingGetDetailPokemon,
-    required TResult Function() loadingAskQuestion,
+    required TResult Function(List<ChatMessage> messages) questionAdded,
     required TResult Function(List<ChatMessage> messages) gotAnswered,
+    required TResult Function(List<ChatMessage> messages) notAnswered,
     required TResult Function(AppPokemonDetail detail) gotDetailPokemon,
     required TResult Function(String message) errorGetDetail,
-    required TResult Function(String message) errorGetAnswer,
+    required TResult Function(String message, List<ChatMessage> messages)
+    errorGetAnswer,
   }) {
     return gotDetailPokemon(detail);
   }
@@ -782,11 +1067,13 @@ class _$GotDetailPokemonImpl implements _GotDetailPokemon {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loadingGetDetailPokemon,
-    TResult? Function()? loadingAskQuestion,
+    TResult? Function(List<ChatMessage> messages)? questionAdded,
     TResult? Function(List<ChatMessage> messages)? gotAnswered,
+    TResult? Function(List<ChatMessage> messages)? notAnswered,
     TResult? Function(AppPokemonDetail detail)? gotDetailPokemon,
     TResult? Function(String message)? errorGetDetail,
-    TResult? Function(String message)? errorGetAnswer,
+    TResult? Function(String message, List<ChatMessage> messages)?
+    errorGetAnswer,
   }) {
     return gotDetailPokemon?.call(detail);
   }
@@ -796,11 +1083,13 @@ class _$GotDetailPokemonImpl implements _GotDetailPokemon {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadingGetDetailPokemon,
-    TResult Function()? loadingAskQuestion,
+    TResult Function(List<ChatMessage> messages)? questionAdded,
     TResult Function(List<ChatMessage> messages)? gotAnswered,
+    TResult Function(List<ChatMessage> messages)? notAnswered,
     TResult Function(AppPokemonDetail detail)? gotDetailPokemon,
     TResult Function(String message)? errorGetDetail,
-    TResult Function(String message)? errorGetAnswer,
+    TResult Function(String message, List<ChatMessage> messages)?
+    errorGetAnswer,
     required TResult orElse(),
   }) {
     if (gotDetailPokemon != null) {
@@ -814,9 +1103,10 @@ class _$GotDetailPokemonImpl implements _GotDetailPokemon {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_LoadingGetDetailPokemon value)
-        loadingGetDetailPokemon,
-    required TResult Function(LoadingAskQuestion value) loadingAskQuestion,
+    loadingGetDetailPokemon,
+    required TResult Function(_QuestionAdded value) questionAdded,
     required TResult Function(_GotAnswered value) gotAnswered,
+    required TResult Function(_NotAnswered value) notAnswered,
     required TResult Function(_GotDetailPokemon value) gotDetailPokemon,
     required TResult Function(_ErrorGetDetail value) errorGetDetail,
     required TResult Function(_ErrorGetAnswered value) errorGetAnswer,
@@ -829,8 +1119,9 @@ class _$GotDetailPokemonImpl implements _GotDetailPokemon {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_LoadingGetDetailPokemon value)? loadingGetDetailPokemon,
-    TResult? Function(LoadingAskQuestion value)? loadingAskQuestion,
+    TResult? Function(_QuestionAdded value)? questionAdded,
     TResult? Function(_GotAnswered value)? gotAnswered,
+    TResult? Function(_NotAnswered value)? notAnswered,
     TResult? Function(_GotDetailPokemon value)? gotDetailPokemon,
     TResult? Function(_ErrorGetDetail value)? errorGetDetail,
     TResult? Function(_ErrorGetAnswered value)? errorGetAnswer,
@@ -843,8 +1134,9 @@ class _$GotDetailPokemonImpl implements _GotDetailPokemon {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_LoadingGetDetailPokemon value)? loadingGetDetailPokemon,
-    TResult Function(LoadingAskQuestion value)? loadingAskQuestion,
+    TResult Function(_QuestionAdded value)? questionAdded,
     TResult Function(_GotAnswered value)? gotAnswered,
+    TResult Function(_NotAnswered value)? notAnswered,
     TResult Function(_GotDetailPokemon value)? gotDetailPokemon,
     TResult Function(_ErrorGetDetail value)? errorGetDetail,
     TResult Function(_ErrorGetAnswered value)? errorGetAnswer,
@@ -872,9 +1164,10 @@ abstract class _GotDetailPokemon implements ChatState {
 
 /// @nodoc
 abstract class _$$ErrorGetDetailImplCopyWith<$Res> {
-  factory _$$ErrorGetDetailImplCopyWith(_$ErrorGetDetailImpl value,
-          $Res Function(_$ErrorGetDetailImpl) then) =
-      __$$ErrorGetDetailImplCopyWithImpl<$Res>;
+  factory _$$ErrorGetDetailImplCopyWith(
+    _$ErrorGetDetailImpl value,
+    $Res Function(_$ErrorGetDetailImpl) then,
+  ) = __$$ErrorGetDetailImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String message});
 }
@@ -884,22 +1177,23 @@ class __$$ErrorGetDetailImplCopyWithImpl<$Res>
     extends _$ChatStateCopyWithImpl<$Res, _$ErrorGetDetailImpl>
     implements _$$ErrorGetDetailImplCopyWith<$Res> {
   __$$ErrorGetDetailImplCopyWithImpl(
-      _$ErrorGetDetailImpl _value, $Res Function(_$ErrorGetDetailImpl) _then)
-      : super(_value, _then);
+    _$ErrorGetDetailImpl _value,
+    $Res Function(_$ErrorGetDetailImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of ChatState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? message = null,
-  }) {
-    return _then(_$ErrorGetDetailImpl(
-      null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+  $Res call({Object? message = null}) {
+    return _then(
+      _$ErrorGetDetailImpl(
+        null == message
+            ? _value.message
+            : message // ignore: cast_nullable_to_non_nullable
+                  as String,
+      ),
+    );
   }
 }
 
@@ -934,18 +1228,22 @@ class _$ErrorGetDetailImpl implements _ErrorGetDetail {
   @pragma('vm:prefer-inline')
   _$$ErrorGetDetailImplCopyWith<_$ErrorGetDetailImpl> get copyWith =>
       __$$ErrorGetDetailImplCopyWithImpl<_$ErrorGetDetailImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadingGetDetailPokemon,
-    required TResult Function() loadingAskQuestion,
+    required TResult Function(List<ChatMessage> messages) questionAdded,
     required TResult Function(List<ChatMessage> messages) gotAnswered,
+    required TResult Function(List<ChatMessage> messages) notAnswered,
     required TResult Function(AppPokemonDetail detail) gotDetailPokemon,
     required TResult Function(String message) errorGetDetail,
-    required TResult Function(String message) errorGetAnswer,
+    required TResult Function(String message, List<ChatMessage> messages)
+    errorGetAnswer,
   }) {
     return errorGetDetail(message);
   }
@@ -955,11 +1253,13 @@ class _$ErrorGetDetailImpl implements _ErrorGetDetail {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loadingGetDetailPokemon,
-    TResult? Function()? loadingAskQuestion,
+    TResult? Function(List<ChatMessage> messages)? questionAdded,
     TResult? Function(List<ChatMessage> messages)? gotAnswered,
+    TResult? Function(List<ChatMessage> messages)? notAnswered,
     TResult? Function(AppPokemonDetail detail)? gotDetailPokemon,
     TResult? Function(String message)? errorGetDetail,
-    TResult? Function(String message)? errorGetAnswer,
+    TResult? Function(String message, List<ChatMessage> messages)?
+    errorGetAnswer,
   }) {
     return errorGetDetail?.call(message);
   }
@@ -969,11 +1269,13 @@ class _$ErrorGetDetailImpl implements _ErrorGetDetail {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadingGetDetailPokemon,
-    TResult Function()? loadingAskQuestion,
+    TResult Function(List<ChatMessage> messages)? questionAdded,
     TResult Function(List<ChatMessage> messages)? gotAnswered,
+    TResult Function(List<ChatMessage> messages)? notAnswered,
     TResult Function(AppPokemonDetail detail)? gotDetailPokemon,
     TResult Function(String message)? errorGetDetail,
-    TResult Function(String message)? errorGetAnswer,
+    TResult Function(String message, List<ChatMessage> messages)?
+    errorGetAnswer,
     required TResult orElse(),
   }) {
     if (errorGetDetail != null) {
@@ -987,9 +1289,10 @@ class _$ErrorGetDetailImpl implements _ErrorGetDetail {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_LoadingGetDetailPokemon value)
-        loadingGetDetailPokemon,
-    required TResult Function(LoadingAskQuestion value) loadingAskQuestion,
+    loadingGetDetailPokemon,
+    required TResult Function(_QuestionAdded value) questionAdded,
     required TResult Function(_GotAnswered value) gotAnswered,
+    required TResult Function(_NotAnswered value) notAnswered,
     required TResult Function(_GotDetailPokemon value) gotDetailPokemon,
     required TResult Function(_ErrorGetDetail value) errorGetDetail,
     required TResult Function(_ErrorGetAnswered value) errorGetAnswer,
@@ -1002,8 +1305,9 @@ class _$ErrorGetDetailImpl implements _ErrorGetDetail {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_LoadingGetDetailPokemon value)? loadingGetDetailPokemon,
-    TResult? Function(LoadingAskQuestion value)? loadingAskQuestion,
+    TResult? Function(_QuestionAdded value)? questionAdded,
     TResult? Function(_GotAnswered value)? gotAnswered,
+    TResult? Function(_NotAnswered value)? notAnswered,
     TResult? Function(_GotDetailPokemon value)? gotDetailPokemon,
     TResult? Function(_ErrorGetDetail value)? errorGetDetail,
     TResult? Function(_ErrorGetAnswered value)? errorGetAnswer,
@@ -1016,8 +1320,9 @@ class _$ErrorGetDetailImpl implements _ErrorGetDetail {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_LoadingGetDetailPokemon value)? loadingGetDetailPokemon,
-    TResult Function(LoadingAskQuestion value)? loadingAskQuestion,
+    TResult Function(_QuestionAdded value)? questionAdded,
     TResult Function(_GotAnswered value)? gotAnswered,
+    TResult Function(_NotAnswered value)? notAnswered,
     TResult Function(_GotDetailPokemon value)? gotDetailPokemon,
     TResult Function(_ErrorGetDetail value)? errorGetDetail,
     TResult Function(_ErrorGetAnswered value)? errorGetAnswer,
@@ -1044,48 +1349,62 @@ abstract class _ErrorGetDetail implements ChatState {
 
 /// @nodoc
 abstract class _$$ErrorGetAnsweredImplCopyWith<$Res> {
-  factory _$$ErrorGetAnsweredImplCopyWith(_$ErrorGetAnsweredImpl value,
-          $Res Function(_$ErrorGetAnsweredImpl) then) =
-      __$$ErrorGetAnsweredImplCopyWithImpl<$Res>;
+  factory _$$ErrorGetAnsweredImplCopyWith(
+    _$ErrorGetAnsweredImpl value,
+    $Res Function(_$ErrorGetAnsweredImpl) then,
+  ) = __$$ErrorGetAnsweredImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String message});
+  $Res call({String message, List<ChatMessage> messages});
 }
 
 /// @nodoc
 class __$$ErrorGetAnsweredImplCopyWithImpl<$Res>
     extends _$ChatStateCopyWithImpl<$Res, _$ErrorGetAnsweredImpl>
     implements _$$ErrorGetAnsweredImplCopyWith<$Res> {
-  __$$ErrorGetAnsweredImplCopyWithImpl(_$ErrorGetAnsweredImpl _value,
-      $Res Function(_$ErrorGetAnsweredImpl) _then)
-      : super(_value, _then);
+  __$$ErrorGetAnsweredImplCopyWithImpl(
+    _$ErrorGetAnsweredImpl _value,
+    $Res Function(_$ErrorGetAnsweredImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of ChatState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? message = null,
-  }) {
-    return _then(_$ErrorGetAnsweredImpl(
-      null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+  $Res call({Object? message = null, Object? messages = null}) {
+    return _then(
+      _$ErrorGetAnsweredImpl(
+        null == message
+            ? _value.message
+            : message // ignore: cast_nullable_to_non_nullable
+                  as String,
+        null == messages
+            ? _value._messages
+            : messages // ignore: cast_nullable_to_non_nullable
+                  as List<ChatMessage>,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$ErrorGetAnsweredImpl implements _ErrorGetAnswered {
-  const _$ErrorGetAnsweredImpl(this.message);
+  const _$ErrorGetAnsweredImpl(this.message, final List<ChatMessage> messages)
+    : _messages = messages;
 
   @override
   final String message;
+  final List<ChatMessage> _messages;
+  @override
+  List<ChatMessage> get messages {
+    if (_messages is EqualUnmodifiableListView) return _messages;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_messages);
+  }
 
   @override
   String toString() {
-    return 'ChatState.errorGetAnswer(message: $message)';
+    return 'ChatState.errorGetAnswer(message: $message, messages: $messages)';
   }
 
   @override
@@ -1093,11 +1412,16 @@ class _$ErrorGetAnsweredImpl implements _ErrorGetAnswered {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ErrorGetAnsweredImpl &&
-            (identical(other.message, message) || other.message == message));
+            (identical(other.message, message) || other.message == message) &&
+            const DeepCollectionEquality().equals(other._messages, _messages));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, message);
+  int get hashCode => Object.hash(
+    runtimeType,
+    message,
+    const DeepCollectionEquality().hash(_messages),
+  );
 
   /// Create a copy of ChatState
   /// with the given fields replaced by the non-null parameter values.
@@ -1106,20 +1430,24 @@ class _$ErrorGetAnsweredImpl implements _ErrorGetAnswered {
   @pragma('vm:prefer-inline')
   _$$ErrorGetAnsweredImplCopyWith<_$ErrorGetAnsweredImpl> get copyWith =>
       __$$ErrorGetAnsweredImplCopyWithImpl<_$ErrorGetAnsweredImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadingGetDetailPokemon,
-    required TResult Function() loadingAskQuestion,
+    required TResult Function(List<ChatMessage> messages) questionAdded,
     required TResult Function(List<ChatMessage> messages) gotAnswered,
+    required TResult Function(List<ChatMessage> messages) notAnswered,
     required TResult Function(AppPokemonDetail detail) gotDetailPokemon,
     required TResult Function(String message) errorGetDetail,
-    required TResult Function(String message) errorGetAnswer,
+    required TResult Function(String message, List<ChatMessage> messages)
+    errorGetAnswer,
   }) {
-    return errorGetAnswer(message);
+    return errorGetAnswer(message, messages);
   }
 
   @override
@@ -1127,13 +1455,15 @@ class _$ErrorGetAnsweredImpl implements _ErrorGetAnswered {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loadingGetDetailPokemon,
-    TResult? Function()? loadingAskQuestion,
+    TResult? Function(List<ChatMessage> messages)? questionAdded,
     TResult? Function(List<ChatMessage> messages)? gotAnswered,
+    TResult? Function(List<ChatMessage> messages)? notAnswered,
     TResult? Function(AppPokemonDetail detail)? gotDetailPokemon,
     TResult? Function(String message)? errorGetDetail,
-    TResult? Function(String message)? errorGetAnswer,
+    TResult? Function(String message, List<ChatMessage> messages)?
+    errorGetAnswer,
   }) {
-    return errorGetAnswer?.call(message);
+    return errorGetAnswer?.call(message, messages);
   }
 
   @override
@@ -1141,15 +1471,17 @@ class _$ErrorGetAnsweredImpl implements _ErrorGetAnswered {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadingGetDetailPokemon,
-    TResult Function()? loadingAskQuestion,
+    TResult Function(List<ChatMessage> messages)? questionAdded,
     TResult Function(List<ChatMessage> messages)? gotAnswered,
+    TResult Function(List<ChatMessage> messages)? notAnswered,
     TResult Function(AppPokemonDetail detail)? gotDetailPokemon,
     TResult Function(String message)? errorGetDetail,
-    TResult Function(String message)? errorGetAnswer,
+    TResult Function(String message, List<ChatMessage> messages)?
+    errorGetAnswer,
     required TResult orElse(),
   }) {
     if (errorGetAnswer != null) {
-      return errorGetAnswer(message);
+      return errorGetAnswer(message, messages);
     }
     return orElse();
   }
@@ -1159,9 +1491,10 @@ class _$ErrorGetAnsweredImpl implements _ErrorGetAnswered {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_LoadingGetDetailPokemon value)
-        loadingGetDetailPokemon,
-    required TResult Function(LoadingAskQuestion value) loadingAskQuestion,
+    loadingGetDetailPokemon,
+    required TResult Function(_QuestionAdded value) questionAdded,
     required TResult Function(_GotAnswered value) gotAnswered,
+    required TResult Function(_NotAnswered value) notAnswered,
     required TResult Function(_GotDetailPokemon value) gotDetailPokemon,
     required TResult Function(_ErrorGetDetail value) errorGetDetail,
     required TResult Function(_ErrorGetAnswered value) errorGetAnswer,
@@ -1174,8 +1507,9 @@ class _$ErrorGetAnsweredImpl implements _ErrorGetAnswered {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_LoadingGetDetailPokemon value)? loadingGetDetailPokemon,
-    TResult? Function(LoadingAskQuestion value)? loadingAskQuestion,
+    TResult? Function(_QuestionAdded value)? questionAdded,
     TResult? Function(_GotAnswered value)? gotAnswered,
+    TResult? Function(_NotAnswered value)? notAnswered,
     TResult? Function(_GotDetailPokemon value)? gotDetailPokemon,
     TResult? Function(_ErrorGetDetail value)? errorGetDetail,
     TResult? Function(_ErrorGetAnswered value)? errorGetAnswer,
@@ -1188,8 +1522,9 @@ class _$ErrorGetAnsweredImpl implements _ErrorGetAnswered {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_LoadingGetDetailPokemon value)? loadingGetDetailPokemon,
-    TResult Function(LoadingAskQuestion value)? loadingAskQuestion,
+    TResult Function(_QuestionAdded value)? questionAdded,
     TResult Function(_GotAnswered value)? gotAnswered,
+    TResult Function(_NotAnswered value)? notAnswered,
     TResult Function(_GotDetailPokemon value)? gotDetailPokemon,
     TResult Function(_ErrorGetDetail value)? errorGetDetail,
     TResult Function(_ErrorGetAnswered value)? errorGetAnswer,
@@ -1203,10 +1538,13 @@ class _$ErrorGetAnsweredImpl implements _ErrorGetAnswered {
 }
 
 abstract class _ErrorGetAnswered implements ChatState {
-  const factory _ErrorGetAnswered(final String message) =
-      _$ErrorGetAnsweredImpl;
+  const factory _ErrorGetAnswered(
+    final String message,
+    final List<ChatMessage> messages,
+  ) = _$ErrorGetAnsweredImpl;
 
   String get message;
+  List<ChatMessage> get messages;
 
   /// Create a copy of ChatState
   /// with the given fields replaced by the non-null parameter values.

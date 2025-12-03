@@ -36,6 +36,9 @@ class StringRes {
   static const emptyPokemon = "No Pokémon found";
   static const pullRefresh = "Pull to refresh or check your connection";
   static const pokeChat = "$appName Chat";
+  static const chatHistory = "$appName Chat History";
+
+  static const loadingChat = "Please wait while answering....";
 }
 
 class StringErrRes {
@@ -43,4 +46,5 @@ class StringErrRes {
   static const errServer = 'Server error. Please try again later.';
   static const errUnknown = 'An unexpected error occurred. Please try again.';
   static const errScreenTooSmall = "You need to change your window size to see the content";
+  static const errGetAnswerAi = "Unable to answer your question, please try again later";
 }

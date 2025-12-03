@@ -4,7 +4,7 @@ description: "A new Flutter module project."
 version: 1.0.0
 
 environment:
-  sdk: ^3.5.3
+  sdk: ^3.10.1
 
 dependencies:
   flutter:
@@ -17,6 +17,7 @@ dependencies:
   flutter_bloc:
   get_it:
   injectable:
+  equatable:
 
 dev_dependencies:
   flutter_test:
@@ -24,7 +25,6 @@ dev_dependencies:
   flutter_lints:
   injectable_generator:
   build_runner:
-  equatable:
 
 flutter:
   uses-material-design: true

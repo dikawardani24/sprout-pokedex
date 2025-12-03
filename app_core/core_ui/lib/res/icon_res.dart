@@ -6,4 +6,5 @@ class IconRes {
   static final iconRefresh = Icons.refresh;
   static final iconChat = Icons.chat;
   static final iconSendMessage = Icons.send;
+  static final iconHistory = Icons.history_rounded;
 }

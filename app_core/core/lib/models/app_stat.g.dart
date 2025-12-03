@@ -7,16 +7,16 @@ part of 'app_stat.dart';
 // **************************************************************************
 
 AppStat _$AppStatFromJson(Map<String, dynamic> json) => AppStat(
-      type: $enumDecode(_$StatTypeEnumMap, json['type']),
-      current: (json['current'] as num).toInt(),
-      progress: (json['progress'] as num).toDouble(),
-    );
+  type: $enumDecode(_$StatTypeEnumMap, json['type']),
+  current: (json['current'] as num).toInt(),
+  progress: (json['progress'] as num).toDouble(),
+);
 
 Map<String, dynamic> _$AppStatToJson(AppStat instance) => <String, dynamic>{
-      'type': _$StatTypeEnumMap[instance.type]!,
-      'current': instance.current,
-      'progress': instance.progress,
-    };
+  'type': _$StatTypeEnumMap[instance.type]!,
+  'current': instance.current,
+  'progress': instance.progress,
+};
 
 const _$StatTypeEnumMap = {
   StatType.hp: 'hp',

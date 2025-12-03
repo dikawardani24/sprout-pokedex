@@ -5,8 +5,9 @@ typedef OnTapSendQuestion = void Function(String question);
 
 class AppChatInput extends StatefulWidget {
   final OnTapSendQuestion? onTapSendQuestion;
+  final bool allowSendNewChat;
 
-  const AppChatInput({super.key, this.onTapSendQuestion});
+  const AppChatInput({super.key, this.onTapSendQuestion, this.allowSendNewChat = true});
 
   @override
   State<AppChatInput> createState() => _AppChatInputState();
@@ -21,6 +22,23 @@ class _AppChatInputState extends State<AppChatInput> {
     if (q.isEmpty) return;
     widget.onTapSendQuestion?.call(q);
     _controller.clear();
+  }
+
+  Widget _buildSuffixIcon() {
+    if (!widget.allowSendNewChat) {
+      return Padding(
+        padding: EdgeInsetsGeometry.all(DimenRes.size_10),
+        child: Loading(
+          size: DimenRes.size_40,
+          isCenter: false,
+        ),
+      );
+    }
+    return AppIconButton.noBackground(
+      icon: IconRes.iconSendMessage,
+      iconColor: context.iconThemColor,
+      onTap: _sendQuestion,
+    );
   }
 
   @override
@@ -42,11 +60,7 @@ class _AppChatInputState extends State<AppChatInput> {
             }
           });
         },
-        suffixIcon: AppIconButton.noBackground(
-          icon: IconRes.iconSendMessage,
-          iconColor: context.iconThemColor,
-          onTap: _sendQuestion,
-        ),
+        suffixIcon: _buildSuffixIcon(),
       ),
     );
   }

@@ -2,10 +2,10 @@ import 'package:equatable/equatable.dart';
 
 abstract class ChatEvent extends Equatable {}
 
-class GetDetailEvent extends ChatEvent {
+class GetDetailAndGreetingEvent extends ChatEvent {
   final int? id;
 
-  GetDetailEvent(this.id);
+  GetDetailAndGreetingEvent(this.id);
 
   @override
   List<Object?> get props => [id];

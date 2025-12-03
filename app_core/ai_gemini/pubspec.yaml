@@ -1,0 +1,33 @@
+name: ai_gemini
+description: "A new Flutter module project."
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.10.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons:
+  get_it:
+  injectable:
+  equatable:
+  freezed_annotation:
+  flutter_gemini:
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints:
+  injectable_generator:
+  build_runner:
+  freezed:
+
+flutter:
+  uses-material-design: true
+  module:
+    androidX: true
+    androidPackage: com.example.ai_gemini
+    iosBundleIdentifier: com.example.aiGemini

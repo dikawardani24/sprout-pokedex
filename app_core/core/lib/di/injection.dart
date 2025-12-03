@@ -1,4 +1,5 @@
 
+import 'package:ai_gemini/ai_gemini.dart';
 import 'package:api/api.dart';
 import 'package:app_preference/app_preference.dart';
 import 'package:database/database.dart';
@@ -18,5 +19,6 @@ void configureCoreDependencies() {
   configureApiDependencies();
   configureDatabaseDependencies();
   configureAppPreferenceDependencies();
+  configureAiGeminiDependencies();
   $initCore(getIt);
 }

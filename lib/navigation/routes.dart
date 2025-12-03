@@ -3,4 +3,5 @@ class Routes {
   static const detail = "/detail";
   static const chat = "/chat";
   static const chatPokemon = "/chat/pokemon";
+  static const chatHistory = "/chat/history";
 }

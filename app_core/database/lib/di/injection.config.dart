@@ -25,16 +25,14 @@ _i174.GetIt $initDatabase(
   String? environment,
   _i526.EnvironmentFilter? environmentFilter,
 }) {
-  final gh = _i526.GetItHelper(
-    getIt,
-    environment,
-    environmentFilter,
-  );
+  final gh = _i526.GetItHelper(getIt, environment, environmentFilter);
   gh.factory<_i170.DbInit>(() => _i170.DbInit());
   gh.factory<_i826.DbOpenHelper>(() => _i826.DbOpenHelper(gh<_i170.DbInit>()));
   gh.factory<_i551.PokemonDetailDatasource>(
-      () => _i668.PokemonDetailDatasourceImpl(gh<_i826.DbOpenHelper>()));
+    () => _i668.PokemonDetailDatasourceImpl(gh<_i826.DbOpenHelper>()),
+  );
   gh.factory<_i176.PokemonDatasource>(
-      () => _i352.PokemonLocalDatasourceImpl(gh<_i826.DbOpenHelper>()));
+    () => _i352.PokemonLocalDatasourceImpl(gh<_i826.DbOpenHelper>()),
+  );
   return getIt;
 }

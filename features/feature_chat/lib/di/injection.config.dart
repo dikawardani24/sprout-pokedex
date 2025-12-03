@@ -21,12 +21,13 @@ _i174.GetIt $initFeatureChat(
   String? environment,
   _i526.EnvironmentFilter? environmentFilter,
 }) {
-  final gh = _i526.GetItHelper(
-    getIt,
-    environment,
-    environmentFilter,
-  );
+  final gh = _i526.GetItHelper(getIt, environment, environmentFilter);
   gh.factory<_i701.ChatBloc>(
-      () => _i701.ChatBloc(gh<_i494.GetDetailPokeUseCase>()));
+    () => _i701.ChatBloc(
+      gh<_i494.GetDetailPokeUseCase>(),
+      gh<_i494.AskAiUseCase>(),
+      gh<_i494.AiGreetUseCase>(),
+    ),
+  );
   return getIt;
 }

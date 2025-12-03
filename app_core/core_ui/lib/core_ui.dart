@@ -31,3 +31,6 @@ export './widgets/scroll_top_button.dart';
 export './widgets/app_long_desc.dart';
 export './widgets/paragraph_view.dart';
 export './widgets/app_input.dart';
+export './widgets/app_time.dart';
+export './widgets/app_markdown.dart';
+export './widgets/app_chat_buble.dart';
