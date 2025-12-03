@@ -169,10 +169,8 @@ class _ScrollTopContainerState extends State<ScrollTopContainer>
           position: _slideAnimation,
           child: FadeTransition(
             opacity: _fadeAnimation,
-            child: AppIconButton(
-              icon: Icons.keyboard_arrow_up,
-              iconColor: ColorRes.white,
-              backgroundColor: ColorRes.red,
+            child: AppIconButton.only(
+              icon: IconRes.iconNavUp,
               onTap: _scrollToTop,
             ),
           ),

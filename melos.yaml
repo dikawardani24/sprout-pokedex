@@ -8,6 +8,7 @@ packages:
   - "./app_core/core_ui"
   - "./features/feature_home"
   - "./features/feature_detail"
+  - "./features/feature_chat"
   - "."  # Main app
 
 commands:

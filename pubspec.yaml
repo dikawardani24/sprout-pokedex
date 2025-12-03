@@ -21,6 +21,8 @@ dependencies:
     path: ./features/feature_home
   feature_detail:
     path: ./features/feature_detail
+  feature_chat:
+    path: ./features/feature_chat
   cupertino_icons: ^1.0.8
   pokedex: ^0.3.0
   flutter_svg: ^2.0.9

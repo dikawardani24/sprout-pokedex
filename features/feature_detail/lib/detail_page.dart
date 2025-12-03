@@ -39,15 +39,15 @@ class _DetailPageState extends State<DetailPage> with SingleTickerProviderStateM
   }
 
   PreferredSizeWidget _createAppBar(BuildContext c) => AppBar(
-    leading: AppIconButton(
-      icon: Icons.navigate_before,
+    leading: AppIconButton.noBackground(
+      icon: IconRes.iconNavBack,
       iconColor: _iconNavBackColor,
       onTap: () => c.goBack(),
     ),
     backgroundColor: _appBg,
     actions: [
-      if (_showRefresh) AppIconButton(
-        icon: Icons.refresh,
+      if (_showRefresh) AppIconButton.noBackground(
+        icon: IconRes.iconRefresh,
         iconColor: ColorRes.white,
         onTap: () => c.read<DetailBloc>().add(RefreshDetailEvent(widget.id)),
       )

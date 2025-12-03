@@ -16,11 +16,27 @@ class AppIconButton extends StatelessWidget {
     this.size = DimenRes.size_60,
     required this.icon,
     this.onTap,
-    this.iconColor = ColorRes.black,
+    this.iconColor = ColorRes.white,
     this.iconSize = DimenRes.size_30,
     this.padding,
-    this.backgroundColor = ColorRes.transparent
+    this.backgroundColor = ColorRes.red
   });
+
+  factory AppIconButton.noBackground({
+    required IconData icon,
+    required Color iconColor,
+    GestureTapCallback? onTap
+  }) => AppIconButton(
+    icon: icon,
+    iconColor: iconColor,
+    backgroundColor: ColorRes.transparent,
+    onTap: onTap,
+  );
+
+  factory AppIconButton.only({
+    required IconData icon,
+    GestureTapCallback? onTap
+  }) => AppIconButton(icon: icon, onTap: onTap);
 
   @override
   Widget build(BuildContext context) {
