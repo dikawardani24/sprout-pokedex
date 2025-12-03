@@ -22,15 +22,12 @@ _i174.GetIt $initApi(
   String? environment,
   _i526.EnvironmentFilter? environmentFilter,
 }) {
-  final gh = _i526.GetItHelper(
-    getIt,
-    environment,
-    environmentFilter,
-  );
+  final gh = _i526.GetItHelper(getIt, environment, environmentFilter);
   final apiModule = _$ApiModule();
   gh.singleton<_i706.Pokedex>(() => apiModule.pokedex);
   gh.factory<_i176.PokemonDatasource>(
-      () => _i176.PokemonDatasourceImpl(gh<_i706.Pokedex>()));
+    () => _i176.PokemonDatasourceImpl(gh<_i706.Pokedex>()),
+  );
   return getIt;
 }
 

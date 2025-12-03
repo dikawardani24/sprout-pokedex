@@ -1,8 +1,7 @@
 
 import 'package:core_ui/core_ui.dart';
-import 'package:feature_detail/feature_detail.dart';
-import 'package:feature_home/feauture_home.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:sprout_pokedex/navigation/pages.dart';
 import 'package:sprout_pokedex/navigation/routes.dart';
 
 extension AppNavigation on BuildContext {
@@ -11,21 +10,34 @@ extension AppNavigation on BuildContext {
       {bool isRootPage = false, Object? data}
       ) => goToPageWithRouteName(route, isRootPage: isRootPage, data);
 
-  Future<dynamic> startHomePage() => _goToPage(Routes.home);
+  Future<dynamic> startHomePage() => _goToPage(Routes.home, isRootPage: true);
   Future<dynamic> startDetailPage(int id) => _goToPage(Routes.detail, data: id);
+  Future<dynamic> startChatPage() => _goToPage(Routes.chat);
+  Future<dynamic> startChatPageWithPokemon(int id) => _goToPage(Routes.chatPokemon, data: id);
+  Future<dynamic> startChatHistoryPage() => _goToPage(Routes.chatHistory);
 
   Widget? _getPage(String? routeName, Object? args) {
     switch(routeName) {
-      case Routes.home : return HomePage(
-        onTap: (c, selected) => c.startDetailPage(selected.id),
+      case Routes.home : return Pages.homePage(
+          onStartChat: (c) => c.startChatPage(),
+          onStartDetail: (c, selected) => c.startDetailPage(selected.id)
       );
       case Routes.detail:
+        if (args is int) return Pages.detailPage(args);
+      case Routes.chat: return Pages.chatPage(
+        onStartChatHistory: (c) => c.startChatHistoryPage()
+      );
+      case Routes.chatPokemon:
         if (args is int) {
-          return DetailPage(id: args);
+          return Pages.chatPage(
+              id: args,
+              onStartChatHistory: (c) => c.startChatHistoryPage()
+          );
         }
-        return null;
+      case Routes.chatHistory: return Pages.chatHistoryPage();
       default: return null;
     }
+    return null;
   }
 
   RouteFactory getRouteGenerator() => (settings) {

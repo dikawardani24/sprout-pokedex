@@ -10,7 +10,7 @@ class AppErrorScreenSize extends StatelessWidget{
 
   const AppErrorScreenSize({
     super.key,
-    this.message = StringRes.errScreenTooSmall
+    this.message = StringErrRes.errScreenTooSmall
   });
 
   @override

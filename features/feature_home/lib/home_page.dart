@@ -9,13 +9,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
 typedef OnStartDetail = void Function(BuildContext context, AppPokemon selected);
+typedef OnStartChat = void Function(BuildContext context);
 
 class HomePage extends StatefulWidget {
-  final OnStartDetail? onTap;
+  final OnStartDetail? onStartDetail;
+  final OnStartChat? onStartChat;
 
   const HomePage({
     super.key,
-    this.onTap
+    this.onStartDetail,
+    this.onStartChat
   });
 
   @override
@@ -45,9 +48,7 @@ class _HomePageState extends State<HomePage> {
           isLoadingMore: isLoadingMore,
           hasReachedMax: hasReachedMax,
           errorMessage: errorMessage,
-          onTap: (selected) {
-            widget.onTap?.call(this.context, selected);
-          },
+          onStartDetail: (selected) {widget.onStartDetail?.call(this.context, selected);},
           onRetry: () => _initPokemon(context),
           scrollController: _controller,
         ),
@@ -90,6 +91,13 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniStartFloat,
+      floatingActionButton: AppIconButton(
+        icon: IconRes.iconChat,
+        iconColor: ColorRes.white,
+        backgroundColor: ColorRes.red,
+        onTap: () => widget.onStartChat?.call(this.context),
+      ),
       body: SafeArea(
         child: BlocBuilder<HomeBloc, HomeState>(
           bloc: _homeBloc,

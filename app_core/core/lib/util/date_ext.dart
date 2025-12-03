@@ -1,20 +1,25 @@
 import 'package:intl/intl.dart';
 
-const datePattern = 'EEEEE, dd MMMM yyyy Hms';
+const timePattern = "Hms";
+const datePattern = 'EEEEE, dd MMMM yyyy $timePattern';
 
 extension DateHelper on DateTime? {
 
-  String format() {
+  String formatDateTime(String pattern) {
     final toFormat = this;
     if (toFormat != null) {
       try {
-        return DateFormat(datePattern).format(toFormat);
+        return DateFormat(pattern).format(toFormat);
       } catch (e) {
         return "";
       }
     }
     return "";
   }
+
+  String format() => formatDateTime(datePattern);
+
+  String formatTime() => formatDateTime(timePattern);
 }
 
 extension DateStringHelper on String {

@@ -1,6 +1,7 @@
 name: sprout_pokedex
 
 packages:
+  - "./app_core/ai_gemini"
   - "./app_core/app_preference"
   - "./app_core/api"
   - "./app_core/database"
@@ -8,6 +9,7 @@ packages:
   - "./app_core/core_ui"
   - "./features/feature_home"
   - "./features/feature_detail"
+  - "./features/feature_chat"
   - "."  # Main app
 
 commands:
@@ -124,3 +126,23 @@ scripts:
     run: |
       flutter pub upgrade
       melos bootstrap
+
+  run:pickDevice:
+    description: "Run app on selected device"
+    run: |
+      melos exec "flutter run"
+
+  run:linux:
+    description: "Run app on linux"
+    run : |
+      melos exec "flutter run -d linux"
+
+  run:web:
+    description: "Run app on web browser"
+    run: |
+      melos exec "flutter run -d chrome"
+
+  run:macOs:
+    description: "Run on mac os desktop"
+    run: |
+      melos exec "flutter run -d macOS"

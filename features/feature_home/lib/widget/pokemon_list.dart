@@ -7,7 +7,7 @@ typedef GestureTapPokemon = void Function(AppPokemon selected);
 
 class PokemonList extends StatelessWidget {
   final List<AppPokemon> pokemons;
-  final GestureTapPokemon? onTap;
+  final GestureTapPokemon? onStartDetail;
   final bool isLoadingMore;
   final bool hasReachedMax;
   final String? errorMessage;
@@ -17,7 +17,7 @@ class PokemonList extends StatelessWidget {
   const PokemonList({
     super.key,
     required this.pokemons,
-    this.onTap,
+    this.onStartDetail,
     this.isLoadingMore = false,
     this.hasReachedMax = false,
     this.errorMessage,
@@ -98,7 +98,7 @@ class PokemonList extends StatelessWidget {
             final pokemon = pokemons[index];
             return RepaintBoundary(
               child: InkWell(
-                onTap: () => onTap?.call(pokemon),
+                onTap: () => onStartDetail?.call(pokemon),
                 borderRadius: BorderRadius.circular(12),
                 child: ItemPokemon(
                   key: ValueKey(pokemon.id),

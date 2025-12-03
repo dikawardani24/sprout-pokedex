@@ -21,14 +21,12 @@ _i174.GetIt $initFeatureHome(
   String? environment,
   _i526.EnvironmentFilter? environmentFilter,
 }) {
-  final gh = _i526.GetItHelper(
-    getIt,
-    environment,
-    environmentFilter,
+  final gh = _i526.GetItHelper(getIt, environment, environmentFilter);
+  gh.factory<_i997.HomeBloc>(
+    () => _i997.HomeBloc(
+      gh<_i494.GetPokemonUseCase>(),
+      gh<_i494.CacheImageUrlUseCase>(),
+    ),
   );
-  gh.factory<_i997.HomeBloc>(() => _i997.HomeBloc(
-        gh<_i494.GetPokemonUseCase>(),
-        gh<_i494.CacheImageUrlUseCase>(),
-      ));
   return getIt;
 }

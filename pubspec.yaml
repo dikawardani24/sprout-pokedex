@@ -4,11 +4,13 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.5.3
+  sdk: ^3.10.1
 
 dependencies:
   flutter:
     sdk: flutter
+  ai_gemini:
+    path: ./app_core/ai_gemini
   api:
     path: ./app_core/api
   database:
@@ -21,6 +23,8 @@ dependencies:
     path: ./features/feature_home
   feature_detail:
     path: ./features/feature_detail
+  feature_chat:
+    path: ./features/feature_chat
   cupertino_icons: ^1.0.8
   pokedex: ^0.3.0
   flutter_svg: ^2.0.9
@@ -44,6 +48,8 @@ dependencies:
   connectivity_plus: ^7.0.0
   sqflite_common_ffi: ^2.4.0
   http_interceptor: ^1.0.2
+  flutter_gemini: ^3.0.0
+  flutter_widget_from_html: ^0.17.1
 
 dev_dependencies:
   flutter_test:
@@ -62,6 +68,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
+    - assets/env.json
     - assets/imgs/pokeball.png
     - assets/imgs/mask_pokeball.png
     - assets/imgs/pokeball_colored.png

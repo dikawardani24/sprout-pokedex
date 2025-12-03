@@ -12,6 +12,7 @@ export './res/font_res.dart';
 export './res/image_res.dart';
 export './res/string_res.dart';
 export './res/theme_res.dart';
+export './res/icon_res.dart';
 
 export './widgets/config/app_orientation.dart';
 export './widgets/app_card.dart';
@@ -29,3 +30,7 @@ export './widgets/app_animate_rotate_img.dart';
 export './widgets/scroll_top_button.dart';
 export './widgets/app_long_desc.dart';
 export './widgets/paragraph_view.dart';
+export './widgets/app_input.dart';
+export './widgets/app_time.dart';
+export './widgets/app_markdown.dart';
+export './widgets/app_chat_buble.dart';
