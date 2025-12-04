@@ -64,7 +64,7 @@ class _ChatPageState extends State<ChatPage> {
   Widget _buildContent(BuildContext context, {
     List<ChatMessage> list = const [],
     bool isLoadingAnswer = false,
-    String? err
+    String? err,
   }) {
     return Stack(
       children: [
@@ -72,7 +72,7 @@ class _ChatPageState extends State<ChatPage> {
           alignment: Alignment.center,
           child: Image.asset(
             ImageRes.pokeBall,
-            color: ColorRes.grey.withAlpha(80),
+            color: ColorRes.grey.withAlpha(20),
           ),
         ),
         Column(
@@ -82,7 +82,11 @@ class _ChatPageState extends State<ChatPage> {
                 controller: _scrollController,
                 padding: const EdgeInsets.all(16),
                 itemCount: list.length,
-                itemBuilder: (_, index) => ChatWidget(chatMessage: list[index]),
+                itemBuilder: (_, index) {
+                  final message =list[index];
+                  if (message.isUser) return ChatWidgetUser(text: message.text, when: message.when);
+                  return AppHtmViewer(markdown: message.text, textColor: context.iconThemColor);
+                },
               ),
             ),
             if (isLoadingAnswer) AppChatBubble(
@@ -128,8 +132,9 @@ class _ChatPageState extends State<ChatPage> {
           },
           builder: (context, state) {
             return state.maybeWhen(
-              gotAnswered: (messages) => _buildContent(context, list: messages),
+              gotAnswered: (messages) => _buildContent(context, list: messages, isLoadingAnswer: true),
               questionAdded: (messages) => _buildContent(context, list: messages, isLoadingAnswer: true),
+              answered: (messages) => _buildContent(context, list: messages),
               errorGetAnswer: (err, messages) => _buildContent(context, list: messages, err: StringErrRes.errGetAnswerAi),
               notAnswered: (messages) => _buildContent(context, list: messages, err: StringErrRes.errGetAnswerAi),
               loadingGetDetailPokemon: () => _buildContent(context, isLoadingAnswer: true),

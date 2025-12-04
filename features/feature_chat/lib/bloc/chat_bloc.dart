@@ -1,6 +1,6 @@
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:core/core.dart';
-import 'package:core/usecase/request/ask_ai_req.dart';
+import 'package:core/usecase/ai_steam_ask_use_case.dart';
 import 'package:core/usecase/request/get_detail_req.dart';
 import 'package:core/usecase/request/greet_req.dart';
 import 'package:core_ui/core_ui.dart';
@@ -16,8 +16,9 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
   final GetDetailPokeUseCase _getDetailPokeUseCase;
   final AskAiUseCase _aiUseCase;
   final AiGreetUseCase _aiGreetUseCase;
+  final AiSteamAskUseCase _aiSteamAskUseCase;
 
-  ChatBloc(this._getDetailPokeUseCase, this._aiUseCase, this._aiGreetUseCase): super(const ChatState.initial()) {
+  ChatBloc(this._getDetailPokeUseCase, this._aiUseCase, this._aiGreetUseCase, this._aiSteamAskUseCase): super(const ChatState.initial()) {
     on<GetDetailAndGreetingEvent>(
       _getDetailPokemon,
       transformer: restartable(),
@@ -35,10 +36,12 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
       return;
     }
     _messages.add(answer);
-    emit(ChatState.gotAnswered(List.of(_messages)));
+    emit(ChatState.answered(List.of(_messages)));
   }
 
   Future<void> _askQuestion(AskQuestionEvent event, Emitter<ChatState> emit) async {
+    final history = _messages;
+
     final question = ChatMessage.question(
       text: event.question,
       when: DateTime.now()
@@ -46,11 +49,23 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
 
     _messages.add(question);
     emit(ChatState.questionAdded(List.of(_messages)));
-    final result = await _aiUseCase.execute(AskAiReq(question));
-    result.when(
-        success: (answer) => _handleAnswer(answer, emit),
-        error: (err) => emit(ChatState.errorGetAnswer(getErrorMessage(err), List.of(_messages)))
-    );
+
+    try {
+      final stream = await _aiSteamAskUseCase.stream(
+        text: question.text,
+        history: history,
+      );
+
+      await emit.forEach(stream, onData: (data) {
+        final answer = ChatMessage.answer(text: data ?? "", when: DateTime.now());
+        _messages.add(answer);
+        return ChatState.gotAnswered(List.of(_messages));
+      });
+
+      emit(ChatState.answered(_messages));
+    } on Exception catch(err) {
+      emit(ChatState.errorGetAnswer(getErrorMessage(err), _messages));
+    }
   }
 
   Future<void> _getDetailPokemon(GetDetailAndGreetingEvent event, Emitter<ChatState> emit) async {
