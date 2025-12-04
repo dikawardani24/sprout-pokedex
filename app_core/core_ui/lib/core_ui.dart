@@ -5,6 +5,7 @@ export './util/context_ext.dart';
 export './util/err_handler.dart';
 export './util/navigation_extension.dart';
 export './util/asset_ext.dart';
+export './util/keyboard_ext.dart';
 
 export './res/color_res.dart';
 export './res/dimen_res.dart';

@@ -29,6 +29,7 @@ class _ChatPageState extends State<ChatPage> {
   final ScrollController _scrollController = ScrollController();
 
   void _askQuestion(BuildContext context, String question) {
+    context.dismissKeyboard();
     context.read<ChatBloc>().add(AskQuestionEvent(question));
   }
 
