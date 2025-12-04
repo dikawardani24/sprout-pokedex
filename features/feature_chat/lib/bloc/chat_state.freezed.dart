@@ -24,6 +24,7 @@ mixin _$ChatState {
     required TResult Function(List<ChatMessage> messages) questionAdded,
     required TResult Function(List<ChatMessage> messages) gotAnswered,
     required TResult Function(List<ChatMessage> messages) notAnswered,
+    required TResult Function(List<ChatMessage> messages) answered,
     required TResult Function(AppPokemonDetail detail) gotDetailPokemon,
     required TResult Function(String message) errorGetDetail,
     required TResult Function(String message, List<ChatMessage> messages)
@@ -36,6 +37,7 @@ mixin _$ChatState {
     TResult? Function(List<ChatMessage> messages)? questionAdded,
     TResult? Function(List<ChatMessage> messages)? gotAnswered,
     TResult? Function(List<ChatMessage> messages)? notAnswered,
+    TResult? Function(List<ChatMessage> messages)? answered,
     TResult? Function(AppPokemonDetail detail)? gotDetailPokemon,
     TResult? Function(String message)? errorGetDetail,
     TResult? Function(String message, List<ChatMessage> messages)?
@@ -48,6 +50,7 @@ mixin _$ChatState {
     TResult Function(List<ChatMessage> messages)? questionAdded,
     TResult Function(List<ChatMessage> messages)? gotAnswered,
     TResult Function(List<ChatMessage> messages)? notAnswered,
+    TResult Function(List<ChatMessage> messages)? answered,
     TResult Function(AppPokemonDetail detail)? gotDetailPokemon,
     TResult Function(String message)? errorGetDetail,
     TResult Function(String message, List<ChatMessage> messages)?
@@ -62,6 +65,7 @@ mixin _$ChatState {
     required TResult Function(_QuestionAdded value) questionAdded,
     required TResult Function(_GotAnswered value) gotAnswered,
     required TResult Function(_NotAnswered value) notAnswered,
+    required TResult Function(_Answered value) answered,
     required TResult Function(_GotDetailPokemon value) gotDetailPokemon,
     required TResult Function(_ErrorGetDetail value) errorGetDetail,
     required TResult Function(_ErrorGetAnswered value) errorGetAnswer,
@@ -73,6 +77,7 @@ mixin _$ChatState {
     TResult? Function(_QuestionAdded value)? questionAdded,
     TResult? Function(_GotAnswered value)? gotAnswered,
     TResult? Function(_NotAnswered value)? notAnswered,
+    TResult? Function(_Answered value)? answered,
     TResult? Function(_GotDetailPokemon value)? gotDetailPokemon,
     TResult? Function(_ErrorGetDetail value)? errorGetDetail,
     TResult? Function(_ErrorGetAnswered value)? errorGetAnswer,
@@ -84,6 +89,7 @@ mixin _$ChatState {
     TResult Function(_QuestionAdded value)? questionAdded,
     TResult Function(_GotAnswered value)? gotAnswered,
     TResult Function(_NotAnswered value)? notAnswered,
+    TResult Function(_Answered value)? answered,
     TResult Function(_GotDetailPokemon value)? gotDetailPokemon,
     TResult Function(_ErrorGetDetail value)? errorGetDetail,
     TResult Function(_ErrorGetAnswered value)? errorGetAnswer,
@@ -159,6 +165,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function(List<ChatMessage> messages) questionAdded,
     required TResult Function(List<ChatMessage> messages) gotAnswered,
     required TResult Function(List<ChatMessage> messages) notAnswered,
+    required TResult Function(List<ChatMessage> messages) answered,
     required TResult Function(AppPokemonDetail detail) gotDetailPokemon,
     required TResult Function(String message) errorGetDetail,
     required TResult Function(String message, List<ChatMessage> messages)
@@ -175,6 +182,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function(List<ChatMessage> messages)? questionAdded,
     TResult? Function(List<ChatMessage> messages)? gotAnswered,
     TResult? Function(List<ChatMessage> messages)? notAnswered,
+    TResult? Function(List<ChatMessage> messages)? answered,
     TResult? Function(AppPokemonDetail detail)? gotDetailPokemon,
     TResult? Function(String message)? errorGetDetail,
     TResult? Function(String message, List<ChatMessage> messages)?
@@ -191,6 +199,7 @@ class _$InitialImpl implements _Initial {
     TResult Function(List<ChatMessage> messages)? questionAdded,
     TResult Function(List<ChatMessage> messages)? gotAnswered,
     TResult Function(List<ChatMessage> messages)? notAnswered,
+    TResult Function(List<ChatMessage> messages)? answered,
     TResult Function(AppPokemonDetail detail)? gotDetailPokemon,
     TResult Function(String message)? errorGetDetail,
     TResult Function(String message, List<ChatMessage> messages)?
@@ -212,6 +221,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_QuestionAdded value) questionAdded,
     required TResult Function(_GotAnswered value) gotAnswered,
     required TResult Function(_NotAnswered value) notAnswered,
+    required TResult Function(_Answered value) answered,
     required TResult Function(_GotDetailPokemon value) gotDetailPokemon,
     required TResult Function(_ErrorGetDetail value) errorGetDetail,
     required TResult Function(_ErrorGetAnswered value) errorGetAnswer,
@@ -227,6 +237,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_QuestionAdded value)? questionAdded,
     TResult? Function(_GotAnswered value)? gotAnswered,
     TResult? Function(_NotAnswered value)? notAnswered,
+    TResult? Function(_Answered value)? answered,
     TResult? Function(_GotDetailPokemon value)? gotDetailPokemon,
     TResult? Function(_ErrorGetDetail value)? errorGetDetail,
     TResult? Function(_ErrorGetAnswered value)? errorGetAnswer,
@@ -242,6 +253,7 @@ class _$InitialImpl implements _Initial {
     TResult Function(_QuestionAdded value)? questionAdded,
     TResult Function(_GotAnswered value)? gotAnswered,
     TResult Function(_NotAnswered value)? notAnswered,
+    TResult Function(_Answered value)? answered,
     TResult Function(_GotDetailPokemon value)? gotDetailPokemon,
     TResult Function(_ErrorGetDetail value)? errorGetDetail,
     TResult Function(_ErrorGetAnswered value)? errorGetAnswer,
@@ -307,6 +319,7 @@ class _$LoadingGetDetailPokemonImpl implements _LoadingGetDetailPokemon {
     required TResult Function(List<ChatMessage> messages) questionAdded,
     required TResult Function(List<ChatMessage> messages) gotAnswered,
     required TResult Function(List<ChatMessage> messages) notAnswered,
+    required TResult Function(List<ChatMessage> messages) answered,
     required TResult Function(AppPokemonDetail detail) gotDetailPokemon,
     required TResult Function(String message) errorGetDetail,
     required TResult Function(String message, List<ChatMessage> messages)
@@ -323,6 +336,7 @@ class _$LoadingGetDetailPokemonImpl implements _LoadingGetDetailPokemon {
     TResult? Function(List<ChatMessage> messages)? questionAdded,
     TResult? Function(List<ChatMessage> messages)? gotAnswered,
     TResult? Function(List<ChatMessage> messages)? notAnswered,
+    TResult? Function(List<ChatMessage> messages)? answered,
     TResult? Function(AppPokemonDetail detail)? gotDetailPokemon,
     TResult? Function(String message)? errorGetDetail,
     TResult? Function(String message, List<ChatMessage> messages)?
@@ -339,6 +353,7 @@ class _$LoadingGetDetailPokemonImpl implements _LoadingGetDetailPokemon {
     TResult Function(List<ChatMessage> messages)? questionAdded,
     TResult Function(List<ChatMessage> messages)? gotAnswered,
     TResult Function(List<ChatMessage> messages)? notAnswered,
+    TResult Function(List<ChatMessage> messages)? answered,
     TResult Function(AppPokemonDetail detail)? gotDetailPokemon,
     TResult Function(String message)? errorGetDetail,
     TResult Function(String message, List<ChatMessage> messages)?
@@ -360,6 +375,7 @@ class _$LoadingGetDetailPokemonImpl implements _LoadingGetDetailPokemon {
     required TResult Function(_QuestionAdded value) questionAdded,
     required TResult Function(_GotAnswered value) gotAnswered,
     required TResult Function(_NotAnswered value) notAnswered,
+    required TResult Function(_Answered value) answered,
     required TResult Function(_GotDetailPokemon value) gotDetailPokemon,
     required TResult Function(_ErrorGetDetail value) errorGetDetail,
     required TResult Function(_ErrorGetAnswered value) errorGetAnswer,
@@ -375,6 +391,7 @@ class _$LoadingGetDetailPokemonImpl implements _LoadingGetDetailPokemon {
     TResult? Function(_QuestionAdded value)? questionAdded,
     TResult? Function(_GotAnswered value)? gotAnswered,
     TResult? Function(_NotAnswered value)? notAnswered,
+    TResult? Function(_Answered value)? answered,
     TResult? Function(_GotDetailPokemon value)? gotDetailPokemon,
     TResult? Function(_ErrorGetDetail value)? errorGetDetail,
     TResult? Function(_ErrorGetAnswered value)? errorGetAnswer,
@@ -390,6 +407,7 @@ class _$LoadingGetDetailPokemonImpl implements _LoadingGetDetailPokemon {
     TResult Function(_QuestionAdded value)? questionAdded,
     TResult Function(_GotAnswered value)? gotAnswered,
     TResult Function(_NotAnswered value)? notAnswered,
+    TResult Function(_Answered value)? answered,
     TResult Function(_GotDetailPokemon value)? gotDetailPokemon,
     TResult Function(_ErrorGetDetail value)? errorGetDetail,
     TResult Function(_ErrorGetAnswered value)? errorGetAnswer,
@@ -488,6 +506,7 @@ class _$QuestionAddedImpl implements _QuestionAdded {
     required TResult Function(List<ChatMessage> messages) questionAdded,
     required TResult Function(List<ChatMessage> messages) gotAnswered,
     required TResult Function(List<ChatMessage> messages) notAnswered,
+    required TResult Function(List<ChatMessage> messages) answered,
     required TResult Function(AppPokemonDetail detail) gotDetailPokemon,
     required TResult Function(String message) errorGetDetail,
     required TResult Function(String message, List<ChatMessage> messages)
@@ -504,6 +523,7 @@ class _$QuestionAddedImpl implements _QuestionAdded {
     TResult? Function(List<ChatMessage> messages)? questionAdded,
     TResult? Function(List<ChatMessage> messages)? gotAnswered,
     TResult? Function(List<ChatMessage> messages)? notAnswered,
+    TResult? Function(List<ChatMessage> messages)? answered,
     TResult? Function(AppPokemonDetail detail)? gotDetailPokemon,
     TResult? Function(String message)? errorGetDetail,
     TResult? Function(String message, List<ChatMessage> messages)?
@@ -520,6 +540,7 @@ class _$QuestionAddedImpl implements _QuestionAdded {
     TResult Function(List<ChatMessage> messages)? questionAdded,
     TResult Function(List<ChatMessage> messages)? gotAnswered,
     TResult Function(List<ChatMessage> messages)? notAnswered,
+    TResult Function(List<ChatMessage> messages)? answered,
     TResult Function(AppPokemonDetail detail)? gotDetailPokemon,
     TResult Function(String message)? errorGetDetail,
     TResult Function(String message, List<ChatMessage> messages)?
@@ -541,6 +562,7 @@ class _$QuestionAddedImpl implements _QuestionAdded {
     required TResult Function(_QuestionAdded value) questionAdded,
     required TResult Function(_GotAnswered value) gotAnswered,
     required TResult Function(_NotAnswered value) notAnswered,
+    required TResult Function(_Answered value) answered,
     required TResult Function(_GotDetailPokemon value) gotDetailPokemon,
     required TResult Function(_ErrorGetDetail value) errorGetDetail,
     required TResult Function(_ErrorGetAnswered value) errorGetAnswer,
@@ -556,6 +578,7 @@ class _$QuestionAddedImpl implements _QuestionAdded {
     TResult? Function(_QuestionAdded value)? questionAdded,
     TResult? Function(_GotAnswered value)? gotAnswered,
     TResult? Function(_NotAnswered value)? notAnswered,
+    TResult? Function(_Answered value)? answered,
     TResult? Function(_GotDetailPokemon value)? gotDetailPokemon,
     TResult? Function(_ErrorGetDetail value)? errorGetDetail,
     TResult? Function(_ErrorGetAnswered value)? errorGetAnswer,
@@ -571,6 +594,7 @@ class _$QuestionAddedImpl implements _QuestionAdded {
     TResult Function(_QuestionAdded value)? questionAdded,
     TResult Function(_GotAnswered value)? gotAnswered,
     TResult Function(_NotAnswered value)? notAnswered,
+    TResult Function(_Answered value)? answered,
     TResult Function(_GotDetailPokemon value)? gotDetailPokemon,
     TResult Function(_ErrorGetDetail value)? errorGetDetail,
     TResult Function(_ErrorGetAnswered value)? errorGetAnswer,
@@ -678,6 +702,7 @@ class _$GotAnsweredImpl implements _GotAnswered {
     required TResult Function(List<ChatMessage> messages) questionAdded,
     required TResult Function(List<ChatMessage> messages) gotAnswered,
     required TResult Function(List<ChatMessage> messages) notAnswered,
+    required TResult Function(List<ChatMessage> messages) answered,
     required TResult Function(AppPokemonDetail detail) gotDetailPokemon,
     required TResult Function(String message) errorGetDetail,
     required TResult Function(String message, List<ChatMessage> messages)
@@ -694,6 +719,7 @@ class _$GotAnsweredImpl implements _GotAnswered {
     TResult? Function(List<ChatMessage> messages)? questionAdded,
     TResult? Function(List<ChatMessage> messages)? gotAnswered,
     TResult? Function(List<ChatMessage> messages)? notAnswered,
+    TResult? Function(List<ChatMessage> messages)? answered,
     TResult? Function(AppPokemonDetail detail)? gotDetailPokemon,
     TResult? Function(String message)? errorGetDetail,
     TResult? Function(String message, List<ChatMessage> messages)?
@@ -710,6 +736,7 @@ class _$GotAnsweredImpl implements _GotAnswered {
     TResult Function(List<ChatMessage> messages)? questionAdded,
     TResult Function(List<ChatMessage> messages)? gotAnswered,
     TResult Function(List<ChatMessage> messages)? notAnswered,
+    TResult Function(List<ChatMessage> messages)? answered,
     TResult Function(AppPokemonDetail detail)? gotDetailPokemon,
     TResult Function(String message)? errorGetDetail,
     TResult Function(String message, List<ChatMessage> messages)?
@@ -731,6 +758,7 @@ class _$GotAnsweredImpl implements _GotAnswered {
     required TResult Function(_QuestionAdded value) questionAdded,
     required TResult Function(_GotAnswered value) gotAnswered,
     required TResult Function(_NotAnswered value) notAnswered,
+    required TResult Function(_Answered value) answered,
     required TResult Function(_GotDetailPokemon value) gotDetailPokemon,
     required TResult Function(_ErrorGetDetail value) errorGetDetail,
     required TResult Function(_ErrorGetAnswered value) errorGetAnswer,
@@ -746,6 +774,7 @@ class _$GotAnsweredImpl implements _GotAnswered {
     TResult? Function(_QuestionAdded value)? questionAdded,
     TResult? Function(_GotAnswered value)? gotAnswered,
     TResult? Function(_NotAnswered value)? notAnswered,
+    TResult? Function(_Answered value)? answered,
     TResult? Function(_GotDetailPokemon value)? gotDetailPokemon,
     TResult? Function(_ErrorGetDetail value)? errorGetDetail,
     TResult? Function(_ErrorGetAnswered value)? errorGetAnswer,
@@ -761,6 +790,7 @@ class _$GotAnsweredImpl implements _GotAnswered {
     TResult Function(_QuestionAdded value)? questionAdded,
     TResult Function(_GotAnswered value)? gotAnswered,
     TResult Function(_NotAnswered value)? notAnswered,
+    TResult Function(_Answered value)? answered,
     TResult Function(_GotDetailPokemon value)? gotDetailPokemon,
     TResult Function(_ErrorGetDetail value)? errorGetDetail,
     TResult Function(_ErrorGetAnswered value)? errorGetAnswer,
@@ -868,6 +898,7 @@ class _$NotAnsweredImpl implements _NotAnswered {
     required TResult Function(List<ChatMessage> messages) questionAdded,
     required TResult Function(List<ChatMessage> messages) gotAnswered,
     required TResult Function(List<ChatMessage> messages) notAnswered,
+    required TResult Function(List<ChatMessage> messages) answered,
     required TResult Function(AppPokemonDetail detail) gotDetailPokemon,
     required TResult Function(String message) errorGetDetail,
     required TResult Function(String message, List<ChatMessage> messages)
@@ -884,6 +915,7 @@ class _$NotAnsweredImpl implements _NotAnswered {
     TResult? Function(List<ChatMessage> messages)? questionAdded,
     TResult? Function(List<ChatMessage> messages)? gotAnswered,
     TResult? Function(List<ChatMessage> messages)? notAnswered,
+    TResult? Function(List<ChatMessage> messages)? answered,
     TResult? Function(AppPokemonDetail detail)? gotDetailPokemon,
     TResult? Function(String message)? errorGetDetail,
     TResult? Function(String message, List<ChatMessage> messages)?
@@ -900,6 +932,7 @@ class _$NotAnsweredImpl implements _NotAnswered {
     TResult Function(List<ChatMessage> messages)? questionAdded,
     TResult Function(List<ChatMessage> messages)? gotAnswered,
     TResult Function(List<ChatMessage> messages)? notAnswered,
+    TResult Function(List<ChatMessage> messages)? answered,
     TResult Function(AppPokemonDetail detail)? gotDetailPokemon,
     TResult Function(String message)? errorGetDetail,
     TResult Function(String message, List<ChatMessage> messages)?
@@ -921,6 +954,7 @@ class _$NotAnsweredImpl implements _NotAnswered {
     required TResult Function(_QuestionAdded value) questionAdded,
     required TResult Function(_GotAnswered value) gotAnswered,
     required TResult Function(_NotAnswered value) notAnswered,
+    required TResult Function(_Answered value) answered,
     required TResult Function(_GotDetailPokemon value) gotDetailPokemon,
     required TResult Function(_ErrorGetDetail value) errorGetDetail,
     required TResult Function(_ErrorGetAnswered value) errorGetAnswer,
@@ -936,6 +970,7 @@ class _$NotAnsweredImpl implements _NotAnswered {
     TResult? Function(_QuestionAdded value)? questionAdded,
     TResult? Function(_GotAnswered value)? gotAnswered,
     TResult? Function(_NotAnswered value)? notAnswered,
+    TResult? Function(_Answered value)? answered,
     TResult? Function(_GotDetailPokemon value)? gotDetailPokemon,
     TResult? Function(_ErrorGetDetail value)? errorGetDetail,
     TResult? Function(_ErrorGetAnswered value)? errorGetAnswer,
@@ -951,6 +986,7 @@ class _$NotAnsweredImpl implements _NotAnswered {
     TResult Function(_QuestionAdded value)? questionAdded,
     TResult Function(_GotAnswered value)? gotAnswered,
     TResult Function(_NotAnswered value)? notAnswered,
+    TResult Function(_Answered value)? answered,
     TResult Function(_GotDetailPokemon value)? gotDetailPokemon,
     TResult Function(_ErrorGetDetail value)? errorGetDetail,
     TResult Function(_ErrorGetAnswered value)? errorGetAnswer,
@@ -973,6 +1009,200 @@ abstract class _NotAnswered implements ChatState {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$NotAnsweredImplCopyWith<_$NotAnsweredImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AnsweredImplCopyWith<$Res> {
+  factory _$$AnsweredImplCopyWith(
+    _$AnsweredImpl value,
+    $Res Function(_$AnsweredImpl) then,
+  ) = __$$AnsweredImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<ChatMessage> messages});
+}
+
+/// @nodoc
+class __$$AnsweredImplCopyWithImpl<$Res>
+    extends _$ChatStateCopyWithImpl<$Res, _$AnsweredImpl>
+    implements _$$AnsweredImplCopyWith<$Res> {
+  __$$AnsweredImplCopyWithImpl(
+    _$AnsweredImpl _value,
+    $Res Function(_$AnsweredImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of ChatState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? messages = null}) {
+    return _then(
+      _$AnsweredImpl(
+        null == messages
+            ? _value._messages
+            : messages // ignore: cast_nullable_to_non_nullable
+                  as List<ChatMessage>,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+
+class _$AnsweredImpl implements _Answered {
+  const _$AnsweredImpl(final List<ChatMessage> messages) : _messages = messages;
+
+  final List<ChatMessage> _messages;
+  @override
+  List<ChatMessage> get messages {
+    if (_messages is EqualUnmodifiableListView) return _messages;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_messages);
+  }
+
+  @override
+  String toString() {
+    return 'ChatState.answered(messages: $messages)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AnsweredImpl &&
+            const DeepCollectionEquality().equals(other._messages, _messages));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_messages));
+
+  /// Create a copy of ChatState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AnsweredImplCopyWith<_$AnsweredImpl> get copyWith =>
+      __$$AnsweredImplCopyWithImpl<_$AnsweredImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loadingGetDetailPokemon,
+    required TResult Function(List<ChatMessage> messages) questionAdded,
+    required TResult Function(List<ChatMessage> messages) gotAnswered,
+    required TResult Function(List<ChatMessage> messages) notAnswered,
+    required TResult Function(List<ChatMessage> messages) answered,
+    required TResult Function(AppPokemonDetail detail) gotDetailPokemon,
+    required TResult Function(String message) errorGetDetail,
+    required TResult Function(String message, List<ChatMessage> messages)
+    errorGetAnswer,
+  }) {
+    return answered(messages);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loadingGetDetailPokemon,
+    TResult? Function(List<ChatMessage> messages)? questionAdded,
+    TResult? Function(List<ChatMessage> messages)? gotAnswered,
+    TResult? Function(List<ChatMessage> messages)? notAnswered,
+    TResult? Function(List<ChatMessage> messages)? answered,
+    TResult? Function(AppPokemonDetail detail)? gotDetailPokemon,
+    TResult? Function(String message)? errorGetDetail,
+    TResult? Function(String message, List<ChatMessage> messages)?
+    errorGetAnswer,
+  }) {
+    return answered?.call(messages);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loadingGetDetailPokemon,
+    TResult Function(List<ChatMessage> messages)? questionAdded,
+    TResult Function(List<ChatMessage> messages)? gotAnswered,
+    TResult Function(List<ChatMessage> messages)? notAnswered,
+    TResult Function(List<ChatMessage> messages)? answered,
+    TResult Function(AppPokemonDetail detail)? gotDetailPokemon,
+    TResult Function(String message)? errorGetDetail,
+    TResult Function(String message, List<ChatMessage> messages)?
+    errorGetAnswer,
+    required TResult orElse(),
+  }) {
+    if (answered != null) {
+      return answered(messages);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_LoadingGetDetailPokemon value)
+    loadingGetDetailPokemon,
+    required TResult Function(_QuestionAdded value) questionAdded,
+    required TResult Function(_GotAnswered value) gotAnswered,
+    required TResult Function(_NotAnswered value) notAnswered,
+    required TResult Function(_Answered value) answered,
+    required TResult Function(_GotDetailPokemon value) gotDetailPokemon,
+    required TResult Function(_ErrorGetDetail value) errorGetDetail,
+    required TResult Function(_ErrorGetAnswered value) errorGetAnswer,
+  }) {
+    return answered(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_LoadingGetDetailPokemon value)? loadingGetDetailPokemon,
+    TResult? Function(_QuestionAdded value)? questionAdded,
+    TResult? Function(_GotAnswered value)? gotAnswered,
+    TResult? Function(_NotAnswered value)? notAnswered,
+    TResult? Function(_Answered value)? answered,
+    TResult? Function(_GotDetailPokemon value)? gotDetailPokemon,
+    TResult? Function(_ErrorGetDetail value)? errorGetDetail,
+    TResult? Function(_ErrorGetAnswered value)? errorGetAnswer,
+  }) {
+    return answered?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_LoadingGetDetailPokemon value)? loadingGetDetailPokemon,
+    TResult Function(_QuestionAdded value)? questionAdded,
+    TResult Function(_GotAnswered value)? gotAnswered,
+    TResult Function(_NotAnswered value)? notAnswered,
+    TResult Function(_Answered value)? answered,
+    TResult Function(_GotDetailPokemon value)? gotDetailPokemon,
+    TResult Function(_ErrorGetDetail value)? errorGetDetail,
+    TResult Function(_ErrorGetAnswered value)? errorGetAnswer,
+    required TResult orElse(),
+  }) {
+    if (answered != null) {
+      return answered(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Answered implements ChatState {
+  const factory _Answered(final List<ChatMessage> messages) = _$AnsweredImpl;
+
+  List<ChatMessage> get messages;
+
+  /// Create a copy of ChatState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$AnsweredImplCopyWith<_$AnsweredImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1054,6 +1284,7 @@ class _$GotDetailPokemonImpl implements _GotDetailPokemon {
     required TResult Function(List<ChatMessage> messages) questionAdded,
     required TResult Function(List<ChatMessage> messages) gotAnswered,
     required TResult Function(List<ChatMessage> messages) notAnswered,
+    required TResult Function(List<ChatMessage> messages) answered,
     required TResult Function(AppPokemonDetail detail) gotDetailPokemon,
     required TResult Function(String message) errorGetDetail,
     required TResult Function(String message, List<ChatMessage> messages)
@@ -1070,6 +1301,7 @@ class _$GotDetailPokemonImpl implements _GotDetailPokemon {
     TResult? Function(List<ChatMessage> messages)? questionAdded,
     TResult? Function(List<ChatMessage> messages)? gotAnswered,
     TResult? Function(List<ChatMessage> messages)? notAnswered,
+    TResult? Function(List<ChatMessage> messages)? answered,
     TResult? Function(AppPokemonDetail detail)? gotDetailPokemon,
     TResult? Function(String message)? errorGetDetail,
     TResult? Function(String message, List<ChatMessage> messages)?
@@ -1086,6 +1318,7 @@ class _$GotDetailPokemonImpl implements _GotDetailPokemon {
     TResult Function(List<ChatMessage> messages)? questionAdded,
     TResult Function(List<ChatMessage> messages)? gotAnswered,
     TResult Function(List<ChatMessage> messages)? notAnswered,
+    TResult Function(List<ChatMessage> messages)? answered,
     TResult Function(AppPokemonDetail detail)? gotDetailPokemon,
     TResult Function(String message)? errorGetDetail,
     TResult Function(String message, List<ChatMessage> messages)?
@@ -1107,6 +1340,7 @@ class _$GotDetailPokemonImpl implements _GotDetailPokemon {
     required TResult Function(_QuestionAdded value) questionAdded,
     required TResult Function(_GotAnswered value) gotAnswered,
     required TResult Function(_NotAnswered value) notAnswered,
+    required TResult Function(_Answered value) answered,
     required TResult Function(_GotDetailPokemon value) gotDetailPokemon,
     required TResult Function(_ErrorGetDetail value) errorGetDetail,
     required TResult Function(_ErrorGetAnswered value) errorGetAnswer,
@@ -1122,6 +1356,7 @@ class _$GotDetailPokemonImpl implements _GotDetailPokemon {
     TResult? Function(_QuestionAdded value)? questionAdded,
     TResult? Function(_GotAnswered value)? gotAnswered,
     TResult? Function(_NotAnswered value)? notAnswered,
+    TResult? Function(_Answered value)? answered,
     TResult? Function(_GotDetailPokemon value)? gotDetailPokemon,
     TResult? Function(_ErrorGetDetail value)? errorGetDetail,
     TResult? Function(_ErrorGetAnswered value)? errorGetAnswer,
@@ -1137,6 +1372,7 @@ class _$GotDetailPokemonImpl implements _GotDetailPokemon {
     TResult Function(_QuestionAdded value)? questionAdded,
     TResult Function(_GotAnswered value)? gotAnswered,
     TResult Function(_NotAnswered value)? notAnswered,
+    TResult Function(_Answered value)? answered,
     TResult Function(_GotDetailPokemon value)? gotDetailPokemon,
     TResult Function(_ErrorGetDetail value)? errorGetDetail,
     TResult Function(_ErrorGetAnswered value)? errorGetAnswer,
@@ -1240,6 +1476,7 @@ class _$ErrorGetDetailImpl implements _ErrorGetDetail {
     required TResult Function(List<ChatMessage> messages) questionAdded,
     required TResult Function(List<ChatMessage> messages) gotAnswered,
     required TResult Function(List<ChatMessage> messages) notAnswered,
+    required TResult Function(List<ChatMessage> messages) answered,
     required TResult Function(AppPokemonDetail detail) gotDetailPokemon,
     required TResult Function(String message) errorGetDetail,
     required TResult Function(String message, List<ChatMessage> messages)
@@ -1256,6 +1493,7 @@ class _$ErrorGetDetailImpl implements _ErrorGetDetail {
     TResult? Function(List<ChatMessage> messages)? questionAdded,
     TResult? Function(List<ChatMessage> messages)? gotAnswered,
     TResult? Function(List<ChatMessage> messages)? notAnswered,
+    TResult? Function(List<ChatMessage> messages)? answered,
     TResult? Function(AppPokemonDetail detail)? gotDetailPokemon,
     TResult? Function(String message)? errorGetDetail,
     TResult? Function(String message, List<ChatMessage> messages)?
@@ -1272,6 +1510,7 @@ class _$ErrorGetDetailImpl implements _ErrorGetDetail {
     TResult Function(List<ChatMessage> messages)? questionAdded,
     TResult Function(List<ChatMessage> messages)? gotAnswered,
     TResult Function(List<ChatMessage> messages)? notAnswered,
+    TResult Function(List<ChatMessage> messages)? answered,
     TResult Function(AppPokemonDetail detail)? gotDetailPokemon,
     TResult Function(String message)? errorGetDetail,
     TResult Function(String message, List<ChatMessage> messages)?
@@ -1293,6 +1532,7 @@ class _$ErrorGetDetailImpl implements _ErrorGetDetail {
     required TResult Function(_QuestionAdded value) questionAdded,
     required TResult Function(_GotAnswered value) gotAnswered,
     required TResult Function(_NotAnswered value) notAnswered,
+    required TResult Function(_Answered value) answered,
     required TResult Function(_GotDetailPokemon value) gotDetailPokemon,
     required TResult Function(_ErrorGetDetail value) errorGetDetail,
     required TResult Function(_ErrorGetAnswered value) errorGetAnswer,
@@ -1308,6 +1548,7 @@ class _$ErrorGetDetailImpl implements _ErrorGetDetail {
     TResult? Function(_QuestionAdded value)? questionAdded,
     TResult? Function(_GotAnswered value)? gotAnswered,
     TResult? Function(_NotAnswered value)? notAnswered,
+    TResult? Function(_Answered value)? answered,
     TResult? Function(_GotDetailPokemon value)? gotDetailPokemon,
     TResult? Function(_ErrorGetDetail value)? errorGetDetail,
     TResult? Function(_ErrorGetAnswered value)? errorGetAnswer,
@@ -1323,6 +1564,7 @@ class _$ErrorGetDetailImpl implements _ErrorGetDetail {
     TResult Function(_QuestionAdded value)? questionAdded,
     TResult Function(_GotAnswered value)? gotAnswered,
     TResult Function(_NotAnswered value)? notAnswered,
+    TResult Function(_Answered value)? answered,
     TResult Function(_GotDetailPokemon value)? gotDetailPokemon,
     TResult Function(_ErrorGetDetail value)? errorGetDetail,
     TResult Function(_ErrorGetAnswered value)? errorGetAnswer,
@@ -1442,6 +1684,7 @@ class _$ErrorGetAnsweredImpl implements _ErrorGetAnswered {
     required TResult Function(List<ChatMessage> messages) questionAdded,
     required TResult Function(List<ChatMessage> messages) gotAnswered,
     required TResult Function(List<ChatMessage> messages) notAnswered,
+    required TResult Function(List<ChatMessage> messages) answered,
     required TResult Function(AppPokemonDetail detail) gotDetailPokemon,
     required TResult Function(String message) errorGetDetail,
     required TResult Function(String message, List<ChatMessage> messages)
@@ -1458,6 +1701,7 @@ class _$ErrorGetAnsweredImpl implements _ErrorGetAnswered {
     TResult? Function(List<ChatMessage> messages)? questionAdded,
     TResult? Function(List<ChatMessage> messages)? gotAnswered,
     TResult? Function(List<ChatMessage> messages)? notAnswered,
+    TResult? Function(List<ChatMessage> messages)? answered,
     TResult? Function(AppPokemonDetail detail)? gotDetailPokemon,
     TResult? Function(String message)? errorGetDetail,
     TResult? Function(String message, List<ChatMessage> messages)?
@@ -1474,6 +1718,7 @@ class _$ErrorGetAnsweredImpl implements _ErrorGetAnswered {
     TResult Function(List<ChatMessage> messages)? questionAdded,
     TResult Function(List<ChatMessage> messages)? gotAnswered,
     TResult Function(List<ChatMessage> messages)? notAnswered,
+    TResult Function(List<ChatMessage> messages)? answered,
     TResult Function(AppPokemonDetail detail)? gotDetailPokemon,
     TResult Function(String message)? errorGetDetail,
     TResult Function(String message, List<ChatMessage> messages)?
@@ -1495,6 +1740,7 @@ class _$ErrorGetAnsweredImpl implements _ErrorGetAnswered {
     required TResult Function(_QuestionAdded value) questionAdded,
     required TResult Function(_GotAnswered value) gotAnswered,
     required TResult Function(_NotAnswered value) notAnswered,
+    required TResult Function(_Answered value) answered,
     required TResult Function(_GotDetailPokemon value) gotDetailPokemon,
     required TResult Function(_ErrorGetDetail value) errorGetDetail,
     required TResult Function(_ErrorGetAnswered value) errorGetAnswer,
@@ -1510,6 +1756,7 @@ class _$ErrorGetAnsweredImpl implements _ErrorGetAnswered {
     TResult? Function(_QuestionAdded value)? questionAdded,
     TResult? Function(_GotAnswered value)? gotAnswered,
     TResult? Function(_NotAnswered value)? notAnswered,
+    TResult? Function(_Answered value)? answered,
     TResult? Function(_GotDetailPokemon value)? gotDetailPokemon,
     TResult? Function(_ErrorGetDetail value)? errorGetDetail,
     TResult? Function(_ErrorGetAnswered value)? errorGetAnswer,
@@ -1525,6 +1772,7 @@ class _$ErrorGetAnsweredImpl implements _ErrorGetAnswered {
     TResult Function(_QuestionAdded value)? questionAdded,
     TResult Function(_GotAnswered value)? gotAnswered,
     TResult Function(_NotAnswered value)? notAnswered,
+    TResult Function(_Answered value)? answered,
     TResult Function(_GotDetailPokemon value)? gotDetailPokemon,
     TResult Function(_ErrorGetDetail value)? errorGetDetail,
     TResult Function(_ErrorGetAnswered value)? errorGetAnswer,

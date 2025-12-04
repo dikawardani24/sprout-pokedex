@@ -1,32 +1,28 @@
-import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
-class ChatWidget extends StatelessWidget {
-  final ChatMessage chatMessage;
+class ChatWidgetUser extends StatelessWidget {
+  final String text;
+  final DateTime when;
 
-  const ChatWidget({super.key, required this.chatMessage});
+  const ChatWidgetUser({super.key, required this.text, required this.when, });
 
-  Color get _colorBox => chatMessage.isUser ? ColorRes.red : ColorRes.white;
-  Radius get _borderRadiusLeft => chatMessage.isUser ? const Radius.circular(DimenRes.size_12) : const Radius.circular(0);
-  Radius get _borderRadiusRight => chatMessage.isUser ? const Radius.circular(0) : const Radius.circular(DimenRes.size_12);
-  Alignment get _alignment => chatMessage.isUser ? Alignment.centerRight : Alignment.centerLeft;
+  Color get _colorBox => ColorRes.red;
+  Radius get _borderRadiusLeft => const Radius.circular(DimenRes.size_12);
+  Radius get _borderRadiusRight => const Radius.circular(0);
+  Alignment get _alignment => Alignment.centerRight;
 
   Widget _buildMessage() {
-    if (chatMessage.isUser) {
-      return Text(
-        chatMessage.text,
-        style: TextStyle(
-          color: Colors.white,
-        ),
-      );
-    }
-    return AppHtmViewer(markdown: chatMessage.text, textColor: ColorRes.black,);
+    return Text(
+      text,
+      style: TextStyle(
+        color: Colors.white,
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    bool isUser = chatMessage.isUser;
     final radius = DimenRes.size_16;
 
     return Align(
@@ -49,8 +45,8 @@ class ChatWidget extends StatelessWidget {
           children: [
             _buildMessage(),
             AppTime(
-              time: chatMessage.when,
-              textColor:  isUser ? Colors.white : Colors.black87,
+              time: when,
+              textColor:  Colors.white,
               bgColor: ColorRes.red.withAlpha(80),
             )
           ],

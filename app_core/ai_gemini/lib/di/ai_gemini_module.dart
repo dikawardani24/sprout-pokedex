@@ -5,8 +5,8 @@ import 'package:injectable/injectable.dart';
 @module
 abstract class AiGeminiModule {
   @singleton
-  AiEngine get gemini => AiEngine();
+  AiPrompts get prompts => AiPrompts();
 
   @singleton
-  AiPrompts get prompts => AiPrompts();
+  AiEngine get gemini => AiEngine(prompts);
 }

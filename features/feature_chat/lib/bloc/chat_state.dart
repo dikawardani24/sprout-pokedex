@@ -11,6 +11,7 @@ class ChatState with _$ChatState {
   const factory ChatState.questionAdded(List<ChatMessage> messages) = _QuestionAdded;
   const factory ChatState.gotAnswered(List<ChatMessage> messages) = _GotAnswered;
   const factory ChatState.notAnswered(List<ChatMessage> messages) = _NotAnswered;
+  const factory ChatState.answered(List<ChatMessage> messages) = _Answered;
   const factory ChatState.gotDetailPokemon(AppPokemonDetail detail) = _GotDetailPokemon;
   const factory ChatState.errorGetDetail(String message) = _ErrorGetDetail;
   const factory ChatState.errorGetAnswer(String message, List<ChatMessage> messages) = _ErrorGetAnswered;

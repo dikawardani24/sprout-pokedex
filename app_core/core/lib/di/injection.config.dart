@@ -26,6 +26,7 @@ import '../repository/pokemon_remote_repository.dart' as _i930;
 import '../service/impl/network_service_impl.dart' as _i603;
 import '../service/network_service.dart' as _i724;
 import '../usecase/ai_greet_use_case.dart' as _i672;
+import '../usecase/ai_steam_ask_use_case.dart' as _i855;
 import '../usecase/ask_ai_use_case.dart' as _i634;
 import '../usecase/cache_image_url_use_case.dart' as _i1054;
 import '../usecase/get_detail_poke_use_case.dart' as _i964;
@@ -49,7 +50,16 @@ _i174.GetIt $initCore(
     () => _i603.NetworkServiceImpl(connectivity: gh<_i895.Connectivity>()),
   );
   gh.factory<_i762.AiRepository>(
-    () => _i375.AiRepositoryImpl(gh<_i67.AiGeminiDatasource>()),
+    () => _i375.AiRepositoryImpl(
+      gh<_i67.AiGeminiDatasource>(),
+      gh<_i67.AiStreamDatasource>(),
+    ),
+  );
+  gh.factory<_i634.AskAiUseCase>(
+    () => _i634.AskAiUseCaseImpl(gh<_i762.AiRepository>()),
+  );
+  gh.factory<_i672.AiGreetUseCase>(
+    () => _i672.AiGreetUseCaseImpl(gh<_i762.AiRepository>()),
   );
   gh.factory<_i499.PokemonLocalRepository>(
     () => _i914.PokemonLocalRepositoryImpl(
@@ -63,6 +73,9 @@ _i174.GetIt $initCore(
   gh.factory<_i290.ValidateConnectionUseCase>(
     () => _i290.ValidateConnectionUseCaseImpl(gh<_i724.NetworkService>()),
   );
+  gh.factory<_i855.AiSteamAskUseCase>(
+    () => _i855.AiSteamAskUseCaseImpl(gh<_i762.AiRepository>()),
+  );
   gh.factory<_i964.GetDetailPokeUseCase>(
     () => _i964.GetDetailPokeUseCaseImpl(
       gh<_i930.PokemonRemoteRepository>(),
@@ -70,12 +83,6 @@ _i174.GetIt $initCore(
       gh<_i290.ValidateConnectionUseCase>(),
       gh<_i669.DataValidityPref>(),
     ),
-  );
-  gh.factory<_i634.AskAiUseCase>(
-    () => _i634.AskAiUseCaseImpl(gh<_i762.AiRepository>()),
-  );
-  gh.factory<_i672.AiGreetUseCase>(
-    () => _i672.AiGreetUseCaseImpl(gh<_i762.AiRepository>()),
   );
   gh.factory<_i898.GetPokemonUseCase>(
     () => _i898.GetPokemonUseCaseImpl(
