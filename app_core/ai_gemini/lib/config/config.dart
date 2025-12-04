@@ -26,11 +26,9 @@ class AiConfig {
 
   static Future<AiConfig> create() async {
     String apiKey = "";
-    if (kDebugMode) {
-      final jsonString = await rootBundle.loadString("assets/env.json");
-      Map<String, dynamic> json = jsonDecode(jsonString);
-      apiKey = json["api_key"] as String;
-    }
+    final jsonString = await rootBundle.loadString("assets/env.json");
+    Map<String, dynamic> json = jsonDecode(jsonString);
+    apiKey = json["api_key"] as String;
 
     if (apiKey.isEmpty) throw Exception("Api key invalid");
     return AiConfig(apiKey: apiKey, isDebug: kDebugMode);
