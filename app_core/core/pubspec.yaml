@@ -32,6 +32,7 @@ dependencies:
   json_annotation:
   intl:
   connectivity_plus:
+  uuid:
 
 dev_dependencies:
   flutter_test:

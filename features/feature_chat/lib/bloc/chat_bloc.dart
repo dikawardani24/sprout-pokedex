@@ -17,6 +17,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
   final AskAiUseCase _aiUseCase;
   final AiGreetUseCase _aiGreetUseCase;
   final AiSteamAskUseCase _aiSteamAskUseCase;
+  ChatMessage? _currentAnswer;
 
   ChatBloc(this._getDetailPokeUseCase, this._aiUseCase, this._aiGreetUseCase, this._aiSteamAskUseCase): super(const ChatState.initial()) {
     on<GetDetailAndGreetingEvent>(
@@ -39,6 +40,22 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     emit(ChatState.answered(List.of(_messages)));
   }
 
+  void _handleChunkAnswer(String? data) {
+    ChatMessage? answer = _currentAnswer;
+    if (answer == null) {
+      answer = ChatMessage.answer(text: data ?? "", when: DateTime.now());
+      _messages.add(answer);
+    }
+
+    _currentAnswer = answer.copyWith(
+        when: DateTime.now(),
+        text: "${answer.text}$data"
+    );
+
+    final index = _messages.indexWhere((e) => e.uuid == (_currentAnswer?.uuid ?? ""));
+    _messages[index] = answer;
+  }
+
   Future<void> _askQuestion(AskQuestionEvent event, Emitter<ChatState> emit) async {
     final history = _messages;
 
@@ -57,11 +74,11 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
       );
 
       await emit.forEach(stream, onData: (data) {
-        final answer = ChatMessage.answer(text: data ?? "", when: DateTime.now());
-        _messages.add(answer);
+        _handleChunkAnswer(data);
         return ChatState.gotAnswered(List.of(_messages));
       });
 
+      _currentAnswer = null;
       emit(ChatState.answered(_messages));
     } on Exception catch(err) {
       emit(ChatState.errorGetAnswer(getErrorMessage(err), _messages));
