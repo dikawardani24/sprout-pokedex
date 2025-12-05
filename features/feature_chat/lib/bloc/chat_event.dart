@@ -13,8 +13,9 @@ class GetDetailAndGreetingEvent extends ChatEvent {
 
 class AskQuestionEvent extends ChatEvent {
   final String question;
+  final bool isStream;
 
-  AskQuestionEvent(this.question);
+  AskQuestionEvent(this.question, {this.isStream = false});
 
   @override
   List<Object?> get props => [question];

@@ -4,7 +4,7 @@ import 'package:injectable/injectable.dart';
 
 abstract class AiSteamAskUseCase {
   Future<Stream<String?>> stream({
-    required String text,
+    required ChatMessage question,
     List<ChatMessage> history = const [],
   });
 }
@@ -17,10 +17,10 @@ class AiSteamAskUseCaseImpl implements AiSteamAskUseCase {
 
   @override
   Future<Stream<String?>> stream({
-    required String text,
+    required ChatMessage question,
     List<ChatMessage> history = const [],
   }) async => await _aiRepository.askStreamWithText(
-    text: text,
+    text: question.text,
     history: history,
   );
 }

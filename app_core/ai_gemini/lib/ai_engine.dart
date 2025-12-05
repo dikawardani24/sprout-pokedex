@@ -31,8 +31,11 @@ class AiEngine {
 
     // Add system prompt as first message with proper role
     contents.add(Content(
-      role: "user", // System prompts often work better as first user message
-      parts: _aiPrompts.knowledgePrompt(topic: topic),
+      role: "user",
+      parts: [
+        Part.text(_aiPrompts.systemInstruction),
+        if (topic != null) Part.text(_aiPrompts.knowledgePrompt(topic: topic))
+      ]
     ));
 
     // Add history

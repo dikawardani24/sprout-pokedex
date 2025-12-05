@@ -19,15 +19,4 @@ class AiGeminiDatasourceImpl implements AiGeminiDatasource {
   @override
   Future<String?> promptTextWithSpecificTopic(String prompt, String topic) async =>
       await _execute(prompt, topic: topic);
-
-
-  @override
-  Future<String?> sayHi(String? topic) async {
-    if (topic == null || topic.isEmpty) {
-      return """
-    <div class=\"greeting-container\">\n  <h2 class=\"master-greeting\">Olla, Aspiring Trainer!</h2>\n  <p class=\"welcome-message\">\n    Welcome! I am delighted to meet you. It is a fantastic day for a journey, and the world of Pokémon is waiting for us! I'm ready to share my knowledge and experience as a Pokémon Master. What wonders of our world shall we explore first?\n  </p>\n</div>
-    """;
-    }
-    return await _execute("Say hi", topic: topic);
-  }
 }

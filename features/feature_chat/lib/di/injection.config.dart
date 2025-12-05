@@ -27,7 +27,6 @@ _i174.GetIt $initFeatureChat(
     () => _i701.ChatBloc(
       gh<_i494.GetDetailPokeUseCase>(),
       gh<_i494.AskAiUseCase>(),
-      gh<_i494.AiGreetUseCase>(),
       gh<_i664.AiSteamAskUseCase>(),
     ),
   );

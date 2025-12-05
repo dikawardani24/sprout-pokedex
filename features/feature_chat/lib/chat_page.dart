@@ -27,10 +27,17 @@ class ChatPage extends StatefulWidget {
 
 class _ChatPageState extends State<ChatPage> {
   final ScrollController _scrollController = ScrollController();
+  bool _isStream = false;
 
   void _askQuestion(BuildContext context, String question) {
     context.dismissKeyboard();
-    context.read<ChatBloc>().add(AskQuestionEvent(question));
+    context.read<ChatBloc>().add(AskQuestionEvent(question, isStream: _isStream));
+  }
+  
+  void _toggleStreamAnswer() {
+    setState(() {
+      _isStream = !_isStream;
+    });
   }
 
   void _scrollToBottom() {
@@ -76,6 +83,13 @@ class _ChatPageState extends State<ChatPage> {
             color: ColorRes.grey.withAlpha(20),
           ),
         ),
+        if (list.isEmpty) Align(
+          alignment: Alignment.center,
+          child: Padding(
+            padding: EdgeInsetsGeometry.all(DimenRes.size_16),
+            child: Text(StringRes.greetChat, textAlign: TextAlign.center,),
+          ),
+        ),
         Column(
           children: [
             Expanded(
@@ -98,9 +112,23 @@ class _ChatPageState extends State<ChatPage> {
             ),
             Padding(
               padding: const EdgeInsets.all(16),
-              child: AppChatInput(
-                allowSendNewChat: !isLoadingAnswer,
-                onTapSendQuestion: (q) => _askQuestion(context, q),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                spacing: DimenRes.size_10,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    spacing: DimenRes.size_10,
+                    children: [
+                      Checkbox(value: _isStream, onChanged: (_) => _toggleStreamAnswer()),
+                      Text(StringRes.realTime)
+                    ],
+                  ),
+                  AppChatInput(
+                    allowSendNewChat: !isLoadingAnswer,
+                    onTapSendQuestion: (q) => _askQuestion(context, q),
+                  )
+                ],
               ),
             ),
           ],
@@ -127,7 +155,7 @@ class _ChatPageState extends State<ChatPage> {
             state.maybeWhen(
               gotAnswered: (_) => _scrollToBottom(),
               questionAdded: (_) => _scrollToBottom(),
-              answered: (data) => print("==========\n\nTOTAL : ${data.length}\nData :\n$data\n=============="),
+              answered: (_) => _scrollToBottom(),
               orElse: () {},
             );
           },

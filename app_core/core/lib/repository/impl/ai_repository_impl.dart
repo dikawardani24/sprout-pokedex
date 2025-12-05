@@ -25,10 +25,6 @@ class AiRepositoryImpl implements AiRepository {
     await _execute(_geminiDatasource.promptTextWithSpecificTopic(text, topic));
 
   @override
-  Future<ChatMessage?> greet(String? topic) async =>
-    await _execute(_geminiDatasource.sayHi(topic));
-
-  @override
   Future<Stream<String?>> askStreamWithText({
     required String text,
     List<ChatMessage> history = const [],

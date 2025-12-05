@@ -37,6 +37,8 @@ class StringRes {
   static const pullRefresh = "Pull to refresh or check your connection";
   static const pokeChat = "$appName Chat";
   static const chatHistory = "$appName Chat History";
+  static const realTime = "Realtime";
+  static const greetChat = "Hallo fellow Pokemon fans, what do you want to talk about today ?";
 
   static const loadingChat = "Please wait while answering....";
 }

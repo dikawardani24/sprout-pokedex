@@ -25,7 +25,6 @@ import '../repository/pokemon_local_repository.dart' as _i499;
 import '../repository/pokemon_remote_repository.dart' as _i930;
 import '../service/impl/network_service_impl.dart' as _i603;
 import '../service/network_service.dart' as _i724;
-import '../usecase/ai_greet_use_case.dart' as _i672;
 import '../usecase/ai_steam_ask_use_case.dart' as _i855;
 import '../usecase/ask_ai_use_case.dart' as _i634;
 import '../usecase/cache_image_url_use_case.dart' as _i1054;
@@ -57,9 +56,6 @@ _i174.GetIt $initCore(
   );
   gh.factory<_i634.AskAiUseCase>(
     () => _i634.AskAiUseCaseImpl(gh<_i762.AiRepository>()),
-  );
-  gh.factory<_i672.AiGreetUseCase>(
-    () => _i672.AiGreetUseCaseImpl(gh<_i762.AiRepository>()),
   );
   gh.factory<_i499.PokemonLocalRepository>(
     () => _i914.PokemonLocalRepositoryImpl(
