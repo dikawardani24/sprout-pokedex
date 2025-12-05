@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: StringRes.appName,
       themeMode: ThemeRes.themeMode,
-      darkTheme: ThemeRes.getTheme(true),
+      darkTheme: ThemeRes.getTheme(false),
       theme: ThemeRes.getTheme(false),
       onGenerateRoute: context.getRouteGenerator(),
       initialRoute: Routes.home,

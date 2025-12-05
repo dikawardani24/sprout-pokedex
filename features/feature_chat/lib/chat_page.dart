@@ -85,8 +85,7 @@ class _ChatPageState extends State<ChatPage> {
                 itemCount: list.length,
                 itemBuilder: (_, index) {
                   final message =list[index];
-                  if (message.isUser) return ChatWidgetUser(text: message.text, when: message.when);
-                  return AppHtmViewer(markdown: message.text, textColor: context.iconThemColor);
+                  return ChatWidget(chatMessage: message);
                 },
               ),
             ),
@@ -128,6 +127,7 @@ class _ChatPageState extends State<ChatPage> {
             state.maybeWhen(
               gotAnswered: (_) => _scrollToBottom(),
               questionAdded: (_) => _scrollToBottom(),
+              answered: (data) => print("==========\n\nTOTAL : ${data.length}\nData :\n$data\n=============="),
               orElse: () {},
             );
           },
