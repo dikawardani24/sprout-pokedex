@@ -23,7 +23,12 @@ extension AppNavigation on BuildContext {
           onStartDetail: (c, selected) => c.startDetailPage(selected.id)
       );
       case Routes.detail:
-        if (args is int) return Pages.detailPage(args);
+        if (args is int) {
+          return Pages.detailPage(
+              id: args,
+              onStartChatWithDetail: (c, id) => c.startChatPageWithPokemon(id)
+          );
+        }
       case Routes.chat: return Pages.chatPage(
         onStartChatHistory: (c) => c.startChatHistoryPage()
       );

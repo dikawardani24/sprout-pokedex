@@ -11,12 +11,16 @@ import 'bloc/detail_bloc.dart';
 import 'bloc/detail_event.dart';
 import 'bloc/detail_state.dart';
 
+typedef OnStartChatWithDetail = Function(BuildContext context, int id);
+
 class DetailPage extends StatefulWidget {
   final int id;
+  final OnStartChatWithDetail? onStartChatWithDetail;
 
   const DetailPage({
     super.key,
-    required this.id
+    required this.id,
+    this.onStartChatWithDetail
   });
 
   @override
@@ -113,6 +117,10 @@ class _DetailPageState extends State<DetailPage> with SingleTickerProviderStateM
               Scaffold(
                 appBar: _createAppBar(c),
                 body: _createBody(),
+                floatingActionButton: AppIconButton(
+                  icon: IconRes.iconChat,
+                  onTap: () => widget.onStartChatWithDetail?.call(context, widget.id),
+                ),
               ),
               _createImageHeader()
             ],

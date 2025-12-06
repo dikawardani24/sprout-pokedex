@@ -13,10 +13,18 @@ class AskAiUseCaseImpl implements AskAiUseCase {
 
   AskAiUseCaseImpl(this._aiRepository);
 
+  Future<ChatMessage?> _service(AskAiReq req) {
+    final topic = req.topic ?? "";
+    if (topic.isNotEmpty) {
+      return _aiRepository.askWithTextAndTopic(req.chatMessage.text, topic);
+    }
+    return _aiRepository.askWithText(req.chatMessage.text);
+  }
+
   @override
   Future<Result<ChatMessage?>> execute(AskAiReq req) async {
     try {
-      final answer = await _aiRepository.askWithText(req.chatMessage.text);
+      final answer = await _service(req);
       return Result.success(answer);
     } on Exception catch(err) {
       return Result.error(err);

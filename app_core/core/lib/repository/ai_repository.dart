@@ -8,4 +8,10 @@ abstract class AiRepository {
     required String text,
     List<ChatMessage> history = const []
   });
+
+  Future<Stream<String?>> askStreamWithTextAndTopic({
+    required String text,
+    List<ChatMessage> history = const [],
+    required String topic
+  });
 }

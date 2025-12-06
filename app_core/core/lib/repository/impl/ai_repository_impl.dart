@@ -33,4 +33,14 @@ class AiRepositoryImpl implements AiRepository {
       history: history.map((e) => e.text).toList()
   );
 
+  @override
+  Future<Stream<String?>> askStreamWithTextAndTopic({
+    required String text,
+    List<ChatMessage> history = const [],
+    required String topic
+  }) async => await _aiStreamDatasource.promptTextWithTopic(
+    prompt: text,
+    history: history.map((e) => e.text).toList(),
+    topic: topic
+  );
 }

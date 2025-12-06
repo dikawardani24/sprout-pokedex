@@ -5,4 +5,10 @@ abstract class AiStreamDatasource {
     required String prompt,
     List<String> history = const []
   });
+
+  Future<Stream<String?>> promptTextWithTopic({
+    required String prompt,
+    List<String> history = const [],
+    required String topic
+  });
 }
