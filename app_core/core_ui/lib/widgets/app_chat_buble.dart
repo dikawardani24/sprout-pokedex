@@ -15,20 +15,15 @@ class AppChatBubble extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsetsGeometry.only(top: DimenRes.size_16, bottom: DimenRes.size_16),
-      child: Column(
-        spacing: DimenRes.size_10,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(StringRes.loadingChat),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              _AnimatedDot(delay: 0, color: dotColor, size: dotSize),
-              const SizedBox(width: 4),
-              _AnimatedDot(delay: 200, color: dotColor, size: dotSize),
-              const SizedBox(width: 4),
-              _AnimatedDot(delay: 400, color: dotColor, size: dotSize),
-            ],
-          )
+          _AnimatedDot(delay: 0, color: dotColor, size: dotSize),
+          const SizedBox(width: 4),
+          _AnimatedDot(delay: 200, color: dotColor, size: dotSize),
+          const SizedBox(width: 4),
+          _AnimatedDot(delay: 400, color: dotColor, size: dotSize),
         ],
       ),
     );

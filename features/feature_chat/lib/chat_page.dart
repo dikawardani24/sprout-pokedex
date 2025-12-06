@@ -27,7 +27,7 @@ class ChatPage extends StatefulWidget {
 
 class _ChatPageState extends State<ChatPage> {
   final ScrollController _scrollController = ScrollController();
-  bool _isStream = false;
+  bool _isStream = true;
 
   void _askQuestion(BuildContext context, String question) {
     context.dismissKeyboard();
@@ -103,15 +103,11 @@ class _ChatPageState extends State<ChatPage> {
                 },
               ),
             ),
-            if (isLoadingAnswer) AppChatBubble(
-              dotColor: ColorRes.red,
-              dotSize: DimenRes.size_16,
-            ),
             if (err != null) Text(err,
               style: TextStyle(color: ColorRes.red, fontSize: DimenRes.size_12),
             ),
             Padding(
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.only(bottom: DimenRes.size_16, left: DimenRes.size_16, right: DimenRes.size_16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 spacing: DimenRes.size_10,
@@ -120,6 +116,13 @@ class _ChatPageState extends State<ChatPage> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     spacing: DimenRes.size_10,
                     children: [
+                      if (isLoadingAnswer) Expanded(
+                        flex: 1,
+                        child: AppChatBubble(
+                          dotColor: ColorRes.red,
+                          dotSize: DimenRes.size_16,
+                        ),
+                      ),
                       Checkbox(value: _isStream, onChanged: (_) => _toggleStreamAnswer()),
                       Text(StringRes.realTime)
                     ],

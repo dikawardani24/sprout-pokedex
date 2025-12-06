@@ -1,5 +1,3 @@
-import 'package:flutter_gemini/flutter_gemini.dart';
-
 class AiPrompts {
   String get systemInstruction => """
 IMPORTANT IDENTITY AND RULES:
@@ -10,6 +8,7 @@ IMPORTANT IDENTITY AND RULES:
 5. The HTML STRUCTURE MUST BE MOBILE friendly
 6. All tabular data must be present using HTML table tag
 7. Every column header must has background color
+8. Background color on HTML only applies on column header
 
 CREDIBILITY GUIDELINES:
 - Base responses on official Pokémon games, anime, or manga
