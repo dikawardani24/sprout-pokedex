@@ -12,40 +12,39 @@ class ChatHistoryPage extends StatelessWidget {
 
   const ChatHistoryPage({super.key});
 
-  Widget _buildLoadingIndicator() => const SliverPadding(
-    padding: EdgeInsets.all(DimenRes.size_10),
-    sliver: SliverToBoxAdapter(
-      child: Loading(),
-    ),
+  Widget _buildLoadingIndicator() => const SliverToBoxAdapter(
+      child: Loading()
   );
 
-  Widget _buildErr(String err) => SliverPadding(
-    padding: EdgeInsetsGeometry.all(DimenRes.size_10),
-    sliver: Text(err, style: TextStyle(
-      color: ColorRes.red,
-      fontWeight: FontWeight.bold
+  Widget _buildErr(String err) => SliverToBoxAdapter(
+    child: Text(err, style: TextStyle(
+        color: ColorRes.red,
+        fontWeight: FontWeight.bold
     )),
   );
 
-  List<Widget> _buildItems(List<ChatHistory> list) => list.map((e) => SliverPadding(
-    padding: EdgeInsetsGeometry.all(DimenRes.size_10),
-    sliver: SliverToBoxAdapter(
-      child: ItemChatHistory(chatHistory: e),
-    ),
-  )).toList();
+  Widget _buildItems(List<ChatHistory> list) =>  SliverList(
+    delegate: SliverChildBuilderDelegate((c, index) => Padding(
+      padding: EdgeInsetsGeometry.only(bottom: DimenRes.size_10),
+      child: ItemChatHistory(chatHistory: list[index]),
+    ), childCount: list.length),
+  );
 
-  Widget _buildEndOfItem(BuildContext context) => SliverPadding(
-    padding: const EdgeInsets.all(16),
-    sliver: SliverToBoxAdapter(
-      child: Center(
-        child: Text(
-          StringRes.allChatHistoryLoaded,
-          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-            fontWeight: FontWeight.bold,
-            color: Colors.green,
-          ),
+  Widget _buildEndOfItem(BuildContext context) => SliverToBoxAdapter(
+    child: Center(
+      child: Text(
+        StringRes.allChatHistoryLoaded,
+        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+          fontWeight: FontWeight.bold,
+          color: Colors.green,
         ),
       ),
+    ),
+  );
+
+  Widget _buildNoData(BuildContext context) => SliverFillRemaining(
+    child:AppErrorWidget(
+      message: StringErrRes.errNoChatHistory,
     ),
   );
 
@@ -54,14 +53,19 @@ class ChatHistoryPage extends StatelessWidget {
     bool isReachMax = false,
     String? err
   }) {
+
     return SafeArea(
-      child: CustomScrollView(
-        slivers: [
-          ..._buildItems(list),
-          if (isLoadMore) _buildLoadingIndicator(),
-          if (err != null) _buildErr(err),
-          if (isReachMax) _buildEndOfItem(context)
-        ],
+      child: Padding(
+        padding: EdgeInsetsGeometry.all(DimenRes.size_16),
+        child: CustomScrollView(
+          slivers: [
+            _buildItems(list),
+            if (list.isEmpty) _buildNoData(context),
+            if (isLoadMore) _buildLoadingIndicator(),
+            if (err != null) _buildErr(err),
+            if (isReachMax) _buildEndOfItem(context)
+          ],
+        ),
       ),
     );
   }

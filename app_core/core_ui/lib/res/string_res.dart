@@ -50,4 +50,5 @@ class StringErrRes {
   static const errUnknown = 'An unexpected error occurred. Please try again.';
   static const errScreenTooSmall = "You need to change your window size to see the content";
   static const errGetAnswerAi = "Unable to answer your question, please try again later";
+  static const errNoChatHistory = "You have not start any conversation yet, start your chat now and your conversation history will be appeared in here";
 }

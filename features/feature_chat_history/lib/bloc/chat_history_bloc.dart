@@ -44,7 +44,7 @@ class ChatHistoryBloc extends Bloc<ChatHistoryEvent, ChatHistoryState>{
     _hasReachedMax = page.isReachMaxLimit;
 
     if (isLoadMore) {
-      _histories = List.from(_histories)..addAll(page.data); // Create new list for immutability
+      _histories = List.from(_histories)..addAll(page.data);
     } else {
       _histories = List.from(page.data);
       _hasReachedMax = false;
