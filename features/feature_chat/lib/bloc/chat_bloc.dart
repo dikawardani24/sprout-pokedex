@@ -1,8 +1,6 @@
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:core/core.dart';
-import 'package:core/usecase/ai_steam_ask_use_case.dart';
-import 'package:core/usecase/request/ask_ai_req.dart';
-import 'package:core/usecase/request/get_detail_req.dart';
+import 'package:core/usecase/request/save_history_req.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:feature_chat/bloc/chat_event.dart';
 import 'package:feature_chat/bloc/chat_state.dart';
@@ -16,10 +14,12 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
   final GetDetailPokeUseCase _getDetailPokeUseCase;
   final AskAiUseCase _aiUseCase;
   final AiSteamAskUseCase _aiSteamAskUseCase;
+  final SaveHistoryUseCase _saveHistoryUseCase;
+
   ChatMessage? _currentAnswer;
   AppPokemonDetail? _appPokemonDetail;
 
-  ChatBloc(this._getDetailPokeUseCase, this._aiUseCase, this._aiSteamAskUseCase): super(const ChatState.initial()) {
+  ChatBloc(this._getDetailPokeUseCase, this._aiUseCase, this._aiSteamAskUseCase, this._saveHistoryUseCase): super(const ChatState.initial()) {
     on<GetDetailAndGreetingEvent>(
       _getDetailPokemon,
       transformer: restartable(),
@@ -52,6 +52,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
       final stream = await _aiSteamAskUseCase.stream(req);
 
       await emit.forEach(stream, onData: (data) {
+        if (data == null || data.isEmpty) return ChatState.notAnswered(List.of(_messages));
         _handleChunkAnswer(data);
         return ChatState.gotAnswered(List.of(_messages));
       });
@@ -114,5 +115,30 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
       },
       error: (err) =>emit(ChatState.errorGetDetail(getErrorMessage(err)))
     );
+  }
+
+  void _saveChatHistory() {
+    if (_messages.isEmpty) return;
+    final history = ChatHistory(
+      title: _messages.first.text,
+      when: _messages.first.when
+    );
+    _saveHistoryUseCase.execute(
+      SaveHistoryReq(
+        chatHistory: history,
+        chatMessages: _messages
+      )
+    ).then((result) => {
+      result.when(
+        success: (_) => print("History saved"),
+        error: (err) => print(err)
+      )
+    });
+  }
+  
+  @override
+  Future<void> close()  {
+    _saveChatHistory();
+    return super.close();
   }
 }

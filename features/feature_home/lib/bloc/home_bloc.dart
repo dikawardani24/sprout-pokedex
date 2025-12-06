@@ -2,8 +2,6 @@ import 'dart:async';
 
 import 'package:core/core.dart';
 import 'package:core/models/app_page.dart';
-import 'package:core/usecase/request/cache_img_req.dart';
-import 'package:core/usecase/request/get_pokemon_req.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:feature_home/bloc/home_event.dart';
 import 'package:feature_home/bloc/home_state.dart';

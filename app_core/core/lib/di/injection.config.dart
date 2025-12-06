@@ -18,7 +18,9 @@ import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
 import '../repository/ai_repository.dart' as _i762;
+import '../repository/history_repository.dart' as _i974;
 import '../repository/impl/ai_repository_impl.dart' as _i375;
+import '../repository/impl/history_repository_impl.dart' as _i780;
 import '../repository/impl/pokemon_local_repository_impl.dart' as _i914;
 import '../repository/impl/pokemon_remote_repository_impl.dart' as _i792;
 import '../repository/pokemon_local_repository.dart' as _i499;
@@ -30,6 +32,7 @@ import '../usecase/ask_ai_use_case.dart' as _i634;
 import '../usecase/cache_image_url_use_case.dart' as _i1054;
 import '../usecase/get_detail_poke_use_case.dart' as _i964;
 import '../usecase/get_pokemon_use_ase.dart' as _i898;
+import '../usecase/save_history_use_case.dart' as _i578;
 import '../usecase/validate_connection_use_case.dart' as _i290;
 import 'core_module.dart' as _i154;
 
@@ -47,6 +50,12 @@ _i174.GetIt $initCore(
   );
   gh.factory<_i724.NetworkService>(
     () => _i603.NetworkServiceImpl(connectivity: gh<_i895.Connectivity>()),
+  );
+  gh.factory<_i974.HistoryRepository>(
+    () => _i780.HistoryRepositoryImpl(
+      gh<_i252.ChatHistoryDatasource>(),
+      gh<_i252.ChatMessageDatasource>(),
+    ),
   );
   gh.factory<_i762.AiRepository>(
     () => _i375.AiRepositoryImpl(
@@ -68,6 +77,9 @@ _i174.GetIt $initCore(
   );
   gh.factory<_i290.ValidateConnectionUseCase>(
     () => _i290.ValidateConnectionUseCaseImpl(gh<_i724.NetworkService>()),
+  );
+  gh.factory<_i578.SaveHistoryUseCase>(
+    () => _i578.SaveHistoryUseCaseImpl(gh<_i974.HistoryRepository>()),
   );
   gh.factory<_i855.AiSteamAskUseCase>(
     () => _i855.AiSteamAskUseCaseImpl(gh<_i762.AiRepository>()),
