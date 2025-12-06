@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class ChatEvent extends Equatable {}
@@ -21,4 +22,13 @@ class AskQuestionEvent extends ChatEvent {
   @override
   List<Object?> get props => [question];
 
+}
+
+class LoadHistoryChatEvent extends ChatEvent {
+  final ChatHistory chatHistory;
+
+  LoadHistoryChatEvent(this.chatHistory);
+
+  @override
+  List<Object?> get props => [chatHistory];
 }

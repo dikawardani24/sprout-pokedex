@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
-typedef OnStartChatHistory = void Function(BuildContext context);
+typedef OnStartChatHistory = Future<dynamic> Function(BuildContext context);
 
 class ChatPage extends StatefulWidget {
   final int? pokemonId;
@@ -28,10 +28,23 @@ class ChatPage extends StatefulWidget {
 class _ChatPageState extends State<ChatPage> {
   final ScrollController _scrollController = ScrollController();
   bool _isStream = true;
+  late ChatBloc _bloc;
+
+  void _loadHistoryChat(ChatHistory c) {
+    _bloc.add(LoadHistoryChatEvent(c));
+  }
+
+  void _startHistoryPage(BuildContext context) {
+    widget.onStartChatHistory?.call(context).then((result) {
+      if (result is ChatHistory) {
+        _loadHistoryChat(result);
+      }
+    });
+  }
 
   void _askQuestion(BuildContext context, String question) {
     context.dismissKeyboard();
-    context.read<ChatBloc>().add(AskQuestionEvent(question, isStream: _isStream));
+    _bloc.add(AskQuestionEvent(question, isStream: _isStream));
   }
   
   void _toggleStreamAnswer() {
@@ -64,7 +77,7 @@ class _ChatPageState extends State<ChatPage> {
       AppIconButton.noBackground(
         icon: IconRes.iconHistory,
         iconColor: context.iconThemColor,
-        onTap: () => widget.onStartChatHistory?.call(context),
+        onTap: () => _startHistoryPage(context),
       )
     ],
   );
@@ -73,8 +86,11 @@ class _ChatPageState extends State<ChatPage> {
     List<ChatMessage> list = const [],
     bool isLoadingAnswer = false,
     String? err,
-    AppPokemonDetail? detail
+    AppPokemonDetail? detail,
+    bool isLoadingHistory = false
   }) {
+    if (isLoadingHistory) return Loading();
+
     return Stack(
       children: [
         Align(
@@ -161,8 +177,15 @@ class _ChatPageState extends State<ChatPage> {
   }
 
   @override
+  void initState() {
+    _bloc = GetIt.I.get<ChatBloc>()..add(GetDetailAndGreetingEvent(widget.pokemonId));
+    super.initState();
+  }
+
+  @override
   void dispose() {
     _scrollController.dispose();
+    _bloc.close();
     super.dispose();
   }
 
@@ -170,31 +193,30 @@ class _ChatPageState extends State<ChatPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _buildAppBar(context),
-      body: BlocProvider<ChatBloc>(
-        create: (_) =>
-        GetIt.I.get<ChatBloc>()..add(GetDetailAndGreetingEvent(widget.pokemonId)),
-        child: BlocConsumer<ChatBloc, ChatState>(
-          listener: (context, state) {
-            state.maybeWhen(
-              gotAnswered: (_) => _scrollToBottom(),
-              questionAdded: (_) => _scrollToBottom(),
-              answered: (_) => _scrollToBottom(),
-              orElse: () {},
-            );
-          },
-          builder: (context, state) {
-            return state.maybeWhen(
-              gotAnswered: (messages) => _buildContent(context, list: messages, isLoadingAnswer: true),
-              questionAdded: (messages) => _buildContent(context, list: messages, isLoadingAnswer: true),
-              answered: (messages) => _buildContent(context, list: messages),
-              errorGetAnswer: (err, messages) => _buildContent(context, list: messages, err: StringErrRes.errGetAnswerAi),
-              notAnswered: (messages) => _buildContent(context, list: messages, err: StringErrRes.errGetAnswerAi),
-              loadingGetDetailPokemon: () => _buildContent(context, isLoadingAnswer: true),
-              gotDetailPokemon: (data) => _buildContent(context, isLoadingAnswer: false, detail: data),
-              orElse: () => _buildContent(context),
-            );
-          },
-        ),
+      body: BlocConsumer<ChatBloc, ChatState>(
+        bloc: _bloc,
+        listener: (context, state) {
+          state.maybeWhen(
+            gotAnswered: (_) => _scrollToBottom(),
+            questionAdded: (_) => _scrollToBottom(),
+            answered: (_) => _scrollToBottom(),
+            errGetMessageByHistory: (err) => context.showErrorSnackBar(err),
+            orElse: () {},
+          );
+        },
+        builder: (context, state) {
+          return state.maybeWhen(
+            gotAnswered: (messages) => _buildContent(context, list: messages, isLoadingAnswer: true),
+            questionAdded: (messages) => _buildContent(context, list: messages, isLoadingAnswer: true),
+            answered: (messages) => _buildContent(context, list: messages),
+            errorGetAnswer: (err, messages) => _buildContent(context, list: messages, err: StringErrRes.errGetAnswerAi),
+            notAnswered: (messages) => _buildContent(context, list: messages, err: StringErrRes.errGetAnswerAi),
+            loadingGetDetailPokemon: () => _buildContent(context, isLoadingAnswer: true),
+            gotDetailPokemon: (data) => _buildContent(context, isLoadingAnswer: false, detail: data),
+            gotMessageByHistory: (data) => _buildContent(context, list: data),
+            orElse: () => _buildContent(context),
+          );
+        },
       ),
     );
   }

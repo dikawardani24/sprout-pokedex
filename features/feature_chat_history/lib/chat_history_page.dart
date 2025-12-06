@@ -34,6 +34,7 @@ class ChatHistoryPage extends StatelessWidget {
       padding: EdgeInsetsGeometry.only(bottom: DimenRes.size_10),
       child: ItemChatHistory(
         chatHistory: list[index],
+        onSelectHistory: (history) => context.goBack(history),
         onDeleteAction: () => _showConfirmation(context, list[index]),
       ),
     ), childCount: list.length),

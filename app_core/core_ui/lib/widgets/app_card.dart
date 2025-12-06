@@ -15,7 +15,7 @@ class AppCard extends StatelessWidget {
 
   Widget _buildClickable(BorderRadius borderRadius) => InkWell(
     borderRadius: borderRadius,
-    onTap: () => onTap,
+    onTap: onTap,
     child: child,
   );
 

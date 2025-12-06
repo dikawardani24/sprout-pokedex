@@ -28,6 +28,7 @@ _i174.GetIt $initFeatureChat(
       gh<_i494.AskAiUseCase>(),
       gh<_i494.AiSteamAskUseCase>(),
       gh<_i494.SaveHistoryUseCase>(),
+      gh<_i494.GetMessageByHistoryUseCase>(),
     ),
   );
   return getIt;

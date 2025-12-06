@@ -6,7 +6,7 @@ class ChatMessageMapper {
   static ChatMessageEntity toEntity(ChatMessage chatMessage, int historyId) => ChatMessageEntity(
     uuid: chatMessage.uuid,
     message: chatMessage.text,
-    isUser: chatMessage.isUser,
+    isUser: chatMessage.isUser ? 1 : 0,
     when: chatMessage.when.format(),
     historyId: historyId
   );
@@ -14,7 +14,7 @@ class ChatMessageMapper {
   static ChatMessage fromEntity(ChatMessageEntity entity) => ChatMessage(
     uuid: entity.uuid,
     text: entity.message,
-    isUser: entity.isUser,
+    isUser: entity.isUser == 1 ? true : false,
     when: entity.when.parse() ?? DateTime.now()
   );
 }

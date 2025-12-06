@@ -33,6 +33,7 @@ import '../usecase/cache_image_url_use_case.dart' as _i1054;
 import '../usecase/delete_history_use_case.dart' as _i531;
 import '../usecase/get_chat_histories_use_case.dart' as _i1016;
 import '../usecase/get_detail_poke_use_case.dart' as _i964;
+import '../usecase/get_message_by_history_use_case.dart' as _i1002;
 import '../usecase/get_pokemon_use_ase.dart' as _i898;
 import '../usecase/save_history_use_case.dart' as _i578;
 import '../usecase/validate_connection_use_case.dart' as _i290;
@@ -76,6 +77,9 @@ _i174.GetIt $initCore(
   );
   gh.factory<_i930.PokemonRemoteRepository>(
     () => _i792.PokemonRemoteRepositoryImpl(gh<_i946.PokemonDatasource>()),
+  );
+  gh.factory<_i1002.GetMessageByHistoryUseCase>(
+    () => _i1002.GetMessageByHistoryUseCaseImpl(gh<_i974.HistoryRepository>()),
   );
   gh.factory<_i290.ValidateConnectionUseCase>(
     () => _i290.ValidateConnectionUseCaseImpl(gh<_i724.NetworkService>()),

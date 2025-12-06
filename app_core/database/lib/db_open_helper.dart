@@ -103,7 +103,7 @@ class DbOpenHelper {
     CREATE TABLE IF NOT EXISTS ${TableChatMessage.name} (
       ${TableChatMessage.colUuid} TEXT PRIMARY KEY,
       ${TableChatMessage.colMessage} TEX,
-      ${TableChatMessage.colIsUser} BOOLEAN,
+      ${TableChatMessage.colIsUser} INTEGER,
       ${TableChatMessage.colWhen} TEXT,
       ${TableChatMessage.colHistoryId} INTEGER
     )

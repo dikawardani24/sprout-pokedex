@@ -15,11 +15,13 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
   final AskAiUseCase _aiUseCase;
   final AiSteamAskUseCase _aiSteamAskUseCase;
   final SaveHistoryUseCase _saveHistoryUseCase;
+  final GetMessageByHistoryUseCase _getMessageByHistoryUseCase;
 
+  ChatHistory? _chatHistory;
   ChatMessage? _currentAnswer;
   AppPokemonDetail? _appPokemonDetail;
 
-  ChatBloc(this._getDetailPokeUseCase, this._aiUseCase, this._aiSteamAskUseCase, this._saveHistoryUseCase): super(const ChatState.initial()) {
+  ChatBloc(this._getDetailPokeUseCase, this._aiUseCase, this._aiSteamAskUseCase, this._saveHistoryUseCase, this._getMessageByHistoryUseCase): super(const ChatState.initial()) {
     on<GetDetailAndGreetingEvent>(
       _getDetailPokemon,
       transformer: restartable(),
@@ -28,6 +30,11 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     on<AskQuestionEvent>(
       _askQuestion,
       transformer: concurrent()
+    );
+
+    on<LoadHistoryChatEvent>(
+      _loadHistoryMessage,
+      transformer: throttleDroppable(Duration(milliseconds: 100))
     );
   }
 
@@ -119,16 +126,34 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
 
   void _saveChatHistory() {
     if (_messages.isEmpty) return;
-    final history = ChatHistory(
-      title: _messages.first.text,
-      when: _messages.first.when
+    ChatHistory? current = _chatHistory;
+
+    final lastUser = _messages.lastWhere((e) => e.isUser);
+    current ??= ChatHistory(
+      title: lastUser.text,
+      when: lastUser.when
     );
+
     _saveHistoryUseCase.execute(
       SaveHistoryReq(
-        chatHistory: history,
+        chatHistory: current,
         chatMessages: _messages
       )
-    ).then((_) => {});
+    ).then((_) {});
+  }
+
+  Future<void> _loadHistoryMessage(LoadHistoryChatEvent event, Emitter<ChatState> emit) async {
+    emit(ChatState.loadingMessageByHistory());
+    final result = await _getMessageByHistoryUseCase.execute(GetMessageByHistoryReq(event.chatHistory));
+    result.when(
+      success: (data) {
+        _messages.clear();
+        _messages.addAll(data);
+        _chatHistory = event.chatHistory;
+        emit(ChatState.gotMessageByHistory(data));
+      },
+      error: (err) => emit(ChatState.errGetMessageByHistory(getErrorMessage(err)))
+    );
   }
   
   @override

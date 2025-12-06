@@ -5,7 +5,7 @@ import 'entity.dart';
 class ChatMessageEntity extends Entity {
   final String uuid;
   final String message;
-  final bool isUser;
+  final int isUser;
   final String when;
   final int historyId;
 
@@ -28,13 +28,14 @@ class ChatMessageEntity extends Entity {
     TableChatMessage.colUuid: uuid,
     TableChatMessage.colMessage: message,
     TableChatMessage.colIsUser: isUser,
-    TableChatMessage.colWhen: when
+    TableChatMessage.colWhen: when,
+    TableChatMessage.colHistoryId: historyId
   };
 
   factory ChatMessageEntity.fromMap(Map<String, dynamic> map) => ChatMessageEntity(
     uuid: map[TableChatMessage.colUuid] as String,
     message: map[TableChatMessage.colMessage] as String,
-    isUser: map[TableChatMessage.colIsUser] as bool,
+    isUser: map[TableChatMessage.colIsUser] as int,
     when: map[TableChatMessage.colWhen] as String,
     historyId: map[TableChatMessage.colHistoryId] as int
   );

@@ -23,7 +23,11 @@ class SaveHistoryUseCaseImpl implements SaveHistoryUseCase {
   Future<Result<void>> execute(SaveHistoryReq req) async {
     try {
       final history = req.chatHistory;
-      int lastId = await getId();
+      int lastId = history.id;
+      if (lastId <= 0) {
+        lastId = await getId();
+      }
+
       final toSave = history.copyWith(id: lastId);
       final messagesToSave = req.chatMessages;
       await _historyRepository.saveHistory(toSave);
