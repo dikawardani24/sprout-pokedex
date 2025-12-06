@@ -119,6 +119,7 @@ class _DetailPageState extends State<DetailPage> with SingleTickerProviderStateM
                 body: _createBody(),
                 floatingActionButton: AppIconButton(
                   icon: IconRes.iconChat,
+                  backgroundColor: _appBg,
                   onTap: () => widget.onStartChatWithDetail?.call(context, widget.id),
                 ),
               ),
