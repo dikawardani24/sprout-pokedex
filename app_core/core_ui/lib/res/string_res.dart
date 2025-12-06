@@ -39,6 +39,8 @@ class StringRes {
   static const chatHistory = "$appName Chat History";
   static const realTime = "Realtime";
   static const greetChat = "Hallo fellow Pokemon fans, what do you want to talk about today ?";
+  static String greetChatWithTopic(String topic) => "Hallo fellow Pokemon fans, what do you want to talk about $topic ?";
+
 }
 
 class StringErrRes {

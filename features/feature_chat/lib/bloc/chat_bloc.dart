@@ -17,6 +17,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
   final AskAiUseCase _aiUseCase;
   final AiSteamAskUseCase _aiSteamAskUseCase;
   ChatMessage? _currentAnswer;
+  AppPokemonDetail? _appPokemonDetail;
 
   ChatBloc(this._getDetailPokeUseCase, this._aiUseCase, this._aiSteamAskUseCase): super(const ChatState.initial()) {
     on<GetDetailAndGreetingEvent>(
@@ -28,13 +29,6 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
       _askQuestion,
       transformer: concurrent()
     );
-  }
-
-  ChatMessage _notifyQuestionAdded(String text, Emitter<ChatState> emit) {
-    final question = ChatMessage.question(text: text, when: DateTime.now());
-    _messages.add(question);
-    emit(ChatState.questionAdded(List.of(_messages)));
-    return question;
   }
 
   void _handleChunkAnswer(String? data) {
@@ -53,15 +47,9 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     _messages[index] = answer;
   }
 
-  Future<void> _askQuestionStream(String questionText, Emitter<ChatState> emit) async {
-    final history = _messages;
-    final question = _notifyQuestionAdded(questionText, emit);
-
+  Future<void> _askQuestionStream(AskAiReq req, Emitter<ChatState> emit) async {
     try {
-      final stream = await _aiSteamAskUseCase.stream(
-        question: question,
-        history: history,
-      );
+      final stream = await _aiSteamAskUseCase.stream(req);
 
       await emit.forEach(stream, onData: (data) {
         _handleChunkAnswer(data);
@@ -75,13 +63,8 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     }
   }
 
-  Future<void> _askQuestionWait(String questionText, Emitter<ChatState> emit) async {
-    final history = _messages;
-    final question = _notifyQuestionAdded(questionText, emit);
-
-    final result = await _aiUseCase.execute(AskAiReq(question,
-      history: history
-    ));
+  Future<void> _askQuestionWait(AskAiReq req, Emitter<ChatState> emit) async {
+    final result = await _aiUseCase.execute(req);
 
     result.when(
       success: (data) {
@@ -96,12 +79,26 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     );
   }
 
+  ChatMessage _notifyQuestionAdded(String text, Emitter<ChatState> emit) {
+    final question = ChatMessage.question(text: text, when: DateTime.now());
+    _messages.add(question);
+    emit(ChatState.questionAdded(List.of(_messages)));
+    return question;
+  }
+
   Future<void> _askQuestion(AskQuestionEvent event, Emitter<ChatState> emit) async {
+    final history = _messages;
+    final question = _notifyQuestionAdded(event.question, emit);
+    final req = AskAiReq(question,
+        history: history,
+        topic: _appPokemonDetail?.name
+    );
+
     if (event.isStream) {
-      await _askQuestionStream(event.question, emit);
+      await _askQuestionStream(req, emit);
       return;
     }
-    await _askQuestionWait(event.question, emit);
+    await _askQuestionWait(req, emit);
   }
 
   Future<void> _getDetailPokemon(GetDetailAndGreetingEvent event, Emitter<ChatState> emit) async {
@@ -111,7 +108,10 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     emit(ChatState.loadingGetDetailPokemon());
     final result = await _getDetailPokeUseCase.execute(GetDetailReq(id: id));
     result.when(
-      success: (data) => emit(ChatState.gotDetailPokemon(data)),
+      success: (data) {
+        _appPokemonDetail = data;
+        emit(ChatState.gotDetailPokemon(data));
+      },
       error: (err) =>emit(ChatState.errorGetDetail(getErrorMessage(err)))
     );
   }

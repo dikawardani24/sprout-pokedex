@@ -13,4 +13,11 @@ class AiStreamDatasourceImpl implements AiStreamDatasource {
     required String prompt,
     List<String> history = const [],
   }) async => await _aiEngine.streamChat(prompt, history: history);
+
+  @override
+  Future<Stream<String?>> promptTextWithTopic({
+    required String prompt,
+    List<String> history = const [],
+    required String topic
+  }) async => await _aiEngine.streamChat(prompt, history: history, topic: topic);
 }

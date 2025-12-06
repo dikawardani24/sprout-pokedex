@@ -73,6 +73,7 @@ class _ChatPageState extends State<ChatPage> {
     List<ChatMessage> list = const [],
     bool isLoadingAnswer = false,
     String? err,
+    AppPokemonDetail? detail
   }) {
     return Stack(
       children: [
@@ -87,7 +88,26 @@ class _ChatPageState extends State<ChatPage> {
           alignment: Alignment.center,
           child: Padding(
             padding: EdgeInsetsGeometry.all(DimenRes.size_16),
-            child: Text(StringRes.greetChat, textAlign: TextAlign.center,),
+            child: LayoutBuilder(
+              builder: (c, constraint) {
+                if (detail != null) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    spacing: DimenRes.size_16,
+                    children: [
+                      AppNetworkImage(
+                        imageUrl: detail.imageUrl,
+                        imageSize: DimenRes.size_100,
+                        imageErrSize: DimenRes.size_100,
+                      ),
+                      Text(StringRes.greetChatWithTopic(detail.name), textAlign: TextAlign.center)
+                    ],
+                  );
+                }
+                return Text(StringRes.greetChat, textAlign: TextAlign.center);
+              },
+            ),
           ),
         ),
         Column(
@@ -170,6 +190,7 @@ class _ChatPageState extends State<ChatPage> {
               errorGetAnswer: (err, messages) => _buildContent(context, list: messages, err: StringErrRes.errGetAnswerAi),
               notAnswered: (messages) => _buildContent(context, list: messages, err: StringErrRes.errGetAnswerAi),
               loadingGetDetailPokemon: () => _buildContent(context, isLoadingAnswer: true),
+              gotDetailPokemon: (data) => _buildContent(context, isLoadingAnswer: false, detail: data),
               orElse: () => _buildContent(context),
             );
           },

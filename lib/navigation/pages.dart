@@ -13,7 +13,13 @@ class Pages {
     onStartChat: onStartChat,
   );
 
-  static Widget detailPage(int id) => DetailPage(id: id);
+  static Widget detailPage({
+    required int id,
+    OnStartChatWithDetail? onStartChatWithDetail
+  }) => DetailPage(
+    id: id,
+    onStartChatWithDetail: onStartChatWithDetail,
+  );
 
   static Widget chatPage({int? id, OnStartChatHistory? onStartChatHistory}) => ChatPage(
     pokemonId: id,
