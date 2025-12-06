@@ -30,6 +30,21 @@ class ThemeRes {
       appBarTheme: _appBarTheme,
       highlightColor: ColorRes.red.withAlpha(80),
       inputDecorationTheme: _inputDecor,
+      textButtonTheme: TextButtonThemeData(
+        style: TextButton.styleFrom(
+          foregroundColor: ColorRes.red,
+          backgroundColor: ColorRes.red.withAlpha(20)
+        )
+      ),
+      checkboxTheme: CheckboxThemeData(
+        fillColor: WidgetStateColor.resolveWith((s) {
+          if (s.contains(WidgetState.selected)) {
+            return ColorRes.red.withAlpha(90);
+          }
+          return ColorRes.grey.withAlpha(90);
+        }),
+        checkColor: WidgetStateProperty.all(ColorRes.red)
+      ),
       textSelectionTheme: TextSelectionThemeData(
         cursorColor: ColorRes.red,
         selectionColor: ColorRes.red.withAlpha(90),

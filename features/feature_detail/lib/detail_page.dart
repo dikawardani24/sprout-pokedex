@@ -35,12 +35,7 @@ class _DetailPageState extends State<DetailPage> with SingleTickerProviderStateM
 
   bool get _isResizeable => AppConfig.isDesktop || AppConfig.isWeb;
 
-  bool _isScreenTooSmall(BoxConstraints constraints) {
-    int min = 200;
-
-    if (_isResizeable) min = 400;
-    return constraints.maxHeight < min || constraints.maxWidth < min;
-  }
+  bool _isScreenTooSmall(BoxConstraints constraints) => constraints.isScreenTooSmall();
 
   PreferredSizeWidget _createAppBar(BuildContext c) => AppBar(
     leading: AppIconButton.noBackground(

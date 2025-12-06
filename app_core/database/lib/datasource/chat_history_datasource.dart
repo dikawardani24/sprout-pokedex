@@ -4,4 +4,5 @@ abstract class ChatHistoryDatasource {
   Future<List<ChatHistoryEntity>> findByLimitAndOffset(int limit, int offset);
   Future<int> getLastId();
   Future<void> save(ChatHistoryEntity entity);
+  Future<void> deleteById(int id);
 }

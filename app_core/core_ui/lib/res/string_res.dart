@@ -40,6 +40,10 @@ class StringRes {
   static const realTime = "Realtime";
   static const greetChat = "Hallo fellow Pokemon fans, what do you want to talk about today ?";
   static const allChatHistoryLoaded = "All Chat History loaded!";
+  static const ok = "Okay";
+  static const cancel = "Cancel";
+  static const confirmation = "Confirmation";
+  static const questionDeleteChatHistory = "You are about to delete a chat history, are you sure ?";
 
   static String greetChatWithTopic(String topic) => "Hallo fellow Pokemon fans, what do you want to talk about $topic ?";
 }

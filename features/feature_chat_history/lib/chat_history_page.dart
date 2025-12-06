@@ -12,6 +12,12 @@ class ChatHistoryPage extends StatelessWidget {
 
   const ChatHistoryPage({super.key});
 
+  void _showConfirmation(BuildContext context, ChatHistory history) =>
+      context.showConfirmationDialog(
+        message: StringRes.questionDeleteChatHistory,
+        onConfirmed: () => context.read<ChatHistoryBloc>().add(DeleteHistoryEvent(chatHistory: history))
+      );
+
   Widget _buildLoadingIndicator() => const SliverToBoxAdapter(
       child: Loading()
   );
@@ -23,10 +29,13 @@ class ChatHistoryPage extends StatelessWidget {
     )),
   );
 
-  Widget _buildItems(List<ChatHistory> list) =>  SliverList(
+  Widget _buildItems(BuildContext context, List<ChatHistory> list) =>  SliverList(
     delegate: SliverChildBuilderDelegate((c, index) => Padding(
       padding: EdgeInsetsGeometry.only(bottom: DimenRes.size_10),
-      child: ItemChatHistory(chatHistory: list[index]),
+      child: ItemChatHistory(
+        chatHistory: list[index],
+        onDeleteAction: () => _showConfirmation(context, list[index]),
+      ),
     ), childCount: list.length),
   );
 
@@ -54,12 +63,14 @@ class ChatHistoryPage extends StatelessWidget {
     String? err
   }) {
 
+    if (context.isSmallScreen())  return AppErrorScreenSize();
+
     return SafeArea(
       child: Padding(
         padding: EdgeInsetsGeometry.all(DimenRes.size_16),
         child: CustomScrollView(
           slivers: [
-            _buildItems(list),
+            _buildItems(context, list),
             if (list.isEmpty) _buildNoData(context),
             if (isLoadMore) _buildLoadingIndicator(),
             if (err != null) _buildErr(err),
@@ -86,15 +97,20 @@ class ChatHistoryPage extends StatelessWidget {
       body: BlocProvider<ChatHistoryBloc>(
         create: (_) => GetIt.I.get<ChatHistoryBloc>()..add(GetHistoryEvent(isLoadMore: false)),
         child: BlocConsumer<ChatHistoryBloc, ChatHistoryState>(
-          listener: (context, state) {},
-          builder: (context, state) {
+          listener: (c, state) {
+            state.whenOrNull(
+              errDeleteHistory: (err) => c.showErrorSnackBar(err)
+            );
+          },
+          builder: (c, state) {
             return state.maybeWhen(
               loading: () => Loading(),
-              loadingMore: (data) => _buildContent(context, data, isLoadMore: true),
-              loaded: (data, isReachMax) => _buildContent(context, data, isReachMax: isReachMax),
-              loadMoreError: (data, err) => _buildContent(context, data, err: err),
+              loadingMore: (data) => _buildContent(c, data, isLoadMore: true),
+              loaded: (data, isReachMax) => _buildContent(c, data, isReachMax: isReachMax),
+              loadMoreError: (data, err) => _buildContent(c, data, err: err),
               error: (err) => AppErrorWidget(message: err),
-              orElse: () => _buildContent(context, [])
+              historyDeleted: (data) => _buildContent(c, data),
+              orElse: () => _buildContent(c, [])
             );
           },
         ),

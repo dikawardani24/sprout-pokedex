@@ -30,6 +30,7 @@ import '../service/network_service.dart' as _i724;
 import '../usecase/ai_steam_ask_use_case.dart' as _i855;
 import '../usecase/ask_ai_use_case.dart' as _i634;
 import '../usecase/cache_image_url_use_case.dart' as _i1054;
+import '../usecase/delete_history_use_case.dart' as _i531;
 import '../usecase/get_chat_histories_use_case.dart' as _i1016;
 import '../usecase/get_detail_poke_use_case.dart' as _i964;
 import '../usecase/get_pokemon_use_ase.dart' as _i898;
@@ -81,6 +82,9 @@ _i174.GetIt $initCore(
   );
   gh.factory<_i578.SaveHistoryUseCase>(
     () => _i578.SaveHistoryUseCaseImpl(gh<_i974.HistoryRepository>()),
+  );
+  gh.factory<_i531.DeleteHistoryUseCase>(
+    () => _i531.DeleteHistoryUseCaseImpl(gh<_i974.HistoryRepository>()),
   );
   gh.factory<_i1016.GetChatHistoriesUseCase>(
     () => _i1016.GetChatHistoriesUseCaseImpl(gh<_i974.HistoryRepository>()),

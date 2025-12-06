@@ -23,7 +23,10 @@ _i174.GetIt $initFeatureChatHistory(
 }) {
   final gh = _i526.GetItHelper(getIt, environment, environmentFilter);
   gh.factory<_i919.ChatHistoryBloc>(
-    () => _i919.ChatHistoryBloc(gh<_i494.GetChatHistoriesUseCase>()),
+    () => _i919.ChatHistoryBloc(
+      gh<_i494.GetChatHistoriesUseCase>(),
+      gh<_i494.DeleteHistoryUseCase>(),
+    ),
   );
   return getIt;
 }

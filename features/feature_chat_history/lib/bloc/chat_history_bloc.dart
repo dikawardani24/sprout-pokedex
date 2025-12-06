@@ -9,12 +9,19 @@ import 'chat_history_state.dart';
 @injectable
 class ChatHistoryBloc extends Bloc<ChatHistoryEvent, ChatHistoryState>{
   final GetChatHistoriesUseCase _getChatHistoriesUseCase;
+  final DeleteHistoryUseCase _deleteHistoryUseCase;
+
   bool _hasReachedMax = false;
   List<ChatHistory> _histories = [];
 
-  ChatHistoryBloc(this._getChatHistoriesUseCase): super(const ChatHistoryState.initial()) {
+  ChatHistoryBloc(this._getChatHistoriesUseCase, this._deleteHistoryUseCase): super(const ChatHistoryState.initial()) {
     on<GetHistoryEvent>(
       _getHistories,
+      transformer: throttleDroppable(Duration(milliseconds: 100))
+    );
+
+    on<DeleteHistoryEvent>(
+      _deleteHistory,
       transformer: throttleDroppable(Duration(milliseconds: 100))
     );
   }
@@ -77,7 +84,19 @@ class ChatHistoryBloc extends Bloc<ChatHistoryEvent, ChatHistoryState>{
       _hasReachedMax = false;
     }
     await _loadHistories(emit, event.isLoadMore);
+  }
 
+  Future<void> _deleteHistory(DeleteHistoryEvent event, Emitter<ChatHistoryState> emit) async {
+    final history = event.chatHistory;
+    final result = await _deleteHistoryUseCase.execute(DeleteHistoryReq(history));
+    result.when(
+      success: (_) {
+        final index = _histories.indexOf(history);
+        _histories.removeAt(index);
+        emit(ChatHistoryState.historyDeleted(_histories));
+      },
+      error: (err) => emit(ChatHistoryState.errDeleteHistory(getErrorMessage(err)))
+    );
   }
 
 }

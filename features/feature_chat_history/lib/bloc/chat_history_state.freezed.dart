@@ -27,6 +27,8 @@ mixin _$ChatHistoryState {
     required TResult Function(String message) error,
     required TResult Function(List<ChatHistory> histories, String message)
     loadMoreError,
+    required TResult Function(List<ChatHistory> histories) historyDeleted,
+    required TResult Function(String message) errDeleteHistory,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
@@ -37,6 +39,8 @@ mixin _$ChatHistoryState {
     TResult? Function(String message)? error,
     TResult? Function(List<ChatHistory> histories, String message)?
     loadMoreError,
+    TResult? Function(List<ChatHistory> histories)? historyDeleted,
+    TResult? Function(String message)? errDeleteHistory,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
@@ -47,6 +51,8 @@ mixin _$ChatHistoryState {
     TResult Function(String message)? error,
     TResult Function(List<ChatHistory> histories, String message)?
     loadMoreError,
+    TResult Function(List<ChatHistory> histories)? historyDeleted,
+    TResult Function(String message)? errDeleteHistory,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +63,8 @@ mixin _$ChatHistoryState {
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Error value) error,
     required TResult Function(_LoadMoreError value) loadMoreError,
+    required TResult Function(_HistoryDeleted value) historyDeleted,
+    required TResult Function(_ErrDeleteHistory value) errDeleteHistory,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
@@ -66,6 +74,8 @@ mixin _$ChatHistoryState {
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Error value)? error,
     TResult? Function(_LoadMoreError value)? loadMoreError,
+    TResult? Function(_HistoryDeleted value)? historyDeleted,
+    TResult? Function(_ErrDeleteHistory value)? errDeleteHistory,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
@@ -75,6 +85,8 @@ mixin _$ChatHistoryState {
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Error value)? error,
     TResult Function(_LoadMoreError value)? loadMoreError,
+    TResult Function(_HistoryDeleted value)? historyDeleted,
+    TResult Function(_ErrDeleteHistory value)? errDeleteHistory,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
 }
@@ -152,6 +164,8 @@ class _$InitialImpl implements _Initial {
     required TResult Function(String message) error,
     required TResult Function(List<ChatHistory> histories, String message)
     loadMoreError,
+    required TResult Function(List<ChatHistory> histories) historyDeleted,
+    required TResult Function(String message) errDeleteHistory,
   }) {
     return initial();
   }
@@ -166,6 +180,8 @@ class _$InitialImpl implements _Initial {
     TResult? Function(String message)? error,
     TResult? Function(List<ChatHistory> histories, String message)?
     loadMoreError,
+    TResult? Function(List<ChatHistory> histories)? historyDeleted,
+    TResult? Function(String message)? errDeleteHistory,
   }) {
     return initial?.call();
   }
@@ -180,6 +196,8 @@ class _$InitialImpl implements _Initial {
     TResult Function(String message)? error,
     TResult Function(List<ChatHistory> histories, String message)?
     loadMoreError,
+    TResult Function(List<ChatHistory> histories)? historyDeleted,
+    TResult Function(String message)? errDeleteHistory,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -197,6 +215,8 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Error value) error,
     required TResult Function(_LoadMoreError value) loadMoreError,
+    required TResult Function(_HistoryDeleted value) historyDeleted,
+    required TResult Function(_ErrDeleteHistory value) errDeleteHistory,
   }) {
     return initial(this);
   }
@@ -210,6 +230,8 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Error value)? error,
     TResult? Function(_LoadMoreError value)? loadMoreError,
+    TResult? Function(_HistoryDeleted value)? historyDeleted,
+    TResult? Function(_ErrDeleteHistory value)? errDeleteHistory,
   }) {
     return initial?.call(this);
   }
@@ -223,6 +245,8 @@ class _$InitialImpl implements _Initial {
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Error value)? error,
     TResult Function(_LoadMoreError value)? loadMoreError,
+    TResult Function(_HistoryDeleted value)? historyDeleted,
+    TResult Function(_ErrDeleteHistory value)? errDeleteHistory,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -287,6 +311,8 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(String message) error,
     required TResult Function(List<ChatHistory> histories, String message)
     loadMoreError,
+    required TResult Function(List<ChatHistory> histories) historyDeleted,
+    required TResult Function(String message) errDeleteHistory,
   }) {
     return loading();
   }
@@ -301,6 +327,8 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(String message)? error,
     TResult? Function(List<ChatHistory> histories, String message)?
     loadMoreError,
+    TResult? Function(List<ChatHistory> histories)? historyDeleted,
+    TResult? Function(String message)? errDeleteHistory,
   }) {
     return loading?.call();
   }
@@ -315,6 +343,8 @@ class _$LoadingImpl implements _Loading {
     TResult Function(String message)? error,
     TResult Function(List<ChatHistory> histories, String message)?
     loadMoreError,
+    TResult Function(List<ChatHistory> histories)? historyDeleted,
+    TResult Function(String message)? errDeleteHistory,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -332,6 +362,8 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Error value) error,
     required TResult Function(_LoadMoreError value) loadMoreError,
+    required TResult Function(_HistoryDeleted value) historyDeleted,
+    required TResult Function(_ErrDeleteHistory value) errDeleteHistory,
   }) {
     return loading(this);
   }
@@ -345,6 +377,8 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Error value)? error,
     TResult? Function(_LoadMoreError value)? loadMoreError,
+    TResult? Function(_HistoryDeleted value)? historyDeleted,
+    TResult? Function(_ErrDeleteHistory value)? errDeleteHistory,
   }) {
     return loading?.call(this);
   }
@@ -358,6 +392,8 @@ class _$LoadingImpl implements _Loading {
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Error value)? error,
     TResult Function(_LoadMoreError value)? loadMoreError,
+    TResult Function(_HistoryDeleted value)? historyDeleted,
+    TResult Function(_ErrDeleteHistory value)? errDeleteHistory,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -459,6 +495,8 @@ class _$LoadingMoreImpl implements _LoadingMore {
     required TResult Function(String message) error,
     required TResult Function(List<ChatHistory> histories, String message)
     loadMoreError,
+    required TResult Function(List<ChatHistory> histories) historyDeleted,
+    required TResult Function(String message) errDeleteHistory,
   }) {
     return loadingMore(histories);
   }
@@ -473,6 +511,8 @@ class _$LoadingMoreImpl implements _LoadingMore {
     TResult? Function(String message)? error,
     TResult? Function(List<ChatHistory> histories, String message)?
     loadMoreError,
+    TResult? Function(List<ChatHistory> histories)? historyDeleted,
+    TResult? Function(String message)? errDeleteHistory,
   }) {
     return loadingMore?.call(histories);
   }
@@ -487,6 +527,8 @@ class _$LoadingMoreImpl implements _LoadingMore {
     TResult Function(String message)? error,
     TResult Function(List<ChatHistory> histories, String message)?
     loadMoreError,
+    TResult Function(List<ChatHistory> histories)? historyDeleted,
+    TResult Function(String message)? errDeleteHistory,
     required TResult orElse(),
   }) {
     if (loadingMore != null) {
@@ -504,6 +546,8 @@ class _$LoadingMoreImpl implements _LoadingMore {
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Error value) error,
     required TResult Function(_LoadMoreError value) loadMoreError,
+    required TResult Function(_HistoryDeleted value) historyDeleted,
+    required TResult Function(_ErrDeleteHistory value) errDeleteHistory,
   }) {
     return loadingMore(this);
   }
@@ -517,6 +561,8 @@ class _$LoadingMoreImpl implements _LoadingMore {
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Error value)? error,
     TResult? Function(_LoadMoreError value)? loadMoreError,
+    TResult? Function(_HistoryDeleted value)? historyDeleted,
+    TResult? Function(_ErrDeleteHistory value)? errDeleteHistory,
   }) {
     return loadingMore?.call(this);
   }
@@ -530,6 +576,8 @@ class _$LoadingMoreImpl implements _LoadingMore {
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Error value)? error,
     TResult Function(_LoadMoreError value)? loadMoreError,
+    TResult Function(_HistoryDeleted value)? historyDeleted,
+    TResult Function(_ErrDeleteHistory value)? errDeleteHistory,
     required TResult orElse(),
   }) {
     if (loadingMore != null) {
@@ -652,6 +700,8 @@ class _$LoadedImpl implements _Loaded {
     required TResult Function(String message) error,
     required TResult Function(List<ChatHistory> histories, String message)
     loadMoreError,
+    required TResult Function(List<ChatHistory> histories) historyDeleted,
+    required TResult Function(String message) errDeleteHistory,
   }) {
     return loaded(histories, hasReachedMax);
   }
@@ -666,6 +716,8 @@ class _$LoadedImpl implements _Loaded {
     TResult? Function(String message)? error,
     TResult? Function(List<ChatHistory> histories, String message)?
     loadMoreError,
+    TResult? Function(List<ChatHistory> histories)? historyDeleted,
+    TResult? Function(String message)? errDeleteHistory,
   }) {
     return loaded?.call(histories, hasReachedMax);
   }
@@ -680,6 +732,8 @@ class _$LoadedImpl implements _Loaded {
     TResult Function(String message)? error,
     TResult Function(List<ChatHistory> histories, String message)?
     loadMoreError,
+    TResult Function(List<ChatHistory> histories)? historyDeleted,
+    TResult Function(String message)? errDeleteHistory,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -697,6 +751,8 @@ class _$LoadedImpl implements _Loaded {
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Error value) error,
     required TResult Function(_LoadMoreError value) loadMoreError,
+    required TResult Function(_HistoryDeleted value) historyDeleted,
+    required TResult Function(_ErrDeleteHistory value) errDeleteHistory,
   }) {
     return loaded(this);
   }
@@ -710,6 +766,8 @@ class _$LoadedImpl implements _Loaded {
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Error value)? error,
     TResult? Function(_LoadMoreError value)? loadMoreError,
+    TResult? Function(_HistoryDeleted value)? historyDeleted,
+    TResult? Function(_ErrDeleteHistory value)? errDeleteHistory,
   }) {
     return loaded?.call(this);
   }
@@ -723,6 +781,8 @@ class _$LoadedImpl implements _Loaded {
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Error value)? error,
     TResult Function(_LoadMoreError value)? loadMoreError,
+    TResult Function(_HistoryDeleted value)? historyDeleted,
+    TResult Function(_ErrDeleteHistory value)? errDeleteHistory,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -826,6 +886,8 @@ class _$ErrorImpl implements _Error {
     required TResult Function(String message) error,
     required TResult Function(List<ChatHistory> histories, String message)
     loadMoreError,
+    required TResult Function(List<ChatHistory> histories) historyDeleted,
+    required TResult Function(String message) errDeleteHistory,
   }) {
     return error(message);
   }
@@ -840,6 +902,8 @@ class _$ErrorImpl implements _Error {
     TResult? Function(String message)? error,
     TResult? Function(List<ChatHistory> histories, String message)?
     loadMoreError,
+    TResult? Function(List<ChatHistory> histories)? historyDeleted,
+    TResult? Function(String message)? errDeleteHistory,
   }) {
     return error?.call(message);
   }
@@ -854,6 +918,8 @@ class _$ErrorImpl implements _Error {
     TResult Function(String message)? error,
     TResult Function(List<ChatHistory> histories, String message)?
     loadMoreError,
+    TResult Function(List<ChatHistory> histories)? historyDeleted,
+    TResult Function(String message)? errDeleteHistory,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -871,6 +937,8 @@ class _$ErrorImpl implements _Error {
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Error value) error,
     required TResult Function(_LoadMoreError value) loadMoreError,
+    required TResult Function(_HistoryDeleted value) historyDeleted,
+    required TResult Function(_ErrDeleteHistory value) errDeleteHistory,
   }) {
     return error(this);
   }
@@ -884,6 +952,8 @@ class _$ErrorImpl implements _Error {
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Error value)? error,
     TResult? Function(_LoadMoreError value)? loadMoreError,
+    TResult? Function(_HistoryDeleted value)? historyDeleted,
+    TResult? Function(_ErrDeleteHistory value)? errDeleteHistory,
   }) {
     return error?.call(this);
   }
@@ -897,6 +967,8 @@ class _$ErrorImpl implements _Error {
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Error value)? error,
     TResult Function(_LoadMoreError value)? loadMoreError,
+    TResult Function(_HistoryDeleted value)? historyDeleted,
+    TResult Function(_ErrDeleteHistory value)? errDeleteHistory,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -1017,6 +1089,8 @@ class _$LoadMoreErrorImpl implements _LoadMoreError {
     required TResult Function(String message) error,
     required TResult Function(List<ChatHistory> histories, String message)
     loadMoreError,
+    required TResult Function(List<ChatHistory> histories) historyDeleted,
+    required TResult Function(String message) errDeleteHistory,
   }) {
     return loadMoreError(histories, message);
   }
@@ -1031,6 +1105,8 @@ class _$LoadMoreErrorImpl implements _LoadMoreError {
     TResult? Function(String message)? error,
     TResult? Function(List<ChatHistory> histories, String message)?
     loadMoreError,
+    TResult? Function(List<ChatHistory> histories)? historyDeleted,
+    TResult? Function(String message)? errDeleteHistory,
   }) {
     return loadMoreError?.call(histories, message);
   }
@@ -1045,6 +1121,8 @@ class _$LoadMoreErrorImpl implements _LoadMoreError {
     TResult Function(String message)? error,
     TResult Function(List<ChatHistory> histories, String message)?
     loadMoreError,
+    TResult Function(List<ChatHistory> histories)? historyDeleted,
+    TResult Function(String message)? errDeleteHistory,
     required TResult orElse(),
   }) {
     if (loadMoreError != null) {
@@ -1062,6 +1140,8 @@ class _$LoadMoreErrorImpl implements _LoadMoreError {
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Error value) error,
     required TResult Function(_LoadMoreError value) loadMoreError,
+    required TResult Function(_HistoryDeleted value) historyDeleted,
+    required TResult Function(_ErrDeleteHistory value) errDeleteHistory,
   }) {
     return loadMoreError(this);
   }
@@ -1075,6 +1155,8 @@ class _$LoadMoreErrorImpl implements _LoadMoreError {
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Error value)? error,
     TResult? Function(_LoadMoreError value)? loadMoreError,
+    TResult? Function(_HistoryDeleted value)? historyDeleted,
+    TResult? Function(_ErrDeleteHistory value)? errDeleteHistory,
   }) {
     return loadMoreError?.call(this);
   }
@@ -1088,6 +1170,8 @@ class _$LoadMoreErrorImpl implements _LoadMoreError {
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Error value)? error,
     TResult Function(_LoadMoreError value)? loadMoreError,
+    TResult Function(_HistoryDeleted value)? historyDeleted,
+    TResult Function(_ErrDeleteHistory value)? errDeleteHistory,
     required TResult orElse(),
   }) {
     if (loadMoreError != null) {
@@ -1110,5 +1194,387 @@ abstract class _LoadMoreError implements ChatHistoryState {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LoadMoreErrorImplCopyWith<_$LoadMoreErrorImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$HistoryDeletedImplCopyWith<$Res> {
+  factory _$$HistoryDeletedImplCopyWith(
+    _$HistoryDeletedImpl value,
+    $Res Function(_$HistoryDeletedImpl) then,
+  ) = __$$HistoryDeletedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<ChatHistory> histories});
+}
+
+/// @nodoc
+class __$$HistoryDeletedImplCopyWithImpl<$Res>
+    extends _$ChatHistoryStateCopyWithImpl<$Res, _$HistoryDeletedImpl>
+    implements _$$HistoryDeletedImplCopyWith<$Res> {
+  __$$HistoryDeletedImplCopyWithImpl(
+    _$HistoryDeletedImpl _value,
+    $Res Function(_$HistoryDeletedImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of ChatHistoryState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? histories = null}) {
+    return _then(
+      _$HistoryDeletedImpl(
+        null == histories
+            ? _value._histories
+            : histories // ignore: cast_nullable_to_non_nullable
+                  as List<ChatHistory>,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+
+class _$HistoryDeletedImpl implements _HistoryDeleted {
+  const _$HistoryDeletedImpl(final List<ChatHistory> histories)
+    : _histories = histories;
+
+  final List<ChatHistory> _histories;
+  @override
+  List<ChatHistory> get histories {
+    if (_histories is EqualUnmodifiableListView) return _histories;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_histories);
+  }
+
+  @override
+  String toString() {
+    return 'ChatHistoryState.historyDeleted(histories: $histories)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$HistoryDeletedImpl &&
+            const DeepCollectionEquality().equals(
+              other._histories,
+              _histories,
+            ));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_histories));
+
+  /// Create a copy of ChatHistoryState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$HistoryDeletedImplCopyWith<_$HistoryDeletedImpl> get copyWith =>
+      __$$HistoryDeletedImplCopyWithImpl<_$HistoryDeletedImpl>(
+        this,
+        _$identity,
+      );
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(List<ChatHistory> histories) loadingMore,
+    required TResult Function(List<ChatHistory> histories, bool hasReachedMax)
+    loaded,
+    required TResult Function(String message) error,
+    required TResult Function(List<ChatHistory> histories, String message)
+    loadMoreError,
+    required TResult Function(List<ChatHistory> histories) historyDeleted,
+    required TResult Function(String message) errDeleteHistory,
+  }) {
+    return historyDeleted(histories);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(List<ChatHistory> histories)? loadingMore,
+    TResult? Function(List<ChatHistory> histories, bool hasReachedMax)? loaded,
+    TResult? Function(String message)? error,
+    TResult? Function(List<ChatHistory> histories, String message)?
+    loadMoreError,
+    TResult? Function(List<ChatHistory> histories)? historyDeleted,
+    TResult? Function(String message)? errDeleteHistory,
+  }) {
+    return historyDeleted?.call(histories);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<ChatHistory> histories)? loadingMore,
+    TResult Function(List<ChatHistory> histories, bool hasReachedMax)? loaded,
+    TResult Function(String message)? error,
+    TResult Function(List<ChatHistory> histories, String message)?
+    loadMoreError,
+    TResult Function(List<ChatHistory> histories)? historyDeleted,
+    TResult Function(String message)? errDeleteHistory,
+    required TResult orElse(),
+  }) {
+    if (historyDeleted != null) {
+      return historyDeleted(histories);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_LoadingMore value) loadingMore,
+    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Error value) error,
+    required TResult Function(_LoadMoreError value) loadMoreError,
+    required TResult Function(_HistoryDeleted value) historyDeleted,
+    required TResult Function(_ErrDeleteHistory value) errDeleteHistory,
+  }) {
+    return historyDeleted(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_LoadingMore value)? loadingMore,
+    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Error value)? error,
+    TResult? Function(_LoadMoreError value)? loadMoreError,
+    TResult? Function(_HistoryDeleted value)? historyDeleted,
+    TResult? Function(_ErrDeleteHistory value)? errDeleteHistory,
+  }) {
+    return historyDeleted?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_LoadingMore value)? loadingMore,
+    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Error value)? error,
+    TResult Function(_LoadMoreError value)? loadMoreError,
+    TResult Function(_HistoryDeleted value)? historyDeleted,
+    TResult Function(_ErrDeleteHistory value)? errDeleteHistory,
+    required TResult orElse(),
+  }) {
+    if (historyDeleted != null) {
+      return historyDeleted(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _HistoryDeleted implements ChatHistoryState {
+  const factory _HistoryDeleted(final List<ChatHistory> histories) =
+      _$HistoryDeletedImpl;
+
+  List<ChatHistory> get histories;
+
+  /// Create a copy of ChatHistoryState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$HistoryDeletedImplCopyWith<_$HistoryDeletedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ErrDeleteHistoryImplCopyWith<$Res> {
+  factory _$$ErrDeleteHistoryImplCopyWith(
+    _$ErrDeleteHistoryImpl value,
+    $Res Function(_$ErrDeleteHistoryImpl) then,
+  ) = __$$ErrDeleteHistoryImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String message});
+}
+
+/// @nodoc
+class __$$ErrDeleteHistoryImplCopyWithImpl<$Res>
+    extends _$ChatHistoryStateCopyWithImpl<$Res, _$ErrDeleteHistoryImpl>
+    implements _$$ErrDeleteHistoryImplCopyWith<$Res> {
+  __$$ErrDeleteHistoryImplCopyWithImpl(
+    _$ErrDeleteHistoryImpl _value,
+    $Res Function(_$ErrDeleteHistoryImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of ChatHistoryState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? message = null}) {
+    return _then(
+      _$ErrDeleteHistoryImpl(
+        null == message
+            ? _value.message
+            : message // ignore: cast_nullable_to_non_nullable
+                  as String,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+
+class _$ErrDeleteHistoryImpl implements _ErrDeleteHistory {
+  const _$ErrDeleteHistoryImpl(this.message);
+
+  @override
+  final String message;
+
+  @override
+  String toString() {
+    return 'ChatHistoryState.errDeleteHistory(message: $message)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ErrDeleteHistoryImpl &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, message);
+
+  /// Create a copy of ChatHistoryState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ErrDeleteHistoryImplCopyWith<_$ErrDeleteHistoryImpl> get copyWith =>
+      __$$ErrDeleteHistoryImplCopyWithImpl<_$ErrDeleteHistoryImpl>(
+        this,
+        _$identity,
+      );
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(List<ChatHistory> histories) loadingMore,
+    required TResult Function(List<ChatHistory> histories, bool hasReachedMax)
+    loaded,
+    required TResult Function(String message) error,
+    required TResult Function(List<ChatHistory> histories, String message)
+    loadMoreError,
+    required TResult Function(List<ChatHistory> histories) historyDeleted,
+    required TResult Function(String message) errDeleteHistory,
+  }) {
+    return errDeleteHistory(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(List<ChatHistory> histories)? loadingMore,
+    TResult? Function(List<ChatHistory> histories, bool hasReachedMax)? loaded,
+    TResult? Function(String message)? error,
+    TResult? Function(List<ChatHistory> histories, String message)?
+    loadMoreError,
+    TResult? Function(List<ChatHistory> histories)? historyDeleted,
+    TResult? Function(String message)? errDeleteHistory,
+  }) {
+    return errDeleteHistory?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<ChatHistory> histories)? loadingMore,
+    TResult Function(List<ChatHistory> histories, bool hasReachedMax)? loaded,
+    TResult Function(String message)? error,
+    TResult Function(List<ChatHistory> histories, String message)?
+    loadMoreError,
+    TResult Function(List<ChatHistory> histories)? historyDeleted,
+    TResult Function(String message)? errDeleteHistory,
+    required TResult orElse(),
+  }) {
+    if (errDeleteHistory != null) {
+      return errDeleteHistory(message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_LoadingMore value) loadingMore,
+    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Error value) error,
+    required TResult Function(_LoadMoreError value) loadMoreError,
+    required TResult Function(_HistoryDeleted value) historyDeleted,
+    required TResult Function(_ErrDeleteHistory value) errDeleteHistory,
+  }) {
+    return errDeleteHistory(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_LoadingMore value)? loadingMore,
+    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Error value)? error,
+    TResult? Function(_LoadMoreError value)? loadMoreError,
+    TResult? Function(_HistoryDeleted value)? historyDeleted,
+    TResult? Function(_ErrDeleteHistory value)? errDeleteHistory,
+  }) {
+    return errDeleteHistory?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_LoadingMore value)? loadingMore,
+    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Error value)? error,
+    TResult Function(_LoadMoreError value)? loadMoreError,
+    TResult Function(_HistoryDeleted value)? historyDeleted,
+    TResult Function(_ErrDeleteHistory value)? errDeleteHistory,
+    required TResult orElse(),
+  }) {
+    if (errDeleteHistory != null) {
+      return errDeleteHistory(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ErrDeleteHistory implements ChatHistoryState {
+  const factory _ErrDeleteHistory(final String message) =
+      _$ErrDeleteHistoryImpl;
+
+  String get message;
+
+  /// Create a copy of ChatHistoryState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ErrDeleteHistoryImplCopyWith<_$ErrDeleteHistoryImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -33,4 +33,13 @@ class ChatMessageDatasourceImpl extends BaseDatasource<ChatMessageEntity, String
   ChatMessageEntity onExtractDataFromMap(Map<String, dynamic> map) =>
       ChatMessageEntity.fromMap(map);
 
+  @override
+  Future<void> deleteByHistory(int historyId) async {
+    final db = await this.db;
+    await db.delete(
+      tableName,
+      where: "${TableChatMessage.colHistoryId} = ?",
+      whereArgs: [historyId]
+    );
+  }
 }

@@ -11,6 +11,8 @@ abstract class ChatHistoryState with _$ChatHistoryState {
   const factory ChatHistoryState.loaded(List<ChatHistory> histories, bool hasReachedMax) = _Loaded;
   const factory ChatHistoryState.error(String message) = _Error;
   const factory ChatHistoryState.loadMoreError(List<ChatHistory> histories, String message) = _LoadMoreError;
+  const factory ChatHistoryState.historyDeleted(List<ChatHistory> histories) = _HistoryDeleted;
+  const factory ChatHistoryState.errDeleteHistory(String message) = _ErrDeleteHistory;
 }
 
 extension ChatHistoryStateExt on ChatHistoryState {

@@ -7,4 +7,6 @@ class IconRes {
   static final iconChat = Icons.chat;
   static final iconSendMessage = Icons.send;
   static final iconHistory = Icons.history_rounded;
+  static final iconDelete = Icons.delete_forever_outlined;
+  static final iconAsk = Icons.warning_amber_outlined;
 }

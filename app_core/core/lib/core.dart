@@ -22,6 +22,7 @@ export './usecase/request/get_pokemon_req.dart';
 export './usecase/request/get_detail_req.dart';
 export './usecase/request/ask_ai_req.dart';
 export './usecase/request/get_chat_histories_req.dart';
+export './usecase/request/delete_history_req.dart';
 
 export './usecase/cache_image_url_use_case.dart';
 export './usecase/get_detail_poke_use_case.dart';
@@ -30,6 +31,7 @@ export './usecase/ask_ai_use_case.dart';
 export './usecase/ai_steam_ask_use_case.dart';
 export './usecase/save_history_use_case.dart';
 export './usecase/get_chat_histories_use_case.dart';
+export './usecase/delete_history_use_case.dart';
 
 export './util/date_ext.dart';
 export './util/poke_ext.dart';

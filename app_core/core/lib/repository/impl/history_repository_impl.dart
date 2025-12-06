@@ -46,4 +46,10 @@ class HistoryRepositoryImpl implements HistoryRepository {
   @override
   Future<int> getLastHistoryId() async => await _chatHistoryDatasource.getLastId();
 
+  @override
+  Future<void> deleteHistory(ChatHistory chatHistory) async {
+    await _chatMessageDatasource.deleteByHistory(chatHistory.id);
+    await _chatHistoryDatasource.deleteById(chatHistory.id);
+  }
+
 }
