@@ -15,11 +15,13 @@ export './models/weakness.dart';
 export './models/weight.dart';
 export './models/chat_message.dart';
 export './models/chat_history.dart';
+export './models/app_page.dart';
 
 export './usecase/request/cache_img_req.dart';
 export './usecase/request/get_pokemon_req.dart';
 export './usecase/request/get_detail_req.dart';
 export './usecase/request/ask_ai_req.dart';
+export './usecase/request/get_chat_histories_req.dart';
 
 export './usecase/cache_image_url_use_case.dart';
 export './usecase/get_detail_poke_use_case.dart';
@@ -27,6 +29,7 @@ export './usecase/get_pokemon_use_ase.dart';
 export './usecase/ask_ai_use_case.dart';
 export './usecase/ai_steam_ask_use_case.dart';
 export './usecase/save_history_use_case.dart';
+export './usecase/get_chat_histories_use_case.dart';
 
 export './util/date_ext.dart';
 export './util/poke_ext.dart';

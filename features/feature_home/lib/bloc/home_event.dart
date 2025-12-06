@@ -5,23 +5,10 @@ abstract class HomeEvent extends Equatable {
 }
 
 class GetPokemonsEvent extends HomeEvent {
-  final int limit;
+  final bool isLoadMore;
 
-  GetPokemonsEvent({
-    this.limit = 100
-  });
+  GetPokemonsEvent({required this.isLoadMore});
 
   @override
-  List<Object?> get props => [limit];
-}
-
-class GetMorePokemonEvent extends HomeEvent {
-  final int limit;
-
-  GetMorePokemonEvent({
-    this.limit = 100
-  });
-
-  @override
-  List<Object?> get props => [limit];
+  List<Object?> get props => [isLoadMore];
 }

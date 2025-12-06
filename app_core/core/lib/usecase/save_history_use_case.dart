@@ -16,7 +16,7 @@ class SaveHistoryUseCaseImpl implements SaveHistoryUseCase {
   Future<int> getId() async {
     int lastId = await _historyRepository.getLastHistoryId();
     if (lastId < 0) lastId = 1;
-    return lastId;
+    return lastId + 1;
   }
 
   @override

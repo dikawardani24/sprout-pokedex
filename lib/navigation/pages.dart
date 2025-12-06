@@ -1,5 +1,5 @@
-import 'package:feature_chat/chat_history_page.dart';
 import 'package:feature_chat/chat_page.dart';
+import 'package:feature_chat_history/feature_chat_history.dart';
 import 'package:feature_detail/detail_page.dart';
 import 'package:feature_home/home_page.dart';
 import 'package:flutter/material.dart';

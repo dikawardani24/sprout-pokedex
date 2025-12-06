@@ -128,12 +128,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
         chatHistory: history,
         chatMessages: _messages
       )
-    ).then((result) => {
-      result.when(
-        success: (_) => print("History saved"),
-        error: (err) => print(err)
-      )
-    });
+    ).then((_) => {});
   }
   
   @override
