@@ -1,3 +1,4 @@
+import 'package:ai_gemini/config/config.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../ai_engine.dart';
@@ -6,6 +7,7 @@ import '../ai_stream_datasource.dart';
 @Injectable(as: AiStreamDatasource)
 class AiStreamDatasourceImpl implements AiStreamDatasource {
   final AiEngine _aiEngine;
+
   AiStreamDatasourceImpl(this._aiEngine);
 
   @override
@@ -20,4 +22,7 @@ class AiStreamDatasourceImpl implements AiStreamDatasource {
     List<String> history = const [],
     required String topic
   }) async => await _aiEngine.streamChat(prompt, history: history, topic: topic);
+
+  @override
+  void setConfig(AiConfig config) => _aiEngine.initConfig(config);
 }

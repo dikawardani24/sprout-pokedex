@@ -1,3 +1,4 @@
+import 'package:ai_gemini/exceptions/ai_api_key_exception.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_gemini/flutter_gemini.dart';
 
@@ -5,23 +6,23 @@ import 'config/config.dart';
 import 'config/prompts.dart';
 
 class AiEngine {
-  bool _initiated = false;
   final AiPrompts _aiPrompts;
-  Future<AiConfig> get _aiConfig async => await AiConfig.create();
+  AiConfig? _aiConfig;
 
   AiEngine(this._aiPrompts);
 
-  Future<Gemini> get _gemini async {
-    final config  = await AiConfig.create();
-    if (!_initiated) {
-      Gemini.init(
-        apiKey: config.apiKey,
-        enableDebugging: kDebugMode,
-      );
-      _initiated = true;
-    }
-    return Gemini.instance;
+  Future<Gemini> get _gemini async => Gemini.instance;
+
+  T _validateConfig<T>(T Function(AiConfig) valid) {
+    final config = _aiConfig;
+    if (config == null) throw AiApiKeyException.invalid();
+    return valid(config);
   }
+
+  void initConfig(AiConfig config) => Gemini.init(
+    apiKey: config.apiKey,
+    enableDebugging: kDebugMode,
+  );
 
   List<Content> _generateContent(String prompt, {
     List<String> history = const [],
@@ -31,11 +32,11 @@ class AiEngine {
 
     // Add system prompt as first message with proper role
     contents.add(Content(
-      role: "user",
-      parts: [
-        Part.text(_aiPrompts.systemInstruction),
-        if (topic != null) Part.text(_aiPrompts.knowledgePrompt(topic: topic))
-      ]
+        role: "user",
+        parts: [
+          Part.text(_aiPrompts.systemInstruction),
+          if (topic != null) Part.text(_aiPrompts.knowledgePrompt(topic: topic))
+        ]
     ));
 
     // Add history
@@ -58,10 +59,8 @@ class AiEngine {
   Future<Stream<String?>> streamChat(String prompt, {
     List<String> history = const[],
     String? topic
-  }) async {
-    final config = await _aiConfig;
+  }) async => _validateConfig((config) async {
     final contents = _generateContent(prompt, history:  history, topic: topic);
-
     return (await _gemini).streamChat(
       contents,
       modelName: config.model,
@@ -72,18 +71,18 @@ class AiEngine {
         maxOutputTokens: config.maxOutput,
       ),
     ).map((e) => e.output);
-  }
+  });
 
   Future<String?> chat(String prompt, {
     List<String> history = const [],
     String? topic
-  }) async {
+  }) async => _validateConfig((_) async {
     final ai = await _gemini;
     final contents = _generateContent(prompt, history: history, topic: topic);
     final candidate = await ai.chat(
         contents
     );
     return candidate?.output;
-  }
+  });
 
 }

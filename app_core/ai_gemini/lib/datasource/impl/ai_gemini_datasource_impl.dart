@@ -1,5 +1,6 @@
 
 import 'package:ai_gemini/ai_engine.dart';
+import 'package:ai_gemini/config/config.dart';
 import 'package:injectable/injectable.dart';
 
 import '../ai_gemini_datasource.dart';
@@ -19,4 +20,7 @@ class AiGeminiDatasourceImpl implements AiGeminiDatasource {
   @override
   Future<String?> promptTextWithSpecificTopic(String prompt, String topic) async =>
       await _execute(prompt, topic: topic);
+
+  @override
+  void setConfig(AiConfig config) => _aiEngine.initConfig(config);
 }
