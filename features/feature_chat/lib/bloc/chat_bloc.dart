@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 import '../useCase/get_detail_event_use_case.dart';
+import '../useCase/load_history_event_use_case.dart';
 import '../useCase/save_history_even_use_case.dart';
 import 'chat_event.dart';
 import 'chat_state.dart';
@@ -17,7 +18,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
   final AskAiUseCase _aiUseCase;
   final AiSteamAskUseCase _aiSteamAskUseCase;
   final SaveHistoryEvenUseCase _saveHistoryUseCase;
-  final GetMessageByHistoryUseCase _getMessageByHistoryUseCase;
+  final LoadHistoryEventUseCase _getMessageByHistoryUseCase;
 
   ChatHistory? _chatHistory;
   ChatMessage? _currentAnswer;
@@ -116,37 +117,36 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
   }
 
   Future<void> _getDetailPokemon(GetDetailAndGreetingEvent event, Emitter<ChatState> emit) async =>
-      await _getDetailPokeUseCase.execute(
-        event,
-        onLoading: () => emit(ChatState.loadingGetDetailPokemon()),
-        onError: (err) => emit(ChatState.errorGetDetail(err)),
-        onSuccess: (data) {
-          _appPokemonDetail = data;
-          emit(ChatState.gotDetailPokemon(data));
-        },
-      );
+    await _getDetailPokeUseCase.execute(
+      event,
+      onLoading: () => emit(ChatState.loadingGetDetailPokemon()),
+      onError: (err) => emit(ChatState.errorGetDetail(err)),
+      onSuccess: (data) {
+        _appPokemonDetail = data;
+        emit(ChatState.gotDetailPokemon(data));
+      },
+    );
 
   Future<void> _saveChatEvent(SaveChatEvent event, Emitter<ChatState> emit) async =>
-      await _saveHistoryUseCase.execute(
+    await _saveHistoryUseCase.execute(
         messages: _messages,
         current: _chatHistory,
         onLoading: () => emit(ChatState.loadingSaveHistory(List.of(_messages))),
         onSuccess: () => emit(ChatState.historySaved(event.reqWhen))
-      );
+    );
 
-  Future<void> _loadHistoryMessage(LoadHistoryChatEvent event, Emitter<ChatState> emit) async {
-    emit(ChatState.loadingMessageByHistory());
-    final result = await _getMessageByHistoryUseCase.execute(GetMessageByHistoryReq(event.chatHistory));
-    result.when(
-      success: (data) {
+  Future<void> _loadHistoryMessage(LoadHistoryChatEvent event, Emitter<ChatState> emit) async =>
+    await _getMessageByHistoryUseCase.execute(
+      history: event.chatHistory,
+      onLoading: () =>  emit(ChatState.loadingMessageByHistory()),
+      onError: (err) => emit(ChatState.errGetMessageByHistory(err)),
+      onSuccess: (data) {
         _messages.clear();
         _messages.addAll(data);
         _chatHistory = event.chatHistory;
         emit(ChatState.gotMessageByHistory(data));
-      },
-      error: (err) => emit(ChatState.errGetMessageByHistory(getErrorMessage(err)))
+      }
     );
-  }
   
   @override
   Future<void> close()  {

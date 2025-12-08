@@ -15,6 +15,7 @@ import 'package:injectable/injectable.dart' as _i526;
 
 import '../bloc/chat_bloc.dart' as _i701;
 import '../useCase/get_detail_event_use_case.dart' as _i393;
+import '../useCase/load_history_event_use_case.dart' as _i943;
 import '../useCase/save_history_even_use_case.dart' as _i524;
 
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -30,11 +31,16 @@ _i174.GetIt $initFeatureChat(
   gh.factory<_i393.GetDetailEventUseCase>(
     () => _i393.GetDetailEventUseCaseImpl(gh<_i494.GetDetailPokeUseCase>()),
   );
+  gh.factory<_i943.LoadHistoryEventUseCase>(
+    () => _i943.LoadHistoryEventUseCaseImpl(
+      gh<_i494.GetMessageByHistoryUseCase>(),
+    ),
+  );
   gh.factory<_i701.ChatBloc>(
     () => _i701.ChatBloc(
       gh<_i393.GetDetailEventUseCase>(),
       gh<_i524.SaveHistoryEvenUseCase>(),
-      gh<_i494.GetMessageByHistoryUseCase>(),
+      gh<_i943.LoadHistoryEventUseCase>(),
       gh<_i494.AskAiUseCase>(),
       gh<_i494.AiSteamAskUseCase>(),
     ),
