@@ -30,13 +30,15 @@ extension AppNavigation on BuildContext {
           );
         }
       case Routes.chat: return Pages.chatPage(
-        onStartChatHistory: (c) => c.startChatHistoryPage()
+        onStartChatHistory: (c) => c.startChatHistoryPage(),
+        onStartSetApiKey: (c) async => print("Not implemented on AppNavigation")
       );
       case Routes.chatPokemon:
         if (args is int) {
           return Pages.chatPage(
-              id: args,
-              onStartChatHistory: (c) => c.startChatHistoryPage()
+            id: args,
+            onStartChatHistory: (c) => c.startChatHistoryPage(),
+            onStartSetApiKey: (c) async => print("Not implemented on AppNavigation")
           );
         }
       case Routes.chatHistory: return Pages.chatHistoryPage();

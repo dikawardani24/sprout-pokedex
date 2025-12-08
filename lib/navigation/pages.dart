@@ -21,9 +21,14 @@ class Pages {
     onStartChatWithDetail: onStartChatWithDetail,
   );
 
-  static Widget chatPage({int? id, OnStartChatHistory? onStartChatHistory}) => ChatPage(
+  static Widget chatPage({
+    int? id,
+    OnStartChatHistory? onStartChatHistory,
+    OnStartSetApiKey? onStartSetApiKey
+  }) => ChatPage(
     pokemonId: id,
     onStartChatHistory: onStartChatHistory,
+    onStartSetApiKey: onStartSetApiKey,
   );
 
   static Widget chatHistoryPage() => const ChatHistoryPage();

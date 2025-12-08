@@ -25,7 +25,8 @@ mixin _$ChatState {
     required TResult Function(List<ChatMessage> messages) gotAnswered,
     required TResult Function(List<ChatMessage> messages) notAnswered,
     required TResult Function(List<ChatMessage> messages) answered,
-    required TResult Function(AppPokemonDetail detail) gotDetailPokemon,
+    required TResult Function(AppPokemonDetail? detail, bool isApiKeySet)
+    gotDetailPokemon,
     required TResult Function(String message) errorGetDetail,
     required TResult Function(String message, List<ChatMessage> messages)
     errorGetAnswer,
@@ -43,7 +44,8 @@ mixin _$ChatState {
     TResult? Function(List<ChatMessage> messages)? gotAnswered,
     TResult? Function(List<ChatMessage> messages)? notAnswered,
     TResult? Function(List<ChatMessage> messages)? answered,
-    TResult? Function(AppPokemonDetail detail)? gotDetailPokemon,
+    TResult? Function(AppPokemonDetail? detail, bool isApiKeySet)?
+    gotDetailPokemon,
     TResult? Function(String message)? errorGetDetail,
     TResult? Function(String message, List<ChatMessage> messages)?
     errorGetAnswer,
@@ -61,7 +63,8 @@ mixin _$ChatState {
     TResult Function(List<ChatMessage> messages)? gotAnswered,
     TResult Function(List<ChatMessage> messages)? notAnswered,
     TResult Function(List<ChatMessage> messages)? answered,
-    TResult Function(AppPokemonDetail detail)? gotDetailPokemon,
+    TResult Function(AppPokemonDetail? detail, bool isApiKeySet)?
+    gotDetailPokemon,
     TResult Function(String message)? errorGetDetail,
     TResult Function(String message, List<ChatMessage> messages)?
     errorGetAnswer,
@@ -198,7 +201,8 @@ class _$InitialImpl implements _Initial {
     required TResult Function(List<ChatMessage> messages) gotAnswered,
     required TResult Function(List<ChatMessage> messages) notAnswered,
     required TResult Function(List<ChatMessage> messages) answered,
-    required TResult Function(AppPokemonDetail detail) gotDetailPokemon,
+    required TResult Function(AppPokemonDetail? detail, bool isApiKeySet)
+    gotDetailPokemon,
     required TResult Function(String message) errorGetDetail,
     required TResult Function(String message, List<ChatMessage> messages)
     errorGetAnswer,
@@ -220,7 +224,8 @@ class _$InitialImpl implements _Initial {
     TResult? Function(List<ChatMessage> messages)? gotAnswered,
     TResult? Function(List<ChatMessage> messages)? notAnswered,
     TResult? Function(List<ChatMessage> messages)? answered,
-    TResult? Function(AppPokemonDetail detail)? gotDetailPokemon,
+    TResult? Function(AppPokemonDetail? detail, bool isApiKeySet)?
+    gotDetailPokemon,
     TResult? Function(String message)? errorGetDetail,
     TResult? Function(String message, List<ChatMessage> messages)?
     errorGetAnswer,
@@ -242,7 +247,8 @@ class _$InitialImpl implements _Initial {
     TResult Function(List<ChatMessage> messages)? gotAnswered,
     TResult Function(List<ChatMessage> messages)? notAnswered,
     TResult Function(List<ChatMessage> messages)? answered,
-    TResult Function(AppPokemonDetail detail)? gotDetailPokemon,
+    TResult Function(AppPokemonDetail? detail, bool isApiKeySet)?
+    gotDetailPokemon,
     TResult Function(String message)? errorGetDetail,
     TResult Function(String message, List<ChatMessage> messages)?
     errorGetAnswer,
@@ -384,7 +390,8 @@ class _$LoadingGetDetailPokemonImpl implements _LoadingGetDetailPokemon {
     required TResult Function(List<ChatMessage> messages) gotAnswered,
     required TResult Function(List<ChatMessage> messages) notAnswered,
     required TResult Function(List<ChatMessage> messages) answered,
-    required TResult Function(AppPokemonDetail detail) gotDetailPokemon,
+    required TResult Function(AppPokemonDetail? detail, bool isApiKeySet)
+    gotDetailPokemon,
     required TResult Function(String message) errorGetDetail,
     required TResult Function(String message, List<ChatMessage> messages)
     errorGetAnswer,
@@ -406,7 +413,8 @@ class _$LoadingGetDetailPokemonImpl implements _LoadingGetDetailPokemon {
     TResult? Function(List<ChatMessage> messages)? gotAnswered,
     TResult? Function(List<ChatMessage> messages)? notAnswered,
     TResult? Function(List<ChatMessage> messages)? answered,
-    TResult? Function(AppPokemonDetail detail)? gotDetailPokemon,
+    TResult? Function(AppPokemonDetail? detail, bool isApiKeySet)?
+    gotDetailPokemon,
     TResult? Function(String message)? errorGetDetail,
     TResult? Function(String message, List<ChatMessage> messages)?
     errorGetAnswer,
@@ -428,7 +436,8 @@ class _$LoadingGetDetailPokemonImpl implements _LoadingGetDetailPokemon {
     TResult Function(List<ChatMessage> messages)? gotAnswered,
     TResult Function(List<ChatMessage> messages)? notAnswered,
     TResult Function(List<ChatMessage> messages)? answered,
-    TResult Function(AppPokemonDetail detail)? gotDetailPokemon,
+    TResult Function(AppPokemonDetail? detail, bool isApiKeySet)?
+    gotDetailPokemon,
     TResult Function(String message)? errorGetDetail,
     TResult Function(String message, List<ChatMessage> messages)?
     errorGetAnswer,
@@ -603,7 +612,8 @@ class _$QuestionAddedImpl implements _QuestionAdded {
     required TResult Function(List<ChatMessage> messages) gotAnswered,
     required TResult Function(List<ChatMessage> messages) notAnswered,
     required TResult Function(List<ChatMessage> messages) answered,
-    required TResult Function(AppPokemonDetail detail) gotDetailPokemon,
+    required TResult Function(AppPokemonDetail? detail, bool isApiKeySet)
+    gotDetailPokemon,
     required TResult Function(String message) errorGetDetail,
     required TResult Function(String message, List<ChatMessage> messages)
     errorGetAnswer,
@@ -625,7 +635,8 @@ class _$QuestionAddedImpl implements _QuestionAdded {
     TResult? Function(List<ChatMessage> messages)? gotAnswered,
     TResult? Function(List<ChatMessage> messages)? notAnswered,
     TResult? Function(List<ChatMessage> messages)? answered,
-    TResult? Function(AppPokemonDetail detail)? gotDetailPokemon,
+    TResult? Function(AppPokemonDetail? detail, bool isApiKeySet)?
+    gotDetailPokemon,
     TResult? Function(String message)? errorGetDetail,
     TResult? Function(String message, List<ChatMessage> messages)?
     errorGetAnswer,
@@ -647,7 +658,8 @@ class _$QuestionAddedImpl implements _QuestionAdded {
     TResult Function(List<ChatMessage> messages)? gotAnswered,
     TResult Function(List<ChatMessage> messages)? notAnswered,
     TResult Function(List<ChatMessage> messages)? answered,
-    TResult Function(AppPokemonDetail detail)? gotDetailPokemon,
+    TResult Function(AppPokemonDetail? detail, bool isApiKeySet)?
+    gotDetailPokemon,
     TResult Function(String message)? errorGetDetail,
     TResult Function(String message, List<ChatMessage> messages)?
     errorGetAnswer,
@@ -831,7 +843,8 @@ class _$GotAnsweredImpl implements _GotAnswered {
     required TResult Function(List<ChatMessage> messages) gotAnswered,
     required TResult Function(List<ChatMessage> messages) notAnswered,
     required TResult Function(List<ChatMessage> messages) answered,
-    required TResult Function(AppPokemonDetail detail) gotDetailPokemon,
+    required TResult Function(AppPokemonDetail? detail, bool isApiKeySet)
+    gotDetailPokemon,
     required TResult Function(String message) errorGetDetail,
     required TResult Function(String message, List<ChatMessage> messages)
     errorGetAnswer,
@@ -853,7 +866,8 @@ class _$GotAnsweredImpl implements _GotAnswered {
     TResult? Function(List<ChatMessage> messages)? gotAnswered,
     TResult? Function(List<ChatMessage> messages)? notAnswered,
     TResult? Function(List<ChatMessage> messages)? answered,
-    TResult? Function(AppPokemonDetail detail)? gotDetailPokemon,
+    TResult? Function(AppPokemonDetail? detail, bool isApiKeySet)?
+    gotDetailPokemon,
     TResult? Function(String message)? errorGetDetail,
     TResult? Function(String message, List<ChatMessage> messages)?
     errorGetAnswer,
@@ -875,7 +889,8 @@ class _$GotAnsweredImpl implements _GotAnswered {
     TResult Function(List<ChatMessage> messages)? gotAnswered,
     TResult Function(List<ChatMessage> messages)? notAnswered,
     TResult Function(List<ChatMessage> messages)? answered,
-    TResult Function(AppPokemonDetail detail)? gotDetailPokemon,
+    TResult Function(AppPokemonDetail? detail, bool isApiKeySet)?
+    gotDetailPokemon,
     TResult Function(String message)? errorGetDetail,
     TResult Function(String message, List<ChatMessage> messages)?
     errorGetAnswer,
@@ -1059,7 +1074,8 @@ class _$NotAnsweredImpl implements _NotAnswered {
     required TResult Function(List<ChatMessage> messages) gotAnswered,
     required TResult Function(List<ChatMessage> messages) notAnswered,
     required TResult Function(List<ChatMessage> messages) answered,
-    required TResult Function(AppPokemonDetail detail) gotDetailPokemon,
+    required TResult Function(AppPokemonDetail? detail, bool isApiKeySet)
+    gotDetailPokemon,
     required TResult Function(String message) errorGetDetail,
     required TResult Function(String message, List<ChatMessage> messages)
     errorGetAnswer,
@@ -1081,7 +1097,8 @@ class _$NotAnsweredImpl implements _NotAnswered {
     TResult? Function(List<ChatMessage> messages)? gotAnswered,
     TResult? Function(List<ChatMessage> messages)? notAnswered,
     TResult? Function(List<ChatMessage> messages)? answered,
-    TResult? Function(AppPokemonDetail detail)? gotDetailPokemon,
+    TResult? Function(AppPokemonDetail? detail, bool isApiKeySet)?
+    gotDetailPokemon,
     TResult? Function(String message)? errorGetDetail,
     TResult? Function(String message, List<ChatMessage> messages)?
     errorGetAnswer,
@@ -1103,7 +1120,8 @@ class _$NotAnsweredImpl implements _NotAnswered {
     TResult Function(List<ChatMessage> messages)? gotAnswered,
     TResult Function(List<ChatMessage> messages)? notAnswered,
     TResult Function(List<ChatMessage> messages)? answered,
-    TResult Function(AppPokemonDetail detail)? gotDetailPokemon,
+    TResult Function(AppPokemonDetail? detail, bool isApiKeySet)?
+    gotDetailPokemon,
     TResult Function(String message)? errorGetDetail,
     TResult Function(String message, List<ChatMessage> messages)?
     errorGetAnswer,
@@ -1286,7 +1304,8 @@ class _$AnsweredImpl implements _Answered {
     required TResult Function(List<ChatMessage> messages) gotAnswered,
     required TResult Function(List<ChatMessage> messages) notAnswered,
     required TResult Function(List<ChatMessage> messages) answered,
-    required TResult Function(AppPokemonDetail detail) gotDetailPokemon,
+    required TResult Function(AppPokemonDetail? detail, bool isApiKeySet)
+    gotDetailPokemon,
     required TResult Function(String message) errorGetDetail,
     required TResult Function(String message, List<ChatMessage> messages)
     errorGetAnswer,
@@ -1308,7 +1327,8 @@ class _$AnsweredImpl implements _Answered {
     TResult? Function(List<ChatMessage> messages)? gotAnswered,
     TResult? Function(List<ChatMessage> messages)? notAnswered,
     TResult? Function(List<ChatMessage> messages)? answered,
-    TResult? Function(AppPokemonDetail detail)? gotDetailPokemon,
+    TResult? Function(AppPokemonDetail? detail, bool isApiKeySet)?
+    gotDetailPokemon,
     TResult? Function(String message)? errorGetDetail,
     TResult? Function(String message, List<ChatMessage> messages)?
     errorGetAnswer,
@@ -1330,7 +1350,8 @@ class _$AnsweredImpl implements _Answered {
     TResult Function(List<ChatMessage> messages)? gotAnswered,
     TResult Function(List<ChatMessage> messages)? notAnswered,
     TResult Function(List<ChatMessage> messages)? answered,
-    TResult Function(AppPokemonDetail detail)? gotDetailPokemon,
+    TResult Function(AppPokemonDetail? detail, bool isApiKeySet)?
+    gotDetailPokemon,
     TResult Function(String message)? errorGetDetail,
     TResult Function(String message, List<ChatMessage> messages)?
     errorGetAnswer,
@@ -1437,7 +1458,7 @@ abstract class _$$GotDetailPokemonImplCopyWith<$Res> {
     $Res Function(_$GotDetailPokemonImpl) then,
   ) = __$$GotDetailPokemonImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({AppPokemonDetail detail});
+  $Res call({AppPokemonDetail? detail, bool isApiKeySet});
 }
 
 /// @nodoc
@@ -1453,13 +1474,17 @@ class __$$GotDetailPokemonImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? detail = null}) {
+  $Res call({Object? detail = freezed, Object? isApiKeySet = null}) {
     return _then(
       _$GotDetailPokemonImpl(
-        null == detail
+        freezed == detail
             ? _value.detail
             : detail // ignore: cast_nullable_to_non_nullable
-                  as AppPokemonDetail,
+                  as AppPokemonDetail?,
+        null == isApiKeySet
+            ? _value.isApiKeySet
+            : isApiKeySet // ignore: cast_nullable_to_non_nullable
+                  as bool,
       ),
     );
   }
@@ -1468,14 +1493,16 @@ class __$$GotDetailPokemonImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$GotDetailPokemonImpl implements _GotDetailPokemon {
-  const _$GotDetailPokemonImpl(this.detail);
+  const _$GotDetailPokemonImpl(this.detail, this.isApiKeySet);
 
   @override
-  final AppPokemonDetail detail;
+  final AppPokemonDetail? detail;
+  @override
+  final bool isApiKeySet;
 
   @override
   String toString() {
-    return 'ChatState.gotDetailPokemon(detail: $detail)';
+    return 'ChatState.gotDetailPokemon(detail: $detail, isApiKeySet: $isApiKeySet)';
   }
 
   @override
@@ -1483,11 +1510,13 @@ class _$GotDetailPokemonImpl implements _GotDetailPokemon {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GotDetailPokemonImpl &&
-            (identical(other.detail, detail) || other.detail == detail));
+            (identical(other.detail, detail) || other.detail == detail) &&
+            (identical(other.isApiKeySet, isApiKeySet) ||
+                other.isApiKeySet == isApiKeySet));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, detail);
+  int get hashCode => Object.hash(runtimeType, detail, isApiKeySet);
 
   /// Create a copy of ChatState
   /// with the given fields replaced by the non-null parameter values.
@@ -1509,7 +1538,8 @@ class _$GotDetailPokemonImpl implements _GotDetailPokemon {
     required TResult Function(List<ChatMessage> messages) gotAnswered,
     required TResult Function(List<ChatMessage> messages) notAnswered,
     required TResult Function(List<ChatMessage> messages) answered,
-    required TResult Function(AppPokemonDetail detail) gotDetailPokemon,
+    required TResult Function(AppPokemonDetail? detail, bool isApiKeySet)
+    gotDetailPokemon,
     required TResult Function(String message) errorGetDetail,
     required TResult Function(String message, List<ChatMessage> messages)
     errorGetAnswer,
@@ -1519,7 +1549,7 @@ class _$GotDetailPokemonImpl implements _GotDetailPokemon {
     required TResult Function(List<ChatMessage> messages) loadingSaveHistory,
     required TResult Function(DateTime reqDate) historySaved,
   }) {
-    return gotDetailPokemon(detail);
+    return gotDetailPokemon(detail, isApiKeySet);
   }
 
   @override
@@ -1531,7 +1561,8 @@ class _$GotDetailPokemonImpl implements _GotDetailPokemon {
     TResult? Function(List<ChatMessage> messages)? gotAnswered,
     TResult? Function(List<ChatMessage> messages)? notAnswered,
     TResult? Function(List<ChatMessage> messages)? answered,
-    TResult? Function(AppPokemonDetail detail)? gotDetailPokemon,
+    TResult? Function(AppPokemonDetail? detail, bool isApiKeySet)?
+    gotDetailPokemon,
     TResult? Function(String message)? errorGetDetail,
     TResult? Function(String message, List<ChatMessage> messages)?
     errorGetAnswer,
@@ -1541,7 +1572,7 @@ class _$GotDetailPokemonImpl implements _GotDetailPokemon {
     TResult? Function(List<ChatMessage> messages)? loadingSaveHistory,
     TResult? Function(DateTime reqDate)? historySaved,
   }) {
-    return gotDetailPokemon?.call(detail);
+    return gotDetailPokemon?.call(detail, isApiKeySet);
   }
 
   @override
@@ -1553,7 +1584,8 @@ class _$GotDetailPokemonImpl implements _GotDetailPokemon {
     TResult Function(List<ChatMessage> messages)? gotAnswered,
     TResult Function(List<ChatMessage> messages)? notAnswered,
     TResult Function(List<ChatMessage> messages)? answered,
-    TResult Function(AppPokemonDetail detail)? gotDetailPokemon,
+    TResult Function(AppPokemonDetail? detail, bool isApiKeySet)?
+    gotDetailPokemon,
     TResult Function(String message)? errorGetDetail,
     TResult Function(String message, List<ChatMessage> messages)?
     errorGetAnswer,
@@ -1565,7 +1597,7 @@ class _$GotDetailPokemonImpl implements _GotDetailPokemon {
     required TResult orElse(),
   }) {
     if (gotDetailPokemon != null) {
-      return gotDetailPokemon(detail);
+      return gotDetailPokemon(detail, isApiKeySet);
     }
     return orElse();
   }
@@ -1642,10 +1674,13 @@ class _$GotDetailPokemonImpl implements _GotDetailPokemon {
 }
 
 abstract class _GotDetailPokemon implements ChatState {
-  const factory _GotDetailPokemon(final AppPokemonDetail detail) =
-      _$GotDetailPokemonImpl;
+  const factory _GotDetailPokemon(
+    final AppPokemonDetail? detail,
+    final bool isApiKeySet,
+  ) = _$GotDetailPokemonImpl;
 
-  AppPokemonDetail get detail;
+  AppPokemonDetail? get detail;
+  bool get isApiKeySet;
 
   /// Create a copy of ChatState
   /// with the given fields replaced by the non-null parameter values.
@@ -1733,7 +1768,8 @@ class _$ErrorGetDetailImpl implements _ErrorGetDetail {
     required TResult Function(List<ChatMessage> messages) gotAnswered,
     required TResult Function(List<ChatMessage> messages) notAnswered,
     required TResult Function(List<ChatMessage> messages) answered,
-    required TResult Function(AppPokemonDetail detail) gotDetailPokemon,
+    required TResult Function(AppPokemonDetail? detail, bool isApiKeySet)
+    gotDetailPokemon,
     required TResult Function(String message) errorGetDetail,
     required TResult Function(String message, List<ChatMessage> messages)
     errorGetAnswer,
@@ -1755,7 +1791,8 @@ class _$ErrorGetDetailImpl implements _ErrorGetDetail {
     TResult? Function(List<ChatMessage> messages)? gotAnswered,
     TResult? Function(List<ChatMessage> messages)? notAnswered,
     TResult? Function(List<ChatMessage> messages)? answered,
-    TResult? Function(AppPokemonDetail detail)? gotDetailPokemon,
+    TResult? Function(AppPokemonDetail? detail, bool isApiKeySet)?
+    gotDetailPokemon,
     TResult? Function(String message)? errorGetDetail,
     TResult? Function(String message, List<ChatMessage> messages)?
     errorGetAnswer,
@@ -1777,7 +1814,8 @@ class _$ErrorGetDetailImpl implements _ErrorGetDetail {
     TResult Function(List<ChatMessage> messages)? gotAnswered,
     TResult Function(List<ChatMessage> messages)? notAnswered,
     TResult Function(List<ChatMessage> messages)? answered,
-    TResult Function(AppPokemonDetail detail)? gotDetailPokemon,
+    TResult Function(AppPokemonDetail? detail, bool isApiKeySet)?
+    gotDetailPokemon,
     TResult Function(String message)? errorGetDetail,
     TResult Function(String message, List<ChatMessage> messages)?
     errorGetAnswer,
@@ -1973,7 +2011,8 @@ class _$ErrorGetAnsweredImpl implements _ErrorGetAnswered {
     required TResult Function(List<ChatMessage> messages) gotAnswered,
     required TResult Function(List<ChatMessage> messages) notAnswered,
     required TResult Function(List<ChatMessage> messages) answered,
-    required TResult Function(AppPokemonDetail detail) gotDetailPokemon,
+    required TResult Function(AppPokemonDetail? detail, bool isApiKeySet)
+    gotDetailPokemon,
     required TResult Function(String message) errorGetDetail,
     required TResult Function(String message, List<ChatMessage> messages)
     errorGetAnswer,
@@ -1995,7 +2034,8 @@ class _$ErrorGetAnsweredImpl implements _ErrorGetAnswered {
     TResult? Function(List<ChatMessage> messages)? gotAnswered,
     TResult? Function(List<ChatMessage> messages)? notAnswered,
     TResult? Function(List<ChatMessage> messages)? answered,
-    TResult? Function(AppPokemonDetail detail)? gotDetailPokemon,
+    TResult? Function(AppPokemonDetail? detail, bool isApiKeySet)?
+    gotDetailPokemon,
     TResult? Function(String message)? errorGetDetail,
     TResult? Function(String message, List<ChatMessage> messages)?
     errorGetAnswer,
@@ -2017,7 +2057,8 @@ class _$ErrorGetAnsweredImpl implements _ErrorGetAnswered {
     TResult Function(List<ChatMessage> messages)? gotAnswered,
     TResult Function(List<ChatMessage> messages)? notAnswered,
     TResult Function(List<ChatMessage> messages)? answered,
-    TResult Function(AppPokemonDetail detail)? gotDetailPokemon,
+    TResult Function(AppPokemonDetail? detail, bool isApiKeySet)?
+    gotDetailPokemon,
     TResult Function(String message)? errorGetDetail,
     TResult Function(String message, List<ChatMessage> messages)?
     errorGetAnswer,
@@ -2171,7 +2212,8 @@ class _$LoadingMessageByHistoryImpl implements _LoadingMessageByHistory {
     required TResult Function(List<ChatMessage> messages) gotAnswered,
     required TResult Function(List<ChatMessage> messages) notAnswered,
     required TResult Function(List<ChatMessage> messages) answered,
-    required TResult Function(AppPokemonDetail detail) gotDetailPokemon,
+    required TResult Function(AppPokemonDetail? detail, bool isApiKeySet)
+    gotDetailPokemon,
     required TResult Function(String message) errorGetDetail,
     required TResult Function(String message, List<ChatMessage> messages)
     errorGetAnswer,
@@ -2193,7 +2235,8 @@ class _$LoadingMessageByHistoryImpl implements _LoadingMessageByHistory {
     TResult? Function(List<ChatMessage> messages)? gotAnswered,
     TResult? Function(List<ChatMessage> messages)? notAnswered,
     TResult? Function(List<ChatMessage> messages)? answered,
-    TResult? Function(AppPokemonDetail detail)? gotDetailPokemon,
+    TResult? Function(AppPokemonDetail? detail, bool isApiKeySet)?
+    gotDetailPokemon,
     TResult? Function(String message)? errorGetDetail,
     TResult? Function(String message, List<ChatMessage> messages)?
     errorGetAnswer,
@@ -2215,7 +2258,8 @@ class _$LoadingMessageByHistoryImpl implements _LoadingMessageByHistory {
     TResult Function(List<ChatMessage> messages)? gotAnswered,
     TResult Function(List<ChatMessage> messages)? notAnswered,
     TResult Function(List<ChatMessage> messages)? answered,
-    TResult Function(AppPokemonDetail detail)? gotDetailPokemon,
+    TResult Function(AppPokemonDetail? detail, bool isApiKeySet)?
+    gotDetailPokemon,
     TResult Function(String message)? errorGetDetail,
     TResult Function(String message, List<ChatMessage> messages)?
     errorGetAnswer,
@@ -2393,7 +2437,8 @@ class _$GotMessageByHIstoryImpl implements _GotMessageByHIstory {
     required TResult Function(List<ChatMessage> messages) gotAnswered,
     required TResult Function(List<ChatMessage> messages) notAnswered,
     required TResult Function(List<ChatMessage> messages) answered,
-    required TResult Function(AppPokemonDetail detail) gotDetailPokemon,
+    required TResult Function(AppPokemonDetail? detail, bool isApiKeySet)
+    gotDetailPokemon,
     required TResult Function(String message) errorGetDetail,
     required TResult Function(String message, List<ChatMessage> messages)
     errorGetAnswer,
@@ -2415,7 +2460,8 @@ class _$GotMessageByHIstoryImpl implements _GotMessageByHIstory {
     TResult? Function(List<ChatMessage> messages)? gotAnswered,
     TResult? Function(List<ChatMessage> messages)? notAnswered,
     TResult? Function(List<ChatMessage> messages)? answered,
-    TResult? Function(AppPokemonDetail detail)? gotDetailPokemon,
+    TResult? Function(AppPokemonDetail? detail, bool isApiKeySet)?
+    gotDetailPokemon,
     TResult? Function(String message)? errorGetDetail,
     TResult? Function(String message, List<ChatMessage> messages)?
     errorGetAnswer,
@@ -2437,7 +2483,8 @@ class _$GotMessageByHIstoryImpl implements _GotMessageByHIstory {
     TResult Function(List<ChatMessage> messages)? gotAnswered,
     TResult Function(List<ChatMessage> messages)? notAnswered,
     TResult Function(List<ChatMessage> messages)? answered,
-    TResult Function(AppPokemonDetail detail)? gotDetailPokemon,
+    TResult Function(AppPokemonDetail? detail, bool isApiKeySet)?
+    gotDetailPokemon,
     TResult Function(String message)? errorGetDetail,
     TResult Function(String message, List<ChatMessage> messages)?
     errorGetAnswer,
@@ -2618,7 +2665,8 @@ class _$ErrGetMessageByHistoryImpl implements _ErrGetMessageByHistory {
     required TResult Function(List<ChatMessage> messages) gotAnswered,
     required TResult Function(List<ChatMessage> messages) notAnswered,
     required TResult Function(List<ChatMessage> messages) answered,
-    required TResult Function(AppPokemonDetail detail) gotDetailPokemon,
+    required TResult Function(AppPokemonDetail? detail, bool isApiKeySet)
+    gotDetailPokemon,
     required TResult Function(String message) errorGetDetail,
     required TResult Function(String message, List<ChatMessage> messages)
     errorGetAnswer,
@@ -2640,7 +2688,8 @@ class _$ErrGetMessageByHistoryImpl implements _ErrGetMessageByHistory {
     TResult? Function(List<ChatMessage> messages)? gotAnswered,
     TResult? Function(List<ChatMessage> messages)? notAnswered,
     TResult? Function(List<ChatMessage> messages)? answered,
-    TResult? Function(AppPokemonDetail detail)? gotDetailPokemon,
+    TResult? Function(AppPokemonDetail? detail, bool isApiKeySet)?
+    gotDetailPokemon,
     TResult? Function(String message)? errorGetDetail,
     TResult? Function(String message, List<ChatMessage> messages)?
     errorGetAnswer,
@@ -2662,7 +2711,8 @@ class _$ErrGetMessageByHistoryImpl implements _ErrGetMessageByHistory {
     TResult Function(List<ChatMessage> messages)? gotAnswered,
     TResult Function(List<ChatMessage> messages)? notAnswered,
     TResult Function(List<ChatMessage> messages)? answered,
-    TResult Function(AppPokemonDetail detail)? gotDetailPokemon,
+    TResult Function(AppPokemonDetail? detail, bool isApiKeySet)?
+    gotDetailPokemon,
     TResult Function(String message)? errorGetDetail,
     TResult Function(String message, List<ChatMessage> messages)?
     errorGetAnswer,
@@ -2849,7 +2899,8 @@ class _$LoadingSaveHistoryImpl implements _LoadingSaveHistory {
     required TResult Function(List<ChatMessage> messages) gotAnswered,
     required TResult Function(List<ChatMessage> messages) notAnswered,
     required TResult Function(List<ChatMessage> messages) answered,
-    required TResult Function(AppPokemonDetail detail) gotDetailPokemon,
+    required TResult Function(AppPokemonDetail? detail, bool isApiKeySet)
+    gotDetailPokemon,
     required TResult Function(String message) errorGetDetail,
     required TResult Function(String message, List<ChatMessage> messages)
     errorGetAnswer,
@@ -2871,7 +2922,8 @@ class _$LoadingSaveHistoryImpl implements _LoadingSaveHistory {
     TResult? Function(List<ChatMessage> messages)? gotAnswered,
     TResult? Function(List<ChatMessage> messages)? notAnswered,
     TResult? Function(List<ChatMessage> messages)? answered,
-    TResult? Function(AppPokemonDetail detail)? gotDetailPokemon,
+    TResult? Function(AppPokemonDetail? detail, bool isApiKeySet)?
+    gotDetailPokemon,
     TResult? Function(String message)? errorGetDetail,
     TResult? Function(String message, List<ChatMessage> messages)?
     errorGetAnswer,
@@ -2893,7 +2945,8 @@ class _$LoadingSaveHistoryImpl implements _LoadingSaveHistory {
     TResult Function(List<ChatMessage> messages)? gotAnswered,
     TResult Function(List<ChatMessage> messages)? notAnswered,
     TResult Function(List<ChatMessage> messages)? answered,
-    TResult Function(AppPokemonDetail detail)? gotDetailPokemon,
+    TResult Function(AppPokemonDetail? detail, bool isApiKeySet)?
+    gotDetailPokemon,
     TResult Function(String message)? errorGetDetail,
     TResult Function(String message, List<ChatMessage> messages)?
     errorGetAnswer,
@@ -3070,7 +3123,8 @@ class _$HistorySavedImpl implements _HistorySaved {
     required TResult Function(List<ChatMessage> messages) gotAnswered,
     required TResult Function(List<ChatMessage> messages) notAnswered,
     required TResult Function(List<ChatMessage> messages) answered,
-    required TResult Function(AppPokemonDetail detail) gotDetailPokemon,
+    required TResult Function(AppPokemonDetail? detail, bool isApiKeySet)
+    gotDetailPokemon,
     required TResult Function(String message) errorGetDetail,
     required TResult Function(String message, List<ChatMessage> messages)
     errorGetAnswer,
@@ -3092,7 +3146,8 @@ class _$HistorySavedImpl implements _HistorySaved {
     TResult? Function(List<ChatMessage> messages)? gotAnswered,
     TResult? Function(List<ChatMessage> messages)? notAnswered,
     TResult? Function(List<ChatMessage> messages)? answered,
-    TResult? Function(AppPokemonDetail detail)? gotDetailPokemon,
+    TResult? Function(AppPokemonDetail? detail, bool isApiKeySet)?
+    gotDetailPokemon,
     TResult? Function(String message)? errorGetDetail,
     TResult? Function(String message, List<ChatMessage> messages)?
     errorGetAnswer,
@@ -3114,7 +3169,8 @@ class _$HistorySavedImpl implements _HistorySaved {
     TResult Function(List<ChatMessage> messages)? gotAnswered,
     TResult Function(List<ChatMessage> messages)? notAnswered,
     TResult Function(List<ChatMessage> messages)? answered,
-    TResult Function(AppPokemonDetail detail)? gotDetailPokemon,
+    TResult Function(AppPokemonDetail? detail, bool isApiKeySet)?
+    gotDetailPokemon,
     TResult Function(String message)? errorGetDetail,
     TResult Function(String message, List<ChatMessage> messages)?
     errorGetAnswer,

@@ -1,10 +1,10 @@
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
-import 'package:feature_chat/useCase/ask_question_event_use_case.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
+import '../useCase/ask_question_event_use_case.dart';
 import '../useCase/get_detail_event_use_case.dart';
 import '../useCase/load_history_event_use_case.dart';
 import '../useCase/save_history_even_use_case.dart';
@@ -63,9 +63,9 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
       event,
       onLoading: () => emit(ChatState.loadingGetDetailPokemon()),
       onError: (err) => emit(ChatState.errorGetDetail(err)),
-      onSuccess: (data) {
+      onSuccess: (data, s) {
         _appPokemonDetail = data;
-        emit(ChatState.gotDetailPokemon(data));
+        emit(ChatState.gotDetailPokemon(data, s));
       },
     );
 

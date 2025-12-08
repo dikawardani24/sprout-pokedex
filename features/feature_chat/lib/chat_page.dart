@@ -1,24 +1,28 @@
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
-import 'package:feature_chat/bloc/chat_bloc.dart';
-import 'package:feature_chat/bloc/chat_event.dart';
-import 'package:feature_chat/bloc/chat_state.dart';
-import 'package:feature_chat/widget/app_chat_input.dart';
-import 'package:feature_chat/widget/chat_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
+import 'bloc/chat_bloc.dart';
+import 'bloc/chat_event.dart';
+import 'bloc/chat_state.dart';
+import 'widget/app_chat_input.dart';
+import 'widget/chat_widget.dart';
+
 typedef OnStartChatHistory = Future<dynamic> Function(BuildContext context);
+typedef OnStartSetApiKey = Future<dynamic> Function(BuildContext context);
 
 class ChatPage extends StatefulWidget {
   final int? pokemonId;
   final OnStartChatHistory? onStartChatHistory;
+  final OnStartSetApiKey? onStartSetApiKey;
 
   const ChatPage({
     super.key,
     this.pokemonId,
-    this.onStartChatHistory
+    this.onStartChatHistory,
+    this.onStartSetApiKey
   });
 
   @override
@@ -87,11 +91,17 @@ class _ChatPageState extends State<ChatPage> {
     bool isLoadingAnswer = false,
     String? err,
     AppPokemonDetail? detail,
-    bool isLoadingHistory = false
+    bool isLoadingHistory = false,
+    bool isAiApiKeySet = true
   }) {
     return Stack(
       children: [
         if (isLoadingHistory) Loading(),
+        if (!isAiApiKeySet) AppErrorWidget(
+          message: StringErrRes.errNoAiApiKey,
+          titleBtn: StringRes.setGeminiApiKey,
+          onRetry: () => widget.onStartSetApiKey?.call(this.context),
+        ),
         Align(
           alignment: Alignment.center,
           child: Image.asset(
@@ -212,7 +222,7 @@ class _ChatPageState extends State<ChatPage> {
             errorGetAnswer: (err, messages) => _buildContent(context, list: messages, err: StringErrRes.errGetAnswerAi),
             notAnswered: (messages) => _buildContent(context, list: messages, err: StringErrRes.errGetAnswerAi),
             loadingGetDetailPokemon: () => _buildContent(context, isLoadingAnswer: true),
-            gotDetailPokemon: (data) => _buildContent(context, isLoadingAnswer: false, detail: data),
+            gotDetailPokemon: (data, isAiApiKeySet) => _buildContent(context, isLoadingAnswer: false, detail: data, isAiApiKeySet: isAiApiKeySet),
             gotMessageByHistory: (data) => _buildContent(context, list: data),
             loadingSaveHistory: (data) => _buildContent(context, list: data, isLoadingHistory: true),
             orElse: () => _buildContent(context),
