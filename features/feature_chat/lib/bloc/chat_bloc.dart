@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 import '../useCase/ask_question_event_use_case.dart';
-import '../useCase/get_detail_event_use_case.dart';
+import '../useCase/init_chat_event_use_case.dart';
 import '../useCase/load_history_event_use_case.dart';
 import '../useCase/save_history_even_use_case.dart';
 import 'chat_event.dart';
@@ -15,7 +15,7 @@ import 'chat_state.dart';
 class ChatBloc extends Bloc<ChatEvent, ChatState> {
   final List<ChatMessage> _messages= [];
 
-  final GetDetailEventUseCase _getDetailPokeUseCase;
+  final InitChatEventUseCase _getDetailPokeUseCase;
   final AskQuestionEventUseCase _askQuestionEventUseCase;
   final SaveHistoryEvenUseCase _saveHistoryUseCase;
   final LoadHistoryEventUseCase _getMessageByHistoryUseCase;
