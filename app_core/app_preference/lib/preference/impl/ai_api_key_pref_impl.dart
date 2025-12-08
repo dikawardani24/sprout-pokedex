@@ -12,13 +12,13 @@ class AiApiKeyPrefImpl implements AiApiKeyPref {
 
   @override
   Future<String> getApiKey() async =>
-      await _sharedPref.getStringOrDefault(_keyApiKey, "");
+      await _sharedPref.getStringOrDefault(_keyApiKey, "", isSecure: true);
 
   @override
   Future<bool> isApiKeySet() async => (await getApiKey()).isNotEmpty;
 
   @override
   Future<void> save(String apiKey) async =>
-      await _sharedPref.setString(_keyApiKey, apiKey);
+      await _sharedPref.setString(_keyApiKey, apiKey, isSecure: true);
 
 }
