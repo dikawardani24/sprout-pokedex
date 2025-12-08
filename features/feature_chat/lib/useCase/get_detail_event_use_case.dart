@@ -27,7 +27,7 @@ class GetDetailEventUseCaseImpl implements GetDetailEventUseCase {
     final id = event.id;
     if (id == null || id <= 0) return;
 
-    onLoading?.call();
+    onLoading.call();
     final result = await _getDetailPokeUseCase.execute(GetDetailReq(id: id));
     result.when(
         success: onSuccess,
