@@ -1,3 +1,5 @@
+import 'package:core/mapper/chat_message_mapper.dart';
+import 'package:database/database.dart';
 import 'package:equatable/equatable.dart';
 import '../util/uuid_ext.dart';
 
@@ -49,4 +51,11 @@ class ChatMessage extends Equatable {
 
   @override
   List<Object?> get props => [uuid, text, isUser, when];
+
+  ChatMessageEntity toEntity(int historyId) =>
+      ChatMessageMapper.toEntity(this, historyId);
+
+  static ChatMessage fromEntity(ChatMessageEntity entity) =>
+      ChatMessageMapper.fromEntity(entity);
+
 }

@@ -1,9 +1,6 @@
 import 'dart:async';
 
 import 'package:core/core.dart';
-import 'package:core/models/app_page.dart';
-import 'package:core/usecase/request/cache_img_req.dart';
-import 'package:core/usecase/request/get_pokemon_req.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:feature_home/bloc/home_event.dart';
 import 'package:feature_home/bloc/home_state.dart';
@@ -26,11 +23,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<GetPokemonsEvent>(
       _onGetPokemons,
       transformer: throttleDroppable(const Duration(milliseconds: 100)),
-    );
-
-    on<GetMorePokemonEvent>(
-      _onGetMorePokemon,
-      transformer: throttleDroppable(const Duration(milliseconds: 300)),
     );
   }
 
@@ -94,16 +86,11 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       GetPokemonsEvent event,
       Emitter<HomeState> emit,
   ) async {
-    _pokemons.clear();
-    _hasReachedMax = false;
-    await _loadPokemons(emit, false);
-  }
-
-  Future<void> _onGetMorePokemon(
-      GetMorePokemonEvent event,
-      Emitter<HomeState> emit,
-      ) async {
-    await _loadPokemons(emit, true);
+    if (!event.isLoadMore) {
+      _pokemons.clear();
+      _hasReachedMax = false;
+    }
+    await _loadPokemons(emit, event.isLoadMore);
   }
 
   void clearState() {

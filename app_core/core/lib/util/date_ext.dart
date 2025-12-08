@@ -1,7 +1,7 @@
 import 'package:intl/intl.dart';
 
-const timePattern = "Hms";
-const datePattern = 'EEEEE, dd MMMM yyyy $timePattern';
+const timePattern = "HH:mm:ss";
+const datePattern = 'EEEE, dd MMMM yyyy $timePattern';
 
 extension DateHelper on DateTime? {
 

@@ -39,8 +39,14 @@ class StringRes {
   static const chatHistory = "$appName Chat History";
   static const realTime = "Realtime";
   static const greetChat = "Hallo fellow Pokemon fans, what do you want to talk about today ?";
-  static String greetChatWithTopic(String topic) => "Hallo fellow Pokemon fans, what do you want to talk about $topic ?";
+  static const allChatHistoryLoaded = "All Chat History loaded!";
+  static const ok = "Okay";
+  static const cancel = "Cancel";
+  static const confirmation = "Confirmation";
+  static const questionDeleteChatHistory = "You are about to delete a chat history, are you sure ?";
+  static const historyDeletedSuccess = "Chat history delected successfully";
 
+  static String greetChatWithTopic(String topic) => "Hallo fellow Pokemon fans, what do you want to talk about $topic ?";
 }
 
 class StringErrRes {
@@ -49,4 +55,5 @@ class StringErrRes {
   static const errUnknown = 'An unexpected error occurred. Please try again.';
   static const errScreenTooSmall = "You need to change your window size to see the content";
   static const errGetAnswerAi = "Unable to answer your question, please try again later";
+  static const errNoChatHistory = "You have not start any conversation yet, start your chat now and your conversation history will be appeared in here";
 }

@@ -15,4 +15,9 @@ class ChatState with _$ChatState {
   const factory ChatState.gotDetailPokemon(AppPokemonDetail detail) = _GotDetailPokemon;
   const factory ChatState.errorGetDetail(String message) = _ErrorGetDetail;
   const factory ChatState.errorGetAnswer(String message, List<ChatMessage> messages) = _ErrorGetAnswered;
+  const factory ChatState.loadingMessageByHistory() = _LoadingMessageByHistory;
+  const factory ChatState.gotMessageByHistory(List<ChatMessage> messages) = _GotMessageByHIstory;
+  const factory ChatState.errGetMessageByHistory(String message) = _ErrGetMessageByHistory;
+  const factory ChatState.loadingSaveHistory(List<ChatMessage> messages) = _LoadingSaveHistory;
+  const factory ChatState.historySaved(DateTime reqDate) = _HistorySaved;
 }

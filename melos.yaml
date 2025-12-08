@@ -10,6 +10,7 @@ packages:
   - "./features/feature_home"
   - "./features/feature_detail"
   - "./features/feature_chat"
+  - "./features/feature_chat_history"
   - "."  # Main app
 
 commands:

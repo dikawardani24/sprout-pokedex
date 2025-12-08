@@ -77,4 +77,13 @@ abstract class BaseDatasource<E extends Entity, P> {
       return t.delete(tableName);
     }, exclusive: true);
   }
+
+  Future<void> deleteById(Object id) async{
+    final db = await this.db;
+    await db.delete(
+      tableName,
+      where: "$colId = ?",
+      whereArgs: [id]
+    );
+  }
 }

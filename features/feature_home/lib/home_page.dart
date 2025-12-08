@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
 
   void _initPokemon(BuildContext context) {
     if (_homeBloc.state.isLoading) return;
-    _homeBloc.add(GetPokemonsEvent());
+    _homeBloc.add(GetPokemonsEvent(isLoadMore: false));
   }
 
   Widget _buildPokemonList({
@@ -63,7 +63,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     _homeBloc = GetIt.I.get<HomeBloc>();
-    _homeBloc.add(GetPokemonsEvent());
+    _homeBloc.add(GetPokemonsEvent(isLoadMore: false));
 
     _controller.addListener(_onScroll);
   }
@@ -76,7 +76,7 @@ class _HomePageState extends State<HomePage> {
     final threshold = maxScroll * 0.9; // Load more at 90% scroll
     
     if (currentScroll >= threshold) {
-      _homeBloc.add(GetMorePokemonEvent());
+      _homeBloc.add(GetPokemonsEvent(isLoadMore: true));
     }
   }
 
