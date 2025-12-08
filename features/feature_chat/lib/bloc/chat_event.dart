@@ -14,10 +14,9 @@ class GetDetailAndGreetingEvent extends ChatEvent {
 
 class AskQuestionEvent extends ChatEvent {
   final String question;
-  final String? topic;
   final bool isStream;
 
-  AskQuestionEvent(this.question, {this.isStream = false, this.topic});
+  AskQuestionEvent(this.question, {this.isStream = false});
 
   @override
   List<Object?> get props => [question];
@@ -31,4 +30,13 @@ class LoadHistoryChatEvent extends ChatEvent {
 
   @override
   List<Object?> get props => [chatHistory];
+}
+
+class SaveChatEvent extends ChatEvent {
+  final DateTime reqWhen;
+
+  SaveChatEvent(this.reqWhen);
+
+  @override
+  List<Object?> get props => [reqWhen];
 }

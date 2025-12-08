@@ -1,17 +1,18 @@
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:core/core.dart';
-import 'package:core/usecase/request/save_history_req.dart';
 import 'package:core_ui/core_ui.dart';
-import 'package:feature_chat/bloc/chat_event.dart';
-import 'package:feature_chat/bloc/chat_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+
+import '../useCase/get_detail_event_use_case.dart';
+import 'chat_event.dart';
+import 'chat_state.dart';
 
 @injectable
 class ChatBloc extends Bloc<ChatEvent, ChatState> {
   final List<ChatMessage> _messages= [];
 
-  final GetDetailPokeUseCase _getDetailPokeUseCase;
+  final GetDetailEventUseCase _getDetailPokeUseCase;
   final AskAiUseCase _aiUseCase;
   final AiSteamAskUseCase _aiSteamAskUseCase;
   final SaveHistoryUseCase _saveHistoryUseCase;
@@ -21,7 +22,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
   ChatMessage? _currentAnswer;
   AppPokemonDetail? _appPokemonDetail;
 
-  ChatBloc(this._getDetailPokeUseCase, this._aiUseCase, this._aiSteamAskUseCase, this._saveHistoryUseCase, this._getMessageByHistoryUseCase): super(const ChatState.initial()) {
+  ChatBloc(this._getDetailPokeUseCase, this._saveHistoryUseCase, this._getMessageByHistoryUseCase, this._aiUseCase, this._aiSteamAskUseCase): super(const ChatState.initial()) {
     on<GetDetailAndGreetingEvent>(
       _getDetailPokemon,
       transformer: restartable(),
@@ -35,6 +36,10 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     on<LoadHistoryChatEvent>(
       _loadHistoryMessage,
       transformer: throttleDroppable(Duration(milliseconds: 100))
+    );
+
+    on<SaveChatEvent>(
+      _saveChatEvent
     );
   }
 
@@ -75,15 +80,15 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     final result = await _aiUseCase.execute(req);
 
     result.when(
-      success: (data) {
-        if (data == null) {
-          emit(ChatState.notAnswered(_messages));
-          return;
-        }
-        _messages.add(data);
-        emit(ChatState.answered(_messages));
-      },
-      error: (err) => emit(ChatState.errorGetAnswer(getErrorMessage(err), _messages))
+        success: (data) {
+          if (data == null) {
+            emit(ChatState.notAnswered(_messages));
+            return;
+          }
+          _messages.add(data);
+          emit(ChatState.answered(_messages));
+        },
+        error: (err) => emit(ChatState.errorGetAnswer(getErrorMessage(err), _messages))
     );
   }
 
@@ -109,22 +114,24 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     await _askQuestionWait(req, emit);
   }
 
-  Future<void> _getDetailPokemon(GetDetailAndGreetingEvent event, Emitter<ChatState> emit) async {
-    final id = event.id;
-    if (id == null || id <= 0) return;
+  Future<void> _getDetailPokemon(GetDetailAndGreetingEvent event, Emitter<ChatState> emit) async =>
+      await _getDetailPokeUseCase.execute(
+        event,
+        onLoading: () => emit(ChatState.loadingGetDetailPokemon()),
+        onError: (err) => emit(ChatState.errorGetDetail(err)),
+        onSuccess: (data) {
+          _appPokemonDetail = data;
+          emit(ChatState.gotDetailPokemon(data));
+        },
+      );
 
-    emit(ChatState.loadingGetDetailPokemon());
-    final result = await _getDetailPokeUseCase.execute(GetDetailReq(id: id));
-    result.when(
-      success: (data) {
-        _appPokemonDetail = data;
-        emit(ChatState.gotDetailPokemon(data));
-      },
-      error: (err) =>emit(ChatState.errorGetDetail(getErrorMessage(err)))
-    );
+  Future<void> _saveChatEvent(SaveChatEvent event, Emitter<ChatState> emit) async {
+    emit(ChatState.loadingSaveHistory(List.of(_messages)));
+    await _saveChatHistory();
+    emit(ChatState.historySaved(event.reqWhen));
   }
 
-  void _saveChatHistory() {
+  Future<void> _saveChatHistory() async {
     if (_messages.isEmpty) return;
     ChatHistory? current = _chatHistory;
 
@@ -134,12 +141,12 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
       when: lastUser.when
     );
 
-    _saveHistoryUseCase.execute(
+    await _saveHistoryUseCase.execute(
       SaveHistoryReq(
         chatHistory: current,
         chatMessages: _messages
       )
-    ).then((_) {});
+    );
   }
 
   Future<void> _loadHistoryMessage(LoadHistoryChatEvent event, Emitter<ChatState> emit) async {
@@ -158,7 +165,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
   
   @override
   Future<void> close()  {
-    _saveChatHistory();
+    _saveChatHistory().then((_) {});
     return super.close();
   }
 }

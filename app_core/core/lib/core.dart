@@ -24,6 +24,7 @@ export './usecase/request/ask_ai_req.dart';
 export './usecase/request/get_chat_histories_req.dart';
 export './usecase/request/delete_history_req.dart';
 export './usecase/request/get_message_by_history_req.dart';
+export './usecase/request/save_history_req.dart';
 
 export './usecase/cache_image_url_use_case.dart';
 export './usecase/get_detail_poke_use_case.dart';

@@ -66,7 +66,6 @@ class ChatHistoryPage extends StatelessWidget {
     bool isReachMax = false,
     String? err
   }) {
-    print(list);
     if (context.isSmallScreen())  return AppErrorScreenSize();
 
     return SafeArea(

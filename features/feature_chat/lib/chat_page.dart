@@ -77,7 +77,7 @@ class _ChatPageState extends State<ChatPage> {
       AppIconButton.noBackground(
         icon: IconRes.iconHistory,
         iconColor: context.iconThemColor,
-        onTap: () => _startHistoryPage(context),
+        onTap: () => _bloc.add(SaveChatEvent(DateTime.now())),
       )
     ],
   );
@@ -89,10 +89,9 @@ class _ChatPageState extends State<ChatPage> {
     AppPokemonDetail? detail,
     bool isLoadingHistory = false
   }) {
-    if (isLoadingHistory) return Loading();
-
     return Stack(
       children: [
+        if (isLoadingHistory) Loading(),
         Align(
           alignment: Alignment.center,
           child: Image.asset(
@@ -201,6 +200,7 @@ class _ChatPageState extends State<ChatPage> {
             questionAdded: (_) => _scrollToBottom(),
             answered: (_) => _scrollToBottom(),
             errGetMessageByHistory: (err) => context.showErrorSnackBar(err),
+            historySaved: (_) => _startHistoryPage(context),
             orElse: () {},
           );
         },
@@ -214,6 +214,7 @@ class _ChatPageState extends State<ChatPage> {
             loadingGetDetailPokemon: () => _buildContent(context, isLoadingAnswer: true),
             gotDetailPokemon: (data) => _buildContent(context, isLoadingAnswer: false, detail: data),
             gotMessageByHistory: (data) => _buildContent(context, list: data),
+            loadingSaveHistory: (data) => _buildContent(context, list: data, isLoadingHistory: true),
             orElse: () => _buildContent(context),
           );
         },
