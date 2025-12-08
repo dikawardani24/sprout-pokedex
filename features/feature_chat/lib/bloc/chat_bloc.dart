@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 import '../useCase/get_detail_event_use_case.dart';
+import '../useCase/save_history_even_use_case.dart';
 import 'chat_event.dart';
 import 'chat_state.dart';
 
@@ -15,7 +16,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
   final GetDetailEventUseCase _getDetailPokeUseCase;
   final AskAiUseCase _aiUseCase;
   final AiSteamAskUseCase _aiSteamAskUseCase;
-  final SaveHistoryUseCase _saveHistoryUseCase;
+  final SaveHistoryEvenUseCase _saveHistoryUseCase;
   final GetMessageByHistoryUseCase _getMessageByHistoryUseCase;
 
   ChatHistory? _chatHistory;
@@ -125,29 +126,13 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
         },
       );
 
-  Future<void> _saveChatEvent(SaveChatEvent event, Emitter<ChatState> emit) async {
-    emit(ChatState.loadingSaveHistory(List.of(_messages)));
-    await _saveChatHistory();
-    emit(ChatState.historySaved(event.reqWhen));
-  }
-
-  Future<void> _saveChatHistory() async {
-    if (_messages.isEmpty) return;
-    ChatHistory? current = _chatHistory;
-
-    final lastUser = _messages.lastWhere((e) => e.isUser);
-    current ??= ChatHistory(
-      title: lastUser.text,
-      when: lastUser.when
-    );
-
-    await _saveHistoryUseCase.execute(
-      SaveHistoryReq(
-        chatHistory: current,
-        chatMessages: _messages
-      )
-    );
-  }
+  Future<void> _saveChatEvent(SaveChatEvent event, Emitter<ChatState> emit) async =>
+      await _saveHistoryUseCase.execute(
+        messages: _messages,
+        current: _chatHistory,
+        onLoading: () => emit(ChatState.loadingSaveHistory(List.of(_messages))),
+        onSuccess: () => emit(ChatState.historySaved(event.reqWhen))
+      );
 
   Future<void> _loadHistoryMessage(LoadHistoryChatEvent event, Emitter<ChatState> emit) async {
     emit(ChatState.loadingMessageByHistory());
@@ -165,7 +150,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
   
   @override
   Future<void> close()  {
-    _saveChatHistory().then((_) {});
+    _saveHistoryUseCase.execute(messages: _messages, current: _chatHistory);
     return super.close();
   }
 }
