@@ -44,6 +44,7 @@ class StringRes {
   static const cancel = "Cancel";
   static const confirmation = "Confirmation";
   static const questionDeleteChatHistory = "You are about to delete a chat history, are you sure ?";
+  static const historyDeletedSuccess = "Chat history delected successfully";
 
   static String greetChatWithTopic(String topic) => "Hallo fellow Pokemon fans, what do you want to talk about $topic ?";
 }

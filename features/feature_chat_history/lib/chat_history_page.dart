@@ -12,6 +12,9 @@ class ChatHistoryPage extends StatelessWidget {
 
   const ChatHistoryPage({super.key});
 
+  void _showNotifHistoryDeleted(BuildContext context) =>
+      context.showSuccessSnackBar(StringRes.historyDeletedSuccess);
+
   void _showConfirmation(BuildContext context, ChatHistory history) =>
       context.showConfirmationDialog(
         message: StringRes.questionDeleteChatHistory,
@@ -63,7 +66,7 @@ class ChatHistoryPage extends StatelessWidget {
     bool isReachMax = false,
     String? err
   }) {
-
+    print(list);
     if (context.isSmallScreen())  return AppErrorScreenSize();
 
     return SafeArea(
@@ -100,11 +103,11 @@ class ChatHistoryPage extends StatelessWidget {
         child: BlocConsumer<ChatHistoryBloc, ChatHistoryState>(
           listener: (c, state) {
             state.whenOrNull(
-              errDeleteHistory: (err) => c.showErrorSnackBar(err)
+              errDeleteHistory: (err) => c.showErrorSnackBar(err),
+              historyDeleted: (_) => _showNotifHistoryDeleted(c)
             );
           },
-          builder: (c, state) {
-            return state.maybeWhen(
+          builder: (c, state) => state.maybeWhen(
               loading: () => Loading(),
               loadingMore: (data) => _buildContent(c, data, isLoadMore: true),
               loaded: (data, isReachMax) => _buildContent(c, data, isReachMax: isReachMax),
@@ -112,8 +115,7 @@ class ChatHistoryPage extends StatelessWidget {
               error: (err) => AppErrorWidget(message: err),
               historyDeleted: (data) => _buildContent(c, data),
               orElse: () => _buildContent(c, [])
-            );
-          },
+          ),
         ),
       ),
     );

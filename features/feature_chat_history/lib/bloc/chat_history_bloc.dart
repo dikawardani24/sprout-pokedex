@@ -1,3 +1,4 @@
+import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,7 +23,7 @@ class ChatHistoryBloc extends Bloc<ChatHistoryEvent, ChatHistoryState>{
 
     on<DeleteHistoryEvent>(
       _deleteHistory,
-      transformer: throttleDroppable(Duration(milliseconds: 100))
+      transformer: droppable()
     );
   }
 
@@ -93,7 +94,7 @@ class ChatHistoryBloc extends Bloc<ChatHistoryEvent, ChatHistoryState>{
       success: (_) {
         final index = _histories.indexOf(history);
         _histories.removeAt(index);
-        emit(ChatHistoryState.historyDeleted(_histories));
+        emit(ChatHistoryState.historyDeleted(List.of(_histories)));
       },
       error: (err) => emit(ChatHistoryState.errDeleteHistory(getErrorMessage(err)))
     );
