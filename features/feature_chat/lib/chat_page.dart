@@ -40,17 +40,11 @@ class _ChatPageState extends State<ChatPage> {
         _bloc.add(InitChatEvent(widget.pokemonId, DateTime.now()));
       }
     });
-  } 
-  
-  void _loadHistoryChat(ChatHistory c) {
-    _bloc.add(LoadHistoryChatEvent(c));
   }
 
   void _startHistoryPage(BuildContext context) {
     widget.onStartChatHistory?.call(context).then((result) {
-      if (result is ChatHistory) {
-        _loadHistoryChat(result);
-      }
+      _bloc.add(LoadHistoryChatEvent(result));
     });
   }
 
@@ -89,7 +83,7 @@ class _ChatPageState extends State<ChatPage> {
       AppIconButton.noBackground(
         icon: IconRes.iconHistory,
         iconColor: context.iconThemColor,
-        onTap: () => _bloc.add(SaveChatEvent(DateTime.now())),
+        onTap: () => _startHistoryPage(context),
       )
     ],
   );
@@ -102,9 +96,10 @@ class _ChatPageState extends State<ChatPage> {
     bool isLoadingHistory = false,
     bool isAiApiKeySet = true
   }) {
+    if (isLoadingHistory) return Loading();
+
     return Stack(
       children: [
-        if (isLoadingHistory) Loading(),
         Align(
           alignment: Alignment.center,
           child: Image.asset(
@@ -223,6 +218,7 @@ class _ChatPageState extends State<ChatPage> {
             answered: (_) => _scrollToBottom(),
             errGetMessageByHistory: (err) => context.showErrorSnackBar(err),
             historySaved: (_) => _startHistoryPage(context),
+            noHistoryToBeSave: (_) => _startHistoryPage(context),
             orElse: () {},
           );
         },

@@ -18,6 +18,4 @@ abstract class AiRepository {
   Future<bool> isAiApiKeySet();
   
   Future<void> saveAiApiKey(String apiKey);
-
-  Future<String> getApiKey();
 }

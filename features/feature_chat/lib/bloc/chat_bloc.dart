@@ -69,26 +69,37 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
       },
     );
 
-  Future<void> _saveChatEvent(SaveChatEvent event, Emitter<ChatState> emit) async =>
+  Future<void> _saveChatEvent(SaveChatEvent event, Emitter<ChatState> emit) async {
+    if (_messages.isEmpty) {
+      emit(ChatState.noHistoryToBeSave(event.reqWhen));
+      return;
+    }
     await _saveHistoryUseCase.execute(
         messages: _messages,
         current: _chatHistory,
         onLoading: () => emit(ChatState.loadingSaveHistory(List.of(_messages))),
         onSuccess: () => emit(ChatState.historySaved(event.reqWhen))
     );
+  }
 
-  Future<void> _loadHistoryMessage(LoadHistoryChatEvent event, Emitter<ChatState> emit) async =>
+  Future<void> _loadHistoryMessage(LoadHistoryChatEvent event, Emitter<ChatState> emit) async {
+    final history = event.chatHistory;
+    if (history == null) {
+      emit(ChatState.gotMessageByHistory(List.of(_messages)));
+      return;
+    }
     await _getMessageByHistoryUseCase.execute(
-      history: event.chatHistory,
-      onLoading: () =>  emit(ChatState.loadingMessageByHistory()),
-      onError: (err) => emit(ChatState.errGetMessageByHistory(err)),
-      onSuccess: (data) {
-        _messages.clear();
-        _messages.addAll(data);
-        _chatHistory = event.chatHistory;
-        emit(ChatState.gotMessageByHistory(data));
-      }
+        history: history,
+        onLoading: () =>  emit(ChatState.loadingMessageByHistory()),
+        onError: (err) => emit(ChatState.errGetMessageByHistory(err)),
+        onSuccess: (data) {
+          _messages.clear();
+          _messages.addAll(data);
+          _chatHistory = event.chatHistory;
+          emit(ChatState.gotMessageByHistory(List.of(_messages)));
+        }
     );
+  }
 
   @override
   Future<void> close()  {

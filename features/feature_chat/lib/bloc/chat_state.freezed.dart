@@ -35,6 +35,7 @@ mixin _$ChatState {
     required TResult Function(String message) errGetMessageByHistory,
     required TResult Function(List<ChatMessage> messages) loadingSaveHistory,
     required TResult Function(DateTime reqDate) historySaved,
+    required TResult Function(DateTime reqData) noHistoryToBeSave,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
@@ -54,6 +55,7 @@ mixin _$ChatState {
     TResult? Function(String message)? errGetMessageByHistory,
     TResult? Function(List<ChatMessage> messages)? loadingSaveHistory,
     TResult? Function(DateTime reqDate)? historySaved,
+    TResult? Function(DateTime reqData)? noHistoryToBeSave,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
@@ -73,6 +75,7 @@ mixin _$ChatState {
     TResult Function(String message)? errGetMessageByHistory,
     TResult Function(List<ChatMessage> messages)? loadingSaveHistory,
     TResult Function(DateTime reqDate)? historySaved,
+    TResult Function(DateTime reqData)? noHistoryToBeSave,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -94,6 +97,7 @@ mixin _$ChatState {
     errGetMessageByHistory,
     required TResult Function(_LoadingSaveHistory value) loadingSaveHistory,
     required TResult Function(_HistorySaved value) historySaved,
+    required TResult Function(_NoHistoryToBeSave value) noHistoryToBeSave,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
@@ -111,6 +115,7 @@ mixin _$ChatState {
     TResult? Function(_ErrGetMessageByHistory value)? errGetMessageByHistory,
     TResult? Function(_LoadingSaveHistory value)? loadingSaveHistory,
     TResult? Function(_HistorySaved value)? historySaved,
+    TResult? Function(_NoHistoryToBeSave value)? noHistoryToBeSave,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
@@ -128,6 +133,7 @@ mixin _$ChatState {
     TResult Function(_ErrGetMessageByHistory value)? errGetMessageByHistory,
     TResult Function(_LoadingSaveHistory value)? loadingSaveHistory,
     TResult Function(_HistorySaved value)? historySaved,
+    TResult Function(_NoHistoryToBeSave value)? noHistoryToBeSave,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
 }
@@ -211,6 +217,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function(String message) errGetMessageByHistory,
     required TResult Function(List<ChatMessage> messages) loadingSaveHistory,
     required TResult Function(DateTime reqDate) historySaved,
+    required TResult Function(DateTime reqData) noHistoryToBeSave,
   }) {
     return initial();
   }
@@ -234,6 +241,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function(String message)? errGetMessageByHistory,
     TResult? Function(List<ChatMessage> messages)? loadingSaveHistory,
     TResult? Function(DateTime reqDate)? historySaved,
+    TResult? Function(DateTime reqData)? noHistoryToBeSave,
   }) {
     return initial?.call();
   }
@@ -257,6 +265,7 @@ class _$InitialImpl implements _Initial {
     TResult Function(String message)? errGetMessageByHistory,
     TResult Function(List<ChatMessage> messages)? loadingSaveHistory,
     TResult Function(DateTime reqDate)? historySaved,
+    TResult Function(DateTime reqData)? noHistoryToBeSave,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -285,6 +294,7 @@ class _$InitialImpl implements _Initial {
     errGetMessageByHistory,
     required TResult Function(_LoadingSaveHistory value) loadingSaveHistory,
     required TResult Function(_HistorySaved value) historySaved,
+    required TResult Function(_NoHistoryToBeSave value) noHistoryToBeSave,
   }) {
     return initial(this);
   }
@@ -306,6 +316,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_ErrGetMessageByHistory value)? errGetMessageByHistory,
     TResult? Function(_LoadingSaveHistory value)? loadingSaveHistory,
     TResult? Function(_HistorySaved value)? historySaved,
+    TResult? Function(_NoHistoryToBeSave value)? noHistoryToBeSave,
   }) {
     return initial?.call(this);
   }
@@ -327,6 +338,7 @@ class _$InitialImpl implements _Initial {
     TResult Function(_ErrGetMessageByHistory value)? errGetMessageByHistory,
     TResult Function(_LoadingSaveHistory value)? loadingSaveHistory,
     TResult Function(_HistorySaved value)? historySaved,
+    TResult Function(_NoHistoryToBeSave value)? noHistoryToBeSave,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -400,6 +412,7 @@ class _$LoadingGetDetailPokemonImpl implements _LoadingGetDetailPokemon {
     required TResult Function(String message) errGetMessageByHistory,
     required TResult Function(List<ChatMessage> messages) loadingSaveHistory,
     required TResult Function(DateTime reqDate) historySaved,
+    required TResult Function(DateTime reqData) noHistoryToBeSave,
   }) {
     return loadingGetDetailPokemon();
   }
@@ -423,6 +436,7 @@ class _$LoadingGetDetailPokemonImpl implements _LoadingGetDetailPokemon {
     TResult? Function(String message)? errGetMessageByHistory,
     TResult? Function(List<ChatMessage> messages)? loadingSaveHistory,
     TResult? Function(DateTime reqDate)? historySaved,
+    TResult? Function(DateTime reqData)? noHistoryToBeSave,
   }) {
     return loadingGetDetailPokemon?.call();
   }
@@ -446,6 +460,7 @@ class _$LoadingGetDetailPokemonImpl implements _LoadingGetDetailPokemon {
     TResult Function(String message)? errGetMessageByHistory,
     TResult Function(List<ChatMessage> messages)? loadingSaveHistory,
     TResult Function(DateTime reqDate)? historySaved,
+    TResult Function(DateTime reqData)? noHistoryToBeSave,
     required TResult orElse(),
   }) {
     if (loadingGetDetailPokemon != null) {
@@ -474,6 +489,7 @@ class _$LoadingGetDetailPokemonImpl implements _LoadingGetDetailPokemon {
     errGetMessageByHistory,
     required TResult Function(_LoadingSaveHistory value) loadingSaveHistory,
     required TResult Function(_HistorySaved value) historySaved,
+    required TResult Function(_NoHistoryToBeSave value) noHistoryToBeSave,
   }) {
     return loadingGetDetailPokemon(this);
   }
@@ -495,6 +511,7 @@ class _$LoadingGetDetailPokemonImpl implements _LoadingGetDetailPokemon {
     TResult? Function(_ErrGetMessageByHistory value)? errGetMessageByHistory,
     TResult? Function(_LoadingSaveHistory value)? loadingSaveHistory,
     TResult? Function(_HistorySaved value)? historySaved,
+    TResult? Function(_NoHistoryToBeSave value)? noHistoryToBeSave,
   }) {
     return loadingGetDetailPokemon?.call(this);
   }
@@ -516,6 +533,7 @@ class _$LoadingGetDetailPokemonImpl implements _LoadingGetDetailPokemon {
     TResult Function(_ErrGetMessageByHistory value)? errGetMessageByHistory,
     TResult Function(_LoadingSaveHistory value)? loadingSaveHistory,
     TResult Function(_HistorySaved value)? historySaved,
+    TResult Function(_NoHistoryToBeSave value)? noHistoryToBeSave,
     required TResult orElse(),
   }) {
     if (loadingGetDetailPokemon != null) {
@@ -622,6 +640,7 @@ class _$QuestionAddedImpl implements _QuestionAdded {
     required TResult Function(String message) errGetMessageByHistory,
     required TResult Function(List<ChatMessage> messages) loadingSaveHistory,
     required TResult Function(DateTime reqDate) historySaved,
+    required TResult Function(DateTime reqData) noHistoryToBeSave,
   }) {
     return questionAdded(messages);
   }
@@ -645,6 +664,7 @@ class _$QuestionAddedImpl implements _QuestionAdded {
     TResult? Function(String message)? errGetMessageByHistory,
     TResult? Function(List<ChatMessage> messages)? loadingSaveHistory,
     TResult? Function(DateTime reqDate)? historySaved,
+    TResult? Function(DateTime reqData)? noHistoryToBeSave,
   }) {
     return questionAdded?.call(messages);
   }
@@ -668,6 +688,7 @@ class _$QuestionAddedImpl implements _QuestionAdded {
     TResult Function(String message)? errGetMessageByHistory,
     TResult Function(List<ChatMessage> messages)? loadingSaveHistory,
     TResult Function(DateTime reqDate)? historySaved,
+    TResult Function(DateTime reqData)? noHistoryToBeSave,
     required TResult orElse(),
   }) {
     if (questionAdded != null) {
@@ -696,6 +717,7 @@ class _$QuestionAddedImpl implements _QuestionAdded {
     errGetMessageByHistory,
     required TResult Function(_LoadingSaveHistory value) loadingSaveHistory,
     required TResult Function(_HistorySaved value) historySaved,
+    required TResult Function(_NoHistoryToBeSave value) noHistoryToBeSave,
   }) {
     return questionAdded(this);
   }
@@ -717,6 +739,7 @@ class _$QuestionAddedImpl implements _QuestionAdded {
     TResult? Function(_ErrGetMessageByHistory value)? errGetMessageByHistory,
     TResult? Function(_LoadingSaveHistory value)? loadingSaveHistory,
     TResult? Function(_HistorySaved value)? historySaved,
+    TResult? Function(_NoHistoryToBeSave value)? noHistoryToBeSave,
   }) {
     return questionAdded?.call(this);
   }
@@ -738,6 +761,7 @@ class _$QuestionAddedImpl implements _QuestionAdded {
     TResult Function(_ErrGetMessageByHistory value)? errGetMessageByHistory,
     TResult Function(_LoadingSaveHistory value)? loadingSaveHistory,
     TResult Function(_HistorySaved value)? historySaved,
+    TResult Function(_NoHistoryToBeSave value)? noHistoryToBeSave,
     required TResult orElse(),
   }) {
     if (questionAdded != null) {
@@ -853,6 +877,7 @@ class _$GotAnsweredImpl implements _GotAnswered {
     required TResult Function(String message) errGetMessageByHistory,
     required TResult Function(List<ChatMessage> messages) loadingSaveHistory,
     required TResult Function(DateTime reqDate) historySaved,
+    required TResult Function(DateTime reqData) noHistoryToBeSave,
   }) {
     return gotAnswered(messages);
   }
@@ -876,6 +901,7 @@ class _$GotAnsweredImpl implements _GotAnswered {
     TResult? Function(String message)? errGetMessageByHistory,
     TResult? Function(List<ChatMessage> messages)? loadingSaveHistory,
     TResult? Function(DateTime reqDate)? historySaved,
+    TResult? Function(DateTime reqData)? noHistoryToBeSave,
   }) {
     return gotAnswered?.call(messages);
   }
@@ -899,6 +925,7 @@ class _$GotAnsweredImpl implements _GotAnswered {
     TResult Function(String message)? errGetMessageByHistory,
     TResult Function(List<ChatMessage> messages)? loadingSaveHistory,
     TResult Function(DateTime reqDate)? historySaved,
+    TResult Function(DateTime reqData)? noHistoryToBeSave,
     required TResult orElse(),
   }) {
     if (gotAnswered != null) {
@@ -927,6 +954,7 @@ class _$GotAnsweredImpl implements _GotAnswered {
     errGetMessageByHistory,
     required TResult Function(_LoadingSaveHistory value) loadingSaveHistory,
     required TResult Function(_HistorySaved value) historySaved,
+    required TResult Function(_NoHistoryToBeSave value) noHistoryToBeSave,
   }) {
     return gotAnswered(this);
   }
@@ -948,6 +976,7 @@ class _$GotAnsweredImpl implements _GotAnswered {
     TResult? Function(_ErrGetMessageByHistory value)? errGetMessageByHistory,
     TResult? Function(_LoadingSaveHistory value)? loadingSaveHistory,
     TResult? Function(_HistorySaved value)? historySaved,
+    TResult? Function(_NoHistoryToBeSave value)? noHistoryToBeSave,
   }) {
     return gotAnswered?.call(this);
   }
@@ -969,6 +998,7 @@ class _$GotAnsweredImpl implements _GotAnswered {
     TResult Function(_ErrGetMessageByHistory value)? errGetMessageByHistory,
     TResult Function(_LoadingSaveHistory value)? loadingSaveHistory,
     TResult Function(_HistorySaved value)? historySaved,
+    TResult Function(_NoHistoryToBeSave value)? noHistoryToBeSave,
     required TResult orElse(),
   }) {
     if (gotAnswered != null) {
@@ -1084,6 +1114,7 @@ class _$NotAnsweredImpl implements _NotAnswered {
     required TResult Function(String message) errGetMessageByHistory,
     required TResult Function(List<ChatMessage> messages) loadingSaveHistory,
     required TResult Function(DateTime reqDate) historySaved,
+    required TResult Function(DateTime reqData) noHistoryToBeSave,
   }) {
     return notAnswered(messages);
   }
@@ -1107,6 +1138,7 @@ class _$NotAnsweredImpl implements _NotAnswered {
     TResult? Function(String message)? errGetMessageByHistory,
     TResult? Function(List<ChatMessage> messages)? loadingSaveHistory,
     TResult? Function(DateTime reqDate)? historySaved,
+    TResult? Function(DateTime reqData)? noHistoryToBeSave,
   }) {
     return notAnswered?.call(messages);
   }
@@ -1130,6 +1162,7 @@ class _$NotAnsweredImpl implements _NotAnswered {
     TResult Function(String message)? errGetMessageByHistory,
     TResult Function(List<ChatMessage> messages)? loadingSaveHistory,
     TResult Function(DateTime reqDate)? historySaved,
+    TResult Function(DateTime reqData)? noHistoryToBeSave,
     required TResult orElse(),
   }) {
     if (notAnswered != null) {
@@ -1158,6 +1191,7 @@ class _$NotAnsweredImpl implements _NotAnswered {
     errGetMessageByHistory,
     required TResult Function(_LoadingSaveHistory value) loadingSaveHistory,
     required TResult Function(_HistorySaved value) historySaved,
+    required TResult Function(_NoHistoryToBeSave value) noHistoryToBeSave,
   }) {
     return notAnswered(this);
   }
@@ -1179,6 +1213,7 @@ class _$NotAnsweredImpl implements _NotAnswered {
     TResult? Function(_ErrGetMessageByHistory value)? errGetMessageByHistory,
     TResult? Function(_LoadingSaveHistory value)? loadingSaveHistory,
     TResult? Function(_HistorySaved value)? historySaved,
+    TResult? Function(_NoHistoryToBeSave value)? noHistoryToBeSave,
   }) {
     return notAnswered?.call(this);
   }
@@ -1200,6 +1235,7 @@ class _$NotAnsweredImpl implements _NotAnswered {
     TResult Function(_ErrGetMessageByHistory value)? errGetMessageByHistory,
     TResult Function(_LoadingSaveHistory value)? loadingSaveHistory,
     TResult Function(_HistorySaved value)? historySaved,
+    TResult Function(_NoHistoryToBeSave value)? noHistoryToBeSave,
     required TResult orElse(),
   }) {
     if (notAnswered != null) {
@@ -1314,6 +1350,7 @@ class _$AnsweredImpl implements _Answered {
     required TResult Function(String message) errGetMessageByHistory,
     required TResult Function(List<ChatMessage> messages) loadingSaveHistory,
     required TResult Function(DateTime reqDate) historySaved,
+    required TResult Function(DateTime reqData) noHistoryToBeSave,
   }) {
     return answered(messages);
   }
@@ -1337,6 +1374,7 @@ class _$AnsweredImpl implements _Answered {
     TResult? Function(String message)? errGetMessageByHistory,
     TResult? Function(List<ChatMessage> messages)? loadingSaveHistory,
     TResult? Function(DateTime reqDate)? historySaved,
+    TResult? Function(DateTime reqData)? noHistoryToBeSave,
   }) {
     return answered?.call(messages);
   }
@@ -1360,6 +1398,7 @@ class _$AnsweredImpl implements _Answered {
     TResult Function(String message)? errGetMessageByHistory,
     TResult Function(List<ChatMessage> messages)? loadingSaveHistory,
     TResult Function(DateTime reqDate)? historySaved,
+    TResult Function(DateTime reqData)? noHistoryToBeSave,
     required TResult orElse(),
   }) {
     if (answered != null) {
@@ -1388,6 +1427,7 @@ class _$AnsweredImpl implements _Answered {
     errGetMessageByHistory,
     required TResult Function(_LoadingSaveHistory value) loadingSaveHistory,
     required TResult Function(_HistorySaved value) historySaved,
+    required TResult Function(_NoHistoryToBeSave value) noHistoryToBeSave,
   }) {
     return answered(this);
   }
@@ -1409,6 +1449,7 @@ class _$AnsweredImpl implements _Answered {
     TResult? Function(_ErrGetMessageByHistory value)? errGetMessageByHistory,
     TResult? Function(_LoadingSaveHistory value)? loadingSaveHistory,
     TResult? Function(_HistorySaved value)? historySaved,
+    TResult? Function(_NoHistoryToBeSave value)? noHistoryToBeSave,
   }) {
     return answered?.call(this);
   }
@@ -1430,6 +1471,7 @@ class _$AnsweredImpl implements _Answered {
     TResult Function(_ErrGetMessageByHistory value)? errGetMessageByHistory,
     TResult Function(_LoadingSaveHistory value)? loadingSaveHistory,
     TResult Function(_HistorySaved value)? historySaved,
+    TResult Function(_NoHistoryToBeSave value)? noHistoryToBeSave,
     required TResult orElse(),
   }) {
     if (answered != null) {
@@ -1548,6 +1590,7 @@ class _$GotDetailPokemonImpl implements _GotDetailPokemon {
     required TResult Function(String message) errGetMessageByHistory,
     required TResult Function(List<ChatMessage> messages) loadingSaveHistory,
     required TResult Function(DateTime reqDate) historySaved,
+    required TResult Function(DateTime reqData) noHistoryToBeSave,
   }) {
     return gotDetailPokemon(detail, isApiKeySet);
   }
@@ -1571,6 +1614,7 @@ class _$GotDetailPokemonImpl implements _GotDetailPokemon {
     TResult? Function(String message)? errGetMessageByHistory,
     TResult? Function(List<ChatMessage> messages)? loadingSaveHistory,
     TResult? Function(DateTime reqDate)? historySaved,
+    TResult? Function(DateTime reqData)? noHistoryToBeSave,
   }) {
     return gotDetailPokemon?.call(detail, isApiKeySet);
   }
@@ -1594,6 +1638,7 @@ class _$GotDetailPokemonImpl implements _GotDetailPokemon {
     TResult Function(String message)? errGetMessageByHistory,
     TResult Function(List<ChatMessage> messages)? loadingSaveHistory,
     TResult Function(DateTime reqDate)? historySaved,
+    TResult Function(DateTime reqData)? noHistoryToBeSave,
     required TResult orElse(),
   }) {
     if (gotDetailPokemon != null) {
@@ -1622,6 +1667,7 @@ class _$GotDetailPokemonImpl implements _GotDetailPokemon {
     errGetMessageByHistory,
     required TResult Function(_LoadingSaveHistory value) loadingSaveHistory,
     required TResult Function(_HistorySaved value) historySaved,
+    required TResult Function(_NoHistoryToBeSave value) noHistoryToBeSave,
   }) {
     return gotDetailPokemon(this);
   }
@@ -1643,6 +1689,7 @@ class _$GotDetailPokemonImpl implements _GotDetailPokemon {
     TResult? Function(_ErrGetMessageByHistory value)? errGetMessageByHistory,
     TResult? Function(_LoadingSaveHistory value)? loadingSaveHistory,
     TResult? Function(_HistorySaved value)? historySaved,
+    TResult? Function(_NoHistoryToBeSave value)? noHistoryToBeSave,
   }) {
     return gotDetailPokemon?.call(this);
   }
@@ -1664,6 +1711,7 @@ class _$GotDetailPokemonImpl implements _GotDetailPokemon {
     TResult Function(_ErrGetMessageByHistory value)? errGetMessageByHistory,
     TResult Function(_LoadingSaveHistory value)? loadingSaveHistory,
     TResult Function(_HistorySaved value)? historySaved,
+    TResult Function(_NoHistoryToBeSave value)? noHistoryToBeSave,
     required TResult orElse(),
   }) {
     if (gotDetailPokemon != null) {
@@ -1778,6 +1826,7 @@ class _$ErrorGetDetailImpl implements _ErrorGetDetail {
     required TResult Function(String message) errGetMessageByHistory,
     required TResult Function(List<ChatMessage> messages) loadingSaveHistory,
     required TResult Function(DateTime reqDate) historySaved,
+    required TResult Function(DateTime reqData) noHistoryToBeSave,
   }) {
     return errorGetDetail(message);
   }
@@ -1801,6 +1850,7 @@ class _$ErrorGetDetailImpl implements _ErrorGetDetail {
     TResult? Function(String message)? errGetMessageByHistory,
     TResult? Function(List<ChatMessage> messages)? loadingSaveHistory,
     TResult? Function(DateTime reqDate)? historySaved,
+    TResult? Function(DateTime reqData)? noHistoryToBeSave,
   }) {
     return errorGetDetail?.call(message);
   }
@@ -1824,6 +1874,7 @@ class _$ErrorGetDetailImpl implements _ErrorGetDetail {
     TResult Function(String message)? errGetMessageByHistory,
     TResult Function(List<ChatMessage> messages)? loadingSaveHistory,
     TResult Function(DateTime reqDate)? historySaved,
+    TResult Function(DateTime reqData)? noHistoryToBeSave,
     required TResult orElse(),
   }) {
     if (errorGetDetail != null) {
@@ -1852,6 +1903,7 @@ class _$ErrorGetDetailImpl implements _ErrorGetDetail {
     errGetMessageByHistory,
     required TResult Function(_LoadingSaveHistory value) loadingSaveHistory,
     required TResult Function(_HistorySaved value) historySaved,
+    required TResult Function(_NoHistoryToBeSave value) noHistoryToBeSave,
   }) {
     return errorGetDetail(this);
   }
@@ -1873,6 +1925,7 @@ class _$ErrorGetDetailImpl implements _ErrorGetDetail {
     TResult? Function(_ErrGetMessageByHistory value)? errGetMessageByHistory,
     TResult? Function(_LoadingSaveHistory value)? loadingSaveHistory,
     TResult? Function(_HistorySaved value)? historySaved,
+    TResult? Function(_NoHistoryToBeSave value)? noHistoryToBeSave,
   }) {
     return errorGetDetail?.call(this);
   }
@@ -1894,6 +1947,7 @@ class _$ErrorGetDetailImpl implements _ErrorGetDetail {
     TResult Function(_ErrGetMessageByHistory value)? errGetMessageByHistory,
     TResult Function(_LoadingSaveHistory value)? loadingSaveHistory,
     TResult Function(_HistorySaved value)? historySaved,
+    TResult Function(_NoHistoryToBeSave value)? noHistoryToBeSave,
     required TResult orElse(),
   }) {
     if (errorGetDetail != null) {
@@ -2021,6 +2075,7 @@ class _$ErrorGetAnsweredImpl implements _ErrorGetAnswered {
     required TResult Function(String message) errGetMessageByHistory,
     required TResult Function(List<ChatMessage> messages) loadingSaveHistory,
     required TResult Function(DateTime reqDate) historySaved,
+    required TResult Function(DateTime reqData) noHistoryToBeSave,
   }) {
     return errorGetAnswer(message, messages);
   }
@@ -2044,6 +2099,7 @@ class _$ErrorGetAnsweredImpl implements _ErrorGetAnswered {
     TResult? Function(String message)? errGetMessageByHistory,
     TResult? Function(List<ChatMessage> messages)? loadingSaveHistory,
     TResult? Function(DateTime reqDate)? historySaved,
+    TResult? Function(DateTime reqData)? noHistoryToBeSave,
   }) {
     return errorGetAnswer?.call(message, messages);
   }
@@ -2067,6 +2123,7 @@ class _$ErrorGetAnsweredImpl implements _ErrorGetAnswered {
     TResult Function(String message)? errGetMessageByHistory,
     TResult Function(List<ChatMessage> messages)? loadingSaveHistory,
     TResult Function(DateTime reqDate)? historySaved,
+    TResult Function(DateTime reqData)? noHistoryToBeSave,
     required TResult orElse(),
   }) {
     if (errorGetAnswer != null) {
@@ -2095,6 +2152,7 @@ class _$ErrorGetAnsweredImpl implements _ErrorGetAnswered {
     errGetMessageByHistory,
     required TResult Function(_LoadingSaveHistory value) loadingSaveHistory,
     required TResult Function(_HistorySaved value) historySaved,
+    required TResult Function(_NoHistoryToBeSave value) noHistoryToBeSave,
   }) {
     return errorGetAnswer(this);
   }
@@ -2116,6 +2174,7 @@ class _$ErrorGetAnsweredImpl implements _ErrorGetAnswered {
     TResult? Function(_ErrGetMessageByHistory value)? errGetMessageByHistory,
     TResult? Function(_LoadingSaveHistory value)? loadingSaveHistory,
     TResult? Function(_HistorySaved value)? historySaved,
+    TResult? Function(_NoHistoryToBeSave value)? noHistoryToBeSave,
   }) {
     return errorGetAnswer?.call(this);
   }
@@ -2137,6 +2196,7 @@ class _$ErrorGetAnsweredImpl implements _ErrorGetAnswered {
     TResult Function(_ErrGetMessageByHistory value)? errGetMessageByHistory,
     TResult Function(_LoadingSaveHistory value)? loadingSaveHistory,
     TResult Function(_HistorySaved value)? historySaved,
+    TResult Function(_NoHistoryToBeSave value)? noHistoryToBeSave,
     required TResult orElse(),
   }) {
     if (errorGetAnswer != null) {
@@ -2222,6 +2282,7 @@ class _$LoadingMessageByHistoryImpl implements _LoadingMessageByHistory {
     required TResult Function(String message) errGetMessageByHistory,
     required TResult Function(List<ChatMessage> messages) loadingSaveHistory,
     required TResult Function(DateTime reqDate) historySaved,
+    required TResult Function(DateTime reqData) noHistoryToBeSave,
   }) {
     return loadingMessageByHistory();
   }
@@ -2245,6 +2306,7 @@ class _$LoadingMessageByHistoryImpl implements _LoadingMessageByHistory {
     TResult? Function(String message)? errGetMessageByHistory,
     TResult? Function(List<ChatMessage> messages)? loadingSaveHistory,
     TResult? Function(DateTime reqDate)? historySaved,
+    TResult? Function(DateTime reqData)? noHistoryToBeSave,
   }) {
     return loadingMessageByHistory?.call();
   }
@@ -2268,6 +2330,7 @@ class _$LoadingMessageByHistoryImpl implements _LoadingMessageByHistory {
     TResult Function(String message)? errGetMessageByHistory,
     TResult Function(List<ChatMessage> messages)? loadingSaveHistory,
     TResult Function(DateTime reqDate)? historySaved,
+    TResult Function(DateTime reqData)? noHistoryToBeSave,
     required TResult orElse(),
   }) {
     if (loadingMessageByHistory != null) {
@@ -2296,6 +2359,7 @@ class _$LoadingMessageByHistoryImpl implements _LoadingMessageByHistory {
     errGetMessageByHistory,
     required TResult Function(_LoadingSaveHistory value) loadingSaveHistory,
     required TResult Function(_HistorySaved value) historySaved,
+    required TResult Function(_NoHistoryToBeSave value) noHistoryToBeSave,
   }) {
     return loadingMessageByHistory(this);
   }
@@ -2317,6 +2381,7 @@ class _$LoadingMessageByHistoryImpl implements _LoadingMessageByHistory {
     TResult? Function(_ErrGetMessageByHistory value)? errGetMessageByHistory,
     TResult? Function(_LoadingSaveHistory value)? loadingSaveHistory,
     TResult? Function(_HistorySaved value)? historySaved,
+    TResult? Function(_NoHistoryToBeSave value)? noHistoryToBeSave,
   }) {
     return loadingMessageByHistory?.call(this);
   }
@@ -2338,6 +2403,7 @@ class _$LoadingMessageByHistoryImpl implements _LoadingMessageByHistory {
     TResult Function(_ErrGetMessageByHistory value)? errGetMessageByHistory,
     TResult Function(_LoadingSaveHistory value)? loadingSaveHistory,
     TResult Function(_HistorySaved value)? historySaved,
+    TResult Function(_NoHistoryToBeSave value)? noHistoryToBeSave,
     required TResult orElse(),
   }) {
     if (loadingMessageByHistory != null) {
@@ -2447,6 +2513,7 @@ class _$GotMessageByHIstoryImpl implements _GotMessageByHIstory {
     required TResult Function(String message) errGetMessageByHistory,
     required TResult Function(List<ChatMessage> messages) loadingSaveHistory,
     required TResult Function(DateTime reqDate) historySaved,
+    required TResult Function(DateTime reqData) noHistoryToBeSave,
   }) {
     return gotMessageByHistory(messages);
   }
@@ -2470,6 +2537,7 @@ class _$GotMessageByHIstoryImpl implements _GotMessageByHIstory {
     TResult? Function(String message)? errGetMessageByHistory,
     TResult? Function(List<ChatMessage> messages)? loadingSaveHistory,
     TResult? Function(DateTime reqDate)? historySaved,
+    TResult? Function(DateTime reqData)? noHistoryToBeSave,
   }) {
     return gotMessageByHistory?.call(messages);
   }
@@ -2493,6 +2561,7 @@ class _$GotMessageByHIstoryImpl implements _GotMessageByHIstory {
     TResult Function(String message)? errGetMessageByHistory,
     TResult Function(List<ChatMessage> messages)? loadingSaveHistory,
     TResult Function(DateTime reqDate)? historySaved,
+    TResult Function(DateTime reqData)? noHistoryToBeSave,
     required TResult orElse(),
   }) {
     if (gotMessageByHistory != null) {
@@ -2521,6 +2590,7 @@ class _$GotMessageByHIstoryImpl implements _GotMessageByHIstory {
     errGetMessageByHistory,
     required TResult Function(_LoadingSaveHistory value) loadingSaveHistory,
     required TResult Function(_HistorySaved value) historySaved,
+    required TResult Function(_NoHistoryToBeSave value) noHistoryToBeSave,
   }) {
     return gotMessageByHistory(this);
   }
@@ -2542,6 +2612,7 @@ class _$GotMessageByHIstoryImpl implements _GotMessageByHIstory {
     TResult? Function(_ErrGetMessageByHistory value)? errGetMessageByHistory,
     TResult? Function(_LoadingSaveHistory value)? loadingSaveHistory,
     TResult? Function(_HistorySaved value)? historySaved,
+    TResult? Function(_NoHistoryToBeSave value)? noHistoryToBeSave,
   }) {
     return gotMessageByHistory?.call(this);
   }
@@ -2563,6 +2634,7 @@ class _$GotMessageByHIstoryImpl implements _GotMessageByHIstory {
     TResult Function(_ErrGetMessageByHistory value)? errGetMessageByHistory,
     TResult Function(_LoadingSaveHistory value)? loadingSaveHistory,
     TResult Function(_HistorySaved value)? historySaved,
+    TResult Function(_NoHistoryToBeSave value)? noHistoryToBeSave,
     required TResult orElse(),
   }) {
     if (gotMessageByHistory != null) {
@@ -2675,6 +2747,7 @@ class _$ErrGetMessageByHistoryImpl implements _ErrGetMessageByHistory {
     required TResult Function(String message) errGetMessageByHistory,
     required TResult Function(List<ChatMessage> messages) loadingSaveHistory,
     required TResult Function(DateTime reqDate) historySaved,
+    required TResult Function(DateTime reqData) noHistoryToBeSave,
   }) {
     return errGetMessageByHistory(message);
   }
@@ -2698,6 +2771,7 @@ class _$ErrGetMessageByHistoryImpl implements _ErrGetMessageByHistory {
     TResult? Function(String message)? errGetMessageByHistory,
     TResult? Function(List<ChatMessage> messages)? loadingSaveHistory,
     TResult? Function(DateTime reqDate)? historySaved,
+    TResult? Function(DateTime reqData)? noHistoryToBeSave,
   }) {
     return errGetMessageByHistory?.call(message);
   }
@@ -2721,6 +2795,7 @@ class _$ErrGetMessageByHistoryImpl implements _ErrGetMessageByHistory {
     TResult Function(String message)? errGetMessageByHistory,
     TResult Function(List<ChatMessage> messages)? loadingSaveHistory,
     TResult Function(DateTime reqDate)? historySaved,
+    TResult Function(DateTime reqData)? noHistoryToBeSave,
     required TResult orElse(),
   }) {
     if (errGetMessageByHistory != null) {
@@ -2749,6 +2824,7 @@ class _$ErrGetMessageByHistoryImpl implements _ErrGetMessageByHistory {
     errGetMessageByHistory,
     required TResult Function(_LoadingSaveHistory value) loadingSaveHistory,
     required TResult Function(_HistorySaved value) historySaved,
+    required TResult Function(_NoHistoryToBeSave value) noHistoryToBeSave,
   }) {
     return errGetMessageByHistory(this);
   }
@@ -2770,6 +2846,7 @@ class _$ErrGetMessageByHistoryImpl implements _ErrGetMessageByHistory {
     TResult? Function(_ErrGetMessageByHistory value)? errGetMessageByHistory,
     TResult? Function(_LoadingSaveHistory value)? loadingSaveHistory,
     TResult? Function(_HistorySaved value)? historySaved,
+    TResult? Function(_NoHistoryToBeSave value)? noHistoryToBeSave,
   }) {
     return errGetMessageByHistory?.call(this);
   }
@@ -2791,6 +2868,7 @@ class _$ErrGetMessageByHistoryImpl implements _ErrGetMessageByHistory {
     TResult Function(_ErrGetMessageByHistory value)? errGetMessageByHistory,
     TResult Function(_LoadingSaveHistory value)? loadingSaveHistory,
     TResult Function(_HistorySaved value)? historySaved,
+    TResult Function(_NoHistoryToBeSave value)? noHistoryToBeSave,
     required TResult orElse(),
   }) {
     if (errGetMessageByHistory != null) {
@@ -2909,6 +2987,7 @@ class _$LoadingSaveHistoryImpl implements _LoadingSaveHistory {
     required TResult Function(String message) errGetMessageByHistory,
     required TResult Function(List<ChatMessage> messages) loadingSaveHistory,
     required TResult Function(DateTime reqDate) historySaved,
+    required TResult Function(DateTime reqData) noHistoryToBeSave,
   }) {
     return loadingSaveHistory(messages);
   }
@@ -2932,6 +3011,7 @@ class _$LoadingSaveHistoryImpl implements _LoadingSaveHistory {
     TResult? Function(String message)? errGetMessageByHistory,
     TResult? Function(List<ChatMessage> messages)? loadingSaveHistory,
     TResult? Function(DateTime reqDate)? historySaved,
+    TResult? Function(DateTime reqData)? noHistoryToBeSave,
   }) {
     return loadingSaveHistory?.call(messages);
   }
@@ -2955,6 +3035,7 @@ class _$LoadingSaveHistoryImpl implements _LoadingSaveHistory {
     TResult Function(String message)? errGetMessageByHistory,
     TResult Function(List<ChatMessage> messages)? loadingSaveHistory,
     TResult Function(DateTime reqDate)? historySaved,
+    TResult Function(DateTime reqData)? noHistoryToBeSave,
     required TResult orElse(),
   }) {
     if (loadingSaveHistory != null) {
@@ -2983,6 +3064,7 @@ class _$LoadingSaveHistoryImpl implements _LoadingSaveHistory {
     errGetMessageByHistory,
     required TResult Function(_LoadingSaveHistory value) loadingSaveHistory,
     required TResult Function(_HistorySaved value) historySaved,
+    required TResult Function(_NoHistoryToBeSave value) noHistoryToBeSave,
   }) {
     return loadingSaveHistory(this);
   }
@@ -3004,6 +3086,7 @@ class _$LoadingSaveHistoryImpl implements _LoadingSaveHistory {
     TResult? Function(_ErrGetMessageByHistory value)? errGetMessageByHistory,
     TResult? Function(_LoadingSaveHistory value)? loadingSaveHistory,
     TResult? Function(_HistorySaved value)? historySaved,
+    TResult? Function(_NoHistoryToBeSave value)? noHistoryToBeSave,
   }) {
     return loadingSaveHistory?.call(this);
   }
@@ -3025,6 +3108,7 @@ class _$LoadingSaveHistoryImpl implements _LoadingSaveHistory {
     TResult Function(_ErrGetMessageByHistory value)? errGetMessageByHistory,
     TResult Function(_LoadingSaveHistory value)? loadingSaveHistory,
     TResult Function(_HistorySaved value)? historySaved,
+    TResult Function(_NoHistoryToBeSave value)? noHistoryToBeSave,
     required TResult orElse(),
   }) {
     if (loadingSaveHistory != null) {
@@ -3133,6 +3217,7 @@ class _$HistorySavedImpl implements _HistorySaved {
     required TResult Function(String message) errGetMessageByHistory,
     required TResult Function(List<ChatMessage> messages) loadingSaveHistory,
     required TResult Function(DateTime reqDate) historySaved,
+    required TResult Function(DateTime reqData) noHistoryToBeSave,
   }) {
     return historySaved(reqDate);
   }
@@ -3156,6 +3241,7 @@ class _$HistorySavedImpl implements _HistorySaved {
     TResult? Function(String message)? errGetMessageByHistory,
     TResult? Function(List<ChatMessage> messages)? loadingSaveHistory,
     TResult? Function(DateTime reqDate)? historySaved,
+    TResult? Function(DateTime reqData)? noHistoryToBeSave,
   }) {
     return historySaved?.call(reqDate);
   }
@@ -3179,6 +3265,7 @@ class _$HistorySavedImpl implements _HistorySaved {
     TResult Function(String message)? errGetMessageByHistory,
     TResult Function(List<ChatMessage> messages)? loadingSaveHistory,
     TResult Function(DateTime reqDate)? historySaved,
+    TResult Function(DateTime reqData)? noHistoryToBeSave,
     required TResult orElse(),
   }) {
     if (historySaved != null) {
@@ -3207,6 +3294,7 @@ class _$HistorySavedImpl implements _HistorySaved {
     errGetMessageByHistory,
     required TResult Function(_LoadingSaveHistory value) loadingSaveHistory,
     required TResult Function(_HistorySaved value) historySaved,
+    required TResult Function(_NoHistoryToBeSave value) noHistoryToBeSave,
   }) {
     return historySaved(this);
   }
@@ -3228,6 +3316,7 @@ class _$HistorySavedImpl implements _HistorySaved {
     TResult? Function(_ErrGetMessageByHistory value)? errGetMessageByHistory,
     TResult? Function(_LoadingSaveHistory value)? loadingSaveHistory,
     TResult? Function(_HistorySaved value)? historySaved,
+    TResult? Function(_NoHistoryToBeSave value)? noHistoryToBeSave,
   }) {
     return historySaved?.call(this);
   }
@@ -3249,6 +3338,7 @@ class _$HistorySavedImpl implements _HistorySaved {
     TResult Function(_ErrGetMessageByHistory value)? errGetMessageByHistory,
     TResult Function(_LoadingSaveHistory value)? loadingSaveHistory,
     TResult Function(_HistorySaved value)? historySaved,
+    TResult Function(_NoHistoryToBeSave value)? noHistoryToBeSave,
     required TResult orElse(),
   }) {
     if (historySaved != null) {
@@ -3267,5 +3357,238 @@ abstract class _HistorySaved implements ChatState {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$HistorySavedImplCopyWith<_$HistorySavedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$NoHistoryToBeSaveImplCopyWith<$Res> {
+  factory _$$NoHistoryToBeSaveImplCopyWith(
+    _$NoHistoryToBeSaveImpl value,
+    $Res Function(_$NoHistoryToBeSaveImpl) then,
+  ) = __$$NoHistoryToBeSaveImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({DateTime reqData});
+}
+
+/// @nodoc
+class __$$NoHistoryToBeSaveImplCopyWithImpl<$Res>
+    extends _$ChatStateCopyWithImpl<$Res, _$NoHistoryToBeSaveImpl>
+    implements _$$NoHistoryToBeSaveImplCopyWith<$Res> {
+  __$$NoHistoryToBeSaveImplCopyWithImpl(
+    _$NoHistoryToBeSaveImpl _value,
+    $Res Function(_$NoHistoryToBeSaveImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of ChatState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? reqData = null}) {
+    return _then(
+      _$NoHistoryToBeSaveImpl(
+        null == reqData
+            ? _value.reqData
+            : reqData // ignore: cast_nullable_to_non_nullable
+                  as DateTime,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+
+class _$NoHistoryToBeSaveImpl implements _NoHistoryToBeSave {
+  const _$NoHistoryToBeSaveImpl(this.reqData);
+
+  @override
+  final DateTime reqData;
+
+  @override
+  String toString() {
+    return 'ChatState.noHistoryToBeSave(reqData: $reqData)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$NoHistoryToBeSaveImpl &&
+            (identical(other.reqData, reqData) || other.reqData == reqData));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, reqData);
+
+  /// Create a copy of ChatState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$NoHistoryToBeSaveImplCopyWith<_$NoHistoryToBeSaveImpl> get copyWith =>
+      __$$NoHistoryToBeSaveImplCopyWithImpl<_$NoHistoryToBeSaveImpl>(
+        this,
+        _$identity,
+      );
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loadingGetDetailPokemon,
+    required TResult Function(List<ChatMessage> messages) questionAdded,
+    required TResult Function(List<ChatMessage> messages) gotAnswered,
+    required TResult Function(List<ChatMessage> messages) notAnswered,
+    required TResult Function(List<ChatMessage> messages) answered,
+    required TResult Function(AppPokemonDetail? detail, bool isApiKeySet)
+    gotDetailPokemon,
+    required TResult Function(String message) errorGetDetail,
+    required TResult Function(String message, List<ChatMessage> messages)
+    errorGetAnswer,
+    required TResult Function() loadingMessageByHistory,
+    required TResult Function(List<ChatMessage> messages) gotMessageByHistory,
+    required TResult Function(String message) errGetMessageByHistory,
+    required TResult Function(List<ChatMessage> messages) loadingSaveHistory,
+    required TResult Function(DateTime reqDate) historySaved,
+    required TResult Function(DateTime reqData) noHistoryToBeSave,
+  }) {
+    return noHistoryToBeSave(reqData);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loadingGetDetailPokemon,
+    TResult? Function(List<ChatMessage> messages)? questionAdded,
+    TResult? Function(List<ChatMessage> messages)? gotAnswered,
+    TResult? Function(List<ChatMessage> messages)? notAnswered,
+    TResult? Function(List<ChatMessage> messages)? answered,
+    TResult? Function(AppPokemonDetail? detail, bool isApiKeySet)?
+    gotDetailPokemon,
+    TResult? Function(String message)? errorGetDetail,
+    TResult? Function(String message, List<ChatMessage> messages)?
+    errorGetAnswer,
+    TResult? Function()? loadingMessageByHistory,
+    TResult? Function(List<ChatMessage> messages)? gotMessageByHistory,
+    TResult? Function(String message)? errGetMessageByHistory,
+    TResult? Function(List<ChatMessage> messages)? loadingSaveHistory,
+    TResult? Function(DateTime reqDate)? historySaved,
+    TResult? Function(DateTime reqData)? noHistoryToBeSave,
+  }) {
+    return noHistoryToBeSave?.call(reqData);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loadingGetDetailPokemon,
+    TResult Function(List<ChatMessage> messages)? questionAdded,
+    TResult Function(List<ChatMessage> messages)? gotAnswered,
+    TResult Function(List<ChatMessage> messages)? notAnswered,
+    TResult Function(List<ChatMessage> messages)? answered,
+    TResult Function(AppPokemonDetail? detail, bool isApiKeySet)?
+    gotDetailPokemon,
+    TResult Function(String message)? errorGetDetail,
+    TResult Function(String message, List<ChatMessage> messages)?
+    errorGetAnswer,
+    TResult Function()? loadingMessageByHistory,
+    TResult Function(List<ChatMessage> messages)? gotMessageByHistory,
+    TResult Function(String message)? errGetMessageByHistory,
+    TResult Function(List<ChatMessage> messages)? loadingSaveHistory,
+    TResult Function(DateTime reqDate)? historySaved,
+    TResult Function(DateTime reqData)? noHistoryToBeSave,
+    required TResult orElse(),
+  }) {
+    if (noHistoryToBeSave != null) {
+      return noHistoryToBeSave(reqData);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_LoadingGetDetailPokemon value)
+    loadingGetDetailPokemon,
+    required TResult Function(_QuestionAdded value) questionAdded,
+    required TResult Function(_GotAnswered value) gotAnswered,
+    required TResult Function(_NotAnswered value) notAnswered,
+    required TResult Function(_Answered value) answered,
+    required TResult Function(_GotDetailPokemon value) gotDetailPokemon,
+    required TResult Function(_ErrorGetDetail value) errorGetDetail,
+    required TResult Function(_ErrorGetAnswered value) errorGetAnswer,
+    required TResult Function(_LoadingMessageByHistory value)
+    loadingMessageByHistory,
+    required TResult Function(_GotMessageByHIstory value) gotMessageByHistory,
+    required TResult Function(_ErrGetMessageByHistory value)
+    errGetMessageByHistory,
+    required TResult Function(_LoadingSaveHistory value) loadingSaveHistory,
+    required TResult Function(_HistorySaved value) historySaved,
+    required TResult Function(_NoHistoryToBeSave value) noHistoryToBeSave,
+  }) {
+    return noHistoryToBeSave(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_LoadingGetDetailPokemon value)? loadingGetDetailPokemon,
+    TResult? Function(_QuestionAdded value)? questionAdded,
+    TResult? Function(_GotAnswered value)? gotAnswered,
+    TResult? Function(_NotAnswered value)? notAnswered,
+    TResult? Function(_Answered value)? answered,
+    TResult? Function(_GotDetailPokemon value)? gotDetailPokemon,
+    TResult? Function(_ErrorGetDetail value)? errorGetDetail,
+    TResult? Function(_ErrorGetAnswered value)? errorGetAnswer,
+    TResult? Function(_LoadingMessageByHistory value)? loadingMessageByHistory,
+    TResult? Function(_GotMessageByHIstory value)? gotMessageByHistory,
+    TResult? Function(_ErrGetMessageByHistory value)? errGetMessageByHistory,
+    TResult? Function(_LoadingSaveHistory value)? loadingSaveHistory,
+    TResult? Function(_HistorySaved value)? historySaved,
+    TResult? Function(_NoHistoryToBeSave value)? noHistoryToBeSave,
+  }) {
+    return noHistoryToBeSave?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_LoadingGetDetailPokemon value)? loadingGetDetailPokemon,
+    TResult Function(_QuestionAdded value)? questionAdded,
+    TResult Function(_GotAnswered value)? gotAnswered,
+    TResult Function(_NotAnswered value)? notAnswered,
+    TResult Function(_Answered value)? answered,
+    TResult Function(_GotDetailPokemon value)? gotDetailPokemon,
+    TResult Function(_ErrorGetDetail value)? errorGetDetail,
+    TResult Function(_ErrorGetAnswered value)? errorGetAnswer,
+    TResult Function(_LoadingMessageByHistory value)? loadingMessageByHistory,
+    TResult Function(_GotMessageByHIstory value)? gotMessageByHistory,
+    TResult Function(_ErrGetMessageByHistory value)? errGetMessageByHistory,
+    TResult Function(_LoadingSaveHistory value)? loadingSaveHistory,
+    TResult Function(_HistorySaved value)? historySaved,
+    TResult Function(_NoHistoryToBeSave value)? noHistoryToBeSave,
+    required TResult orElse(),
+  }) {
+    if (noHistoryToBeSave != null) {
+      return noHistoryToBeSave(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _NoHistoryToBeSave implements ChatState {
+  const factory _NoHistoryToBeSave(final DateTime reqData) =
+      _$NoHistoryToBeSaveImpl;
+
+  DateTime get reqData;
+
+  /// Create a copy of ChatState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$NoHistoryToBeSaveImplCopyWith<_$NoHistoryToBeSaveImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

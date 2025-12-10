@@ -20,4 +20,5 @@ class ChatState with _$ChatState {
   const factory ChatState.errGetMessageByHistory(String message) = _ErrGetMessageByHistory;
   const factory ChatState.loadingSaveHistory(List<ChatMessage> messages) = _LoadingSaveHistory;
   const factory ChatState.historySaved(DateTime reqDate) = _HistorySaved;
+  const factory ChatState.noHistoryToBeSave(DateTime reqData) = _NoHistoryToBeSave;
 }

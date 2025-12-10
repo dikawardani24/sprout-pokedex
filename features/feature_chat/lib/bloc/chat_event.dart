@@ -25,7 +25,7 @@ class AskQuestionEvent extends ChatEvent {
 }
 
 class LoadHistoryChatEvent extends ChatEvent {
-  final ChatHistory chatHistory;
+  final ChatHistory? chatHistory;
 
   LoadHistoryChatEvent(this.chatHistory);
 

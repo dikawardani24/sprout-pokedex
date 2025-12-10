@@ -15,10 +15,17 @@ class AiRepositoryImpl implements AiRepository {
   AiRepositoryImpl(this._geminiDatasource, this._aiStreamDatasource, this._aiApiKeyPref);
 
   Future<ChatMessage?> _execute(Future<String?> service) async {
-
+    await _configureApiKey();
     final answer = await service;
     if (answer == null || answer.isEmpty) return null;
     return ChatMessage.answer(text: answer, when: DateTime.now());
+  }
+
+  Future<void> _configureApiKey() async {
+    final apiKey = await _aiApiKeyPref.getApiKey();
+    final config = AiConfig(apiKey: apiKey, isDebug: kDebugMode);
+    _geminiDatasource.setConfig(config);
+    _aiStreamDatasource.setConfig(config);
   }
 
   @override
@@ -33,33 +40,31 @@ class AiRepositoryImpl implements AiRepository {
   Future<Stream<String?>> askStreamWithText({
     required String text,
     List<ChatMessage> history = const [],
-  }) async => await _aiStreamDatasource.promptText(
-      prompt: text,
-      history: history.map((e) => e.text).toList()
-  );
+  }) async {
+    await _configureApiKey();
+    return await _aiStreamDatasource.promptText(
+        prompt: text,
+        history: history.map((e) => e.text).toList()
+    );
+  }
 
   @override
   Future<Stream<String?>> askStreamWithTextAndTopic({
     required String text,
     List<ChatMessage> history = const [],
     required String topic
-  }) async => await _aiStreamDatasource.promptTextWithTopic(
-    prompt: text,
-    history: history.map((e) => e.text).toList(),
-    topic: topic
-  );
+  }) async {
+    await _configureApiKey();
+    return await _aiStreamDatasource.promptTextWithTopic(
+        prompt: text,
+        history: history.map((e) => e.text).toList(),
+        topic: topic
+    );
+  }
 
   @override
   Future<bool> isAiApiKeySet() async => await _aiApiKeyPref.isApiKeySet();
 
   @override
-  Future<void> saveAiApiKey(String apiKey) async {
-    await _aiApiKeyPref.save(apiKey);
-    final config = AiConfig(apiKey: apiKey, isDebug: kDebugMode);
-    _geminiDatasource.setConfig(config);
-    _aiStreamDatasource.setConfig(config);
-  }
-
-  @override
-  Future<String> getApiKey() async => await _aiApiKeyPref.getApiKey();
+  Future<void> saveAiApiKey(String apiKey) async => await _aiApiKeyPref.save(apiKey);
 }
