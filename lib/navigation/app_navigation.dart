@@ -1,4 +1,3 @@
-
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:sprout_pokedex/navigation/pages.dart';
@@ -15,6 +14,7 @@ extension AppNavigation on BuildContext {
   Future<dynamic> startChatPage() => _goToPage(Routes.chat);
   Future<dynamic> startChatPageWithPokemon(int id) => _goToPage(Routes.chatPokemon, data: id);
   Future<dynamic> startChatHistoryPage() => _goToPage(Routes.chatHistory);
+  Future<dynamic> startChatSetApiKey() => _goToPage(Routes.chetSetApiKey);
 
   Widget? _getPage(String? routeName, Object? args) {
     switch(routeName) {
@@ -30,16 +30,19 @@ extension AppNavigation on BuildContext {
           );
         }
       case Routes.chat: return Pages.chatPage(
-        onStartChatHistory: (c) => c.startChatHistoryPage()
+        onStartChatHistory: (c) => c.startChatHistoryPage(),
+        onStartSetApiKey: (c) async => c.startChatSetApiKey()
       );
       case Routes.chatPokemon:
         if (args is int) {
           return Pages.chatPage(
-              id: args,
-              onStartChatHistory: (c) => c.startChatHistoryPage()
+            id: args,
+            onStartChatHistory: (c) => c.startChatHistoryPage(),
+            onStartSetApiKey: (c) async => c.startChatSetApiKey()
           );
         }
       case Routes.chatHistory: return Pages.chatHistoryPage();
+      case Routes.chetSetApiKey: return Pages.setApiKeyPage();
       default: return null;
     }
     return null;

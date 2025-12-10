@@ -11,6 +11,7 @@ packages:
   - "./features/feature_detail"
   - "./features/feature_chat"
   - "./features/feature_chat_history"
+  - "./features/feature_set_ai_api_key"
   - "."  # Main app
 
 commands:

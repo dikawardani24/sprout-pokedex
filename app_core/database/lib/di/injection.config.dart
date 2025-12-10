@@ -32,17 +32,17 @@ _i174.GetIt $initDatabase(
   final gh = _i526.GetItHelper(getIt, environment, environmentFilter);
   gh.factory<_i170.DbInit>(() => _i170.DbInit());
   gh.factory<_i826.DbOpenHelper>(() => _i826.DbOpenHelper(gh<_i170.DbInit>()));
-  gh.factory<_i348.ChatMessageDatasource>(
+  gh.lazySingleton<_i348.ChatMessageDatasource>(
     () => _i698.ChatMessageDatasourceImpl(gh<_i826.DbOpenHelper>()),
   );
-  gh.factory<_i551.PokemonDetailDatasource>(
+  gh.lazySingleton<_i551.PokemonDetailDatasource>(
     () => _i668.PokemonDetailDatasourceImpl(gh<_i826.DbOpenHelper>()),
   );
-  gh.factory<_i45.ChatHistoryDatasource>(
-    () => _i410.ChatHistoryDatasourceImpl(gh<_i826.DbOpenHelper>()),
-  );
-  gh.factory<_i176.PokemonDatasource>(
+  gh.lazySingleton<_i176.PokemonDatasource>(
     () => _i352.PokemonLocalDatasourceImpl(gh<_i826.DbOpenHelper>()),
+  );
+  gh.lazySingleton<_i45.ChatHistoryDatasource>(
+    () => _i410.ChatHistoryDatasourceImpl(gh<_i826.DbOpenHelper>()),
   );
   return getIt;
 }

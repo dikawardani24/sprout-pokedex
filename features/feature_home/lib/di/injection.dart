@@ -4,11 +4,9 @@ import 'package:injectable/injectable.dart';
 
 import 'injection.config.dart';
 
-GetIt getIt = GetIt.instance;
-
 @InjectableInit(
   initializerName: r'$initFeatureHome',
   preferRelativeImports: true,
   asExtension: false,
 )
-void configureFeatHomeDependencies() => $initFeatureHome(getIt);
+void configureFeatHomeDependencies(GetIt getIt) => $initFeatureHome(getIt);

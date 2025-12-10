@@ -1,0 +1,38 @@
+name: feature_set_ai_api_key
+description: "A new Flutter module project."
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.10.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons:
+  core:
+    path: ../../app_core/core
+  core_ui:
+    path: ../../app_core/core_ui
+  flutter_bloc:
+  get_it:
+  injectable:
+  equatable:
+  freezed_annotation:
+  bloc_concurrency:
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints:
+  injectable_generator:
+  build_runner:
+  freezed:
+
+flutter:
+  uses-material-design: true
+
+  module:
+    androidX: true
+    androidPackage: com.example.feature_set_ai_api_key
+    iosBundleIdentifier: com.example.featureSetAiApiKey

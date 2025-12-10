@@ -12,7 +12,7 @@ class ChatState with _$ChatState {
   const factory ChatState.gotAnswered(List<ChatMessage> messages) = _GotAnswered;
   const factory ChatState.notAnswered(List<ChatMessage> messages) = _NotAnswered;
   const factory ChatState.answered(List<ChatMessage> messages) = _Answered;
-  const factory ChatState.gotDetailPokemon(AppPokemonDetail detail) = _GotDetailPokemon;
+  const factory ChatState.gotDetailPokemon(AppPokemonDetail? detail, bool isApiKeySet) = _GotDetailPokemon;
   const factory ChatState.errorGetDetail(String message) = _ErrorGetDetail;
   const factory ChatState.errorGetAnswer(String message, List<ChatMessage> messages) = _ErrorGetAnswered;
   const factory ChatState.loadingMessageByHistory() = _LoadingMessageByHistory;
@@ -20,4 +20,5 @@ class ChatState with _$ChatState {
   const factory ChatState.errGetMessageByHistory(String message) = _ErrGetMessageByHistory;
   const factory ChatState.loadingSaveHistory(List<ChatMessage> messages) = _LoadingSaveHistory;
   const factory ChatState.historySaved(DateTime reqDate) = _HistorySaved;
+  const factory ChatState.noHistoryToBeSave(DateTime reqData) = _NoHistoryToBeSave;
 }

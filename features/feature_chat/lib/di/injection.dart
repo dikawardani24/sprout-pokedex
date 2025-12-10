@@ -4,11 +4,9 @@ import 'package:injectable/injectable.dart';
 
 import 'injection.config.dart';
 
-GetIt getIt = GetIt.instance;
-
 @InjectableInit(
   initializerName: r'$initFeatureChat',
   preferRelativeImports: true,
   asExtension: false,
 )
-void configureFeatChatDependencies() => $initFeatureChat(getIt);
+void configureFeatChatDependencies(GetIt getIt) => $initFeatureChat(getIt);

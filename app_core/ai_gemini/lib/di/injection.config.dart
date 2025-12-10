@@ -30,10 +30,10 @@ _i174.GetIt $initAiGemini(
   final aiGeminiModule = _$AiGeminiModule();
   gh.singleton<_i75.AiPrompts>(() => aiGeminiModule.prompts);
   gh.singleton<_i839.AiEngine>(() => aiGeminiModule.gemini);
-  gh.factory<_i997.AiGeminiDatasource>(
+  gh.lazySingleton<_i997.AiGeminiDatasource>(
     () => _i897.AiGeminiDatasourceImpl(gh<_i839.AiEngine>()),
   );
-  gh.factory<_i929.AiStreamDatasource>(
+  gh.lazySingleton<_i929.AiStreamDatasource>(
     () => _i354.AiStreamDatasourceImpl(gh<_i839.AiEngine>()),
   );
   return getIt;

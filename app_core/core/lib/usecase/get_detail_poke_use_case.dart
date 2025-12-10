@@ -10,7 +10,8 @@ import '../repository/pokemon_remote_repository.dart';
 import 'request/get_detail_req.dart';
 import 'use_case.dart';
 
-abstract class GetDetailPokeUseCase extends UseCase<GetDetailReq, AppPokemonDetail> {
+abstract class GetDetailPokeUseCase extends UseCase<GetDetailReq, AppPokemonDetail?> {
+  Future<AppPokemonDetail?> executePlain(GetDetailReq req);
 }
 
 @Injectable(as: GetDetailPokeUseCase)
@@ -36,18 +37,26 @@ class GetDetailPokeUseCaseImpl implements GetDetailPokeUseCase {
   }
 
   @override
+  Future<AppPokemonDetail?> executePlain(GetDetailReq req) async {
+    if (req.id < 0) return null;
+    DbInit.dbPlatform = AppConfig.dbPlatform;
+    final shouldDeleteLocal = await _dataValidityPref.isDataOlderThanOneDay();
+    if (shouldDeleteLocal) await _localRepository.deletePokemonDetails();
+    Future<AppPokemonDetail> service = _fetchLocal(req.id);
+    if (req.forceFromRemote) {
+      service = _fetchRemote(req.id);
+    }
+
+    return await service;
+  }
+
+  @override
   Future<Result<AppPokemonDetail>> execute(GetDetailReq req) async {
     DbInit.dbPlatform = AppConfig.dbPlatform;
 
     try {
-      final shouldDeleteLocal = await _dataValidityPref.isDataOlderThanOneDay();
-      if (shouldDeleteLocal) await _localRepository.deletePokemonDetails();
-      Future<AppPokemonDetail> service = _fetchLocal(req.id);
-      if (req.forceFromRemote) {
-        service = _fetchRemote(req.id);
-      }
-
-      final detail = await service;
+      final detail = await executePlain(req);
+      if (detail == null) throw Exception("Not found");
       return Result.success(detail);
     } on Exception catch(err) {
       return Result.error(err);

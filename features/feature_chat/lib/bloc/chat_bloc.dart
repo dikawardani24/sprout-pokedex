@@ -1,11 +1,11 @@
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
-import 'package:feature_chat/useCase/ask_question_event_use_case.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-import '../useCase/get_detail_event_use_case.dart';
+import '../useCase/ask_question_event_use_case.dart';
+import '../useCase/init_chat_event_use_case.dart';
 import '../useCase/load_history_event_use_case.dart';
 import '../useCase/save_history_even_use_case.dart';
 import 'chat_event.dart';
@@ -15,7 +15,7 @@ import 'chat_state.dart';
 class ChatBloc extends Bloc<ChatEvent, ChatState> {
   final List<ChatMessage> _messages= [];
 
-  final GetDetailEventUseCase _getDetailPokeUseCase;
+  final InitChatEventUseCase _initChatEventUseCase;
   final AskQuestionEventUseCase _askQuestionEventUseCase;
   final SaveHistoryEvenUseCase _saveHistoryUseCase;
   final LoadHistoryEventUseCase _getMessageByHistoryUseCase;
@@ -24,9 +24,9 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
   ChatMessage? _currentAnswer;
   AppPokemonDetail? _appPokemonDetail;
 
-  ChatBloc(this._getDetailPokeUseCase, this._saveHistoryUseCase, this._getMessageByHistoryUseCase, this._askQuestionEventUseCase): super(const ChatState.initial()) {
-    on<GetDetailAndGreetingEvent>(
-      _getDetailPokemon,
+  ChatBloc(this._initChatEventUseCase, this._saveHistoryUseCase, this._getMessageByHistoryUseCase, this._askQuestionEventUseCase): super(const ChatState.initial()) {
+    on<InitChatEvent>(
+      _initChatEvent,
       transformer: restartable(),
     );
 
@@ -58,37 +58,48 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
       },
     );
 
-  Future<void> _getDetailPokemon(GetDetailAndGreetingEvent event, Emitter<ChatState> emit) async =>
-    await _getDetailPokeUseCase.execute(
+  Future<void> _initChatEvent(InitChatEvent event, Emitter<ChatState> emit) async =>
+    await _initChatEventUseCase.execute(
       event,
       onLoading: () => emit(ChatState.loadingGetDetailPokemon()),
       onError: (err) => emit(ChatState.errorGetDetail(err)),
-      onSuccess: (data) {
+      onSuccess: (data, s) {
         _appPokemonDetail = data;
-        emit(ChatState.gotDetailPokemon(data));
+        emit(ChatState.gotDetailPokemon(data, s));
       },
     );
 
-  Future<void> _saveChatEvent(SaveChatEvent event, Emitter<ChatState> emit) async =>
+  Future<void> _saveChatEvent(SaveChatEvent event, Emitter<ChatState> emit) async {
+    if (_messages.isEmpty) {
+      emit(ChatState.noHistoryToBeSave(event.reqWhen));
+      return;
+    }
     await _saveHistoryUseCase.execute(
         messages: _messages,
         current: _chatHistory,
         onLoading: () => emit(ChatState.loadingSaveHistory(List.of(_messages))),
         onSuccess: () => emit(ChatState.historySaved(event.reqWhen))
     );
+  }
 
-  Future<void> _loadHistoryMessage(LoadHistoryChatEvent event, Emitter<ChatState> emit) async =>
+  Future<void> _loadHistoryMessage(LoadHistoryChatEvent event, Emitter<ChatState> emit) async {
+    final history = event.chatHistory;
+    if (history == null) {
+      emit(ChatState.gotMessageByHistory(List.of(_messages)));
+      return;
+    }
     await _getMessageByHistoryUseCase.execute(
-      history: event.chatHistory,
-      onLoading: () =>  emit(ChatState.loadingMessageByHistory()),
-      onError: (err) => emit(ChatState.errGetMessageByHistory(err)),
-      onSuccess: (data) {
-        _messages.clear();
-        _messages.addAll(data);
-        _chatHistory = event.chatHistory;
-        emit(ChatState.gotMessageByHistory(data));
-      }
+        history: history,
+        onLoading: () =>  emit(ChatState.loadingMessageByHistory()),
+        onError: (err) => emit(ChatState.errGetMessageByHistory(err)),
+        onSuccess: (data) {
+          _messages.clear();
+          _messages.addAll(data);
+          _chatHistory = event.chatHistory;
+          emit(ChatState.gotMessageByHistory(List.of(_messages)));
+        }
     );
+  }
 
   @override
   Future<void> close()  {

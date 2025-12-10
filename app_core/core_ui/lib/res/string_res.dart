@@ -45,6 +45,12 @@ class StringRes {
   static const confirmation = "Confirmation";
   static const questionDeleteChatHistory = "You are about to delete a chat history, are you sure ?";
   static const historyDeletedSuccess = "Chat history delected successfully";
+  static const setGeminiApiKey = "Set API Key now";
+  static const titleSetApiKey = "Set Api Key";
+  static const descSetApiKey = "Please input your existing API Key in order to start chat with our enhanced Pokemon AI ";
+  static const save = "Save";
+  static const apiKeySaved = "Your API Key saved successfully";
+  static const changeApiKey = "Edit API Key";
 
   static String greetChatWithTopic(String topic) => "Hallo fellow Pokemon fans, what do you want to talk about $topic ?";
 }
@@ -56,4 +62,5 @@ class StringErrRes {
   static const errScreenTooSmall = "You need to change your window size to see the content";
   static const errGetAnswerAi = "Unable to answer your question, please try again later";
   static const errNoChatHistory = "You have not start any conversation yet, start your chat now and your conversation history will be appeared in here";
+  static const errNoAiApiKey = "No Gemini API Key has been set, please set the API Key first before continue chat with me";
 }

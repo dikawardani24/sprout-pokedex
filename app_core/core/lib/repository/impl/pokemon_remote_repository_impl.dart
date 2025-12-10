@@ -10,7 +10,7 @@ import '../../models/weakness.dart';
 import '../../util/poke_ext.dart';
 import '../pokemon_remote_repository.dart';
 
-@Injectable(as: PokemonRemoteRepository)
+@LazySingleton(as: PokemonRemoteRepository)
 class PokemonRemoteRepositoryImpl implements PokemonRemoteRepository {
   final PokemonDatasource _remoteDatasource;
 

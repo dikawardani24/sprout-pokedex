@@ -12,6 +12,7 @@ dependencies:
   shared_preferences:
   get_it:
   injectable:
+  flutter_secure_storage:
 
 dev_dependencies:
   flutter_test:

@@ -5,7 +5,7 @@ import '../../entity/pokemon_entity.dart';
 import '../../tables/table_pokemon.dart';
 import '../pokemon_datasource.dart';
 
-@Injectable(as: PokemonDatasource)
+@LazySingleton(as: PokemonDatasource)
 class PokemonLocalDatasourceImpl extends BaseDatasource<PokemonEntity, int> implements PokemonDatasource {
   @override
   String colId = TablePokemon.colId;

@@ -5,7 +5,7 @@ import 'package:injectable/injectable.dart';
 
 import '../chat_message_datasource.dart';
 
-@Injectable(as: ChatMessageDatasource)
+@LazySingleton(as: ChatMessageDatasource)
 class ChatMessageDatasourceImpl extends BaseDatasource<ChatMessageEntity, String> implements ChatMessageDatasource{
   @override
   String colId = TableChatMessage.colUuid;
@@ -41,5 +41,14 @@ class ChatMessageDatasourceImpl extends BaseDatasource<ChatMessageEntity, String
       where: "${TableChatMessage.colHistoryId} = ?",
       whereArgs: [historyId]
     );
+  }
+
+  @override
+  Future<int> totalChatsByHistory(int historyId) async {
+    final db = await this.db;
+    final result = await db.rawQuery("SELECT COUNT(*) as count FROM $tableName WHERE ${TableChatMessage.colHistoryId}=?", [historyId]);
+
+    if (result.isEmpty) return 0;
+    return result.first["count"] as int;
   }
 }

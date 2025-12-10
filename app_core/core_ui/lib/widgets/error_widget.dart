@@ -6,12 +6,14 @@ class AppErrorWidget extends StatelessWidget {
   final GestureTapCallback? onRetry;
   final String message;
   final double minHeight;
+  final String titleBtn;
 
   const AppErrorWidget({
     super.key,
     this.onRetry,
     this.message = StringRes.error,
     this.minHeight = 300,
+    this.titleBtn = StringRes.retry,
   });
 
 
@@ -42,8 +44,8 @@ class AppErrorWidget extends StatelessWidget {
               vertical: DimenRes.size_12,
             ),
           ),
-          child: const Text(
-            StringRes.retry,
+          child: Text(
+            titleBtn,
             textAlign: TextAlign.center,
           ),
         ),

@@ -30,11 +30,13 @@ import '../service/network_service.dart' as _i724;
 import '../usecase/ai_steam_ask_use_case.dart' as _i855;
 import '../usecase/ask_ai_use_case.dart' as _i634;
 import '../usecase/cache_image_url_use_case.dart' as _i1054;
+import '../usecase/check_ai_api_key_use_case.dart' as _i704;
 import '../usecase/delete_history_use_case.dart' as _i531;
 import '../usecase/get_chat_histories_use_case.dart' as _i1016;
 import '../usecase/get_detail_poke_use_case.dart' as _i964;
 import '../usecase/get_message_by_history_use_case.dart' as _i1002;
 import '../usecase/get_pokemon_use_ase.dart' as _i898;
+import '../usecase/save_api_key_use_case.dart' as _i284;
 import '../usecase/save_history_use_case.dart' as _i578;
 import '../usecase/validate_connection_use_case.dart' as _i290;
 import 'core_module.dart' as _i154;
@@ -54,32 +56,30 @@ _i174.GetIt $initCore(
   gh.factory<_i724.NetworkService>(
     () => _i603.NetworkServiceImpl(connectivity: gh<_i895.Connectivity>()),
   );
-  gh.factory<_i974.HistoryRepository>(
+  gh.lazySingleton<_i974.HistoryRepository>(
     () => _i780.HistoryRepositoryImpl(
       gh<_i252.ChatHistoryDatasource>(),
       gh<_i252.ChatMessageDatasource>(),
     ),
   );
-  gh.factory<_i762.AiRepository>(
-    () => _i375.AiRepositoryImpl(
-      gh<_i67.AiGeminiDatasource>(),
-      gh<_i67.AiStreamDatasource>(),
-    ),
-  );
-  gh.factory<_i634.AskAiUseCase>(
-    () => _i634.AskAiUseCaseImpl(gh<_i762.AiRepository>()),
-  );
-  gh.factory<_i499.PokemonLocalRepository>(
+  gh.lazySingleton<_i499.PokemonLocalRepository>(
     () => _i914.PokemonLocalRepositoryImpl(
       gh<_i252.PokemonDatasource>(),
       gh<_i252.PokemonDetailDatasource>(),
     ),
   );
-  gh.factory<_i930.PokemonRemoteRepository>(
+  gh.lazySingleton<_i930.PokemonRemoteRepository>(
     () => _i792.PokemonRemoteRepositoryImpl(gh<_i946.PokemonDatasource>()),
   );
   gh.factory<_i1002.GetMessageByHistoryUseCase>(
     () => _i1002.GetMessageByHistoryUseCaseImpl(gh<_i974.HistoryRepository>()),
+  );
+  gh.lazySingleton<_i762.AiRepository>(
+    () => _i375.AiRepositoryImpl(
+      gh<_i67.AiGeminiDatasource>(),
+      gh<_i67.AiStreamDatasource>(),
+      gh<_i669.AiApiKeyPref>(),
+    ),
   );
   gh.factory<_i290.ValidateConnectionUseCase>(
     () => _i290.ValidateConnectionUseCaseImpl(gh<_i724.NetworkService>()),
@@ -103,6 +103,15 @@ _i174.GetIt $initCore(
       gh<_i290.ValidateConnectionUseCase>(),
       gh<_i669.DataValidityPref>(),
     ),
+  );
+  gh.factory<_i634.AskAiUseCase>(
+    () => _i634.AskAiUseCaseImpl(gh<_i762.AiRepository>()),
+  );
+  gh.factory<_i704.CheckAiApiKeyUseCase>(
+    () => _i704.CheckAiApiKeyUseCaseImpl(gh<_i762.AiRepository>()),
+  );
+  gh.factory<_i284.SaveApiKeyUseCase>(
+    () => _i284.SaveApiKeyUseCaseImpl(gh<_i762.AiRepository>()),
   );
   gh.factory<_i898.GetPokemonUseCase>(
     () => _i898.GetPokemonUseCaseImpl(

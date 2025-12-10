@@ -14,4 +14,8 @@ abstract class AiRepository {
     List<ChatMessage> history = const [],
     required String topic
   });
+
+  Future<bool> isAiApiKeySet();
+  
+  Future<void> saveAiApiKey(String apiKey);
 }

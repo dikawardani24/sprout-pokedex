@@ -1,6 +1,8 @@
-
+import '../config/config.dart';
 
 abstract class AiStreamDatasource {
+  void setConfig(AiConfig config);
+
   Future<Stream<String?>> promptText({
     required String prompt,
     List<String> history = const []

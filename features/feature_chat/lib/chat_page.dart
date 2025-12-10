@@ -1,24 +1,28 @@
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
-import 'package:feature_chat/bloc/chat_bloc.dart';
-import 'package:feature_chat/bloc/chat_event.dart';
-import 'package:feature_chat/bloc/chat_state.dart';
-import 'package:feature_chat/widget/app_chat_input.dart';
-import 'package:feature_chat/widget/chat_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
+import 'bloc/chat_bloc.dart';
+import 'bloc/chat_event.dart';
+import 'bloc/chat_state.dart';
+import 'widget/app_chat_input.dart';
+import 'widget/chat_widget.dart';
+
 typedef OnStartChatHistory = Future<dynamic> Function(BuildContext context);
+typedef OnStartSetApiKey = Future<dynamic> Function(BuildContext context);
 
 class ChatPage extends StatefulWidget {
   final int? pokemonId;
   final OnStartChatHistory? onStartChatHistory;
+  final OnStartSetApiKey? onStartSetApiKey;
 
   const ChatPage({
     super.key,
     this.pokemonId,
-    this.onStartChatHistory
+    this.onStartChatHistory,
+    this.onStartSetApiKey
   });
 
   @override
@@ -30,15 +34,17 @@ class _ChatPageState extends State<ChatPage> {
   bool _isStream = true;
   late ChatBloc _bloc;
 
-  void _loadHistoryChat(ChatHistory c) {
-    _bloc.add(LoadHistoryChatEvent(c));
+  void _startSetApiKeyPage(BuildContext context) {
+    widget.onStartSetApiKey?.call(this.context).then((isApiKeySaved) {
+      if (isApiKeySaved is bool && isApiKeySaved) {
+        _bloc.add(InitChatEvent(widget.pokemonId, DateTime.now()));
+      }
+    });
   }
 
   void _startHistoryPage(BuildContext context) {
     widget.onStartChatHistory?.call(context).then((result) {
-      if (result is ChatHistory) {
-        _loadHistoryChat(result);
-      }
+      _bloc.add(LoadHistoryChatEvent(result));
     });
   }
 
@@ -77,21 +83,120 @@ class _ChatPageState extends State<ChatPage> {
       AppIconButton.noBackground(
         icon: IconRes.iconHistory,
         iconColor: context.iconThemColor,
-        onTap: () => _bloc.add(SaveChatEvent(DateTime.now())),
+        onTap: () => _startHistoryPage(context),
       )
     ],
   );
+
+  Widget _buildGreetWithDetail(AppPokemonDetail detail) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
+      spacing: DimenRes.size_16,
+      children: [
+        AppNetworkImage(
+          imageUrl: detail.imageUrl,
+          imageSize: DimenRes.size_100,
+          imageErrSize: DimenRes.size_100,
+        ),
+        Text(StringRes.greetChatWithTopic(detail.name), textAlign: TextAlign.center)
+      ],
+    );
+  }
+
+  Widget _buildGreeting({
+    required bool isEmptyChat,
+    required bool isApiKeySet,
+    AppPokemonDetail? detail
+  }) {
+    if (isEmptyChat && isApiKeySet) {
+      return Align(
+        alignment: Alignment.center,
+        child: Padding(
+          padding: EdgeInsetsGeometry.all(DimenRes.size_16),
+          child: LayoutBuilder(
+            builder: (c, constraint) {
+              if (detail != null) {
+                return _buildGreetWithDetail(detail);
+              }
+              return Text(StringRes.greetChat, textAlign: TextAlign.center);
+            },
+          ),
+        ),
+      );
+    }
+    return SizedBox();
+  }
+
+  Widget _buildChat({
+    List<ChatMessage> list = const [],
+    String? err,
+    bool isLoadingAnswer = false,
+  }) {
+    return Column(
+      children: [
+        Expanded(
+          child: ListView.builder(
+            controller: _scrollController,
+            padding: const EdgeInsets.all(16),
+            itemCount: list.length,
+            itemBuilder: (_, index) {
+              final message =list[index];
+              return ChatWidget(chatMessage: message);
+            },
+          ),
+        ),
+        if (err != null) Text(err,
+          style: TextStyle(color: ColorRes.red, fontSize: DimenRes.size_12),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(bottom: DimenRes.size_16, left: DimenRes.size_16, right: DimenRes.size_16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            spacing: DimenRes.size_10,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                spacing: DimenRes.size_10,
+                children: [
+                  if (isLoadingAnswer) Expanded(
+                    flex: 1,
+                    child: AppChatBubble(
+                      dotColor: ColorRes.red,
+                      dotSize: DimenRes.size_16,
+                    ),
+                  ),
+                  Checkbox(value: _isStream, onChanged: (_) => _toggleStreamAnswer()),
+                  Text(StringRes.realTime)
+                ],
+              ),
+              AppChatInput(
+                allowSendNewChat: !isLoadingAnswer,
+                onTapSendQuestion: (q) => _askQuestion(context, q),
+              ),
+              if (err != null) AppButton(
+                label: StringRes.changeApiKey,
+                onPressed: () => _startSetApiKeyPage(context),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
 
   Widget _buildContent(BuildContext context, {
     List<ChatMessage> list = const [],
     bool isLoadingAnswer = false,
     String? err,
     AppPokemonDetail? detail,
-    bool isLoadingHistory = false
+    bool isLoadingHistory = false,
+    bool isAiApiKeySet = true
   }) {
+    if (isLoadingHistory) return Loading();
+
     return Stack(
       children: [
-        if (isLoadingHistory) Loading(),
         Align(
           alignment: Alignment.center,
           child: Image.asset(
@@ -99,85 +204,24 @@ class _ChatPageState extends State<ChatPage> {
             color: ColorRes.grey.withAlpha(20),
           ),
         ),
-        if (list.isEmpty) Align(
-          alignment: Alignment.center,
-          child: Padding(
-            padding: EdgeInsetsGeometry.all(DimenRes.size_16),
-            child: LayoutBuilder(
-              builder: (c, constraint) {
-                if (detail != null) {
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    spacing: DimenRes.size_16,
-                    children: [
-                      AppNetworkImage(
-                        imageUrl: detail.imageUrl,
-                        imageSize: DimenRes.size_100,
-                        imageErrSize: DimenRes.size_100,
-                      ),
-                      Text(StringRes.greetChatWithTopic(detail.name), textAlign: TextAlign.center)
-                    ],
-                  );
-                }
-                return Text(StringRes.greetChat, textAlign: TextAlign.center);
-              },
-            ),
-          ),
+        _buildGreeting(isEmptyChat: list.isEmpty, isApiKeySet: isAiApiKeySet),
+        if (!isAiApiKeySet) AppErrorWidget(
+          message: StringErrRes.errNoAiApiKey,
+          titleBtn: StringRes.setGeminiApiKey,
+          onRetry: () => _startSetApiKeyPage(context),
         ),
-        Column(
-          children: [
-            Expanded(
-              child: ListView.builder(
-                controller: _scrollController,
-                padding: const EdgeInsets.all(16),
-                itemCount: list.length,
-                itemBuilder: (_, index) {
-                  final message =list[index];
-                  return ChatWidget(chatMessage: message);
-                },
-              ),
-            ),
-            if (err != null) Text(err,
-              style: TextStyle(color: ColorRes.red, fontSize: DimenRes.size_12),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: DimenRes.size_16, left: DimenRes.size_16, right: DimenRes.size_16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                spacing: DimenRes.size_10,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    spacing: DimenRes.size_10,
-                    children: [
-                      if (isLoadingAnswer) Expanded(
-                        flex: 1,
-                        child: AppChatBubble(
-                          dotColor: ColorRes.red,
-                          dotSize: DimenRes.size_16,
-                        ),
-                      ),
-                      Checkbox(value: _isStream, onChanged: (_) => _toggleStreamAnswer()),
-                      Text(StringRes.realTime)
-                    ],
-                  ),
-                  AppChatInput(
-                    allowSendNewChat: !isLoadingAnswer,
-                    onTapSendQuestion: (q) => _askQuestion(context, q),
-                  )
-                ],
-              ),
-            ),
-          ],
-        )
+        if (isAiApiKeySet) _buildChat(
+          list: list,
+          isLoadingAnswer: isLoadingAnswer,
+          err: err
+        ),
       ],
     );
   }
 
   @override
   void initState() {
-    _bloc = GetIt.I.get<ChatBloc>()..add(GetDetailAndGreetingEvent(widget.pokemonId));
+    _bloc = GetIt.I.get<ChatBloc>()..add(InitChatEvent(widget.pokemonId, DateTime.now()));
     super.initState();
   }
 
@@ -201,6 +245,7 @@ class _ChatPageState extends State<ChatPage> {
             answered: (_) => _scrollToBottom(),
             errGetMessageByHistory: (err) => context.showErrorSnackBar(err),
             historySaved: (_) => _startHistoryPage(context),
+            noHistoryToBeSave: (_) => _startHistoryPage(context),
             orElse: () {},
           );
         },
@@ -212,7 +257,7 @@ class _ChatPageState extends State<ChatPage> {
             errorGetAnswer: (err, messages) => _buildContent(context, list: messages, err: StringErrRes.errGetAnswerAi),
             notAnswered: (messages) => _buildContent(context, list: messages, err: StringErrRes.errGetAnswerAi),
             loadingGetDetailPokemon: () => _buildContent(context, isLoadingAnswer: true),
-            gotDetailPokemon: (data) => _buildContent(context, isLoadingAnswer: false, detail: data),
+            gotDetailPokemon: (data, isAiApiKeySet) => _buildContent(context, isLoadingAnswer: false, detail: data, isAiApiKeySet: isAiApiKeySet),
             gotMessageByHistory: (data) => _buildContent(context, list: data),
             loadingSaveHistory: (data) => _buildContent(context, list: data, isLoadingHistory: true),
             orElse: () => _buildContent(context),

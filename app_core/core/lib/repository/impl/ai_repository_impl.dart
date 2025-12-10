@@ -1,19 +1,31 @@
 import 'package:ai_gemini/ai_gemini.dart';
+import 'package:ai_gemini/config/config.dart';
+import 'package:app_preference/app_preference.dart';
 import 'package:core/core.dart';
 import 'package:core/repository/ai_repository.dart';
+import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 
-@Injectable(as: AiRepository)
+@LazySingleton(as: AiRepository)
 class AiRepositoryImpl implements AiRepository {
   final AiGeminiDatasource _geminiDatasource;
   final AiStreamDatasource _aiStreamDatasource;
+  final AiApiKeyPref _aiApiKeyPref;
 
-  AiRepositoryImpl(this._geminiDatasource, this._aiStreamDatasource);
+  AiRepositoryImpl(this._geminiDatasource, this._aiStreamDatasource, this._aiApiKeyPref);
 
   Future<ChatMessage?> _execute(Future<String?> service) async {
+    await _configureApiKey();
     final answer = await service;
     if (answer == null || answer.isEmpty) return null;
     return ChatMessage.answer(text: answer, when: DateTime.now());
+  }
+
+  Future<void> _configureApiKey() async {
+    final apiKey = await _aiApiKeyPref.getApiKey();
+    final config = AiConfig(apiKey: apiKey, isDebug: kDebugMode);
+    _geminiDatasource.setConfig(config);
+    _aiStreamDatasource.setConfig(config);
   }
 
   @override
@@ -28,19 +40,31 @@ class AiRepositoryImpl implements AiRepository {
   Future<Stream<String?>> askStreamWithText({
     required String text,
     List<ChatMessage> history = const [],
-  }) async => await _aiStreamDatasource.promptText(
-      prompt: text,
-      history: history.map((e) => e.text).toList()
-  );
+  }) async {
+    await _configureApiKey();
+    return await _aiStreamDatasource.promptText(
+        prompt: text,
+        history: history.map((e) => e.text).toList()
+    );
+  }
 
   @override
   Future<Stream<String?>> askStreamWithTextAndTopic({
     required String text,
     List<ChatMessage> history = const [],
     required String topic
-  }) async => await _aiStreamDatasource.promptTextWithTopic(
-    prompt: text,
-    history: history.map((e) => e.text).toList(),
-    topic: topic
-  );
+  }) async {
+    await _configureApiKey();
+    return await _aiStreamDatasource.promptTextWithTopic(
+        prompt: text,
+        history: history.map((e) => e.text).toList(),
+        topic: topic
+    );
+  }
+
+  @override
+  Future<bool> isAiApiKeySet() async => await _aiApiKeyPref.isApiKeySet();
+
+  @override
+  Future<void> saveAiApiKey(String apiKey) async => await _aiApiKeyPref.save(apiKey);
 }

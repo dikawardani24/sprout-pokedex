@@ -4,7 +4,7 @@ import 'package:database/entity/chat_history_entity.dart';
 import 'package:database/tables/table_chat_history.dart';
 import 'package:injectable/injectable.dart';
 
-@Injectable(as: ChatHistoryDatasource)
+@LazySingleton(as: ChatHistoryDatasource)
 class ChatHistoryDatasourceImpl extends BaseDatasource<ChatHistoryEntity, int> implements ChatHistoryDatasource {
   @override
   String colId = TableChatHistory.colId;

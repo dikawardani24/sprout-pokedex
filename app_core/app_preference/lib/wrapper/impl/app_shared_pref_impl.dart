@@ -1,3 +1,4 @@
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -6,7 +7,10 @@ import '../app_shared_pref.dart';
 @Injectable(as: AppSharedPref)
 class AppSharedPrefImpl implements AppSharedPref{
 
-  Future<SharedPreferences> get _sharedPref async => await SharedPreferences.getInstance();
+  final SharedPreferences _sharedPref;
+  final FlutterSecureStorage _secureStorage;
+
+  AppSharedPrefImpl(this._sharedPref, this._secureStorage);
 
   Future<T> _getOrDefault<T>(
       String key,
@@ -18,13 +22,16 @@ class AppSharedPrefImpl implements AppSharedPref{
   }
 
   @override
-  Future<bool?> getBool(String key) async => (await _sharedPref).getBool(key);
+  Future<bool?> getBool(String key) async => _sharedPref.getBool(key);
 
   @override
-  Future<int?> getInt(String key) async => (await _sharedPref).getInt(key);
+  Future<int?> getInt(String key) async => _sharedPref.getInt(key);
 
   @override
-  Future<String?> getString(String key) async => (await _sharedPref).getString(key);
+  Future<String?> getString(String key, {bool isSecure = false}) async {
+    if (!isSecure) return _sharedPref.getString(key);
+    return _secureStorage.read(key: key);
+  }
 
   @override
   Future<DateTime?> getTime(String key) async {
@@ -34,22 +41,25 @@ class AppSharedPrefImpl implements AppSharedPref{
   }
 
   @override
-  Future<double?> getDouble(String key) async => (await _sharedPref).getDouble(key);
+  Future<double?> getDouble(String key) async => _sharedPref.getDouble(key);
 
   @override
-  Future<void> setBool(String key, bool value) async => (await _sharedPref).setBool(key, value);
+  Future<void> setBool(String key, bool value) async => _sharedPref.setBool(key, value);
 
   @override
-  Future<void> setInt(String key, int value) async => (await _sharedPref).setInt(key, value);
+  Future<void> setInt(String key, int value) async => _sharedPref.setInt(key, value);
 
   @override
-  Future<void> setString(String key, String value) async => (await _sharedPref).setString(key, value);
+  Future<void> setString(String key, String value, {bool isSecure = false}) async {
+    if (!isSecure) _sharedPref.setString(key, value);
+    _secureStorage.write(key: key, value: value);
+  }
 
   @override
   Future<void> setTime(String key, DateTime time) async => await setInt(key, time.millisecondsSinceEpoch);
 
   @override
-  Future<void> setDouble(String key, double value) async => (await _sharedPref).setDouble(key, value);
+  Future<void> setDouble(String key, double value) async => _sharedPref.setDouble(key, value);
 
   @override
   Future<bool> getBoolOrDefault(String key, bool defaultValue) async => await _getOrDefault(
@@ -73,10 +83,10 @@ class AppSharedPrefImpl implements AppSharedPref{
   );
 
   @override
-  Future<String> getStringOrDefault(String key, String defaultValue) async => _getOrDefault(
+  Future<String> getStringOrDefault(String key, String defaultValue, {bool isSecure = false}) async => _getOrDefault(
     key,
     defaultValue,
-    getString
+    isSecure ? (key) => getString(key, isSecure: isSecure) : getString
   );
 
   @override
