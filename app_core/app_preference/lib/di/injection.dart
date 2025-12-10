@@ -9,4 +9,5 @@ import 'injection.config.dart';
   preferRelativeImports: true,
   asExtension: false,
 )
-void configureAppPreferenceDependencies(GetIt getIt) => $initAppPref(getIt);
+Future<void> configureAppPreferenceDependencies(GetIt getIt) =>
+    $initAppPref(getIt);

@@ -13,10 +13,10 @@ import 'injection.config.dart';
   preferRelativeImports: true,
   asExtension: false,
 )
-void configureCoreDependencies(GetIt getIt) {
+Future<void> configureCoreDependencies(GetIt getIt) async {
   configureApiDependencies(getIt);
   configureDatabaseDependencies(getIt);
-  configureAppPreferenceDependencies(getIt);
+  await configureAppPreferenceDependencies(getIt);
   configureAiGeminiDependencies(getIt);
   $initCore(getIt);
 }

@@ -4,9 +4,9 @@ import 'package:sprout_pokedex/di/injection.dart';
 import 'package:sprout_pokedex/navigation/app_navigation.dart';
 import 'package:sprout_pokedex/navigation/routes.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  configureDependencies();
+  await configureDependencies();
   runApp(const MyApp());
 }
 
