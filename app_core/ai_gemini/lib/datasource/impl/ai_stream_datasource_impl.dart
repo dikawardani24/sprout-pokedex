@@ -4,7 +4,7 @@ import 'package:injectable/injectable.dart';
 import '../../ai_engine.dart';
 import '../ai_stream_datasource.dart';
 
-@Injectable(as: AiStreamDatasource)
+@LazySingleton(as: AiStreamDatasource)
 class AiStreamDatasourceImpl implements AiStreamDatasource {
   final AiEngine _aiEngine;
 

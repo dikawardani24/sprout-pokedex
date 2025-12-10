@@ -25,7 +25,7 @@ _i174.GetIt $initApi(
   final gh = _i526.GetItHelper(getIt, environment, environmentFilter);
   final apiModule = _$ApiModule();
   gh.singleton<_i706.Pokedex>(() => apiModule.pokedex);
-  gh.factory<_i176.PokemonDatasource>(
+  gh.lazySingleton<_i176.PokemonDatasource>(
     () => _i176.PokemonDatasourceImpl(gh<_i706.Pokedex>()),
   );
   return getIt;

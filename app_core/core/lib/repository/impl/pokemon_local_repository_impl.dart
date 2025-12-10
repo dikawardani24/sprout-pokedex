@@ -5,7 +5,7 @@ import '../../models/app_pokemon.dart';
 import '../../models/app_pokemon_detail.dart';
 import '../pokemon_local_repository.dart';
 
-@Injectable(as: PokemonLocalRepository)
+@LazySingleton(as: PokemonLocalRepository)
 class PokemonLocalRepositoryImpl implements PokemonLocalRepository {
   final PokemonDatasource _pokemonDatasource;
   final PokemonDetailDatasource _pokemonDetailDatasource;

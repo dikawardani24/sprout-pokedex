@@ -5,7 +5,7 @@ import 'package:injectable/injectable.dart';
 
 import '../ai_gemini_datasource.dart';
 
-@Injectable(as: AiGeminiDatasource)
+@LazySingleton(as: AiGeminiDatasource)
 class AiGeminiDatasourceImpl implements AiGeminiDatasource {
   final AiEngine _aiEngine;
 

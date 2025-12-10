@@ -3,7 +3,7 @@ import 'package:injectable/injectable.dart';
 import '../../wrapper/app_shared_pref.dart';
 import '../data_validity_pref.dart';
 
-@Injectable(as: DataValidityPref)
+@LazySingleton(as: DataValidityPref)
 class DataValidityPrefImpl implements DataValidityPref {
   final _lastUpdateKey = 'last_pokemon_update';
   final String _dataCompleteKey = 'pokemon_data_complete';

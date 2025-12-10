@@ -6,7 +6,7 @@ import 'package:core/repository/ai_repository.dart';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 
-@Injectable(as: AiRepository)
+@LazySingleton(as: AiRepository)
 class AiRepositoryImpl implements AiRepository {
   final AiGeminiDatasource _geminiDatasource;
   final AiStreamDatasource _aiStreamDatasource;

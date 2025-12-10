@@ -4,7 +4,7 @@ import 'package:core/repository/history_repository.dart';
 import 'package:database/database.dart';
 import 'package:injectable/injectable.dart';
 
-@Injectable(as: HistoryRepository)
+@LazySingleton(as: HistoryRepository)
 class HistoryRepositoryImpl implements HistoryRepository {
   final ChatHistoryDatasource _chatHistoryDatasource;
   final ChatMessageDatasource _chatMessageDatasource;

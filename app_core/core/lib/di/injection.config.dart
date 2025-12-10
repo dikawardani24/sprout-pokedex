@@ -56,25 +56,25 @@ _i174.GetIt $initCore(
   gh.factory<_i724.NetworkService>(
     () => _i603.NetworkServiceImpl(connectivity: gh<_i895.Connectivity>()),
   );
-  gh.factory<_i974.HistoryRepository>(
+  gh.lazySingleton<_i974.HistoryRepository>(
     () => _i780.HistoryRepositoryImpl(
       gh<_i252.ChatHistoryDatasource>(),
       gh<_i252.ChatMessageDatasource>(),
     ),
   );
-  gh.factory<_i499.PokemonLocalRepository>(
+  gh.lazySingleton<_i499.PokemonLocalRepository>(
     () => _i914.PokemonLocalRepositoryImpl(
       gh<_i252.PokemonDatasource>(),
       gh<_i252.PokemonDetailDatasource>(),
     ),
   );
-  gh.factory<_i930.PokemonRemoteRepository>(
+  gh.lazySingleton<_i930.PokemonRemoteRepository>(
     () => _i792.PokemonRemoteRepositoryImpl(gh<_i946.PokemonDatasource>()),
   );
   gh.factory<_i1002.GetMessageByHistoryUseCase>(
     () => _i1002.GetMessageByHistoryUseCaseImpl(gh<_i974.HistoryRepository>()),
   );
-  gh.factory<_i762.AiRepository>(
+  gh.lazySingleton<_i762.AiRepository>(
     () => _i375.AiRepositoryImpl(
       gh<_i67.AiGeminiDatasource>(),
       gh<_i67.AiStreamDatasource>(),

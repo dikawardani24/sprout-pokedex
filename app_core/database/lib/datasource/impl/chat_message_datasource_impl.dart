@@ -5,7 +5,7 @@ import 'package:injectable/injectable.dart';
 
 import '../chat_message_datasource.dart';
 
-@Injectable(as: ChatMessageDatasource)
+@LazySingleton(as: ChatMessageDatasource)
 class ChatMessageDatasourceImpl extends BaseDatasource<ChatMessageEntity, String> implements ChatMessageDatasource{
   @override
   String colId = TableChatMessage.colUuid;

@@ -9,7 +9,7 @@ abstract class PokemonDatasource {
   Future<Type> getTypeByUrl(String url);
 }
 
-@Injectable(as: PokemonDatasource)
+@LazySingleton(as: PokemonDatasource)
 class PokemonDatasourceImpl implements PokemonDatasource {
   final Pokedex _pokedex;
 

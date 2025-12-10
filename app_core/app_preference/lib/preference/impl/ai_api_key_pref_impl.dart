@@ -3,7 +3,7 @@ import 'package:injectable/injectable.dart';
 
 import '../../wrapper/app_shared_pref.dart';
 
-@Injectable(as: AiApiKeyPref)
+@LazySingleton(as: AiApiKeyPref)
 class AiApiKeyPrefImpl implements AiApiKeyPref {
   final _keyApiKey = "API_KEY";
   final AppSharedPref _sharedPref;

@@ -41,10 +41,10 @@ Future<_i174.GetIt> $initAppPref(
       gh<_i558.FlutterSecureStorage>(),
     ),
   );
-  gh.factory<_i763.DataValidityPref>(
+  gh.lazySingleton<_i763.DataValidityPref>(
     () => _i509.DataValidityPrefImpl(gh<_i333.AppSharedPref>()),
   );
-  gh.factory<_i821.AiApiKeyPref>(
+  gh.lazySingleton<_i821.AiApiKeyPref>(
     () => _i428.AiApiKeyPrefImpl(gh<_i333.AppSharedPref>()),
   );
   return getIt;
