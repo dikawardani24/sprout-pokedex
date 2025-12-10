@@ -34,6 +34,14 @@ class _ChatPageState extends State<ChatPage> {
   bool _isStream = true;
   late ChatBloc _bloc;
 
+  void _startSetApiKeyPage(BuildContext context) {
+    widget.onStartSetApiKey?.call(this.context).then((isApiKeySaved) {
+      if (isApiKeySaved is bool && isApiKeySaved) {
+        _bloc.add(InitChatEvent(widget.pokemonId, DateTime.now()));
+      }
+    });
+  } 
+  
   void _loadHistoryChat(ChatHistory c) {
     _bloc.add(LoadHistoryChatEvent(c));
   }
@@ -133,7 +141,7 @@ class _ChatPageState extends State<ChatPage> {
         if (!isAiApiKeySet) AppErrorWidget(
           message: StringErrRes.errNoAiApiKey,
           titleBtn: StringRes.setGeminiApiKey,
-          onRetry: () => widget.onStartSetApiKey?.call(this.context),
+          onRetry: () => _startSetApiKeyPage(context),
         ),
         if (isAiApiKeySet) Column(
           children: [
@@ -187,7 +195,7 @@ class _ChatPageState extends State<ChatPage> {
 
   @override
   void initState() {
-    _bloc = GetIt.I.get<ChatBloc>()..add(GetDetailAndGreetingEvent(widget.pokemonId));
+    _bloc = GetIt.I.get<ChatBloc>()..add(InitChatEvent(widget.pokemonId, DateTime.now()));
     super.initState();
   }
 

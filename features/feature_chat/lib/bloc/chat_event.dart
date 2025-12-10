@@ -3,13 +3,14 @@ import 'package:equatable/equatable.dart';
 
 abstract class ChatEvent extends Equatable {}
 
-class GetDetailAndGreetingEvent extends ChatEvent {
+class InitChatEvent extends ChatEvent {
   final int? id;
+  final DateTime dateTime;
 
-  GetDetailAndGreetingEvent(this.id);
+  InitChatEvent(this.id, this.dateTime);
 
   @override
-  List<Object?> get props => [id];
+  List<Object?> get props => [id, dateTime];
 }
 
 class AskQuestionEvent extends ChatEvent {

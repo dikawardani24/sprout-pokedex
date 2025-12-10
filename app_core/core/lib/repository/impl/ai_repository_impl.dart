@@ -59,4 +59,7 @@ class AiRepositoryImpl implements AiRepository {
     _geminiDatasource.setConfig(config);
     _aiStreamDatasource.setConfig(config);
   }
+
+  @override
+  Future<String> getApiKey() async => await _aiApiKeyPref.getApiKey();
 }

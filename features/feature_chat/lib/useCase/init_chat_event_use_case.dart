@@ -6,7 +6,7 @@ import 'package:injectable/injectable.dart';
 import '../bloc/chat_event.dart';
 
 abstract class InitChatEventUseCase {
-  Future<void> execute(GetDetailAndGreetingEvent event, {
+  Future<void> execute(InitChatEvent event, {
     required Function onLoading,
     required Function(AppPokemonDetail? data, bool isAiApiKeySet) onSuccess,
     required Function(String err) onError
@@ -21,7 +21,7 @@ class InitChatEventUseCaseImpl implements InitChatEventUseCase {
   InitChatEventUseCaseImpl(this._getDetailPokeUseCase, this._aiApiKeyUseCase);
 
   @override
-  Future<void> execute(GetDetailAndGreetingEvent event, {
+  Future<void> execute(InitChatEvent event, {
     required Function onLoading,
     required Function(AppPokemonDetail? data, bool isAiApiKeySet) onSuccess,
     required Function(String err) onError

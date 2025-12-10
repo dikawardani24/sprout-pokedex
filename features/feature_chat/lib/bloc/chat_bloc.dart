@@ -15,7 +15,7 @@ import 'chat_state.dart';
 class ChatBloc extends Bloc<ChatEvent, ChatState> {
   final List<ChatMessage> _messages= [];
 
-  final InitChatEventUseCase _getDetailPokeUseCase;
+  final InitChatEventUseCase _initChatEventUseCase;
   final AskQuestionEventUseCase _askQuestionEventUseCase;
   final SaveHistoryEvenUseCase _saveHistoryUseCase;
   final LoadHistoryEventUseCase _getMessageByHistoryUseCase;
@@ -24,9 +24,9 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
   ChatMessage? _currentAnswer;
   AppPokemonDetail? _appPokemonDetail;
 
-  ChatBloc(this._getDetailPokeUseCase, this._saveHistoryUseCase, this._getMessageByHistoryUseCase, this._askQuestionEventUseCase): super(const ChatState.initial()) {
-    on<GetDetailAndGreetingEvent>(
-      _getDetailPokemon,
+  ChatBloc(this._initChatEventUseCase, this._saveHistoryUseCase, this._getMessageByHistoryUseCase, this._askQuestionEventUseCase): super(const ChatState.initial()) {
+    on<InitChatEvent>(
+      _initChatEvent,
       transformer: restartable(),
     );
 
@@ -58,8 +58,8 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
       },
     );
 
-  Future<void> _getDetailPokemon(GetDetailAndGreetingEvent event, Emitter<ChatState> emit) async =>
-    await _getDetailPokeUseCase.execute(
+  Future<void> _initChatEvent(InitChatEvent event, Emitter<ChatState> emit) async =>
+    await _initChatEventUseCase.execute(
       event,
       onLoading: () => emit(ChatState.loadingGetDetailPokemon()),
       onError: (err) => emit(ChatState.errorGetDetail(err)),

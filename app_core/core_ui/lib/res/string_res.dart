@@ -49,6 +49,7 @@ class StringRes {
   static const titleSetApiKey = "Set Api Key";
   static const descSetApiKey = "Please input your existing api key in order to start chat with our enhanced Pokemon AI ";
   static const save = "Save";
+  static const apiKeySaved = "Your api key saved successfully";
 
   static String greetChatWithTopic(String topic) => "Hallo fellow Pokemon fans, what do you want to talk about $topic ?";
 }

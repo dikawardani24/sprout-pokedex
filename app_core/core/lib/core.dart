@@ -35,6 +35,7 @@ export './usecase/save_history_use_case.dart';
 export './usecase/get_chat_histories_use_case.dart';
 export './usecase/delete_history_use_case.dart';
 export './usecase/get_message_by_history_use_case.dart';
+export './usecase/save_api_key_use_case.dart';
 
 export './util/date_ext.dart';
 export './util/poke_ext.dart';
