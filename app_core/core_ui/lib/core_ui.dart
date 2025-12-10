@@ -39,3 +39,4 @@ export './widgets/app_time.dart';
 export './widgets/app_markdown.dart';
 export './widgets/app_chat_buble.dart';
 export './widgets/confirmation_dialog.dart';
+export './widgets/app_button.dart';

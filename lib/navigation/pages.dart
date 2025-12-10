@@ -2,6 +2,7 @@ import 'package:feature_chat/chat_page.dart';
 import 'package:feature_chat_history/feature_chat_history.dart';
 import 'package:feature_detail/detail_page.dart';
 import 'package:feature_home/home_page.dart';
+import 'package:feature_set_ai_api_key/feature_set_ai_api_key.dart';
 import 'package:flutter/material.dart';
 
 class Pages {
@@ -32,4 +33,6 @@ class Pages {
   );
 
   static Widget chatHistoryPage() => const ChatHistoryPage();
+
+  static Widget setApiKeyPage() => const SetAiApiKeyPage();
 }

@@ -4,4 +4,5 @@ class Routes {
   static const chat = "/chat";
   static const chatPokemon = "/chat/pokemon";
   static const chatHistory = "/chat/history";
+  static const chetSetApiKey = "/chat/apiKey";
 }

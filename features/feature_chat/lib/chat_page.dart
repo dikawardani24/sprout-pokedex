@@ -97,11 +97,6 @@ class _ChatPageState extends State<ChatPage> {
     return Stack(
       children: [
         if (isLoadingHistory) Loading(),
-        if (!isAiApiKeySet) AppErrorWidget(
-          message: StringErrRes.errNoAiApiKey,
-          titleBtn: StringRes.setGeminiApiKey,
-          onRetry: () => widget.onStartSetApiKey?.call(this.context),
-        ),
         Align(
           alignment: Alignment.center,
           child: Image.asset(
@@ -109,7 +104,7 @@ class _ChatPageState extends State<ChatPage> {
             color: ColorRes.grey.withAlpha(20),
           ),
         ),
-        if (list.isEmpty) Align(
+        if (list.isEmpty && isAiApiKeySet) Align(
           alignment: Alignment.center,
           child: Padding(
             padding: EdgeInsetsGeometry.all(DimenRes.size_16),
@@ -135,7 +130,12 @@ class _ChatPageState extends State<ChatPage> {
             ),
           ),
         ),
-        Column(
+        if (!isAiApiKeySet) AppErrorWidget(
+          message: StringErrRes.errNoAiApiKey,
+          titleBtn: StringRes.setGeminiApiKey,
+          onRetry: () => widget.onStartSetApiKey?.call(this.context),
+        ),
+        if (isAiApiKeySet) Column(
           children: [
             Expanded(
               child: ListView.builder(
@@ -180,7 +180,7 @@ class _ChatPageState extends State<ChatPage> {
               ),
             ),
           ],
-        )
+        ),
       ],
     );
   }

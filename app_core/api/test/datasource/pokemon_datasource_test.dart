@@ -1,13 +1,15 @@
 import 'package:api/api.dart';
 import 'package:api/di/injection.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:get_it/get_it.dart';
 import 'package:pokedex/pokedex.dart';
 
 void main() {
   late PokemonDatasource datasource;
+  GetIt getIt = GetIt.instance;
 
   setUpAll(() {
-    configureApiDependencies();
+    configureApiDependencies(getIt);
   });
 
   setUp(() {

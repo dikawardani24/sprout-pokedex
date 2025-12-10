@@ -4,11 +4,9 @@ import 'package:injectable/injectable.dart';
 
 import 'injection.config.dart';
 
-final GetIt getIt = GetIt.instance;
-
 @InjectableInit(
   initializerName: r'$initAiGemini',
   preferRelativeImports: true,
   asExtension: false,
 )
-void configureAiGeminiDependencies() => $initAiGemini(getIt);
+void configureAiGeminiDependencies(GetIt getIt) => $initAiGemini(getIt);

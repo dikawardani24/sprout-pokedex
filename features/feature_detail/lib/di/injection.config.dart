@@ -21,12 +21,9 @@ _i174.GetIt $initFeatureDetail(
   String? environment,
   _i526.EnvironmentFilter? environmentFilter,
 }) {
-  final gh = _i526.GetItHelper(
-    getIt,
-    environment,
-    environmentFilter,
-  );
+  final gh = _i526.GetItHelper(getIt, environment, environmentFilter);
   gh.factory<_i895.DetailBloc>(
-      () => _i895.DetailBloc(gh<_i494.GetDetailPokeUseCase>()));
+    () => _i895.DetailBloc(gh<_i494.GetDetailPokeUseCase>()),
+  );
   return getIt;
 }

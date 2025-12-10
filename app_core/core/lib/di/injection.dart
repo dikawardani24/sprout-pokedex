@@ -8,17 +8,15 @@ import 'package:injectable/injectable.dart';
 
 import 'injection.config.dart';
 
-final GetIt getIt = GetIt.instance;
-
 @InjectableInit(
   initializerName: r'$initCore',
   preferRelativeImports: true,
   asExtension: false,
 )
-void configureCoreDependencies() {
-  configureApiDependencies();
-  configureDatabaseDependencies();
-  configureAppPreferenceDependencies();
-  configureAiGeminiDependencies();
+void configureCoreDependencies(GetIt getIt) {
+  configureApiDependencies(getIt);
+  configureDatabaseDependencies(getIt);
+  configureAppPreferenceDependencies(getIt);
+  configureAiGeminiDependencies(getIt);
   $initCore(getIt);
 }

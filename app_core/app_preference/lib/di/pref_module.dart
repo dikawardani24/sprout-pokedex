@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 @module
 abstract class PrefModule {
 
+  @preResolve
   @singleton
   Future<SharedPreferences> get sharedPref async => await SharedPreferences.getInstance();
 
@@ -20,6 +21,7 @@ abstract class PrefModule {
     webOptions: WebOptions(
       dbName: "pokedex_secure_db"
     ),
+    lOptions: LinuxOptions()
   );
 
 }

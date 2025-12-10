@@ -38,11 +38,11 @@ _i174.GetIt $initDatabase(
   gh.factory<_i551.PokemonDetailDatasource>(
     () => _i668.PokemonDetailDatasourceImpl(gh<_i826.DbOpenHelper>()),
   );
-  gh.factory<_i45.ChatHistoryDatasource>(
-    () => _i410.ChatHistoryDatasourceImpl(gh<_i826.DbOpenHelper>()),
-  );
   gh.factory<_i176.PokemonDatasource>(
     () => _i352.PokemonLocalDatasourceImpl(gh<_i826.DbOpenHelper>()),
+  );
+  gh.factory<_i45.ChatHistoryDatasource>(
+    () => _i410.ChatHistoryDatasourceImpl(gh<_i826.DbOpenHelper>()),
   );
   return getIt;
 }
