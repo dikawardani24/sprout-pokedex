@@ -88,6 +88,103 @@ class _ChatPageState extends State<ChatPage> {
     ],
   );
 
+  Widget _buildGreetWithDetail(AppPokemonDetail detail) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
+      spacing: DimenRes.size_16,
+      children: [
+        AppNetworkImage(
+          imageUrl: detail.imageUrl,
+          imageSize: DimenRes.size_100,
+          imageErrSize: DimenRes.size_100,
+        ),
+        Text(StringRes.greetChatWithTopic(detail.name), textAlign: TextAlign.center)
+      ],
+    );
+  }
+
+  Widget _buildGreeting({
+    required bool isEmptyChat,
+    required bool isApiKeySet,
+    AppPokemonDetail? detail
+  }) {
+    if (isEmptyChat && isApiKeySet) {
+      return Align(
+        alignment: Alignment.center,
+        child: Padding(
+          padding: EdgeInsetsGeometry.all(DimenRes.size_16),
+          child: LayoutBuilder(
+            builder: (c, constraint) {
+              if (detail != null) {
+                return _buildGreetWithDetail(detail);
+              }
+              return Text(StringRes.greetChat, textAlign: TextAlign.center);
+            },
+          ),
+        ),
+      );
+    }
+    return SizedBox();
+  }
+
+  Widget _buildChat({
+    List<ChatMessage> list = const [],
+    String? err,
+    bool isLoadingAnswer = false,
+  }) {
+    return Column(
+      children: [
+        Expanded(
+          child: ListView.builder(
+            controller: _scrollController,
+            padding: const EdgeInsets.all(16),
+            itemCount: list.length,
+            itemBuilder: (_, index) {
+              final message =list[index];
+              return ChatWidget(chatMessage: message);
+            },
+          ),
+        ),
+        if (err != null) Text(err,
+          style: TextStyle(color: ColorRes.red, fontSize: DimenRes.size_12),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(bottom: DimenRes.size_16, left: DimenRes.size_16, right: DimenRes.size_16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            spacing: DimenRes.size_10,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                spacing: DimenRes.size_10,
+                children: [
+                  if (isLoadingAnswer) Expanded(
+                    flex: 1,
+                    child: AppChatBubble(
+                      dotColor: ColorRes.red,
+                      dotSize: DimenRes.size_16,
+                    ),
+                  ),
+                  Checkbox(value: _isStream, onChanged: (_) => _toggleStreamAnswer()),
+                  Text(StringRes.realTime)
+                ],
+              ),
+              AppChatInput(
+                allowSendNewChat: !isLoadingAnswer,
+                onTapSendQuestion: (q) => _askQuestion(context, q),
+              ),
+              if (err != null) AppButton(
+                label: StringRes.changeApiKey,
+                onPressed: () => _startSetApiKeyPage(context),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
   Widget _buildContent(BuildContext context, {
     List<ChatMessage> list = const [],
     bool isLoadingAnswer = false,
@@ -107,86 +204,16 @@ class _ChatPageState extends State<ChatPage> {
             color: ColorRes.grey.withAlpha(20),
           ),
         ),
-        if (list.isEmpty && isAiApiKeySet) Align(
-          alignment: Alignment.center,
-          child: Padding(
-            padding: EdgeInsetsGeometry.all(DimenRes.size_16),
-            child: LayoutBuilder(
-              builder: (c, constraint) {
-                if (detail != null) {
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    spacing: DimenRes.size_16,
-                    children: [
-                      AppNetworkImage(
-                        imageUrl: detail.imageUrl,
-                        imageSize: DimenRes.size_100,
-                        imageErrSize: DimenRes.size_100,
-                      ),
-                      Text(StringRes.greetChatWithTopic(detail.name), textAlign: TextAlign.center)
-                    ],
-                  );
-                }
-                return Text(StringRes.greetChat, textAlign: TextAlign.center);
-              },
-            ),
-          ),
-        ),
+        _buildGreeting(isEmptyChat: list.isEmpty, isApiKeySet: isAiApiKeySet),
         if (!isAiApiKeySet) AppErrorWidget(
           message: StringErrRes.errNoAiApiKey,
           titleBtn: StringRes.setGeminiApiKey,
           onRetry: () => _startSetApiKeyPage(context),
         ),
-        if (isAiApiKeySet) Column(
-          children: [
-            Expanded(
-              child: ListView.builder(
-                controller: _scrollController,
-                padding: const EdgeInsets.all(16),
-                itemCount: list.length,
-                itemBuilder: (_, index) {
-                  final message =list[index];
-                  return ChatWidget(chatMessage: message);
-                },
-              ),
-            ),
-            if (err != null) Text(err,
-              style: TextStyle(color: ColorRes.red, fontSize: DimenRes.size_12),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: DimenRes.size_16, left: DimenRes.size_16, right: DimenRes.size_16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                spacing: DimenRes.size_10,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    spacing: DimenRes.size_10,
-                    children: [
-                      if (isLoadingAnswer) Expanded(
-                        flex: 1,
-                        child: AppChatBubble(
-                          dotColor: ColorRes.red,
-                          dotSize: DimenRes.size_16,
-                        ),
-                      ),
-                      Checkbox(value: _isStream, onChanged: (_) => _toggleStreamAnswer()),
-                      Text(StringRes.realTime)
-                    ],
-                  ),
-                  AppChatInput(
-                    allowSendNewChat: !isLoadingAnswer,
-                    onTapSendQuestion: (q) => _askQuestion(context, q),
-                  ),
-                  if (err != null) AppButton(
-                    label: StringRes.changeApiKey,
-                    onPressed: () => _startSetApiKeyPage(context),
-                  ),
-                ],
-              ),
-            ),
-          ],
+        if (isAiApiKeySet) _buildChat(
+          list: list,
+          isLoadingAnswer: isLoadingAnswer,
+          err: err
         ),
       ],
     );
