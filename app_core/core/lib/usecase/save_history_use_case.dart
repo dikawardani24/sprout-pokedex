@@ -22,6 +22,10 @@ class SaveHistoryUseCaseImpl implements SaveHistoryUseCase {
   @override
   Future<Result<void>> execute(SaveHistoryReq req) async {
     try {
+      if (req.chatMessages.isEmpty) return Result.success(null);
+      final onDbTotalChats = await _historyRepository.totalChatsByHistory(req.chatHistory);
+      if (req.chatMessages.length <= onDbTotalChats) return Result.success(null);
+
       final history = req.chatHistory;
       int lastId = history.id;
       if (lastId <= 0) {

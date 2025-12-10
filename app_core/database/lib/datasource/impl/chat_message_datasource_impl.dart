@@ -42,4 +42,13 @@ class ChatMessageDatasourceImpl extends BaseDatasource<ChatMessageEntity, String
       whereArgs: [historyId]
     );
   }
+
+  @override
+  Future<int> totalChatsByHistory(int historyId) async {
+    final db = await this.db;
+    final result = await db.rawQuery("SELECT COUNT(*) as count FROM $tableName WHERE ${TableChatMessage.colHistoryId}=?", [historyId]);
+
+    if (result.isEmpty) return 0;
+    return result.first["count"] as int;
+  }
 }

@@ -52,4 +52,7 @@ class HistoryRepositoryImpl implements HistoryRepository {
     await _chatHistoryDatasource.deleteById(chatHistory.id);
   }
 
+  @override
+  Future<int> totalChatsByHistory(ChatHistory chatHistory) async =>
+    await _chatMessageDatasource.totalChatsByHistory(chatHistory.id);
 }

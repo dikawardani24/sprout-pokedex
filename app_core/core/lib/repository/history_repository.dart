@@ -9,4 +9,5 @@ abstract class HistoryRepository {
   Future<List<ChatMessage>> getMessagesByHistory(ChatHistory history);
   Future<int> getLastHistoryId();
   Future<void> deleteHistory(ChatHistory chatHistory);
+  Future<int> totalChatsByHistory(ChatHistory chatHistory);
 }

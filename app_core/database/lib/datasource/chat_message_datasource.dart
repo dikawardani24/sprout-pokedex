@@ -5,4 +5,5 @@ abstract class ChatMessageDatasource {
   Future<void> saveBulk(List<ChatMessageEntity> entities);
   Future<List<ChatMessageEntity>> findByHistoryId(int historyId);
   Future<void> deleteByHistory(int historyId);
+  Future<int> totalChatsByHistory(int historyId);
 }
