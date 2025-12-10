@@ -45,11 +45,12 @@ class StringRes {
   static const confirmation = "Confirmation";
   static const questionDeleteChatHistory = "You are about to delete a chat history, are you sure ?";
   static const historyDeletedSuccess = "Chat history delected successfully";
-  static const setGeminiApiKey = "Set api key now";
+  static const setGeminiApiKey = "Set API Key now";
   static const titleSetApiKey = "Set Api Key";
-  static const descSetApiKey = "Please input your existing api key in order to start chat with our enhanced Pokemon AI ";
+  static const descSetApiKey = "Please input your existing API Key in order to start chat with our enhanced Pokemon AI ";
   static const save = "Save";
-  static const apiKeySaved = "Your api key saved successfully";
+  static const apiKeySaved = "Your API Key saved successfully";
+  static const changeApiKey = "Edit API Key";
 
   static String greetChatWithTopic(String topic) => "Hallo fellow Pokemon fans, what do you want to talk about $topic ?";
 }

@@ -183,7 +183,11 @@ class _ChatPageState extends State<ChatPage> {
                   AppChatInput(
                     allowSendNewChat: !isLoadingAnswer,
                     onTapSendQuestion: (q) => _askQuestion(context, q),
-                  )
+                  ),
+                  if (err != null) AppButton(
+                    label: StringRes.changeApiKey,
+                    onPressed: () => _startSetApiKeyPage(context),
+                  ),
                 ],
               ),
             ),

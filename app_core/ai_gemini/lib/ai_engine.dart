@@ -19,10 +19,13 @@ class AiEngine {
     return valid(config);
   }
 
-  void initConfig(AiConfig config) => Gemini.init(
-    apiKey: config.apiKey,
-    enableDebugging: kDebugMode,
-  );
+  void initConfig(AiConfig config) {
+    _aiConfig = config;
+    Gemini.init(
+      apiKey: config.apiKey,
+      enableDebugging: kDebugMode,
+    );
+  }
 
   List<Content> _generateContent(String prompt, {
     List<String> history = const [],

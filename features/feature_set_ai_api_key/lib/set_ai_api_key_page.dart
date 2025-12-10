@@ -24,7 +24,7 @@ class _SetAiApiKeyPageState extends State<SetAiApiKeyPage> {
   }
 
   void _goBackWithResult(BuildContext c, bool isApiKeySaved) {
-    c.showSuccessSnackBar(StringRes.apiKeySaved);
+    if (isApiKeySaved) c.showSuccessSnackBar(StringRes.apiKeySaved);
     c.goBack(isApiKeySaved);
   }
 
@@ -33,7 +33,7 @@ class _SetAiApiKeyPageState extends State<SetAiApiKeyPage> {
     leading: AppIconButton.noBackground(
       icon: IconRes.iconNavBack,
       iconColor: context.iconThemColor,
-      onTap: context.goBack,
+      onTap: () => _goBackWithResult(context, false),
     )
   );
 
