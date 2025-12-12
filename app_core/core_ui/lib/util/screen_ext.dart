@@ -1,12 +1,12 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
-bool get _isResizeable => AppConfig.isDesktop || AppConfig.isWeb;
+bool get isResizeable => AppConfig.isDesktop || AppConfig.isWeb;
 
 bool _isSmallScreen(double width, double height) {
   int min = 200;
 
-  if (_isResizeable) min = 400;
+  if (isResizeable) min = 400;
   return height < min || width < min;
 }
 

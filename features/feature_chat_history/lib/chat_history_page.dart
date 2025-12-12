@@ -66,8 +66,6 @@ class ChatHistoryPage extends StatelessWidget {
     bool isReachMax = false,
     String? err
   }) {
-    if (context.isSmallScreen())  return AppErrorScreenSize();
-
     return CustomScrollView(
       slivers: [
         _buildItems(context, list),

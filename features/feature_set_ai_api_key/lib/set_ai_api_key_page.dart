@@ -56,9 +56,6 @@ class _SetAiApiKeyPageState extends State<SetAiApiKeyPage> {
   );
 
   Widget _buildContent(BuildContext context, {bool isLoading = false}) {
-    bool isScreenSmall = context.isSmallScreen();
-
-    if (isScreenSmall) return AppErrorScreenSize();
     if (isLoading) return Loading();
     return Column(
       spacing: DimenRes.size_16,

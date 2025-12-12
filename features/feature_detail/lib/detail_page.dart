@@ -33,8 +33,6 @@ class _DetailPageState extends State<DetailPage> with SingleTickerProviderStateM
   var _color = ColorRes.white.withAlpha(20);
   var _showRefresh = false;
 
-  bool get _isResizeable => AppConfig.isDesktop || AppConfig.isWeb;
-
   bool _isScreenTooSmall(BoxConstraints constraints) => constraints.isScreenTooSmall();
 
   PreferredSizeWidget _createAppBar(BuildContext c) => AppBar(
@@ -53,41 +51,39 @@ class _DetailPageState extends State<DetailPage> with SingleTickerProviderStateM
     ],
   );
 
-  Widget _buildLoaded(AppPokemonDetail info, BuildContext context, BoxConstraints constraints) {
-    if (_isScreenTooSmall(constraints)) return AppErrorScreenSize();
+  Widget _buildLoaded(AppPokemonDetail info, BuildContext context) {
     if (context.isBigScreen()) {
-      if (_isResizeable) return DetailLandscapeDesktopWidget(detail: info);
+      if (isResizeable) return DetailLandscapeDesktopWidget(detail: info);
       return DetailLandscape(detail: info);
     }
     return DetailPortrait(detail: info);
   }
 
-  Widget _createBody() => SafeArea(
-    child: BlocConsumer<DetailBloc, DetailState>(
-        builder: (c, state) {
-          return state.when(
-              initial: () => const Loading(),
-              loading: () => const Loading(),
-              loaded: (info) => LayoutBuilder(
-                builder: (context, constraints) => _buildLoaded(info, context, constraints),
-              ),
-              error: (message) => AppErrorWidget(message: message)
-          );
-        },
-        listener: (c, state) {
-          state.whenOrNull(
-              loaded: (info) => setState(() {
-                final colorDex = info.color;
-                _appBg = colorDex.secondary;
-                _color = colorDex.primary.withAlpha(50);
-                _iconNavBackColor = ColorRes.white;
-                _showRefresh = true;
-
-              })
-          );
-        }
-    ),
-  );
+  Widget _createBody() {
+    return BlocConsumer<DetailBloc, DetailState>(
+      builder: (c, state) {
+        return state.when(
+            initial: () => const Loading(),
+            loading: () => const Loading(),
+            loaded: (info) => LayoutBuilder(
+              builder: (context, constraints) => _buildLoaded(info, context),
+            ),
+            error: (message) => AppErrorWidget(message: message)
+        );
+      },
+      listener: (c, state) {
+        state.whenOrNull(
+          loaded: (info) => setState(() {
+            final colorDex = info.color;
+            _appBg = colorDex.secondary;
+            _color = colorDex.primary.withAlpha(50);
+            _iconNavBackColor = ColorRes.white;
+            _showRefresh = true;
+          })
+        );
+      },
+    );
+  }
 
   Widget _createImageHeader() => LayoutBuilder(
     builder: (c, a) {
@@ -101,6 +97,19 @@ class _DetailPageState extends State<DetailPage> with SingleTickerProviderStateM
     }
   );
 
+  Widget _createContent(BuildContext context) {
+    return AppPageWidget(
+      padding: 0,
+      appBar: _createAppBar(context),
+      body: _createBody(),
+      floatingActionBtn: AppIconButton(
+        icon: IconRes.iconChat,
+        backgroundColor: _appBg,
+        onTap: () => widget.onStartChatWithDetail?.call(context, widget.id),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -109,15 +118,7 @@ class _DetailPageState extends State<DetailPage> with SingleTickerProviderStateM
         builder: (c) {
           return Stack(
             children: [
-              Scaffold(
-                appBar: _createAppBar(c),
-                body: _createBody(),
-                floatingActionButton: AppIconButton(
-                  icon: IconRes.iconChat,
-                  backgroundColor: _appBg,
-                  onTap: () => widget.onStartChatWithDetail?.call(context, widget.id),
-                ),
-              ),
+              _createContent(c),
               _createImageHeader()
             ],
           );
