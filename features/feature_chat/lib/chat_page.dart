@@ -1,5 +1,7 @@
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
+import 'package:feature_chat/widget/chat_action.dart';
+import 'package:feature_chat/widget/chat_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -7,8 +9,6 @@ import 'package:get_it/get_it.dart';
 import 'bloc/chat_bloc.dart';
 import 'bloc/chat_event.dart';
 import 'bloc/chat_state.dart';
-import 'widget/app_chat_input.dart';
-import 'widget/chat_widget.dart';
 
 typedef OnStartChatHistory = Future<dynamic> Function(BuildContext context);
 typedef OnStartSetApiKey = Future<dynamic> Function(BuildContext context);
@@ -31,8 +31,8 @@ class ChatPage extends StatefulWidget {
 
 class _ChatPageState extends State<ChatPage> {
   final ScrollController _scrollController = ScrollController();
-  bool _isStream = true;
   late ChatBloc _bloc;
+  ChatType _chatType = ChatType.stream;
 
   void _startSetApiKeyPage(BuildContext context) {
     widget.onStartSetApiKey?.call(this.context).then((isApiKeySaved) {
@@ -50,13 +50,7 @@ class _ChatPageState extends State<ChatPage> {
 
   void _askQuestion(BuildContext context, String question) {
     context.dismissKeyboard();
-    _bloc.add(AskQuestionEvent(question, isStream: _isStream));
-  }
-  
-  void _toggleStreamAnswer() {
-    setState(() {
-      _isStream = !_isStream;
-    });
+    _bloc.add(AskQuestionEvent(question, isStream: _chatType == ChatType.stream));
   }
 
   void _scrollToBottom() {
@@ -88,62 +82,19 @@ class _ChatPageState extends State<ChatPage> {
     ],
   );
 
-  Widget _buildGreetWithDetail(AppPokemonDetail detail) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      spacing: DimenRes.size_16,
-      children: [
-        AppNetworkImage(
-          imageUrl: detail.imageUrl,
-          imageSize: DimenRes.size_100,
-          imageErrSize: DimenRes.size_100,
-        ),
-        Text(StringRes.greetChatWithTopic(detail.name), textAlign: TextAlign.center)
-      ],
-    );
-  }
-
-  Widget _buildGreeting({
-    required bool isEmptyChat,
-    required bool isApiKeySet,
-    AppPokemonDetail? detail
-  }) {
-    if (isEmptyChat && isApiKeySet) {
-      return Align(
-        alignment: Alignment.center,
-        child: Padding(
-          padding: EdgeInsetsGeometry.all(DimenRes.size_16),
-          child: LayoutBuilder(
-            builder: (c, constraint) {
-              if (detail != null) {
-                return _buildGreetWithDetail(detail);
-              }
-              return Text(StringRes.greetChat, textAlign: TextAlign.center);
-            },
-          ),
-        ),
-      );
-    }
-    return SizedBox();
-  }
-
   Widget _buildChat({
     List<ChatMessage> list = const [],
     String? err,
     bool isLoadingAnswer = false,
+    AppPokemonDetail? detail
   }) {
     return Column(
       children: [
         Expanded(
-          child: ListView.builder(
+          child: ChatList(
+            messages: list,
+            detail: detail,
             controller: _scrollController,
-            padding: const EdgeInsets.all(16),
-            itemCount: list.length,
-            itemBuilder: (_, index) {
-              final message =list[index];
-              return ChatWidget(chatMessage: message);
-            },
           ),
         ),
         if (err != null) Text(err,
@@ -155,24 +106,16 @@ class _ChatPageState extends State<ChatPage> {
             crossAxisAlignment: CrossAxisAlignment.end,
             spacing: DimenRes.size_10,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                spacing: DimenRes.size_10,
-                children: [
-                  if (isLoadingAnswer) Expanded(
-                    flex: 1,
-                    child: AppChatBubble(
-                      dotColor: ColorRes.red,
-                      dotSize: DimenRes.size_16,
-                    ),
-                  ),
-                  Checkbox(value: _isStream, onChanged: (_) => _toggleStreamAnswer()),
-                  Text(StringRes.realTime)
-                ],
-              ),
-              AppChatInput(
-                allowSendNewChat: !isLoadingAnswer,
+              ChatAction(
+                chatType: _chatType,
+                state: isLoadingAnswer ? ChatActionState.loading: ChatActionState.idle,
                 onTapSendQuestion: (q) => _askQuestion(context, q),
+                onTapSetApiKey: () => _startSetApiKeyPage(context),
+                onChangeChatType: (type) {
+                  setState(() {
+                    _chatType = type;
+                  });
+                },
               ),
               if (err != null) AppButton(
                 label: StringRes.changeApiKey,
@@ -194,6 +137,13 @@ class _ChatPageState extends State<ChatPage> {
     bool isAiApiKeySet = true
   }) {
     if (isLoadingHistory) return Loading();
+    if (!isAiApiKeySet) {
+      return AppErrorWidget(
+        message: StringErrRes.errNoAiApiKey,
+        titleBtn: StringRes.setGeminiApiKey,
+        onRetry: () => _startSetApiKeyPage(context),
+      );
+    }
 
     return Stack(
       children: [
@@ -204,7 +154,6 @@ class _ChatPageState extends State<ChatPage> {
             color: ColorRes.grey.withAlpha(20),
           ),
         ),
-        _buildGreeting(isEmptyChat: list.isEmpty, isApiKeySet: isAiApiKeySet),
         if (!isAiApiKeySet) AppErrorWidget(
           message: StringErrRes.errNoAiApiKey,
           titleBtn: StringRes.setGeminiApiKey,
@@ -213,7 +162,8 @@ class _ChatPageState extends State<ChatPage> {
         if (isAiApiKeySet) _buildChat(
           list: list,
           isLoadingAnswer: isLoadingAnswer,
-          err: err
+          err: err,
+          detail: detail
         ),
       ],
     );
