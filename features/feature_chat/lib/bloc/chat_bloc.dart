@@ -40,8 +40,8 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
       transformer: throttleDroppable(Duration(milliseconds: 100))
     );
 
-    on<SaveChatEvent>(
-      _saveChatEvent
+    on<StartNewChatEvent>(
+      _startNewChatEvent
     );
   }
 
@@ -64,12 +64,13 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
       onLoading: () => emit(ChatState.loadingGetDetailPokemon()),
       onError: (err) => emit(ChatState.errorGetDetail(err)),
       onSuccess: (data, s) {
+        _messages.clear();
         _appPokemonDetail = data;
         emit(ChatState.gotDetailPokemon(data, s));
       },
     );
 
-  Future<void> _saveChatEvent(SaveChatEvent event, Emitter<ChatState> emit) async {
+  Future<void> _startNewChatEvent(StartNewChatEvent event, Emitter<ChatState> emit) async {
     if (_messages.isEmpty) {
       emit(ChatState.noHistoryToBeSave(event.reqWhen));
       return;
@@ -78,7 +79,10 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
         messages: _messages,
         current: _chatHistory,
         onLoading: () => emit(ChatState.loadingSaveHistory(List.of(_messages))),
-        onSuccess: () => emit(ChatState.historySaved(event.reqWhen))
+        onSuccess: () {
+          _messages.clear();
+          emit(ChatState.historySaved(event.reqWhen));
+        }
     );
   }
 

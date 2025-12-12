@@ -33,6 +33,7 @@ class _ChatPageState extends State<ChatPage> {
   final ScrollController _scrollController = ScrollController();
   late ChatBloc _bloc;
   ChatType _chatType = ChatType.stream;
+  bool _isShowNewChat = false;
 
   void _startSetApiKeyPage(BuildContext context) {
     widget.onStartSetApiKey?.call(this.context).then((isApiKeySaved) {
@@ -53,14 +54,29 @@ class _ChatPageState extends State<ChatPage> {
     _bloc.add(AskQuestionEvent(question, isStream: _chatType == ChatType.stream));
   }
 
+  void _showNewChat(bool show) {
+    if (show == _isShowNewChat) return;
+    setState(() {
+      _isShowNewChat = show;
+    });
+  }
+
+  void _startNewChat() {
+    _bloc.add(InitChatEvent(widget.pokemonId, DateTime.now()));
+    _showNewChat(false);
+  }
+
   void _scrollToBottom() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (!_scrollController.hasClients) return;
+      if (!_scrollController.hasClients) {
+        _showNewChat(false);
+        return;
+      }
       _scrollController.animateTo(
         _scrollController.position.maxScrollExtent,
         duration: const Duration(milliseconds: 250),
         curve: Curves.easeOut,
-      );
+      ).then((_) => _showNewChat(true));
     });
   }
 
@@ -74,6 +90,16 @@ class _ChatPageState extends State<ChatPage> {
       style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
     ),
     actions: [
+      if (_isShowNewChat) TextButton(
+        onPressed: () => _startNewChat(),
+        child: Row(
+          spacing: DimenRes.size_10,
+          children: [
+            Icon(IconRes.iconNewChat),
+            Text(StringRes.newChat)
+          ],
+        ),
+      ),
       AppIconButton.noBackground(
         icon: IconRes.iconHistory,
         iconColor: context.iconThemColor,
@@ -89,6 +115,7 @@ class _ChatPageState extends State<ChatPage> {
     AppPokemonDetail? detail
   }) {
     return Column(
+      spacing: DimenRes.size_16,
       children: [
         Expanded(
           child: ChatList(
@@ -97,11 +124,10 @@ class _ChatPageState extends State<ChatPage> {
             controller: _scrollController,
           ),
         ),
-        if (err != null) Text(err,
-          style: TextStyle(color: ColorRes.red, fontSize: DimenRes.size_12),
-        ),
         ChatAction(
           chatType: _chatType,
+          err: err,
+          onStartSetApiKey: () => widget.onStartSetApiKey?.call(context),
           state: isLoadingAnswer ? ChatActionState.loading: ChatActionState.idle,
           onTapSendQuestion: (q) => _askQuestion(context, q),
           onTapSetApiKey: () => _startSetApiKeyPage(context),
@@ -110,10 +136,6 @@ class _ChatPageState extends State<ChatPage> {
               _chatType = type;
             });
           },
-        ),
-        if (err != null) AppButton(
-          label: StringRes.changeApiKey,
-          onPressed: () => _startSetApiKeyPage(context),
         )
       ],
     );
@@ -168,8 +190,7 @@ class _ChatPageState extends State<ChatPage> {
             questionAdded: (_) => _scrollToBottom(),
             answered: (_) => _scrollToBottom(),
             errGetMessageByHistory: (err) => context.showErrorSnackBar(err),
-            historySaved: (_) => _startHistoryPage(context),
-            noHistoryToBeSave: (_) => _startHistoryPage(context),
+            // noHistoryToBeSave: (_) => _startHistoryPage(context),
             orElse: () {},
           );
         },
