@@ -135,28 +135,11 @@ class _ChatPageState extends State<ChatPage> {
         onRetry: () => _startSetApiKeyPage(context),
       );
     }
-
-    return Stack(
-      children: [
-        Align(
-          alignment: Alignment.center,
-          child: Image.asset(
-            ImageRes.pokeBall,
-            color: ColorRes.grey.withAlpha(20),
-          ),
-        ),
-        if (!isAiApiKeySet) AppErrorWidget(
-          message: StringErrRes.errNoAiApiKey,
-          titleBtn: StringRes.setGeminiApiKey,
-          onRetry: () => _startSetApiKeyPage(context),
-        ),
-        if (isAiApiKeySet) _buildChat(
-          list: list,
-          isLoadingAnswer: isLoadingAnswer,
-          err: err,
-          detail: detail
-        ),
-      ],
+    return _buildChat(
+        list: list,
+        isLoadingAnswer: isLoadingAnswer,
+        err: err,
+        detail: detail
     );
   }
 

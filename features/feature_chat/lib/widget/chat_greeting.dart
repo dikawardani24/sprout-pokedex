@@ -23,14 +23,32 @@ class ChatGreeting extends StatelessWidget{
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
+  Widget _buildContent() {
     final detail = appPokemonDetail;
 
     if (detail != null) {
       return _buildGreetWithTopic(detail);
     }
     return Text(StringRes.greetChat, textAlign: TextAlign.center);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Align(
+          alignment: Alignment.center,
+          child: Image.asset(
+            ImageRes.pokeBall,
+            color: ColorRes.grey.withAlpha(20),
+          ),
+        ),
+        Align(
+          alignment: Alignment.center,
+          child: _buildContent(),
+        ),
+      ],
+    );
   }
 
 }
