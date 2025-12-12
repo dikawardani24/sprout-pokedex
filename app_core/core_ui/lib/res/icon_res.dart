@@ -9,4 +9,5 @@ class IconRes {
   static final iconHistory = Icons.history_rounded;
   static final iconDelete = Icons.delete_forever_outlined;
   static final iconAsk = Icons.warning_amber_outlined;
+  static final iconNewChat = Icons.add_circle_outline_rounded;
 }

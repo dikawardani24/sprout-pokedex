@@ -51,6 +51,7 @@ class StringRes {
   static const save = "Save";
   static const apiKeySaved = "Your API Key saved successfully";
   static const changeApiKey = "Edit API Key";
+  static const newChat = "New Chat";
 
   static String greetChatWithTopic(String topic) => "Hallo fellow Pokemon fans, what do you want to talk about $topic ?";
 }

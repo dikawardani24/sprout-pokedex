@@ -33,10 +33,10 @@ class LoadHistoryChatEvent extends ChatEvent {
   List<Object?> get props => [chatHistory];
 }
 
-class SaveChatEvent extends ChatEvent {
+class StartNewChatEvent extends ChatEvent {
   final DateTime reqWhen;
 
-  SaveChatEvent(this.reqWhen);
+  StartNewChatEvent(this.reqWhen);
 
   @override
   List<Object?> get props => [reqWhen];

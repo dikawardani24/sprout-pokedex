@@ -62,7 +62,6 @@ class _SetAiApiKeyPageState extends State<SetAiApiKeyPage> {
       children: [
         Expanded(child: _buildInput(context)),
         AppButton(label: StringRes.save, onPressed: () => _save(context)),
-        AppButton(label: StringRes.cancel, onPressed: () => _goBackWithResult(context, false))
       ],
     );
   }

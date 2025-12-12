@@ -20,13 +20,17 @@ class ChatAction extends StatefulWidget {
   final OnTapSendQuestion onTapSendQuestion;
   final VoidCallback onTapSetApiKey;
   final OnChangeChatType onChangeChatType;
+  final String? err;
+  final VoidCallback? onStartSetApiKey;
 
   const ChatAction({
     super.key,
     required this.chatType,
     required this.onTapSendQuestion,
     required this.onTapSetApiKey, required this.onChangeChatType,
-    required this.state
+    required this.state,
+    this.err,
+    this.onStartSetApiKey
   });
 
   @override
@@ -48,6 +52,8 @@ class _ChatActionState extends State<ChatAction> {
 
   @override
   Widget build(BuildContext context) {
+    final err = widget.err;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
       spacing: DimenRes.size_10,
@@ -67,9 +73,16 @@ class _ChatActionState extends State<ChatAction> {
             Text(StringRes.realTime)
           ],
         ),
+        if (err != null) Text(err,
+          style: TextStyle(color: ColorRes.red, fontSize: DimenRes.size_12),
+        ),
         AppChatInput(
           allowSendNewChat:!_isLoading,
           onTapSendQuestion:  widget.onTapSendQuestion,
+        ),
+        if (err != null) AppButton(
+          label: StringRes.changeApiKey,
+          onPressed: () => widget.onStartSetApiKey?.call(),
         )
       ],
     );
