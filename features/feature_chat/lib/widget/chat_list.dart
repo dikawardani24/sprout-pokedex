@@ -14,12 +14,13 @@ class ChatList extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     if (messages.isEmpty) {
-      return ChatGreeting(appPokemonDetail: detail);
+      return Center(
+        child: ChatGreeting(appPokemonDetail: detail),
+      );
     }
 
     return ListView.builder(
       controller: controller,
-      padding: const EdgeInsets.all(16),
       itemCount: messages.length,
       itemBuilder: (_, index) {
         final message = messages[index];

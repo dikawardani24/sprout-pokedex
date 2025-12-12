@@ -15,25 +15,27 @@ class AppErrorScreenSize extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return Material(
+      child: Center(
         child: Padding(
-            padding: EdgeInsetsGeometry.all(DimenRes.size_16),
-            child: Stack(
-              children: [
-                Align(
-                  alignment: Alignment.center,
-                  child: Image.asset(
-                    ImageRes.pokeBall,
-                    color: Theme.of(context).iconTheme.color?.withAlpha(80),
-                  ),
+          padding: EdgeInsetsGeometry.all(DimenRes.size_16),
+          child: Stack(
+            children: [
+              Align(
+                alignment: Alignment.center,
+                child: Image.asset(
+                  ImageRes.pokeBall,
+                  color: ColorRes.grey.withAlpha(20),
                 ),
-                Align(
-                  alignment: Alignment.center,
-                  child: Text(message, textAlign: TextAlign.center,),
-                )
-              ],
-            )
-        )
+              ),
+              Align(
+                alignment: Alignment.center,
+                child: Text(message, textAlign: TextAlign.center,),
+              )
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

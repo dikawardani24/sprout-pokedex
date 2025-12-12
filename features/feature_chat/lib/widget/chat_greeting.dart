@@ -7,24 +7,30 @@ class ChatGreeting extends StatelessWidget{
 
   const ChatGreeting({super.key, this.appPokemonDetail});
 
-  @override
-  Widget build(BuildContext context) {
-    final detail = appPokemonDetail;
-
+  Widget _buildGreetWithTopic(AppPokemonDetail detail) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       spacing: DimenRes.size_16,
       children: [
-        if (detail != null) AppNetworkImage(
+        AppNetworkImage(
           imageUrl: detail.imageUrl,
           imageSize: DimenRes.size_100,
           imageErrSize: DimenRes.size_100,
         ),
-        if (detail != null) Text(StringRes.greetChatWithTopic(detail.name), textAlign: TextAlign.center),
-        if (detail == null) Text(StringRes.greetChat, textAlign: TextAlign.center)
+        Text(StringRes.greetChatWithTopic(detail.name), textAlign: TextAlign.center),
       ],
     );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final detail = appPokemonDetail;
+
+    if (detail != null) {
+      return _buildGreetWithTopic(detail);
+    }
+    return Text(StringRes.greetChat, textAlign: TextAlign.center);
   }
 
 }

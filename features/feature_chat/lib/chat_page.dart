@@ -100,30 +100,21 @@ class _ChatPageState extends State<ChatPage> {
         if (err != null) Text(err,
           style: TextStyle(color: ColorRes.red, fontSize: DimenRes.size_12),
         ),
-        Padding(
-          padding: const EdgeInsets.only(bottom: DimenRes.size_16, left: DimenRes.size_16, right: DimenRes.size_16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            spacing: DimenRes.size_10,
-            children: [
-              ChatAction(
-                chatType: _chatType,
-                state: isLoadingAnswer ? ChatActionState.loading: ChatActionState.idle,
-                onTapSendQuestion: (q) => _askQuestion(context, q),
-                onTapSetApiKey: () => _startSetApiKeyPage(context),
-                onChangeChatType: (type) {
-                  setState(() {
-                    _chatType = type;
-                  });
-                },
-              ),
-              if (err != null) AppButton(
-                label: StringRes.changeApiKey,
-                onPressed: () => _startSetApiKeyPage(context),
-              ),
-            ],
-          ),
+        ChatAction(
+          chatType: _chatType,
+          state: isLoadingAnswer ? ChatActionState.loading: ChatActionState.idle,
+          onTapSendQuestion: (q) => _askQuestion(context, q),
+          onTapSetApiKey: () => _startSetApiKeyPage(context),
+          onChangeChatType: (type) {
+            setState(() {
+              _chatType = type;
+            });
+          },
         ),
+        if (err != null) AppButton(
+          label: StringRes.changeApiKey,
+          onPressed: () => _startSetApiKeyPage(context),
+        )
       ],
     );
   }
@@ -184,7 +175,7 @@ class _ChatPageState extends State<ChatPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return AppPageWidget(
       appBar: _buildAppBar(context),
       body: BlocConsumer<ChatBloc, ChatState>(
         bloc: _bloc,

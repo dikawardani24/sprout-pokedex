@@ -40,3 +40,4 @@ export './widgets/app_markdown.dart';
 export './widgets/app_chat_buble.dart';
 export './widgets/confirmation_dialog.dart';
 export './widgets/app_button.dart';
+export './widgets/app_page_widget.dart';
