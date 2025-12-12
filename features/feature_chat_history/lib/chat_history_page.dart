@@ -68,25 +68,20 @@ class ChatHistoryPage extends StatelessWidget {
   }) {
     if (context.isSmallScreen())  return AppErrorScreenSize();
 
-    return SafeArea(
-      child: Padding(
-        padding: EdgeInsetsGeometry.all(DimenRes.size_16),
-        child: CustomScrollView(
-          slivers: [
-            _buildItems(context, list),
-            if (list.isEmpty) _buildNoData(context),
-            if (isLoadMore) _buildLoadingIndicator(),
-            if (err != null) _buildErr(err),
-            if (isReachMax) _buildEndOfItem(context)
-          ],
-        ),
-      ),
+    return CustomScrollView(
+      slivers: [
+        _buildItems(context, list),
+        if (list.isEmpty) _buildNoData(context),
+        if (isLoadMore) _buildLoadingIndicator(),
+        if (err != null) _buildErr(err),
+        if (isReachMax) _buildEndOfItem(context)
+      ],
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return AppPageWidget(
       appBar: AppBar(
         leading: AppIconButton.noBackground(
           icon: IconRes.iconNavBack,
@@ -102,8 +97,8 @@ class ChatHistoryPage extends StatelessWidget {
         child: BlocConsumer<ChatHistoryBloc, ChatHistoryState>(
           listener: (c, state) {
             state.whenOrNull(
-              errDeleteHistory: (err) => c.showErrorSnackBar(err),
-              historyDeleted: (_) => _showNotifHistoryDeleted(c)
+                errDeleteHistory: (err) => c.showErrorSnackBar(err),
+                historyDeleted: (_) => _showNotifHistoryDeleted(c)
             );
           },
           builder: (c, state) => state.maybeWhen(

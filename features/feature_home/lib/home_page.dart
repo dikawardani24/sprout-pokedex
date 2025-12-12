@@ -90,42 +90,41 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return AppPageWidget(
+      padding: 0,
       floatingActionButtonLocation: FloatingActionButtonLocation.miniStartFloat,
-      floatingActionButton: AppIconButton(
+      floatingActionBtn: AppIconButton(
         icon: IconRes.iconChat,
         iconColor: ColorRes.white,
         backgroundColor: ColorRes.red,
         onTap: () => widget.onStartChat?.call(this.context),
       ),
-      body: SafeArea(
-        child: BlocBuilder<HomeBloc, HomeState>(
-          bloc: _homeBloc,
-          builder: (context, state) {
-            return state.when(
-              initial: () => Container(),
-              loading: () => const Loading(),
-              loadingMore: (pokemons) => _buildPokemonList(
-                context: context,
-                pokemons: pokemons,
-                isLoadingMore: true,
-              ),
-              loaded: (pokemons, hasReachedMax) => _buildPokemonList(
-                context: context,
-                pokemons: pokemons,
-                hasReachedMax: hasReachedMax,
-              ),
-              error: (msg) => AppErrorWidget(
-                message: msg,
-                onRetry: () => _initPokemon(context),
-              ),
-              loadMoreError: (pokemons, msg) => AppErrorWidget(
-                message: msg,
-                onRetry: () => _initPokemon(context),
-              ),
-            );
-          },
-        ),
+      body: BlocBuilder<HomeBloc, HomeState>(
+        bloc: _homeBloc,
+        builder: (context, state) {
+          return state.when(
+            initial: () => Container(),
+            loading: () => const Loading(),
+            loadingMore: (pokemons) => _buildPokemonList(
+              context: context,
+              pokemons: pokemons,
+              isLoadingMore: true,
+            ),
+            loaded: (pokemons, hasReachedMax) => _buildPokemonList(
+              context: context,
+              pokemons: pokemons,
+              hasReachedMax: hasReachedMax,
+            ),
+            error: (msg) => AppErrorWidget(
+              message: msg,
+              onRetry: () => _initPokemon(context),
+            ),
+            loadMoreError: (pokemons, msg) => AppErrorWidget(
+              message: msg,
+              onRetry: () => _initPokemon(context),
+            ),
+          );
+        },
       ),
     );
   }

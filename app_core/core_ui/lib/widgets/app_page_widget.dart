@@ -8,8 +8,30 @@ class AppPageWidget extends StatelessWidget {
   final PreferredSizeWidget? appBar;
   final Widget body;
   final Widget? floatingActionBtn;
+  final FloatingActionButtonLocation? floatingActionButtonLocation;
+  final double padding;
 
-  const AppPageWidget({super.key, required this.body, this.appBar, this.floatingActionBtn});
+  const AppPageWidget({
+    super.key,
+    required this.body,
+    this.appBar,
+    this.floatingActionBtn,
+    this.floatingActionButtonLocation,
+    this.padding = DimenRes.size_16
+  });
+
+  Widget _buildContent() => SafeArea(child: body);
+
+  Widget _buildBody() {
+    if (padding > 0) {
+      return Padding(
+          padding: EdgeInsetsGeometry.all(padding),
+          child: _buildContent()
+      );
+    }
+
+    return _buildContent();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,11 +41,9 @@ class AppPageWidget extends StatelessWidget {
 
     return Scaffold(
       appBar: appBar,
-      body: Padding(
-        padding: EdgeInsetsGeometry.all(DimenRes.size_16),
-        child: body,
-      ),
+      body: _buildBody(),
       floatingActionButton: floatingActionBtn,
+      floatingActionButtonLocation: floatingActionButtonLocation,
     );
   }
 }

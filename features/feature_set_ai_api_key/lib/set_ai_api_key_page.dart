@@ -72,27 +72,22 @@ class _SetAiApiKeyPageState extends State<SetAiApiKeyPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return AppPageWidget(
       appBar: _buildAppBar(context),
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsetsGeometry.all(DimenRes.size_16),
-          child: BlocConsumer<SetApiKeyBloc, SetApiKeyState>(
-            bloc: _bloc,
-            listener: (c, state) {
-              state.whenOrNull(
-                apiKeySaved: () => _goBackWithResult(c, true),
-                errSaveApiKey: (err) => c.showErrorSnackBar(err)
-              );
-            },
-            builder: (c, state) {
-              return state.maybeWhen(
-                loadingSaveApiKey: () => _buildContent(c, isLoading: true),
-                orElse: () => _buildContent(c)
-              );
-            },
-          ),
-        ),
+      body: BlocConsumer<SetApiKeyBloc, SetApiKeyState>(
+        bloc: _bloc,
+        listener: (c, state) {
+          state.whenOrNull(
+              apiKeySaved: () => _goBackWithResult(c, true),
+              errSaveApiKey: (err) => c.showErrorSnackBar(err)
+          );
+        },
+        builder: (c, state) {
+          return state.maybeWhen(
+              loadingSaveApiKey: () => _buildContent(c, isLoading: true),
+              orElse: () => _buildContent(c)
+          );
+        },
       ),
     );
   }
