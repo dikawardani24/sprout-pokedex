@@ -62,7 +62,7 @@ class _ChatPageState extends State<ChatPage> {
   }
 
   void _startNewChat() {
-    _bloc.add(InitChatEvent(widget.pokemonId, DateTime.now()));
+    _bloc.add(StartNewChatEvent(DateTime.now()));
     _showNewChat(false);
   }
 
