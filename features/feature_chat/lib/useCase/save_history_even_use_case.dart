@@ -36,6 +36,7 @@ class SaveHistoryEvenUseCaseImpl implements SaveHistoryEvenUseCase {
         when: lastUser.when
     );
 
+    toSave = toSave.copyWith(title: lastUser.text);
     final result = await _saveHistoryUseCase.execute(
         SaveHistoryReq(
             chatHistory: toSave,
