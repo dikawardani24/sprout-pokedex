@@ -21,7 +21,7 @@ class ChatWidget extends StatelessWidget {
         ),
       );
     }
-    return AppHtmViewer(markdown: chatMessage.text, textColor: c.iconThemColor);
+    return AppMarkdown(textMarkdown: chatMessage.text,);
   }
 
   @override

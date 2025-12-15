@@ -1,25 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
+import 'package:gpt_markdown/gpt_markdown.dart';
 
-class AppHtmViewer extends StatelessWidget {
-  final String markdown;
-  final Color textColor;
+class AppMarkdown extends StatelessWidget{
+  final String textMarkdown;
 
-  const AppHtmViewer({super.key, required this.markdown, required this.textColor});
+  const AppMarkdown({super.key, required this.textMarkdown});
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: HtmlWidget(
-        markdown,
-        textStyle: TextStyle(fontSize: 16, color: textColor),
-        customStylesBuilder: (element) {
-          if (element.classes.contains('highlight')) {
-            return {'color': 'red'};
-          }
-          return null;
-        },
-      ),
-    );
+    return GptMarkdown(textMarkdown);
   }
+
 }

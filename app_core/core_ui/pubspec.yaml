@@ -20,6 +20,7 @@ dependencies:
   bloc_concurrency:
   flutter_widget_from_html:
   freezed_annotation:
+  gpt_markdown:
 
 dev_dependencies:
   flutter_test:
