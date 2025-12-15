@@ -26,13 +26,11 @@ RESPONSE PHILOSOPHY:
   TRAINER'S CURRENT QUESTION: $topic
       
   Provide comprehensive Pokémon information about this topic. Consider:
-      1. Provide detailed explanations with clear HTML structure
-      2. Break down complex concepts into digestible sections
-      3. Include practical examples and trainer tips when relevant
-      4. Compare across different Pokémon generations if applicable
-      5. Mention any game-specific mechanics or differences
+      1. Break down complex concepts into digestible sections
+      2. Include practical examples and trainer tips when relevant
+      3. Compare across different Pokémon generations if applicable
+      4. Mention any game-specific mechanics or differences
       
-  Structure your response with proper HTML headings, sections, and clear organization.
   Be as thorough as needed to fully address the trainer's question!
       """;
 }
