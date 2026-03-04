@@ -15,6 +15,8 @@ dependencies:
     path: ./app_core/api
   database:
     path: ./app_core/database
+  app_preference:
+    path: ./app_core/app_preference
   core:
     path: ./app_core/core
   core_ui:
@@ -68,9 +70,12 @@ dev_dependencies:
   bloc_test: ^10.0.0
 
   flutter_lints: ^4.0.0
-  freezed: ^2.5.8
+  freezed: 2.5.7
   melos: ^3.4.0
-  json_serializable: ^6.9.5
+  json_serializable: 6.9.0
+
+dependency_overrides:
+  analyzer: ^6.4.1
 
 flutter:
   uses-material-design: true
